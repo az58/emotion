@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
+
     /**
      * Create a new controller instance.
      *
@@ -23,7 +24,9 @@ class BookingController extends Controller
      */
     public function index()
     {
-        return view('booking');
+
+
+        return view('booking', compact('response', 'aCountries'));
     }
 
     /**

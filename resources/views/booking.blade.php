@@ -92,6 +92,13 @@
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
             </div>
+            <br><hr>
+            <select>
+                @foreach ($aCountries as $key => $row)
+                    <option value="{{ $key }}">{{ $row }}</option>
+                @endforeach
+            </select>
         </div>
+
     </body>
 </html>
