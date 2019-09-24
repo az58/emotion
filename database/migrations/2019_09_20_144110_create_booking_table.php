@@ -22,6 +22,7 @@ class CreateBookingTable extends Migration
             $table->string('state',100);
             $table->string('booking_price',20);
             $table->integer('age')->unsigned();
+            $table->string('phone', 30);
             $table->string('address', 100);
             $table->string('driving_licence', 100);
             $table->string('cb_number',20);

@@ -48,6 +48,7 @@ class DatabaseSeeder extends Seeder
 				'state' 			=> $faker->city,
 				'booking_price' 	=> $faker->numberBetween(1,100),
 				'age' 				=> $faker->numberBetween(18,65),
+				'phone' 			=> $faker->phoneNumber,
 				'address' 			=> $faker->randomNumber(3).' rue '.$faker->name.' '.$faker->randomNumber(5).' '.$faker->city,
 				'driving_licence' 	=> $faker->randomNumber(5),
 				'cb_number' 		=> $faker->creditCardNumber,
