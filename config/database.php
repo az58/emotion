@@ -56,11 +56,11 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'host' => env('postgresql-pawolanmwen.alwaysdata.net', 'postgresql-pawolanmwen.alwaysdata.net'),
             'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'database' => env('pawolanmwen_emotion', 'pawolanmwen_emotion'),
+            'username' => env('pawolanmwen_106139', 'pawolanmwen_106139'),
+            'password' => env('jJ76"ù)8RcUdrets5', 'jJ76"ù)8RcUdrets5'),
             'charset' => 'utf8',
             'prefix' => '',
             'schema' => 'public',
