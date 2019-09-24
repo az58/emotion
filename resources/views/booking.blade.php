@@ -8,12 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
         <!-- Styles -->
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-
 
         <style>
             html, body {
@@ -96,27 +91,7 @@
                     <a href="#">Logout</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
-                <!-- Datepicker  -->
-                <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
-
-                <script>
-                    $(function() {
-                        $('input[name="daterange"]').daterangepicker({
-                            opens: 'left'
-                        }, function(start, end, label) {
-                            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-                        });
-                    });
-                </script>
-
-                <!-- Datepicker  -->
             </div>
-            <br><hr>
-            <select>
-                @foreach ($aCountries as $key => $row)
-                    <option value="{{ $key }}">{{ $row }}</option>
-                @endforeach
-            </select>
         </div>
 
     </body>
@@ -253,47 +228,4 @@
         </div>
 
     @endsection
-
-    @section('scripts')
-
-        <script>
-
-            $(function(){
-
-                $('#register').click(function() {
-                    $('#myModal').modal();
-                });
-
-                $(document).on('submit', '#formRegister', function(e) {
-                    e.preventDefault();
-
-                    $('input+small').text('');
-                    $('input').parent().removeClass('has-error');
-
-                    $.ajax({
-                        method: $(this).attr('method'),
-                        url: $(this).attr('action'),
-                        data: $(this).serialize(),
-                        dataType: "json"
-                    })
-                        .done(function(data) {
-                            $('.alert-success').removeClass('hidden');
-                            $('#myModal').modal('hide');
-                        })
-                        .fail(function(data) {
-                            $.each(data.responseJSON, function (key, value) {
-                                var input = '#formRegister input[name=' + key + ']';
-                                $(input + '+small').text(value);
-                                $(input).parent().addClass('has-error');
-                            });
-                        });
-                });
-
-            })
-
-        </script>
-
-    @endsection
-
-
 </html>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class AjaxController extends Controller
 {
+    /*
     protected $_aCities     = [];
     protected $_aCountries  = [];
 
@@ -24,10 +25,12 @@ class AjaxController extends Controller
         }
 
 
-        //$sCountry                               = ucfirst('france');
+        $sCountry                               = ucfirst('france');
 
         $aCountries                                 = $this->_aCountries;
 
-        //$aCites                                 = array_reverse($this->_aCities[$sCountry]);
+        $aCites                                 = array_reverse($this->_aCities[$sCountry]);
+
     }
+    */
 }
