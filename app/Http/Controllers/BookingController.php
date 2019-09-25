@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Stripe;
 
 class BookingController extends Controller
 {
@@ -36,7 +37,15 @@ class BookingController extends Controller
      */
     public function create()
     {
-        //
+		/**
+		 * Ceci est une vrai clé de test liée à un veritable compte stripe
+		 * @author Lory LETICEE
+		 * @see https://stripe.com/docs/api
+		 */
+		Stripe\Stripe::setApiKey('sk_test_x5TBqaYsUEpjkNs4V7kavpCQ00itifTEmi');
+
+		$ch	= Stripe\Event::all(['limit' => 10]);
+		var_dump($ch);exit;
     }
 
     /**
