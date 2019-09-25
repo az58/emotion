@@ -80,49 +80,53 @@
     </style>
 </head>
 <body>
-<div class="flex-center position-ref full-height">
-    @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-                <a href="{{ url('/home') }}">Home</a>
-                <a  href="{{ url('/logout') }}">Logout</a>
-                <a  href="{{ url('booking') }}">Booking</a>
-            @else
-                <a href="{{ route('login') }}">Login</a>
+    <div class="flex-center position-ref full-height ">
+        @if (Route::has('login'))
+            <div class="top-right links">
+                @auth
+                    <a href="{{ url('/home') }}">Home</a>
+                    <a  href="{{ url('/logout') }}">Logout</a>
+                    <a  href="{{ url('booking') }}">Booking</a>
+                @else
+                    <a href="{{ route('login') }}">Login</a>
 
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}">Register</a>
-                @endif
-            @endauth
-        </div>
-    @endif
-
-    <div class="content">
-        <div class="title m-b-md">
-            Booking
-        </div>
-
-        <fieldset>
-            <legend>En route !</legend>
-            <div class="form-group">
-                <div class="row">
-                    <label for="date-picker">Du : </label>
-                    <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" id="date-picker"/>
-                    <label for="cities-select">À partir de : </label>
-                    <select class="custom-select" id="cities-select">
-                        <option selected value="447">Paris</option>
-                        @foreach ($aCities as $key => $row)
-                            <option value="{{ $key }}">{{ $row }}</option>
-                        @endforeach
-                    </select>
-                    <button type="submit" class="btn btn-info">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}">Register</a>
+                    @endif
+                @endauth
             </div>
-        </fieldset>
-    </div>
-</div>
+        @endif
 
+        <div class="content">
+            <div class="title m-b-md">
+                Booking
+            </div>
+
+            <fieldset>
+                <legend>En route !</legend>
+                <div class="form-group">
+                    <div class="row">
+                        <label for="date-picker">Du : </label>
+                        <input type="text" name="daterange" value="10/01/2019 - 10/07/2019" id="date-picker"/>
+                        <label for="cities-select">À partir de : </label>
+                        <select class="custom-select" id="cities-select">
+                            <option selected value="447">Paris</option>
+                            @foreach ($aCities as $key => $row)
+                                <option value="{{ $key }}">{{ $row }}</option>
+                            @endforeach
+                        </select>
+                        <button type="submit" class="btn btn-info">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="row">
+                Les membres économisent jusqu’à 40%
+                Abonnez-vous pour recevoir des suggestions personnalisées et profiter d’Offres privées vous permettant d’économiser jusqu’à 35%.
+            </div>
+        </div>
+    </div>
+    @extends('layouts/footer')
 </body>
 </html>
