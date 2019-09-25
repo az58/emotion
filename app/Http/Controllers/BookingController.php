@@ -42,7 +42,9 @@ class BookingController extends Controller
 		 * @author Lory LETICEE
 		 * @see https://stripe.com/docs/api
 		 */
-		Stripe\Stripe::setApiKey('sk_test_x5TBqaYsUEpjkNs4V7kavpCQ00itifTEmi');
+		// fake test key : sk_test_4eC39HqLyjWDarjtT1zdp7dc
+		// real test key : sk_test_x5TBqaYsUEpjkNs4V7kavpCQ00itifTEmi
+		Stripe\Stripe::setApiKey('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 		$ch	= Stripe\Event::all(['limit' => 10]);
 		var_dump($ch);exit;
