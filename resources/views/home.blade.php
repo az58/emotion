@@ -10,10 +10,13 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <!-- Styles -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script src="https://kit.fontawesome.com/ec73f164d2.js"></script>
+
     <script>
         $(function() {
             $('input[name="daterange"]').daterangepicker({
@@ -82,6 +85,8 @@
         <div class="top-right links">
             @auth
                 <a href="{{ url('/home') }}">Home</a>
+                <a  href="{{ url('/logout') }}">Logout</a>
+                <a  href="{{ url('booking') }}">Booking</a>
             @else
                 <a href="{{ route('login') }}">Login</a>
 
@@ -101,12 +106,18 @@
             <legend>En route !</legend>
             <div class="form-group">
                 <div class="row">
-                    <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" size="20"/>
-                    <select class="custom-select">
+                    <label for="date-picker">Du : </label>
+                    <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" id="date-picker"/>
+                    <label for="cities-select">À partir de : </label>
+                    <select class="custom-select" id="cities-select">
+                        <option selected value="447">Paris</option>
                         @foreach ($aCities as $key => $row)
                             <option value="{{ $key }}">{{ $row }}</option>
                         @endforeach
                     </select>
+                    <button type="submit" class="btn btn-info">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
             </div>
         </fieldset>
