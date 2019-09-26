@@ -36,24 +36,25 @@
             $('#book').click(function() {
                 var result  = '#result-content';
                 $.ajax({
-                    //method: $(this).attr('method'),
                     method: 'POST',
                     url: '/ajaxCreate',
-                    // data: $(this).serialize(),
                     data: {
-                        range :$('input[name="daterange"]').val()
+                        range :$('input[name="daterange"]').val(),
+                        cities :$('#cities-select option:selected').text()
                     },
                     dataType: "json"
                 })
                 .done(function(data) {
+                    $(result).html('');
                     $(result).append('<ul></ul>');
-                    $.each(data.user, function (key, value) {
+                    $.each(data.vehicle, function (key, value) {
                         let ul = $(result+'> ul');
-                        ul.append('<li class="n-b-md data-result">'+value.id+' '+value.category+' '+value.type+' '+value.color+' '+value.fuel_brand+'</li>');
+                        ul.append('<li class="n-b-md data-result">' +
+                            ''+value.id+' '+value.category+' '+value.type+' '+value.color+' '+value.fuel_brand+' '+value.current_place+'</li>');
                     });
                 })
-                .fail(function(data) {
-                    result.text('no vehcle found');
+                .fail(function(data,status) {
+                    result.text('no vehicle found');
                 });
             });
         });
@@ -163,7 +164,7 @@
                         <label for="date-picker">Du : </label>
                         <input type="text" name="daterange" value="<?php echo $sToday->format('m/d/Y').' - '.$sAWeek->format('m/d/Y'); ?>" id="date-picker"/>
                         <label for="cities-select">À partir de : </label>
-                        <select class="custom-select" id="cities-select">
+                        <select class="custom-select" id="cities-select" name="cities">
                             <option selected value="447">Paris</option>
                             @foreach ($aCities as $key => $row)
                                 <option value="{{ $key }}">{{ $row }}</option>
