@@ -24,8 +24,8 @@ class CreateVehicleTable extends Migration
             $table->string('distance', 255);// distance = nombre de kilomètres
             $table->dateTime('date_purchase');// date_purchase =  date d'achat
             $table->integer('buying_price')->unsigned();// buying_prie =  prix d'achat
-            $table->integer('fuel_level')->unsigned(); // fuel_level =  niveau de carburant
-            $table->enum('fuel_brand', ['diesel', 'essence98', 'essence95']);// fuel_brand = type de carburant
+            $table->integer('battery_level')->unsigned(); // battery_level =  niveau de batterie
+            $table->enum('battery_brand', ['Cadmium nickel', 'Nickel métal hydrure', 'Lithium', 'Lithium-ion']);// battery_brand = type de batterie
             $table->timestamps();
         });
     }
