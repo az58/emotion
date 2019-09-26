@@ -34,27 +34,26 @@
             });
 
             $('#book').click(function() {
+                var result  = '#result-content';
                 $.ajax({
                     //method: $(this).attr('method'),
                     method: 'POST',
                     url: '/ajaxCreate',
                     // data: $(this).serialize(),
-                    data: $('input[name="daterange"]').val(),
+                    data: {
+                        range :$('input[name="daterange"]').val()
+                    },
                     dataType: "json"
                 })
                 .done(function(data) {
-
-                    // $('.alert-success').removeClass('hidden');
-                    // $('#myModal').modal('hide');
-                    console.log(data);
+                    $(result).append('<ul></ul>');
+                    $.each(data.user, function (key, value) {
+                        let ul = $(result+'> ul');
+                        ul.append('<li class="n-b-md data-result">'+value.id+' '+value.category+' '+value.type+' '+value.color+' '+value.fuel_brand+'</li>');
+                    });
                 })
                 .fail(function(data) {
-                    console.log('fail');
-                    // $.each(data.responseJSON, function (key, value) {
-                    //     var input = '#formRegister input[name=' + key + ']';
-                    //     $(input + '+small').text(value);
-                    //     $(input).parent().addClass('has-error');
-                    // });
+                    result.text('no vehcle found');
                 });
             });
         });
@@ -72,7 +71,12 @@
         }
 
         .full-height {
-            height: 100vh;
+            height: 70vh;
+            width: 100vw;
+        }
+
+        .bottom-height {
+            height: 20vh;
         }
 
         .flex-center {
@@ -99,6 +103,10 @@
             font-size: 84px;
         }
 
+        .data-result {
+            font-size: 24px;
+        }
+
         .links > a {
             color: #636b6f;
             padding: 0 25px;
@@ -110,6 +118,10 @@
         }
 
         .m-b-md {
+            margin-bottom: 30px;
+        }
+
+        .n-b-md {
             margin-bottom: 30px;
         }
     </style>
@@ -168,6 +180,9 @@
                 Abonnez-vous pour recevoir des suggestions personnalisées et profiter d’Offres privées vous permettant d’économiser jusqu’à 35%.
             </div>
         </div>
+    </div>
+    <div id="result-content" class="bottom-height flex-center">
+        {{--   Search Result zone   --}}
     </div>
 
     @section('scripts')

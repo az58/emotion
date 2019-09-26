@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use http\Client\Response;
+use App\Vehicle;
 use Illuminate\Http\Request;
 
 class AjaxController extends Controller
@@ -33,4 +35,15 @@ class AjaxController extends Controller
 
     }
     */
+
+	public function ajax(Request $request)
+	{
+		if (!empty($request->all())) {
+
+
+			return response(['user' => Vehicle::all()], 200);
+		}
+
+		return response('access denied', 301);
+	}
 }
