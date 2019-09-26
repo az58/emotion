@@ -1,7 +1,5 @@
 <style>
-    .footer
-
-    {
+    .footer {
         position: absolute;
         bottom: 0;
         width: 100%;
@@ -9,9 +7,14 @@
         line-height: 60px;
         background-color: #003b6f;
     }
+    .align-content-center {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
 </style>
 <div class="footer">
-    <div class="text-center">
+    <div class="align-content-center">
         footer
     </div>
 </div>

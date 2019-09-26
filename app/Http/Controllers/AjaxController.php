@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use http\Client\Response;
+use App\Vehicle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AjaxController extends Controller
 {
@@ -33,4 +36,20 @@ class AjaxController extends Controller
 
     }
     */
+
+	public function ajax(Request $request)
+	{
+		if (!empty($request->all()) && array_key_exists("cities", $request->all()) ) {
+			$sPlace								= strip_tags($request->cities);
+
+			$vehicle 							= Vehicle::where('current_place', htmlentities(ucfirst($sPlace)))->get();
+
+			if(!$vehicle->isEmpty()){
+
+				return response(['vehicle' => $vehicle], 200);
+			}
+		}
+
+		return response(['vehicle' => []], 200);
+	}
 }

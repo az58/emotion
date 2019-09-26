@@ -42,23 +42,24 @@ class BookingController extends Controller
 		 * @author Lory LETICEE
 		 * @see https://stripe.com/docs/api
 		 */
+		$intent ='';
 		// fake test key : sk_test_4eC39HqLyjWDarjtT1zdp7dc
 		// real test key : sk_test_x5TBqaYsUEpjkNs4V7kavpCQ00itifTEmi
-		Stripe\Stripe::setApiKey('sk_test_x5TBqaYsUEpjkNs4V7kavpCQ00itifTEmi');
+//		Stripe\Stripe::setApiKey('sk_test_x5TBqaYsUEpjkNs4V7kavpCQ00itifTEmi');
+//
+//		$ev	= Stripe\Event::all(['limit' => 10]);
 
-		$ev	= Stripe\Event::all(['limit' => 10]);
+//		Stripe\Charge::create([
+//			"amount" => 2000,
+//			"currency" => "usd",
+//			"source" => "tok_mastercard", // obtained with Stripe.js
+//			"metadata" => ["order_id" => "6735"]
+//		]);
 
-		Stripe\Charge::create([
-			"amount" => 2000,
-			"currency" => "usd",
-			"source" => "tok_mastercard", // obtained with Stripe.js
-			"metadata" => ["order_id" => "6735"]
-		]);
-
-		$intent = Stripe\PaymentIntent::create([
-			'amount' => 1099,
-			'currency' => 'usd',
-		]);
+//		$intent = Stripe\PaymentIntent::create([
+//			'amount' => 1099,
+//			'currency' => 'usd',
+//		]);
 
 //		$intent = $session = Stripe\Checkout\Session::create([
 //			'payment_method_types' => ['card'],
@@ -81,7 +82,7 @@ class BookingController extends Controller
 //		exit;
 		//$ch	= Stripe\Charge::all(['limit' => 10]);
 
-	return view('create', compact('intent'));
+		return view('create', compact('intent'));
     }
 
     /**
