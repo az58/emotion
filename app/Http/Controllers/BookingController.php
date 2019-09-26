@@ -83,7 +83,12 @@ class BookingController extends Controller
 
 	return view('create', compact('intent'));
     }
+	public function ajax(Request $request)
+	{
 
+		var_dump($request->all());
+		exit;
+	}
     /**
      * Store a newly created resource in storage.
      *
