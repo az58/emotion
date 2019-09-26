@@ -16,15 +16,16 @@ class CreateVehicleTable extends Migration
         Schema::create('vehicle', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->enum('category', ['car','scooter']); // category = type de la véhicule
-            $table->string('brand', 100)->nullable(); // brand = marque
-            $table->string('type', 100)->nullable(); // type = modèle
-            $table->string('color', 20)->nullable(); // color =  couleur
-            $table->string('licence_plate', 100)->nullable();// licence_plate = plaque d'immatriculation
-            $table->string('distance', 255)->nullable() ;// distance = nombre de kilomètres
-            $table->dateTime('date_purchase')->nullable();// date_purchase =  date d'achat
+            $table->string('brand', 100); // brand = marque
+            $table->string('type', 100); // type = modèle
+            $table->string('color', 20); // color =  couleur
+            $table->string('current_place', 100); // current_place =  emplacement actuel du véhicule
+            $table->string('licence_plate', 100);// licence_plate = plaque d'immatriculation
+            $table->string('distance', 255);// distance = nombre de kilomètres
+            $table->dateTime('date_purchase');// date_purchase =  date d'achat
             $table->integer('buying_price')->unsigned();// buying_prie =  prix d'achat
             $table->integer('fuel_level')->unsigned(); // fuel_level =  niveau de carburant
-            $table->enum('fuel_brand', ['diesel','essence98','essence95']);// fuel_brand = type de carburant
+            $table->enum('fuel_brand', ['diesel', 'essence98', 'essence95']);// fuel_brand = type de carburant
             $table->timestamps();
         });
     }
