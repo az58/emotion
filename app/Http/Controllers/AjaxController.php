@@ -50,6 +50,6 @@ class AjaxController extends Controller
 			}
 		}
 
-		return response('access denied', 444);
+		return response(['vehicle' => []], 200);
 	}
 }
