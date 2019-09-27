@@ -58,7 +58,7 @@
                     $.each(data.vehicle, function (key, value) {
                         let ul = $(result+'> ul');
                         ul.append('<li class="n-b-md data-result">' +
-                            ''+value.id+' '+value.category+' '+value.type+' '+value.color+' '+value.fuel_brand+' '+value.current_place+'</li>');
+                            ''+value.id+' '+value.category+' '+value.type+' '+value.color+' '+value.battery_brand+' '+value.current_place+'</li>');
                     });
                 })
                 .fail(function(data,status) {
