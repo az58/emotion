@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
 			'type'			=> $faker->randomAscii,
 			'color' 		=> $faker->colorName,
 			'current_place' => $faker->city,
+			'serial_number' => $faker->randomAscii,
 			'licence_plate' => $faker->randomAscii,
 			'distance' 		=> $faker->numberBetween(5,800),
 			'date_purchase' => $faker->date('Y-m-d','now'),
