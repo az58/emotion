@@ -190,8 +190,7 @@
             </div>
         </div>
     </div>
-    <div id="result-content" class="bottom-height flex-center">
-        {{--   Search Result zone   --}}
+    <div class=" flex-center">
         <p>Filter settings:</p>
 
         <div>
@@ -205,6 +204,11 @@
             <span id="price_end_value"></span>
             <label for="price_end">Price Max</label>
         </div>
+    </div>
+
+    <div id="result-content" class="bottom-height flex-center">
+        {{--   Search Result zone   --}}
+
     </div>
 {{--        for windows--}}
 {{--    @php $fmt = new NumberFormatter( 'fr_FR', NumberFormatter::CURRENCY );--}}

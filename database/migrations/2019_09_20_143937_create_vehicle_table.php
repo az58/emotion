@@ -20,9 +20,9 @@ class CreateVehicleTable extends Migration
             $table->string('type', 100); // type = modèle
             $table->string('color', 20); // color =  couleur
             $table->string('current_place', 100); // current_place =  emplacement actuel du véhicule
-            $table->string('serial_number', 100); // serial_number =  numéro de série
             $table->string('licence_plate', 100);// licence_plate = plaque d'immatriculation
-            $table->string('distance', 255);// distance = nombre de kilomètres
+            $table->string('kilometer', 255);// kilometer = nombre de kilomètres
+            $table->string('serial_number', 17); // serial_number =  numéro de série
             $table->dateTime('date_purchase');// date_purchase =  date d'achat
             $table->integer('buying_price')->unsigned();// buying_prie =  prix d'achat
             $table->integer('battery_level')->unsigned(); // battery_level =  niveau de batterie

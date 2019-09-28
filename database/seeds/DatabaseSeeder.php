@@ -31,13 +31,14 @@ class DatabaseSeeder extends Seeder
 			'type'			    => 'zoé',
 			'color' 		    => 'blue',
 			'current_place'     => 'paris',
-            'serial_number'     => 'KZ00003',
             'licence_plate'     => 'RF-464-RD',
-			'distance' 		    => '0',
+			'kilometer' 		=> '30000',
+            'serial_number'     => 'VF7SBHMZ0EW554823',
 			'date_purchase'     => $faker->date('Y-m-d','now'),
 			'buying_price' 	    => '19750',
 			'battery_level' 	=> 100,
 			'battery_brand' 	=> 'Cadmium nickel'
+        ]);
 
 		foreach (range(1,20) as $index) {
 			DB::table('booking')->insert([
