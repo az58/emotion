@@ -63,7 +63,7 @@
                         ul.append('<li class="n-b-md data-result">' +
                             ''+value.id+' '+value.category+' '+value.type+' '+
                             value.color+' '+value.battery_brand+' '+value.current_place+
-                            ' '+value.day_price+' € '+'<button id="showOffer" data-content="'+value.id+'">Voir l\'offre</button>'+'</li>');
+                            ' '+ (value.day_price * data.days) +' € '+'<button id="showOffer" data-content="'+value.id+'">Voir l\'offre</button>'+'</li>');
                     });
                 })
                 .fail(function(data,status) {
@@ -222,17 +222,19 @@
     </div>
     <div class=" flex-center">
         <p>Filter settings:</p>
-
-        <div>
-            <input type="range" id="price_start" name="price_start" min="10" max="100" value="10" step="1">
-            <span id="price_start_value"></span>
-            <label for="price_start">Price Min</label>
+        <div class="row">
+            <div>
+                <input type="range" id="price_start" name="price_start" min="10" max="100" value="10" step="1">
+                <span id="price_start_value"></span>
+                <label for="price_start">Price Min</label>
+            </div>
         </div>
-
-        <div>
-            <input type="range" id="price_end" name="price_end" min="100" max="1000" value="150" step="1">
-            <span id="price_end_value"></span>
-            <label for="price_end">Price Max</label>
+        <div class="row">
+            <div>
+                <input type="range" id="price_end" name="price_end" min="100" max="1000" value="150" step="1">
+                <span id="price_end_value"></span>
+                <label for="price_end">Price Max</label>
+            </div>
         </div>
     </div>
 

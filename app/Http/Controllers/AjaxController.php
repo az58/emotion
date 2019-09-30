@@ -44,6 +44,11 @@ class AjaxController extends Controller
 	public function ajax(Request $request)
 	{
 		if (!empty($request->all()) && array_key_exists("cities", $request->all()) ) {
+
+
+            $iDays                              = 0;
+
+
 			$sPlace								= strip_tags($request->cities);
 			$sCategory                          = strip_tags($request->category);
             $sCat                               = in_array($sCategory, $this->_categories) ;
@@ -61,10 +66,33 @@ class AjaxController extends Controller
 
 			if (!$vehicle->isEmpty()){
 
-				return response(['vehicle' => $vehicle], 200);
+                if (is_null($request->range)) {
+                    return response('error');
+                }
+
+                $iStart                         = substr($request->range, 0,10); // or your date as well
+                $iEnd                           = substr($request->range, 13); // or your date as well
+
+                if (!$this->_validateDate($iStart) || !$this->_validateDate($iEnd)) {
+                  return response('error');
+                }
+
+                $iNoAbsoluteDay                 = round((strtotime($iStart) - strtotime($iEnd)) / (60 * 60 * 24));
+                $iDays                          = abs($iNoAbsoluteDay);
+
+
+                return response(['vehicle' => $vehicle, 'days' => $iDays], 200);
 			}
 		}
 
 		return response(['vehicle' => []], 200);
 	}
+
+
+    protected function _validateDate($date, $format = 'm/d/Y')
+    {
+        $d = \DateTime::createFromFormat($format, $date);
+        // The Y ( 4 digits year ) returns TRUE for any integer with any number of digits so changing the comparison from == to === fixes the issue.
+        return $d && $d->format($format) === $date;
+    }
 }
