@@ -44,6 +44,6 @@ class HomeController extends Controller
 
         $aCities                                 = array_reverse($this->_aCities[$sCountry]);
 
-        return view('home',compact('response', 'aCities') );
+        return view('home',compact( 'aCities') );
     }
 }
