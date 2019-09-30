@@ -41,8 +41,8 @@ class AjaxController extends Controller
 	{
 		if (!empty($request->all()) && array_key_exists("cities", $request->all()) ) {
 			$sPlace								= strip_tags($request->cities);
-
-			$vehicle 							= Vehicle::where('current_place', htmlentities(ucfirst($sPlace)))->get();
+            $sCat                               = strip_tags($request->category);
+			$vehicle 							= Vehicle::where('current_place', htmlentities(ucfirst($sPlace)))->where('category', htmlentities(ucfirst($sCat)))->get();
 
 			if(!$vehicle->isEmpty()){
 

@@ -48,7 +48,8 @@
                     url: '/ajaxCreate',
                     data: {
                         range :$('input[name="daterange"]').val(),
-                        cities :$('#cities-select option:selected').text()
+                        cities :$('#cities-select option:selected').text(),
+                        category :$('#categories-select option:selected').text()
                     },
                     dataType: "json"
                 })
@@ -177,6 +178,11 @@
                             @foreach ($aCities as $key => $row)
                                 <option value="{{ $key }}">{{ $row }}</option>
                             @endforeach
+                        </select>
+                        <label for="categories-select">Car / Scooter : </label>
+                        <select class="custom-select" id="categories-select" name="categories">
+                            <option selected value="car">Car</option>
+                            <option value="scooter">Scooter</option>
                         </select>
                         <button type="submit" id="book" class="btn btn-info">
                             <i class="fas fa-search"></i>
