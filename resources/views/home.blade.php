@@ -34,11 +34,11 @@
             });
 
             $('#price_start').on('input',function() {
-                $('#price_start_value').html($(this).val() );
+                $('#price_start_value').html($(this).val() + '€');
             });
 
             $('#price_end').on('input',function() {
-                $('#price_end_value').html($(this).val() );
+                $('#price_end_value').html($(this).val() + '€');
             });
 
             $('#book').click(function() {
@@ -47,9 +47,11 @@
                     method: 'POST',
                     url: '/ajaxCreate',
                     data: {
-                        range :$('input[name="daterange"]').val(),
-                        cities :$('#cities-select option:selected').text(),
-                        category :$('#categories-select option:selected').text()
+                        range       : $('input[name="daterange"]').val(),
+                        cities      : $('#cities-select option:selected').text(),
+                        category    : $('#categories-select option:selected').val(),
+                        minPrice    : $('#price_start').val(),
+                        maxPrice    : $('#price_end').val()
                     },
                     dataType: "json"
                 })
@@ -59,12 +61,33 @@
                     $.each(data.vehicle, function (key, value) {
                         let ul = $(result+'> ul');
                         ul.append('<li class="n-b-md data-result">' +
-                            ''+value.id+' '+value.category+' '+value.type+' '+value.color+' '+value.battery_brand+' '+value.current_place+'</li>');
+                            ''+value.id+' '+value.category+' '+value.type+' '+
+                            value.color+' '+value.battery_brand+' '+value.current_place+
+                            ' '+value.day_price+' € '+'<button id="showOffer" data-content="'+value.id+'">Voir l\'offre</button>'+'</li>');
                     });
                 })
                 .fail(function(data,status) {
                     result.text('no vehicle found');
                 });
+            });
+
+
+            $('#showOffer').click(function() {
+                $.ajax({
+                    method: 'POST',
+                    url: '/booking/create',
+                    data: {
+                        range       : $('input[name="daterange"]').val(),
+                        car         : $(this).data(),
+                    },
+                    dataType: "json"
+                })
+                    .done(function(data) {
+
+                    })
+                    .fail(function(data,status) {
+
+                    });
             });
         });
 
@@ -183,6 +206,7 @@
                         <select class="custom-select" id="categories-select" name="categories">
                             <option selected value="car">Car</option>
                             <option value="scooter">Scooter</option>
+                            <option value="">Car and Scooter</option>
                         </select>
                         <button type="submit" id="book" class="btn btn-info">
                             <i class="fas fa-search"></i>
