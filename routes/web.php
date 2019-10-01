@@ -33,7 +33,7 @@ Route::post('/ajaxCreate','AjaxController@ajax');
  * @author Aziza CHEBANI
  */
 
-Route::get('/admin', function (){
+Route::get('/admin ', function (){
     return view('administrator.dashboard');
 });
 
