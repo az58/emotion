@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+#use Illuminate\Support\Str;
 
 use Faker\Factory as Faker;
 
@@ -36,6 +37,7 @@ class DatabaseSeeder extends Seeder
             'serial_number'     => 'VF7SBHMZ0EW554823',
 			'date_purchase'     => $faker->date('Y-m-d','now'),
 			'buying_price' 	    => '19750',
+			'day_price' 	    => '20',
 			'battery_level' 	=> 100,
 			'battery_brand' 	=> 'Cadmium nickel'
         ]);

@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\DB;
 
 class AjaxController extends Controller
 {
+    protected $_categories  = [
+        'car',
+        'scooter',
+    ];
     /*
     protected $_aCities     = [];
     protected $_aCountries  = [];
@@ -40,16 +44,55 @@ class AjaxController extends Controller
 	public function ajax(Request $request)
 	{
 		if (!empty($request->all()) && array_key_exists("cities", $request->all()) ) {
+
+
+            $iDays                              = 0;
+
+
 			$sPlace								= strip_tags($request->cities);
+			$sCategory                          = strip_tags($request->category);
+            $sCat                               = in_array($sCategory, $this->_categories) ;
 
-			$vehicle 							= Vehicle::where('current_place', htmlentities(ucfirst($sPlace)))->get();
+            $iMinPrice                          = (is_numeric($request->minPrice) ? $request->minPrice : null) ;
+            $iMaxPrice                          = (is_numeric($request->maxPrice) ? $request->maxPrice : null) ;
 
-			if(!$vehicle->isEmpty()){
+			if (!$sCat) {
+                $vehicle 						= Vehicle::where('current_place', htmlentities($sPlace))->whereBetween('day_price', [$iMinPrice, $iMaxPrice])->get();
+            }
 
-				return response(['vehicle' => $vehicle], 200);
+			if ($sCat) {
+                $vehicle 						= Vehicle::where('current_place', htmlentities($sPlace))->where('category', $sCategory)->whereBetween('day_price', [$iMinPrice, $iMaxPrice])->get();
+            }
+
+			if (!$vehicle->isEmpty()){
+
+                if (is_null($request->range)) {
+                    return response('error');
+                }
+
+                $iStart                         = substr($request->range, 0,10); // or your date as well
+                $iEnd                           = substr($request->range, 13); // or your date as well
+
+                if (!$this->_validateDate($iStart) || !$this->_validateDate($iEnd)) {
+                  return response('error');
+                }
+
+                $iNoAbsoluteDay                 = round((strtotime($iStart) - strtotime($iEnd)) / (60 * 60 * 24));
+                $iDays                          = abs($iNoAbsoluteDay);
+
+
+                return response(['vehicle' => $vehicle, 'days' => $iDays], 200);
 			}
 		}
 
 		return response(['vehicle' => []], 200);
 	}
+
+
+    protected function _validateDate($date, $format = 'm/d/Y')
+    {
+        $d = \DateTime::createFromFormat($format, $date);
+        // The Y ( 4 digits year ) returns TRUE for any integer with any number of digits so changing the comparison from == to === fixes the issue.
+        return $d && $d->format($format) === $date;
+    }
 }

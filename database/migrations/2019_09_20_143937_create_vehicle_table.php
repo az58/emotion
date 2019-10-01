@@ -25,6 +25,7 @@ class CreateVehicleTable extends Migration
             $table->string('serial_number', 17); // serial_number =  numéro de série
             $table->dateTime('date_purchase');// date_purchase =  date d'achat
             $table->integer('buying_price')->unsigned();// buying_prie =  prix d'achat
+            $table->integer('day_price')->unsigned();// day_price =  prix à la journée
             $table->integer('battery_level')->unsigned(); // battery_level =  niveau de batterie
             $table->enum('battery_brand', ['Cadmium nickel', 'Nickel métal hydrure', 'Lithium', 'Lithium-ion']);// battery_brand = type de batterie
             $table->timestamps();
