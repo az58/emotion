@@ -97,18 +97,6 @@
     </script>
 
     <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-      var gaConfig = {};
-      gaConfig['cookieDomain'] = 'fr.getaround.com';
-
-      ga('create', 'UA-15846816-7', gaConfig);
-      ga('require', 'displayfeatures');
-      ga('set', 'anonymizeIp', true);
-
       function gaHitTimestamp() {
         var now = new Date();
         var pad = function(num) {
@@ -123,18 +111,6 @@
           + ':' + pad(now.getUTCMinutes())
           + ':' + pad(now.getUTCSeconds())
       }
-
-      // Session
-      ga('set', 'dimension9', new Date().getTime() + '.' + Math.random().toString(36).substring(5))
-    </script>
-    <script>
-      ga('set', 'dimension6', '0');
-    </script>
-
-    <script>
-      ga('send', 'pageview', {
-        dimension8: gaHitTimestamp()
-      });
     </script>
 
     <script async src='https://www.googletagmanager.com/gtag/js?id=927657686'></script>
@@ -164,18 +140,15 @@
       src="https://www.facebook.com/tr?id=868074043244839&amp;ev=PageView&amp;noscript=1"
       />
     </noscript>
-
-
   </head>
+  {{-- body--}}
   <body data-action='users-sessions-new' id='users_sessions_new'>
     {{-- var days--}}
     <?php
-    $sToday     = Carbon\Carbon::today();
-    $sAWeek     = Carbon\Carbon::tomorrow()->addDays(7);
+      $sToday     = Carbon\Carbon::today();
+      $sAWeek     = Carbon\Carbon::tomorrow()->addDays(7);
     ?>
     {{-- end var days--}}
-
-
     <div class='js_site_content site_content'>
       <div class='authentication_layout'>
         <div class='authentication_layout__section authentication_layout__section--primary'>
