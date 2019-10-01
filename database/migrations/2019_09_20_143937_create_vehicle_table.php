@@ -21,11 +21,13 @@ class CreateVehicleTable extends Migration
             $table->string('color', 20); // color =  couleur
             $table->string('current_place', 100); // current_place =  emplacement actuel du véhicule
             $table->string('licence_plate', 100);// licence_plate = plaque d'immatriculation
-            $table->string('distance', 255);// distance = nombre de kilomètres
+            $table->string('kilometer', 255);// kilometer = nombre de kilomètres
+            $table->string('serial_number', 17); // serial_number =  numéro de série
             $table->dateTime('date_purchase');// date_purchase =  date d'achat
             $table->integer('buying_price')->unsigned();// buying_prie =  prix d'achat
-            $table->integer('fuel_level')->unsigned(); // fuel_level =  niveau de carburant
-            $table->enum('fuel_brand', ['diesel', 'essence98', 'essence95']);// fuel_brand = type de carburant
+            $table->integer('day_price')->unsigned();// day_price =  prix à la journée
+            $table->integer('battery_level')->unsigned(); // battery_level =  niveau de batterie
+            $table->enum('battery_brand', ['Cadmium nickel', 'Nickel métal hydrure', 'Lithium', 'Lithium-ion']);// battery_brand = type de batterie
             $table->timestamps();
         });
     }

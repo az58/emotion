@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+#use Illuminate\Support\Str;
 
 use Faker\Factory as Faker;
 
@@ -25,18 +26,21 @@ class DatabaseSeeder extends Seeder
 		}
 
 		DB::table('vehicle')->insert([
-			'category' 		=> $faker->randomElement(['car', 'scooter']),
-			'brand' 		=> $faker->lastName,
-			'type'			=> $faker->randomAscii,
-			'color' 		=> $faker->colorName,
-			'current_place' => $faker->city,
-			'licence_plate' => $faker->randomAscii,
-			'distance' 		=> $faker->numberBetween(5,800),
-			'date_purchase' => $faker->date('Y-m-d','now'),
-			'buying_price' 	=> $faker->randomNumber(4),
-			'fuel_level' 	=> $faker->randomNumber(2),
-			'fuel_brand' 	=> $faker->randomElement(['diesel', 'essence98', 'essence95']),
-		]);
+
+			'category' 		    => 'car',
+			'brand' 		    => 'renault',
+			'type'			    => 'zoé',
+			'color' 		    => 'blue',
+			'current_place'     => 'paris',
+            'licence_plate'     => 'RF-464-RD',
+			'kilometer' 		=> '30000',
+            'serial_number'     => 'VF7SBHMZ0EW554823',
+			'date_purchase'     => $faker->date('Y-m-d','now'),
+			'buying_price' 	    => '19750',
+			'day_price' 	    => '20',
+			'battery_level' 	=> 100,
+			'battery_brand' 	=> 'Cadmium nickel'
+        ]);
 
 		foreach (range(1,20) as $index) {
 			DB::table('booking')->insert([
