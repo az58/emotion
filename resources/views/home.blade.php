@@ -67,7 +67,7 @@
                     });
                 })
                 .fail(function(data,status) {
-                    result.text('no vehicle found');
+                    $(result).html('no vehicle found');
                 });
             });
 

@@ -25,5 +25,5 @@ Route::get('/home', 'HomeController@index')->name('home');
  */
 Route::get('/logout','Auth\LoginController@logout');
 Route::get('/booking','BookingController@index');
-Route::post('/booking/create','BookingController@create');
+Route::get('/booking/create','BookingController@create');
 Route::post('/ajaxCreate','AjaxController@ajax');
