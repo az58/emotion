@@ -17,16 +17,15 @@
                         <table class="table">
                             <thead class=" text-primary">
                             <th>
-                                Name
                             </th>
                             <th>
-                                Country
+
                             </th>
                             <th>
-                                City
+
                             </th>
-                            <th class="text-right">
-                                Salary
+                            <th>
+
                             </th>
                             </thead>
                             <tbody>

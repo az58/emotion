@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
+use App\User;
+use App\Vehicle;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -17,6 +19,16 @@ class AdminController extends Controller
     {
         $bookings= Booking::all();
         return view('administrator/ShowBooking', compact('bookings'));
+    }
+    public function showUsers()
+    {
+        $users= User::all();
+        return view('administrator/ShowUsers', compact('users'));
+    }
+    public function showVehicles()
+    {
+        $vehicles = Vehicle::all();
+        return view('administrator/ShowVehicle', compact('vehicles'));
     }
 
     /**

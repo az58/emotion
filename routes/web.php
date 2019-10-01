@@ -38,3 +38,6 @@ Route::get('/admin', function (){
 });
 
 Route::get('/admin/booking','AdminController@showBooking');
+Route::get('/admin/user','AdminController@ShowUsers');
+Route::get('/admin/vehicle','AdminController@ShowVehicles');
+

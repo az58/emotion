@@ -1,10 +1,12 @@
-@section('bookingBar')
+@extends('layouts.admin')
+
+@section('content')
 
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> BOOKING</h4>
+
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -19,7 +21,7 @@
                             <th>
                                 vehicle_id
                             </th>
-                            <th class="text-right">
+                            <th >
                                 start_date
                             </th>
                             <th >
@@ -68,4 +70,8 @@
         </div>
 
     </div>
+@endsection
+
+@section('scripts')
+
 @endsection

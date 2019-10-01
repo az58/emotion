@@ -43,12 +43,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./icons.html">
-                        <i class="now-ui-icons education_atom"></i>
-                        <p>Icons</p>
-                    </a>
-                </li>
-                <li>
                     <a href="./map.html">
                         <i class="now-ui-icons location_map-big"></i>
                         <p>Maps</p>
@@ -66,18 +60,31 @@
                         <p>User Profile</p>
                     </a>
                 </li>
-                <li class="active ">
-                    <a href="./tables.html">
+                <li >
+                    <a href="./booking">
                         <i class="now-ui-icons design_bullet-list-67"></i>
-                        <p>Table List</p>
+                        <p>Booking</p>
+
                     </a>
+
                 </li>
-                <li>
-                    <a href="./typography.html">
-                        <i class="now-ui-icons text_caps-small"></i>
-                        <p>Typography</p>
+                <li >
+                    <a href="./user">
+                        <i class="now-ui-icons design_bullet-list-67"></i>
+                        <p>USER</p>
+
                     </a>
+
                 </li>
+                <li >
+                    <a href="./vehicle">
+                        <i class="now-ui-icons design_bullet-list-67"></i>
+                        <p>VEHICLE</p>
+
+                    </a>
+
+                </li>
+
                 <li class="active-pro">
                     <a href="./upgrade.html">
                         <i class="now-ui-icons arrows-1_cloud-download-93"></i>
@@ -101,7 +108,9 @@
                         </button>
                     </div>
 
-                        <a class="navbar-brand" href="{{ route('admin/booking') }}">Booking</a>
+                        <a class="navbar-brand" href="/admin/booking">Booking</a>
+
+
 
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -122,15 +131,15 @@
                     </form>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <div >
-                                <a class="nav-link" href="{{ route('admin/booking') }}">
+                            <div>
+
+                            </div>
+                                <a class="nav-link" href="#pablo">
                                     <i class="now-ui-icons media-2_sound-wave"></i>
                                     <p>
                                         <span class="d-lg-none d-md-block">Stats</span>
                                     </p>
                                 </a>
-                            </div>
-
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -166,6 +175,8 @@
         <div class="content">
 
             @yield('content')
+            @yield('users')
+            @yield('vehicle')
 
         </div>
 
