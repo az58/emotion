@@ -35,9 +35,9 @@ Route::post('/ajaxVehicles','AjaxController@getVehicle');
 
 Route::get('/admin ', function (){
     return view('administrator.dashboard');
-});
+})->middleware('admin');
 
-Route::get('/admin/booking','AdminController@showBooking');
-Route::get('/admin/user','AdminController@ShowUsers');
-Route::get('/admin/vehicle','AdminController@ShowVehicles');
+Route::get('/admin/booking','AdminController@showBooking')->middleware('admin');
+Route::get('/admin/user','AdminController@ShowUsers')->middleware('admin');
+Route::get('/admin/vehicle','AdminController@ShowVehicles')->middleware('admin');
 

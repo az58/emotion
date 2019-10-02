@@ -37,6 +37,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $is_admin = 0;
+
     protected $connection = 'mysql';
     protected $table = 'users';
     protected $primaryKey = 'id';
@@ -46,4 +48,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(Booking::class);
     }
+
+
 }
