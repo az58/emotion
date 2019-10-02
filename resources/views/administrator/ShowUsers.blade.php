@@ -70,7 +70,7 @@
                                         {{$row->updated_at}}
                                     </td>
                                 <td>
-                                    <button class="fas fa-edit fa-lg" id="edit"></button>
+                                    <button class="fas fa-edit fa-lg" Class="edit"></button>
                                     <button class="fas fa-trash fa-lg" id="del"></button>
                                 </td>
                               </tr>
@@ -87,21 +87,27 @@
     </div>
 @endsection
 
-@section('scripts')
 
+    <!-- Remember to include jQuery :visage_légèrement_souriant: -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script><!-- jQuery Modal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <script>
+
         $(function (){
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            $('#edit').click(function() {
+            $('.edit').click(function() {
                 var idTr  = $(this).parent().parent().attr('id');
                 var elem = $(this).parent().parent();
                 $.ajax({
                     method: 'POST',
-                    url: '/editUser',
+                    url: '/ajaxEditUser',
                     data: {
                         id_user       : idTr,
                         lastename     : elem.find('input[name="lastname"]').val(),
@@ -111,8 +117,8 @@
                     },
                     dataType: "json"
                 })
-                    .done(function(data) {
-
+                    .done(function(response) {
+                        console.log(response);
                     });
             })
                 .fail(function(data,status) {
@@ -122,4 +128,3 @@
 
 </script>
 
-@endsection

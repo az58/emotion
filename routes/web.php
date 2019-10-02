@@ -41,3 +41,5 @@ Route::get('/admin/booking','AdminController@showBooking')->middleware('admin');
 Route::get('/admin/user','AdminController@ShowUsers')->middleware('admin');
 Route::get('/admin/vehicle','AdminController@ShowVehicles')->middleware('admin');
 
+Route::post('/ajaxEditUser','AjaxUserController@editUser')->middleware('admin');
+
