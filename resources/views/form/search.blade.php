@@ -1,27 +1,34 @@
 <div class="col-md-5">
-<fieldset class="">
-    <div class="flex-row">
-        <label for="date-picker">Du : </label>
-        <input type="text" class ="cobalt-TextField__Input" name="daterange" value="<?php echo $sToday->format('m/d/Y').' - '.$sAWeek->format('m/d/Y'); ?>" id="date-picker"/>
+    <form action="/allVehicles" method="post">  
+        @csrf
+        <fieldset class="">
+            <div class="flex-row">
+                <label for="date-picker">Du : </label>
+                <input type="text" class ="cobalt-TextField__Input" name="daterange" value="<?php echo $sToday->format('m/d/Y').' - '.$sAWeek->format('m/d/Y'); ?>" id="date-picker"/>
 
-        <label for="cities-select">À partir de : </label>
-        <select class="cobalt-TextField__Input" id="cities-select" name="cities">
-            <option selected value="447">Paris</option>
-            @foreach ($aCities as $key => $row)
-                <option value="{{ $key }}">{{ $row }}</option>
-            @endforeach
-        </select>
-        <label for="categories-select">Car / Scooter : </label>
-        <select class="cobalt-TextField__Input" id="categories-select" name="categories">
-            <option value="car">Car</option>
-            <option value="scooter">Scooter</option>
-            <option selected  value="">Car and Scooter</option>
-        </select>
-        <button type="submit" id="book" class="cobalt-Button cobalt-Button--primary">
-            <i class="fas fa-search"></i>
-        </button>
-    </div>
-</fieldset>
+                <label for="cities-select">À partir de : </label>
+                <select class="cobalt-TextField__Input" id="cities-select" name="cities">
+                    <option selected value="paris">Paris</option>
+                    @foreach ($aCities as $key => $row)
+                        <option value="{{ $row }}">{{ $row }}</option>
+                    @endforeach
+                </select>
+                <label for="categories-select">Car / Scooter : </label>
+                <select class="cobalt-TextField__Input" id="categories-select" name="categories">
+                    <option value="car">Car</option>
+                    <option value="scooter">Scooter</option>
+                    <option selected  value="">Car and Scooter</option>
+                </select>
+
+        
+                 <input  type="submit" id="book" class="cobalt-Button cobalt-Button--primary">
+                    <i class="fas fa-search"></i>
+                 </input>
+                
+
+            </div>
+        </fieldset>
+    </form>
 <div class="">
     <p>Moins de:</p>
     <div>
