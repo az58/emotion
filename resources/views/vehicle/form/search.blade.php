@@ -13,7 +13,7 @@
                 @endforeach
             </select>
             <label for="categories-select">Car / Scooter : </label>
-            <select class="cobalt-TextField__Input" id="categories-select" name="categories">
+            <select class="cobalt-TextField__Input" id="categories-select" name="category">
                 <option value="car">Car</option>
                 <option value="scooter">Scooter</option>
                 <option selected  value="">Car and Scooter</option>
@@ -26,9 +26,7 @@
                 <span class="cobalt-Icon" id="price_end_value"></span>
             </div>
         </div>
-        <input  type="submit" id="book" class="cobalt-Button cobalt-Button--primary">
-        <i class="fas fa-search"></i>
-        </input>
+        <input  type="submit" id="book" class="cobalt-Button cobalt-Button--primary" value="Reserver"/>
     </form>
 
 <div id="result-content" class="m">

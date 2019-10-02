@@ -22,7 +22,7 @@ class VehicleController extends Controller
         if (!empty($request->all()) && array_key_exists("cities", $request->all()) ) {
             $sPlace								= strip_tags($request->cities);
             $sCategory                          = strip_tags($request->category);
-            $sCat                               = in_array($sCategory, $this->_categories) ;
+            $sCat                               = in_array(strtolower($sCategory), $this->_categories) ;
 
             $iMaxPrice                          = (is_numeric($request->price_end) ? $request->price_end : null) ;
 
