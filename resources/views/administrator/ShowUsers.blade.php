@@ -105,7 +105,7 @@
                 var elem = $(this).parent().parent();
                 $.ajax({
                     method: 'POST',
-                    url: '/ajaxEditUser',
+                    url: '/user/ajax/edit',
                     data: {
                         id_user       : idTr,
                         lastname     : elem.find('input[name="lastname"]').val(),

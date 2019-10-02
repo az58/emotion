@@ -1,5 +1,5 @@
 <div class="col-md-5">
-    <form action="/allVehicles" method="post">  
+    <form action="/vehicle/search" method="post">
         @csrf
         <div class="flex-row">
             <label for="date-picker">Du : </label>

@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Booking;
+use App\Http\Controllers\Controller;
 use App\User;
 use App\Vehicle;
+
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
@@ -36,9 +37,9 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function index()
     {
-        //
+        return view('administrator.dashboard');
     }
 
     /**

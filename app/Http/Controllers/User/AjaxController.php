@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use http\Client\Response;
-use Illuminate\Http\Request;
 use App\User;
 use App\Http\Controllers\Controller;
 
-class AjaxUserController extends Controller
+use Illuminate\Http\Request;
+
+class AjaxController extends Controller
 {
-    public function editUser(Request $request) {
+    public function edit(Request $request) {
         $request-> id_user;
         $request-> lastname;
         $request-> firstname;
