@@ -26,7 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout','Auth\LoginController@logout');
 Route::get('/booking','BookingController@index');
 Route::get('/booking/create','BookingController@create');
-Route::post('/ajaxVehicles','AjaxController@getVehicle');
+Route::post('/allVehicles','AjaxController@getVehicle');
 
 
 /**
