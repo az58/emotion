@@ -22,18 +22,10 @@
     </div>
 </fieldset>
 <div class="">
-    <p>Filter settings:</p>
-
-    <div>
-        <input type="range" id="price_start" name="price_start" min="10" max="100" value="10" step="1">
-        <span class="cobalt-Icon" id="price_start_value"></span>
-        <label for="price_start">Price Min</label>
-    </div>
-
+    <p>Moins de:</p>
     <div>
         <input type="range" id="price_end" name="price_end" min="100" max="1000" value="150" step="1">
         <span class="cobalt-Icon" id="price_end_value"></span>
-        <label for="price_end">Price Max</label>
     </div>
 </div>
 

@@ -21,15 +21,14 @@ class AjaxController extends Controller
 			$sCategory                          = strip_tags($request->category);
             $sCat                               = in_array($sCategory, $this->_categories) ;
 
-            $iMinPrice                          = (is_numeric($request->minPrice) ? $request->minPrice : null) ;
             $iMaxPrice                          = (is_numeric($request->maxPrice) ? $request->maxPrice : null) ;
 
 			if (!$sCat) {
-                $vehicles 						= Vehicle::where('current_place', htmlentities($sPlace))->whereBetween('day_price', [$iMinPrice, $iMaxPrice])->get();
+                $vehicles 						= Vehicle::where('current_place', htmlentities($sPlace))->whereBetween('day_price', [0, $iMaxPrice])->get();
             }
 
 			if ($sCat) {
-                $vehicles 						= Vehicle::where('current_place', htmlentities($sPlace))->where('category', $sCategory)->whereBetween('day_price', [$iMinPrice, $iMaxPrice])->get();
+                $vehicles 						= Vehicle::where('current_place', htmlentities($sPlace))->where('category', $sCategory)->whereBetween('day_price', [0, $iMaxPrice])->get();
             }
 
 			if (!$vehicles->isEmpty()){

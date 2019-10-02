@@ -81,7 +81,6 @@
               range       : $('input[name="daterange"]').val(),
               cities      : $('#cities-select option:selected').text(),
               category    : $('#categories-select option:selected').val(),
-              minPrice    : $('#price_start').val(),
               maxPrice    : $('#price_end').val()
             },
             dataType: "html"
@@ -156,17 +155,22 @@
     <div class='js_site_content site_content'>
       <div class='authentication_layout'>
         <div class='authentication_layout__section authentication_layout__section--primary'>
-
+          @auth
+            @if(auth()->user()->role == 'admin')
+                @include('administrator.nav')
+            @endif
+          @else
 
           {{-- add search form --}}
           @include('form.search')
-
+          @endauth
           <div class='authentication_layout__logo authentication_layout__logo--rebranded hidden-xs'>
           </div>
           <div class='visible-xs authentication_layout__close'><a class="link_no_style" aria-label="Close" href="/">&#10005;</a></div>
           <!-- start connexxion form -->
           @auth
-
+              {{-- add search form --}}
+              @include('form.search')
           @else
           <div class='authentication_layout__content'>
             <div class='cobalt-TabBar cobalt-mb-loose js_registration_session_tab_bar'>

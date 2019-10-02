@@ -61,7 +61,7 @@
                     </a>
                 </li>
                 <li >
-                    <a href="./booking">
+                    <a href="/admin/booking">
                         <i class="now-ui-icons design_bullet-list-67"></i>
                         <p>Booking</p>
 
@@ -69,7 +69,7 @@
 
                 </li>
                 <li >
-                    <a href="./user">
+                    <a href="/admin/user">
                         <i class="now-ui-icons design_bullet-list-67"></i>
                         <p>USER</p>
 
@@ -77,7 +77,7 @@
 
                 </li>
                 <li >
-                    <a href="./vehicle">
+                    <a href="/admin/vehicle">
                         <i class="now-ui-icons design_bullet-list-67"></i>
                         <p>VEHICLE</p>
 
@@ -86,9 +86,9 @@
                 </li>
 
                 <li class="active-pro">
-                    <a href="./upgrade.html">
+                    <a href="/home">
                         <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-                        <p>Upgrade to PRO</p>
+                        <p>Voir le site</p>
                     </a>
                 </li>
             </ul>

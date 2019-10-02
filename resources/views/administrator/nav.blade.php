@@ -1,0 +1,1 @@
+<a href="{{url('/admin')}}">Dashboard</a>

@@ -86,9 +86,9 @@
                 </li>
 
                 <li class="active-pro">
-                    <a href="./upgrade.html">
+                    <a href="/">
                         <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-                        <p>Upgrade to PRO</p>
+                        <p>Voir le site</p>
                     </a>
                 </li>
             </ul>
