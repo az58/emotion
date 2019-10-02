@@ -233,10 +233,11 @@
               <span>Continuer avec Facebook</span>
             </a>
             <div class='cobalt-text_style_caption text_center cobalt-bottom_margin'>ou</div>
-            <form class="new_user" id="new_user" action="/login" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="cK0Q6sHM8I9PHz54Xqlo5H5QAw9D9zlpT2KdqmOZE2y6p3GlnNsehXPjIer47VnqDN12SnASGht5o+d1OAedLQ==" />
+            <form class="new_user" id="new_user" action="{{ route('login') }}" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
+              <input type="hidden" name="authenticity_token" value="cK0Q6sHM8I9PHz54Xqlo5H5QAw9D9zlpT2KdqmOZE2y6p3GlnNsehXPjIer47VnqDN12SnASGht5o+d1OAedLQ==" />
               <div class="cobalt-FormField" data-form-field-method="email">
                 <div class="cobalt-TextField cobalt-TextField--withIcon">
-                  <input placeholder="Email" class="cobalt-TextField__Input" type="text" name="user[email]" id="user_email" />
+                  <input placeholder="Email" class="cobalt-TextField__Input" type="text" name="uwser[email]" id="user_email" />
                     <span class="cobalt-TextField__Icon">
                       <span class="cobalt-Icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
