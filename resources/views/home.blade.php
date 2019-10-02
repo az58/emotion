@@ -15,7 +15,7 @@
     <meta property="og:url">
     <meta property="og:image">
     <meta name="robots" content="index, follow">
-    <link as='font' crossorigin='anonymous' rel='preload' type='font/woff'>
+
 
     <link href='https://d2y2masl4rtrav.cloudfront.net' rel='dns-prefetch'>
     <link href='https://maps.googleapis.com' rel='dns-prefetch'>
@@ -33,10 +33,10 @@
 
     <link rel="stylesheet" media="screen" href="https://d2y2masl4rtrav.cloudfront.net/packs/css/vendor.style-3f06c2d7.chunk.css" />
     <link rel="stylesheet" media="screen" href="https://d2y2masl4rtrav.cloudfront.net/packs/css/application.getaround.style-379c2e6b.chunk.css" />
-
+<!--
     <meta name="csrf-param" content="authenticity_token" />
     <meta name="csrf-token" content="Qza1q9rY6HfotsH0tjKiLOSVfFU4fSQsc++hvfmkeomJPNTkh88GfdRK3mYQdpMilhgJEAuYB15FLttiojr0yA==" />
-
+-->
 
 
     <!-- Fonts -->
@@ -52,27 +52,31 @@
     <script src="https://kit.fontawesome.com/ec73f164d2.js"></script>
     <script>
       $(function() {
+
         $('input[name="daterange"]').daterangepicker({
           opens: 'left'
         }, function(start, end, label) {
           console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
         });
+
         $.ajaxSetup({
           headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           }
         });
+
         $('#price_start').on('input',function() {
           $('#price_start_value').html($(this).val() + '€');
         });
         $('#price_end').on('input',function() {
           $('#price_end_value').html($(this).val() + '€');
         });
-        $('#book').click(function() {
+
+        $('#book').click(function(event) {
           var result  = '#result-content';
           $.ajax({
             method: 'POST',
-            url: '/ajaxCreate',
+            url: '/ajaxVehicles',
             data: {
               range       : $('input[name="daterange"]').val(),
               cities      : $('#cities-select option:selected').text(),
@@ -80,16 +84,16 @@
               minPrice    : $('#price_start').val(),
               maxPrice    : $('#price_end').val()
             },
-            dataType: "json"
+            dataType: "html"
           })
             .done(function(data) {
-
-              data.vehicle;
-              data.days;
-
+              $(result).html(data);
+              $('.modal').modal();
             })
             .fail(function(data,status) {
-              result.text('no vehicle found');
+
+              //some notifcation for user
+
             });
         });
       });
@@ -185,7 +189,6 @@
                 </button>
               </div>
             </div>
-
             <div class='authentication_header'>
               <div class='authentication_header__title'>Connectez-vous à votre compte</div>
             </div>
@@ -288,7 +291,7 @@
       </script>
     </div>
 
-    <fieldset>
+    <fieldset class="m-b-md">
       <legend>En route !</legend>
       <div class="form-group">
         <div class="row">
