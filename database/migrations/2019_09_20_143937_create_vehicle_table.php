@@ -28,6 +28,7 @@ class CreateVehicleTable extends Migration
             $table->integer('day_price')->unsigned();// day_price =  prix à la journée
             $table->integer('battery_level')->unsigned(); // battery_level =  niveau de batterie
             $table->enum('battery_brand', ['Cadmium nickel', 'Nickel métal hydrure', 'Lithium', 'Lithium-ion']);// battery_brand = type de batterie
+            $table->string('picture', 255)->nullable();// battery_brand = type de batterie
             $table->timestamps();
         });
     }

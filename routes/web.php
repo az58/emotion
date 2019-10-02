@@ -26,7 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout','Auth\LoginController@logout');
 Route::get('/booking','BookingController@index');
 Route::get('/booking/create','BookingController@create');
-Route::post('/ajaxCreate','AjaxController@ajax');
+Route::post('/allVehicles','AjaxController@getVehicle');
 
 
 /**
@@ -35,9 +35,9 @@ Route::post('/ajaxCreate','AjaxController@ajax');
 
 Route::get('/admin ', function (){
     return view('administrator.dashboard');
-});
+})->middleware('admin');
 
-Route::get('/admin/booking','AdminController@showBooking');
-Route::get('/admin/user','AdminController@ShowUsers');
-Route::get('/admin/vehicle','AdminController@ShowVehicles');
+Route::get('/admin/booking','AdminController@showBooking')->middleware('admin');
+Route::get('/admin/user','AdminController@ShowUsers')->middleware('admin');
+Route::get('/admin/vehicle','AdminController@ShowVehicles')->middleware('admin');
 
