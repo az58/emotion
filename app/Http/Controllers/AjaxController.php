@@ -14,31 +14,30 @@ class AjaxController extends Controller
 
 	public function getVehicle(Request $request)
 	{
+        $iDays                              = 0;
+        $vehicles                           = [];
 		if (!empty($request->all()) && array_key_exists("cities", $request->all()) ) {
-            $iDays                              = 0;
-
 			$sPlace								= strip_tags($request->cities);
 			$sCategory                          = strip_tags($request->category);
             $sCat                               = in_array($sCategory, $this->_categories) ;
 
-            $iMaxPrice                          = (is_numeric($request->maxPrice) ? $request->maxPrice : null) ;
+            $iMaxPrice                          = (is_numeric($request->price_end) ? $request->price_end : null) ;
 
-			if (!$sCat) {
+			if (!$sCat){
                 $vehicles 						= Vehicle::where('current_place', htmlentities($sPlace))->whereBetween('day_price', [0, $iMaxPrice])->get();
             }
 
-			if ($sCat) {
+			if ($sCat) { 
                 $vehicles 						= Vehicle::where('current_place', htmlentities($sPlace))->where('category', $sCategory)->whereBetween('day_price', [0, $iMaxPrice])->get();
             }
 
 			if (!$vehicles->isEmpty()){
-
-                if (is_null($request->range)) {
+                if (is_null($request->daterange)) {
                     return response('error');
                 }
 
-                $iStart                         = substr($request->range, 0,10); // or your date as well
-                $iEnd                           = substr($request->range, 13); // or your date as well
+                $iStart                         = substr($request->daterange, 0,10); // or your date as well
+                $iEnd                           = substr($request->daterange, 13); // or your date as well
 
                 if (!$this->_validateDate($iStart) || !$this->_validateDate($iEnd)) {
                   return response('error');
@@ -46,13 +45,10 @@ class AjaxController extends Controller
 
                 $iNoAbsoluteDay                 = round((strtotime($iStart) - strtotime($iEnd)) / (60 * 60 * 24));
                 $iDays                          = abs($iNoAbsoluteDay);
-
-
-                return view('vehicle/modalVehicles',compact('vehicles' , 'iDays' ));
 			}
 		}
 
-		return response(['vehicle' => []], 200);
+		 return view('booking', compact('vehicles' , 'iDays' ));
 	}
 
 

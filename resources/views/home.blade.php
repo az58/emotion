@@ -72,29 +72,6 @@
           $('#price_end_value').html($(this).val() + '€');
         });
 
-        $('#book').click(function(event) {
-          var result  = '#result-content';
-          $.ajax({
-            method: 'POST',
-            url: '/ajaxVehicles',
-            data: {
-              range       : $('input[name="daterange"]').val(),
-              cities      : $('#cities-select option:selected').text(),
-              category    : $('#categories-select option:selected').val(),
-              maxPrice    : $('#price_end').val()
-            },
-            dataType: "html"
-          })
-            .done(function(data) {
-              $(result).html(data);
-              $('.modal').modal();
-            })
-            .fail(function(data,status) {
-
-              //some notifcation for user
-
-            });
-        });
       });
 
     </script>
@@ -155,23 +132,18 @@
     <div class='js_site_content site_content'>
       <div class='authentication_layout'>
         <div class='authentication_layout__section authentication_layout__section--primary'>
+          @yield("content")
           @auth
             @if(auth()->user()->role == 'admin')
                 @include('administrator.nav')
             @endif
-          @else
-
-          {{-- add search form --}}
-          @include('form.search')
           @endauth
+
           <div class='authentication_layout__logo authentication_layout__logo--rebranded hidden-xs'>
           </div>
           <div class='visible-xs authentication_layout__close'><a class="link_no_style" aria-label="Close" href="/">&#10005;</a></div>
           <!-- start connexxion form -->
-          @auth
-              {{-- add search form --}}
-              @include('form.search')
-          @else
+          
           <div class='authentication_layout__content'>
             <div class='cobalt-TabBar cobalt-mb-loose js_registration_session_tab_bar'>
               <div class='cobalt-TabBar__ScrollControl js_tab_bar_scroll_control' data-direction='left' hidden>
@@ -271,7 +243,7 @@
             </div>
           </div>
           <!-- end connexxion form -->
-          @endauth
+          
           <div class='authentication_layout__footer'>
             <div class='corporate_footer footer--ultra_light'>
               <div class='corporate_footer__container container'>
@@ -284,6 +256,11 @@
             </div>
           </div>
         </div>
+        
+         {{-- add search form --}}
+         @include('form.search')
+        
+
         <div class='authentication_layout__section authentication_layout__section--background_1 authentication_layout__section--secondary'></div>
       </div>
     </div>
@@ -305,6 +282,9 @@
       <script>!function(e){function r(r){for(var n,c,u=r[0],i=r[1],f=r[2],p=0,d=[];p<u.length;p++)c=u[p],Object.prototype.hasOwnProperty.call(o,c)&&o[c]&&d.push(o[c][0]),o[c]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(l&&l(r);d.length;)d.shift()();return a.push.apply(a,f||[]),t()}function t(){for(var e,r=0;r<a.length;r++){for(var t=a[r],n=!0,u=1;u<t.length;u++){var i=t[u];0!==o[i]&&(n=!1)}n&&(a.splice(r--,1),e=c(c.s=t[0]))}return e}var n={},o={0:0},a=[];function c(r){if(n[r])return n[r].exports;var t=n[r]={i:r,l:!1,exports:{}};return e[r].call(t.exports,t,t.exports,c),t.l=!0,t.exports}c.e=function(e){var r=[],t=o[e];if(0!==t)if(t)r.push(t[2]);else{var n=new Promise(function(r,n){t=o[e]=[r,n]});r.push(t[2]=n);var a,u=document.createElement("script");u.charset="utf-8",u.timeout=120,c.nc&&u.setAttribute("nonce",c.nc),u.src=function(e){return c.p+""+({}[e]||e)+"-"+{3:"45a0c1690a22ac656541",4:"3ea49d39c5a3241559f3",5:"142dc7d630a90d0b6406",6:"7d15d48cf5b85a4c5c2b",73:"91ea16b8e3c27a700786",74:"6b728335881fdb640332",75:"7a2ca9b0721b012b499c",76:"b98b2efb6a4aedfa3cce",77:"4f7b098837c88ed3c108",78:"ca10e183e8a929a311a2"}[e]+".js"}(e);var i=new Error;a=function(r){u.onerror=u.onload=null,clearTimeout(f);var t=o[e];if(0!==t){if(t){var n=r&&("load"===r.type?"missing":r.type),a=r&&r.target&&r.target.src;i.message="Loading chunk "+e+" failed.\n("+n+": "+a+")",i.name="ChunkLoadError",i.type=n,i.request=a,t[1](i)}o[e]=void 0}};var f=setTimeout(function(){a({type:"timeout",target:u})},12e4);u.onerror=u.onload=a,document.head.appendChild(u)}return Promise.all(r)},c.m=e,c.c=n,c.d=function(e,r,t){c.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:t})},c.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},c.t=function(e,r){if(1&r&&(e=c(e)),8&r)return e;if(4&r&&"object"==typeof e&&e&&e.__esModule)return e;var t=Object.create(null);if(c.r(t),Object.defineProperty(t,"default",{enumerable:!0,value:e}),2&r&&"string"!=typeof e)for(var n in e)c.d(t,n,function(r){return e[r]}.bind(null,n));return t},c.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return c.d(r,"a",r),r},c.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},c.p="/packs/",c.oe=function(e){throw e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=r,u=u.slice();for(var f=0;f<u.length;f++)r(u[f]);var l=i;t()}([]);
 
       </script>
+      
+
     </div>
+     
   </body>
 </html>
