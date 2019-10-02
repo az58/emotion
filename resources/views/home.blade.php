@@ -132,6 +132,7 @@
     <div class='js_site_content site_content'>
       <div class='authentication_layout'>
         <div class='authentication_layout__section authentication_layout__section--primary'>
+          @yield("content")
           @auth
             @if(auth()->user()->role == 'admin')
                 @include('administrator.nav')

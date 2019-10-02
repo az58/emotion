@@ -21,11 +21,10 @@ class AjaxController extends Controller
 			$sCategory                          = strip_tags($request->category);
             $sCat                               = in_array($sCategory, $this->_categories) ;
 
-            $iMaxPrice                          = (is_numeric($request->maxPrice) ? $request->maxPrice : null) ;
+            $iMaxPrice                          = (is_numeric($request->price_end) ? $request->price_end : null) ;
 
 			if (!$sCat){
                 $vehicles 						= Vehicle::where('current_place', htmlentities($sPlace))->whereBetween('day_price', [0, $iMaxPrice])->get();
-            
             }
 
 			if ($sCat) { 
@@ -33,13 +32,12 @@ class AjaxController extends Controller
             }
 
 			if (!$vehicles->isEmpty()){
-
-                if (is_null($request->range)) {
+                if (is_null($request->daterange)) {
                     return response('error');
                 }
 
-                $iStart                         = substr($request->range, 0,10); // or your date as well
-                $iEnd                           = substr($request->range, 13); // or your date as well
+                $iStart                         = substr($request->daterange, 0,10); // or your date as well
+                $iEnd                           = substr($request->daterange, 13); // or your date as well
 
                 if (!$this->_validateDate($iStart) || !$this->_validateDate($iEnd)) {
                   return response('error');
@@ -50,7 +48,7 @@ class AjaxController extends Controller
 			}
 		}
 
-		 return view('vehicle/allVehicles', compact('vehicles' , 'iDays' ));
+		 return view('booking', compact('vehicles' , 'iDays' ));
 	}
 
 
