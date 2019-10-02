@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Vehicle;
 
 use App\Http\Controllers\Controller;
 use App\Vehicle;
+
 use Illuminate\Http\Request;
 
 
@@ -14,15 +15,24 @@ class VehicleController extends Controller
         'scooter',
     ];
 
+    protected $_needles     = [
+        'cities',
+        'category',
+        'daterange',
+        'price_end',
+        'price_end',
+    ];
+
     public function search(Request $request)
     {
+        // nombre de jour entre les deux dates selectionnées par l'utilisateur
         $iDays                                  = 0;
         $vehicles                               = [];
 
-        if (!empty($request->all()) && array_key_exists("cities", $request->all()) ) {
-            $sPlace								= strip_tags($request->cities);
-            $sCategory                          = strip_tags($request->category);
-            $sCat                               = in_array(strtolower($sCategory), $this->_categories) ;
+        if ($request->has($this->_needles)) {
+            $sPlace								= strip_tags($request->query('cities', 'paris'));
+            $sCategory                          = strip_tags($request->query('category', ''));
+            $sCat                               = in_array( strtolower($sCategory), $this->_categories ) ;
 
             $iMaxPrice                          = (is_numeric($request->price_end) ? $request->price_end : null) ;
 

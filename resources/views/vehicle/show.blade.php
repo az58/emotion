@@ -10,6 +10,8 @@
                     {{ $vehicle->battery_brand }}
                     {{ $vehicle->current_place }}
                     {{ $vehicle->day_price}} €
+                    <span>Soit {{ $vehicle->day_price *  $iDays }} pour {{ $iDays }} jours</span>
+                    <img src="{{ $vehicle->picture}}" width="132" height="100">
                 </li>
             @endforeach
         </ul>
