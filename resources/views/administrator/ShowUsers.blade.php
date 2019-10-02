@@ -13,45 +13,73 @@
                         <table class="table">
                             <thead class=" text-primary">
                             <th>
-                                id
+                                Id
                             </th>
                             <th>
-                                lastname
+                                Lastname
                             </th>
                             <th>
-                                firstname
+                                Firstname
                             </th>
                             <th>
-                                email
+                                Email
                             </th>
                             <th>
-                                role
+                                Role
                             </th>
                             <th >
-                                created_at
+                                Created_at
                             </th>
                             <th >
-                                updated_at
+                                Updated_at
+                            </th>
+                            <th >
+                                Edit
                             </th>
 
 
                             </thead>
                             <tbody>
                             @foreach ($users as  $row)
-                                <tr>
-                                    <td> {{$row->id}} </td>
-                                    <td> {{$row->lastname}} </td>
-                                    <td> {{$row->firstname}} </td>
-                                    <td> {{$row->email}} </td>
-                                    <td> {{$row->role}} </td>
-                                    <td> {{$row->created_at}} </td>
-                                    <td> {{$row->updated_at }} </td>
+                                <tr id="{{$row->id}}">
+                                    <td>
+                                      <input type="text" value=" {{$row->id}} " name="id_User"/>
+                                    </td>
+                                    <td>
+                                      <input type="text" value=" {{$row->lastname}} " name="lastname"/>
+                                    </td><td>
+                                      <input type="text" value=" {{$row->firstname}} " name="firstname"/>
+                                    </td><td>
+                                      <input type="text" value=" {{$row->email}} " name="email"/>
+                                    </td>
+                                    </td>
+                                    <td>
+                                        <select class="cobalt-TextField__Input"  name="role">
+                                            <option value="admin">admin</option>
+                                            <option value="buyer">buyer</option>
+                                        </select>
+                                      <input type="text" value=" {{$row->role}} " name="role"/>
 
-                                </tr>
+                                    </td>
+                                    </td>
+                                    <td>
+                                        {{$row->created_at}}
+                                    </td>
+                                    </td>
+                                    <td>
+                                        {{$row->updated_at}}
+                                    </td>
+                                <td>
+                                    <button class="fas fa-edit fa-lg" id="edit"></button>
+                                    <button class="fas fa-trash fa-lg" id="del"></button>
+                                </td>
+                              </tr>
                             @endforeach
                             </tbody>
                         </table>
                     </div>
+
+
                 </div>
             </div>
         </div>
@@ -60,5 +88,38 @@
 @endsection
 
 @section('scripts')
+
+    <script>
+        $(function (){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('#edit').click(function() {
+                var idTr  = $(this).parent().parent().attr('id');
+                var elem = $(this).parent().parent();
+                $.ajax({
+                    method: 'POST',
+                    url: '/editUser',
+                    data: {
+                        id_user       : idTr,
+                        lastename     : elem.find('input[name="lastname"]').val(),
+                        firstname     : elem.find('input[name="firstname"]').val(),
+                        email         : elem.find('input[name="email"]').val(),
+                        role          : elem.find('select[name="role"]').val()
+                    },
+                    dataType: "json"
+                })
+                    .done(function(data) {
+
+                    });
+            })
+                .fail(function(data,status) {
+                    result.text('not found');
+                });
+        });
+
+</script>
 
 @endsection

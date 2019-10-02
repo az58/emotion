@@ -61,7 +61,7 @@
                     </a>
                 </li>
                 <li >
-                    <a href="./booking">
+                    <a href="/admin/booking">
                         <i class="now-ui-icons design_bullet-list-67"></i>
                         <p>Booking</p>
 
@@ -69,7 +69,7 @@
 
                 </li>
                 <li >
-                    <a href="./user">
+                    <a href="/admin/user">
                         <i class="now-ui-icons design_bullet-list-67"></i>
                         <p>USER</p>
 
@@ -77,7 +77,7 @@
 
                 </li>
                 <li >
-                    <a href="./vehicle">
+                    <a href="/admin/vehicle">
                         <i class="now-ui-icons design_bullet-list-67"></i>
                         <p>VEHICLE</p>
 
