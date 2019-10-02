@@ -27,8 +27,7 @@ class HomeController extends Controller
     public function index()
     {
 
-        $apiCities                              = file_get_contents('https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json');
-        //$apiCities                              = file_get_contents('http://vrent.fr/country.json');
+        $apiCities                            = file_get_contents('https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json');
         $aCites                                 = json_decode($apiCities);
 
         foreach ($aCites as $row){
