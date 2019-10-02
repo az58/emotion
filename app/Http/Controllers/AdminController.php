@@ -17,17 +17,17 @@ class AdminController extends Controller
      */
     public function showBooking()
     {
-        $bookings= Booking::all();
+        $bookings               = Booking::all();
         return view('administrator/ShowBooking', compact('bookings'));
     }
     public function showUsers()
     {
-        $users= User::all();
+        $users                  = User::all();
         return view('administrator/ShowUsers', compact('users'));
     }
     public function showVehicles()
     {
-        $vehicles = Vehicle::all();
+        $vehicles               = Vehicle::all();
         return view('administrator/ShowVehicle', compact('vehicles'));
     }
 

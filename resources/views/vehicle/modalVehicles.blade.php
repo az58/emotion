@@ -20,7 +20,6 @@
                 <ul>
                     @foreach($vehicles as $vehicle )
                         <li class="n-b-md data-result">
-                            {{ $vehicle->id }}
                             {{ $vehicle->category }}
                             {{ $vehicle->type }}
                             {{ $vehicle->color }}
