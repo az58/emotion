@@ -156,9 +156,18 @@
     <div class='js_site_content site_content'>
       <div class='authentication_layout'>
         <div class='authentication_layout__section authentication_layout__section--primary'>
+
+
+          {{-- add search form --}}
+          @include('form.search')
+
           <div class='authentication_layout__logo authentication_layout__logo--rebranded hidden-xs'>
           </div>
           <div class='visible-xs authentication_layout__close'><a class="link_no_style" aria-label="Close" href="/">&#10005;</a></div>
+          <!-- start connexxion form -->
+          @auth
+
+          @else
           <div class='authentication_layout__content'>
             <div class='cobalt-TabBar cobalt-mb-loose js_registration_session_tab_bar'>
               <div class='cobalt-TabBar__ScrollControl js_tab_bar_scroll_control' data-direction='left' hidden>
@@ -256,6 +265,8 @@
               <a href="/register">S&#39;inscrire</a>
             </div>
           </div>
+          <!-- end connexxion form -->
+          @endauth
           <div class='authentication_layout__footer'>
             <div class='corporate_footer footer--ultra_light'>
               <div class='corporate_footer__container container'>
@@ -290,52 +301,5 @@
 
       </script>
     </div>
-
-    <fieldset class="m-b-md">
-      <legend>En route !</legend>
-      <div class="form-group">
-        <div class="row">
-          <label for="date-picker">Du : </label>
-          <input type="text" name="daterange" value="<?php echo $sToday->format('m/d/Y').' - '.$sAWeek->format('m/d/Y'); ?>" id="date-picker"/>
-          <label for="cities-select">À partir de : </label>
-          <select class="custom-select" id="cities-select" name="cities">
-            <option selected value="447">Paris</option>
-            @foreach ($aCities as $key => $row)
-              <option value="{{ $key }}">{{ $row }}</option>
-            @endforeach
-          </select>
-          <label for="categories-select">Car / Scooter : </label>
-          <select class="custom-select" id="categories-select" name="categories">
-            <option selected value="car">Car</option>
-            <option value="scooter">Scooter</option>
-            <option value="">Car and Scooter</option>
-          </select>
-          <button type="submit" id="book" class="btn btn-info">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </fieldset>
-    <div class=" flex-center">
-      <p>Filter settings:</p>
-
-      <div>
-        <input type="range" id="price_start" name="price_start" min="10" max="100" value="10" step="1">
-        <span id="price_start_value"></span>
-        <label for="price_start">Price Min</label>
-      </div>
-
-      <div>
-        <input type="range" id="price_end" name="price_end" min="100" max="1000" value="150" step="1">
-        <span id="price_end_value"></span>
-        <label for="price_end">Price Max</label>
-      </div>
-    </div>
-
-    <div id="result-content" class="bottom-height flex-center">
-      {{--   Search Result zone   --}}
-
-    </div>
-
   </body>
 </html>
