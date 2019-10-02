@@ -11,7 +11,7 @@ class AjaxUserController extends Controller
 {
     public function editUser(Request $request) {
         $request-> id_user;
-        $request-> lastename;
+        $request-> lastname;
         $request-> firstname;
         $request-> email;
         $request-> role;

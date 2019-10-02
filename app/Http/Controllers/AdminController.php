@@ -22,7 +22,7 @@ class AdminController extends Controller
     }
     public function showUsers()
     {
-        $users                  = User::all();
+        $users                  = User::where('role', 'buyer')->get();
         return view('administrator/ShowUsers', compact('users'));
     }
     public function showVehicles()
