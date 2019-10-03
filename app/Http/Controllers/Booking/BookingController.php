@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Booking;
 
+use App\Booking;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
@@ -105,6 +106,33 @@ class BookingController extends Controller
     public function store(Request $request)
     {
 
+        $iIdVehicle             = $request->query('id_user', '');
+        $Sstart_date            = $request->query('start_date', '');
+        $sEnd_date              = $request->query('end_date', '');
+        $sState                 = $request->query('state ', '');
+        $sDay_price             = $request->query('day_price', '');
+        $sAge                   = $request->query('age', '');
+        $sPhone                 = $request->query('phone', '');
+        $sAddress               = $request->query('phone', '');
+        $sCp                    = $request->query('cp', '');
+        $sCity                  = $request->query('city ', '');
+        $sCountry               = $request->query('country  ', '');
+        $sDriving_licence       = $request->query('driving_licence  ', '');
+
+
+        Booking::insert([
+            'id_user'           => $iIdVehicle,
+            'id_vehicle'        => $iIdVehicle,
+            'start_date'        => $Sstart_date,
+            'end_date'          => $sEnd_date,
+            'state'             => $sState,
+            'booking_price'     => '',
+            'age'               => $sAge,
+            'phone'             => $sPhone,
+            'address'           => $sAddress. '' . $sCp . '' . $sCity . '' . $sCountry,
+            'driving_licence'   => $sDriving_licence,
+        ]);
+
     }
 
 
@@ -126,7 +154,7 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function payment(Request $request, $id)
     {
         //
     }
