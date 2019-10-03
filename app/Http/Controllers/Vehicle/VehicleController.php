@@ -8,6 +8,7 @@ use App\Vehicle;
 use Illuminate\Http\Request;
 
 
+
 class VehicleController extends Controller
 {
     protected $_categories  = [
@@ -30,6 +31,7 @@ class VehicleController extends Controller
         $vehicles                               = [];
 
         if ($request->has($this->_needles)) {
+
             $sPlace								= strip_tags($request->query('cities', 'paris'));
             $sCategory                          = strip_tags($request->query('category', ''));
             $sCat                               = in_array( strtolower($sCategory), $this->_categories ) ;

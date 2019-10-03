@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('administrator.admin')
 
 @section('vehicle')
 

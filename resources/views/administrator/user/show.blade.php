@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('administrator.admin')
 
 @section('users')
 
@@ -100,27 +100,29 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
             $('.edit').click(function() {
                 var idTr  = $(this).parent().parent().attr('id');
                 var elem = $(this).parent().parent();
+
                 $.ajax({
                     method: 'POST',
-                    url: '/user/ajax/edit',
+                    url: '/admin/user/ajax/edit',
                     data: {
                         id_user       : idTr,
-                        lastname     : elem.find('input[name="lastname"]').val(),
+                        lastname      : elem.find('input[name="lastname"]').val(),
                         firstname     : elem.find('input[name="firstname"]').val(),
                         email         : elem.find('input[name="email"]').val(),
                         role          : elem.find('select[name="role"]').val()
                     },
                     dataType: "json"
                 })
-                    .done(function(response) {
-                        console.log(response);
-                    })
-                    .fail(function(data,status) {
-                            result.text('not found');
-                        });
+                .done(function(response) {
+                    console.log(response);
+                })
+                .fail(function(data,status) {
+
+                });
             })
 
         });

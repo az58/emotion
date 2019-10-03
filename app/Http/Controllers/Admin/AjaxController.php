@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+
+use App\User;
+use Illuminate\Http\Request;
+
+class AjaxController extends Controller
+{
+    public function edit(Request $request) {
+        $iUser              = $request->query('id_user', '');
+        $sLastname          = $request->query('lastname', '');
+        $sFirstname         = $request->query('firstname', '');
+        $sEmail             = $request->query('email', '');
+        $sRole              = $request->query('role', '');
+
+        User::where('id',  $iUser)
+            ->update([
+                'lastname'  => $sLastname,
+                'firstname' => $sFirstname,
+                'email'     => $sEmail,
+                'role'      => $sRole,
+            ]);
+        return response('ok', 200);
+    }
+}
