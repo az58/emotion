@@ -39,7 +39,8 @@ class DatabaseSeeder extends Seeder
 			'buying_price' 	    => '19750',
 			'day_price' 	    => '20',
 			'battery_level' 	=> 100,
-			'battery_brand' 	=> 'Cadmium nickel'
+			'battery_brand' 	=> 'Cadmium nickel',
+			'picture' 	        => 'http://vrent.fr/img/nui_n1s.png'
         ]);
 
 		foreach (range(1,20) as $index) {

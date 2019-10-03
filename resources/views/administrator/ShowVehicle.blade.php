@@ -55,6 +55,9 @@
                             <th>
                                 battery_brand
                             </th>
+                            <th>
+                                picture
+                            </th>
 
                             <th >
                                 created_at
@@ -82,6 +85,7 @@
                                     <td> {{$row->day_price }} </td>
                                     <td> {{$row->battery_level}} </td>
                                     <td> {{$row->battery_brand}} </td>
+                                    <td> <img src="{{$row->picture}}"> </td>
                                     <td> {{$row->created_at}} </td>
                                     <td> {{$row->updated_at }} </td>
 

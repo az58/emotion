@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Booking;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Stripe;
 
@@ -26,8 +27,6 @@ class BookingController extends Controller
     public function index()
     {
 
-
-        return view('booking', compact('response', 'aCountries'));
     }
 
     /**
@@ -93,7 +92,7 @@ class BookingController extends Controller
 		$ch	= Stripe\Charge::all(['limit' => 10]);
 
 
-		return view('create', compact('session'));
+		return view('booking/create', compact('session'));
     }
 
     /**

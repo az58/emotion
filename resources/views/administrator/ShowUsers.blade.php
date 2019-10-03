@@ -13,45 +13,72 @@
                         <table class="table">
                             <thead class=" text-primary">
                             <th>
-                                id
+                                Id
                             </th>
                             <th>
-                                lastname
+                                Lastname
                             </th>
                             <th>
-                                firstname
+                                Firstname
                             </th>
                             <th>
-                                email
+                                Email
                             </th>
                             <th>
-                                role
+                                Role
                             </th>
                             <th >
-                                created_at
+                                Created_at
                             </th>
                             <th >
-                                updated_at
+                                Updated_at
+                            </th>
+                            <th >
+                                Edit
                             </th>
 
 
                             </thead>
                             <tbody>
                             @foreach ($users as  $row)
-                                <tr>
-                                    <td> {{$row->id}} </td>
-                                    <td> {{$row->lastname}} </td>
-                                    <td> {{$row->firstname}} </td>
-                                    <td> {{$row->email}} </td>
-                                    <td> {{$row->role}} </td>
-                                    <td> {{$row->created_at}} </td>
-                                    <td> {{$row->updated_at }} </td>
+                                <tr id="{{$row->id}}">
+                                    <td>
+                                      <input type="text" value=" {{$row->id}} " size="3" name="id_User"/>
+                                    </td>
+                                    <td>
+                                      <input type="text" value=" {{$row->lastname}} " size="10" name="lastname"/>
+                                    </td><td>
+                                      <input type="text" value=" {{$row->firstname}} " size="10" name="firstname"/>
+                                    </td><td>
+                                      <input type="text" value=" {{$row->email}} " name="email"/>
+                                    </td>
+                                    </td>
+                                    <td>
 
-                                </tr>
+                                        <select class="cobalt-TextField__Input"  name="role">
+                                            <option value="admin">admin</option>
+                                            <option selected  value="buyer">buyer</option>
+                                        </select>
+                                    </td>
+                                    </td>
+                                    <td>
+                                        {{$row->created_at}}
+                                    </td>
+                                    </td>
+                                    <td>
+                                        {{$row->updated_at}}
+                                    </td>
+                                <td>
+                                    <button class="fas fa-edit fa-lg edit"></button>
+                                    <button class="fas fa-trash fa-lg" id="del"></button>
+                                </td>
+                              </tr>
                             @endforeach
                             </tbody>
                         </table>
                     </div>
+
+
                 </div>
             </div>
         </div>
@@ -59,6 +86,44 @@
     </div>
 @endsection
 
-@section('scripts')
 
-@endsection
+    <!-- Remember to include jQuery :visage_légèrement_souriant: -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<!-- jQuery Modal -->
+    <script>
+
+        $(function (){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('.edit').click(function() {
+                var idTr  = $(this).parent().parent().attr('id');
+                var elem = $(this).parent().parent();
+                $.ajax({
+                    method: 'POST',
+                    url: '/user/ajax/edit',
+                    data: {
+                        id_user       : idTr,
+                        lastname     : elem.find('input[name="lastname"]').val(),
+                        firstname     : elem.find('input[name="firstname"]').val(),
+                        email         : elem.find('input[name="email"]').val(),
+                        role          : elem.find('select[name="role"]').val()
+                    },
+                    dataType: "json"
+                })
+                    .done(function(response) {
+                        console.log(response);
+                    })
+                    .fail(function(data,status) {
+                            result.text('not found');
+                        });
+            })
+
+        });
+
+</script>
+

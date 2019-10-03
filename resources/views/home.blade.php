@@ -258,7 +258,7 @@
         </div>
         
          {{-- add search form --}}
-         @include('form.search')
+         @include('vehicle.form.search')
         
 
         <div class='authentication_layout__section authentication_layout__section--background_1 authentication_layout__section--secondary'></div>
