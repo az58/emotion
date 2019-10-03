@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\User;
 
 use App\Http\Controllers\Controller;
 
@@ -15,7 +15,7 @@ class AjaxController extends Controller
         $sFirstname         = $request->query('firstname', '');
         $sEmail             = $request->query('email', '');
         $sRole              = $request->query('role', '');
-
+        
         User::where('id',  $iUser)
             ->update([
                 'lastname'  => $sLastname,
