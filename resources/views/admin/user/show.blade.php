@@ -52,7 +52,6 @@
                                     </td><td>
                                       <input type="text" value=" {{$row->email}} " name="email"/>
                                     </td>
-                                    </td>
                                     <td>
 
                                         <select class="cobalt-TextField__Input"  name="role">
@@ -60,17 +59,15 @@
                                             <option selected  value="buyer">buyer</option>
                                         </select>
                                     </td>
-                                    </td>
                                     <td>
                                         {{$row->created_at}}
-                                    </td>
                                     </td>
                                     <td>
                                         {{$row->updated_at}}
                                     </td>
                                 <td>
                                     <button class="fas fa-edit fa-lg edit"></button>
-                                    <button class="fas fa-trash fa-lg" id="del"></button>
+                                    <button class="fas fa-trash fa-lg del"></button>
                                 </td>
                               </tr>
                             @endforeach
@@ -103,7 +100,7 @@
 
             $('.edit').click(function() {
                 var idTr  = $(this).parent().parent().attr('id');
-                var elem = $(this).parent().parent();
+                var elem  = $(this).parent().parent();
 
                 $.ajax({
                     method: 'POST',
@@ -124,6 +121,26 @@
 
                 });
             })
+
+            $('.del').click(function(){
+                var idTr    =$(this).parent().parent().attr('id');
+                var elem    =$(this).parent().parent();
+
+                $.ajax({
+                    method: 'POST',
+                    url: '/admin/user/ajax/del',
+                    data: {
+                        id_user       : idTr,
+                    },
+                    dataType: "json"
+                })
+                .done(function() {
+                        elem.remove()
+                })
+                .fail(function(data,status) {
+
+                });
+            });
 
         });
 

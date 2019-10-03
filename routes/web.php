@@ -52,6 +52,10 @@ Route::post('/admin/user/ajax/edit', 'Admin\User\AjaxController@edit')->middlewa
 
 //---------------------------------------------------------------------------------------
 
+/**
+ * @author Kaouther CHEBBI
+ */
+Route::post('/admin/user/ajax/del', 'Admin\User\AjaxController@delete')->middleware('admin');
 
 //---------------------------------------------------------------------------------------
 
