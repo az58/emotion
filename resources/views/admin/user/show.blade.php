@@ -67,7 +67,7 @@
                                     </td>
                                 <td>
                                     <button class="fas fa-edit fa-lg edit"></button>
-                                    <button class="fas fa-trash fa-lg del" id="del"></button>
+                                    <button class="fas fa-trash fa-lg del"></button>
                                 </td>
                               </tr>
                             @endforeach
