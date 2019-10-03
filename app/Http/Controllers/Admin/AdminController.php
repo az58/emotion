@@ -16,21 +16,9 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showBooking()
-    {
-        $bookings               = Booking::all();
-        return view('admin/booking/show', compact('bookings'));
-    }
-    public function showUsers()
-    {
-        $users                  = User::where('role', 'buyer')->get();
-        return view('admin/user/show', compact('users'));
-    }
-    public function showVehicles()
-    {
-        $vehicles               = Vehicle::all();
-        return view('admin/vehicle/show', compact('vehicles'));
-    }
+
+
+
 
     /**
      * Show the form for creating a new resource.

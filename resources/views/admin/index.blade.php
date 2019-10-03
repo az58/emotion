@@ -177,6 +177,8 @@
             @yield('content')
             @yield('users')
             @yield('vehicle')
+            @yield('profile')
+
 
         </div>
 
