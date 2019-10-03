@@ -25,4 +25,12 @@ class AjaxController extends Controller
             ]);
         return response('ok', 200);
     }
+
+    public function delete(Request $request){
+        $iUser             = $request->query('id_user', '');
+
+        User::where('id', $iUser)
+          ->delete();
+          return response('ok',200);
+    }
 }
