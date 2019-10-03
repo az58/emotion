@@ -1,4 +1,4 @@
-@extends('administrator.admin')
+@extends('admin.index')
 
 @section('content')
 

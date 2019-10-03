@@ -19,17 +19,17 @@ class AdminController extends Controller
     public function showBooking()
     {
         $bookings               = Booking::all();
-        return view('administrator/ShowBooking', compact('bookings'));
+        return view('admin/booking/show', compact('bookings'));
     }
     public function showUsers()
     {
         $users                  = User::where('role', 'buyer')->get();
-        return view('administrator/ShowUsers', compact('users'));
+        return view('admin/user/show', compact('users'));
     }
     public function showVehicles()
     {
         $vehicles               = Vehicle::all();
-        return view('administrator/ShowVehicle', compact('vehicles'));
+        return view('admin/vehicle/show', compact('vehicles'));
     }
 
     /**
@@ -39,7 +39,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('administrator.dashboard');
+        return view('admin.dashboard');
     }
 
     /**
