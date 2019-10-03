@@ -70,25 +70,79 @@
                             </thead>
                             <tbody>
                             @foreach ($vehicles as  $row)
-                                <tr>
-                                    <td> {{$row->id}} </td>
-                                    <td> {{$row->category}} </td>
-                                    <td> {{$row->brand}} </td>
-                                    <td> {{$row->type}} </td>
-                                    <td> {{$row->color}} </td>
-                                    <td> {{$row->current_place}} </td>
-                                    <td> {{$row->licence_plate}} </td>
-                                    <td> {{$row->kilometer}} </td>
-                                    <td> {{$row->serial_number}} </td>
-                                    <td> {{$row->date_purchase}} </td>
-                                    <td> {{$row->buying_price}} </td>
-                                    <td> {{$row->day_price }} </td>
-                                    <td> {{$row->battery_level}} </td>
-                                    <td> {{$row->battery_brand}} </td>
-                                    <td> <img src="{{$row->picture}}"> </td>
+                                <tr id="{{$row->id}}">
+                                    <td>
+                                        <input type="text" value=" {{$row->id}} " size="3" name="id_user"/>
+                                    </td>
+                                    <td>
+                                    <td>
+                                        <select class="cobalt-TextField__Input"  name="category">
+                                            <option value="car">car</option>
+                                            <option selected  value="scooter">scooter</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="text" value=" {{$row->brand}} " size="10" name="brand"/>
+                                    </td>
+                                    <td>
+                                        <input type="text" value=" {{$row->type}} " size="10" name="type"/>
+                                    </td>
+                                    <td>
+                                        <input type="text" value=" {{$row->color}} " name="color"/>
+                                    </td>
+
+                                    <td>
+                                        <input type="text" value=" {{$row->current_place}} " name="color"/>
+                                    </td>
+
+                                    <td>
+                                        <input type="text" value=" {{$row->licence_plate}} " name="color"/>
+                                    </td>
+
+                                    <td>
+                                        <input type="text" value=" {{$row->kilometer}} " name="color"/>
+                                    </td>
+
+                                    <td>
+                                        <input type="text" value=" {{$row->serial_number}} " name="color"/>
+                                    </td>
+
+                                    <td>
+                                        <input type="text" value=" {{$row->date_purchase}} " name="color"/>
+                                    </td>
+
+                                    <td>
+                                        <input type="text" value=" {{$row->buying_price}} " name="color"/>
+                                    </td>
+
+                                    <td>
+                                        <input type="text" value=" {{$row->day_price}} " name="color"/>
+                                    </td>
+
+                                    <td>
+                                        <input type="text" value=" {{$row->battery_level}} " name="color"/>
+                                    </td>
+
+                                    <td>
+                                        <select class="cobalt-TextField__Input"  name="battery_brand">
+                                            <option value="c_n">Cadmium nickel</option>
+                                            <option selected  value="n_m_h">Nickel métal hydrure</option>
+                                            <option selected  value="l">Lithium</option>
+                                            <option selected  value="l_i">Lithium-ion</option>
+                                        </select>
+                                    </td>
+
+                                    <td>
+                                        <img src="{{$row->picture}}">
+                                    </td>
+
                                     <td> {{$row->created_at}} </td>
                                     <td> {{$row->updated_at }} </td>
 
+                                    <td>
+                                        <button class="fas fa-edit fa-lg edit" id="edit"></button>
+                                        <button class="fas fa-trash fa-lg del" id="del"></button>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -102,5 +156,53 @@
 @endsection
 
 @section('scripts')
+    <!-- Remember to include jQuery :visage_légèrement_souriant: -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <!-- jQuery Modal -->
+    <script>
 
+        $(function (){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('.edit').click(function() {
+                var idTr  = $(this).parent().parent().attr('id');
+                var elem = $(this).parent().parent();
+
+                $.ajax({
+                    method: 'POST',
+                    url: '/admin/vehicle/ajax/delete',
+                    data: {
+                        id_user         : idTr,
+                        category        : elem.find('select[name="category"]').val(),
+                        brand           : elem.find('input[name="brand"]').val(),
+                        type            : elem.find('input[name="type"]').val(),
+                        color           : elem.find('input[name="color"]').val(),
+                        current_place   : elem.find('input[name="current_place"]').val(),
+                        licence_plate   : elem.find('input[name="licence_plate"]').val(),
+                        kilometer       : elem.find('input[name="kilometer"]').val(),
+                        serial_number   : elem.find('input[name="serial_number"]').val(),
+                        date_purchase   : elem.find('input[name="date_purchase"]').val(),
+                        buying_price    : elem.find('input[name="buying_price"]').val(),
+                        day_price       : elem.find('input[name="day_price"]').val(),
+                        battery_level   : elem.find('input[name="battery_level"]').val(),
+                        battery_brand   : elem.find('select[name="battery_brand"]').val(),
+                    },
+                    dataType: "json"
+                })
+                    .done(function(response) {
+                        console.log(response);
+                    })
+                    .fail(function(data,status) {
+
+                    });
+            })
+        });
+
+    </script>
 @endsection
