@@ -135,7 +135,7 @@
           @yield("content")
           @auth
             @if(auth()->user()->role == 'admin')
-                @include('administrator.nav')
+                @include('admin.layouts.nav')
             @endif
           @endauth
 

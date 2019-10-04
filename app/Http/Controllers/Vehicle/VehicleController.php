@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Vehicle;
 
 use App\Http\Controllers\Controller;
 use App\Vehicle;
-
 use Illuminate\Http\Request;
+
 
 
 class VehicleController extends Controller
@@ -30,6 +30,7 @@ class VehicleController extends Controller
         $vehicles                               = [];
 
         if ($request->has($this->_needles)) {
+
             $sPlace								= strip_tags($request->query('cities', 'paris'));
             $sCategory                          = strip_tags($request->query('category', ''));
             $sCat                               = in_array( strtolower($sCategory), $this->_categories ) ;
@@ -71,4 +72,6 @@ class VehicleController extends Controller
         // The Y ( 4 digits year ) returns TRUE for any integer with any number of digits so changing the comparison from == to === fixes the issue.
         return $d && $d->format($format) === $date;
     }
+
+
 }

@@ -16,21 +16,9 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showBooking()
-    {
-        $bookings               = Booking::all();
-        return view('administrator/ShowBooking', compact('bookings'));
-    }
-    public function showUsers()
-    {
-        $users                  = User::where('role', 'buyer')->get();
-        return view('administrator/ShowUsers', compact('users'));
-    }
-    public function showVehicles()
-    {
-        $vehicles               = Vehicle::all();
-        return view('administrator/ShowVehicle', compact('vehicles'));
-    }
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -39,7 +27,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('administrator.dashboard');
+        return view('admin.dashboard');
     }
 
     /**

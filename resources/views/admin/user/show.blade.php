@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('admin.index')
 
 @section('users')
 
@@ -52,7 +52,6 @@
                                     </td><td>
                                       <input type="text" value=" {{$row->email}} " name="email"/>
                                     </td>
-                                    </td>
                                     <td>
 
                                         <select class="cobalt-TextField__Input"  name="role">
@@ -60,17 +59,15 @@
                                             <option selected  value="buyer">buyer</option>
                                         </select>
                                     </td>
-                                    </td>
                                     <td>
                                         {{$row->created_at}}
-                                    </td>
                                     </td>
                                     <td>
                                         {{$row->updated_at}}
                                     </td>
                                 <td>
                                     <button class="fas fa-edit fa-lg edit"></button>
-                                    <button class="fas fa-trash fa-lg" id="del"></button>
+                                    <button class="fas fa-trash fa-lg del"></button>
                                 </td>
                               </tr>
                             @endforeach
@@ -100,28 +97,56 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
             $('.edit').click(function() {
-                var idTr  = $(this).parent().parent().attr('id');
-                var elem = $(this).parent().parent();
-                $.ajax({
-                    method: 'POST',
-                    url: '/user/ajax/edit',
-                    data: {
-                        id_user       : idTr,
-                        lastname     : elem.find('input[name="lastname"]').val(),
-                        firstname     : elem.find('input[name="firstname"]').val(),
-                        email         : elem.find('input[name="email"]').val(),
-                        role          : elem.find('select[name="role"]').val()
-                    },
-                    dataType: "json"
-                })
-                    .done(function(response) {
-                        console.log(response);
+                if (confirm("Voulez-vous vraiment modifier cet utilisateur ?")) {
+                    var idTr = $(this).parent().parent().attr('id');
+                    var elem = $(this).parent().parent();
+
+                    $.ajax({
+                        method: 'POST',
+                        url: '/admin/user/ajax/edit',
+                        data: {
+                            id_user: idTr,
+                            lastname: elem.find('input[name="lastname"]').val(),
+                            firstname: elem.find('input[name="firstname"]').val(),
+                            email: elem.find('input[name="email"]').val(),
+                            role: elem.find('select[name="role"]').val()
+                        },
+                        dataType: "json"
+                    })
+                        .done(function (response) {
+                            console.log(response);
+                        })
+                        .fail(function (data, status) {
+
+                        });
+                }
+            })
+
+            $('.del').click(function(){
+                if (confirm("Voulez-vous vraiment supprimer cet utilisateur ?")) {
+                    var idTr    =$(this).parent().parent().attr('id');
+                    var elem    =$(this).parent().parent();
+
+                    $.ajax({
+                        method: 'POST',
+                        url: '/admin/user/ajax/del',
+                        data: {
+                            id_user       : idTr,
+                        },
+                        dataType: "json"
+                    })
+                    .done(function(id_user) {
+                        //Recupère l'élément <tr> qui a un attribut 'id' égal à l'identifiant de l'utilisateur
+                        // que notre controlleur nous renvoie en message de reponse json
+                        $('tr[id="'+id_user+'"]').remove()
                     })
                     .fail(function(data,status) {
-                            result.text('not found');
-                        });
-            })
+                        console.log("ok")
+                    });
+                }
+            });
 
         });
 
