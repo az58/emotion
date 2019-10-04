@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Vehicle;
 
 use App\Http\Controllers\Controller;
 use App\Vehicle;
-
 use Illuminate\Http\Request;
 
 
@@ -73,4 +72,6 @@ class VehicleController extends Controller
         // The Y ( 4 digits year ) returns TRUE for any integer with any number of digits so changing the comparison from == to === fixes the issue.
         return $d && $d->format($format) === $date;
     }
+
+
 }
