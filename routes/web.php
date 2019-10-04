@@ -66,6 +66,7 @@ Route::post('/admin/user/ajax/del', 'Admin\User\AjaxController@delete')->middlew
  */
 
 Route::post('/admin/ajax/edit', 'Admin\User\AjaxController@edit')->middleware('admin');
+Route::post('/admin/booking/ajax/edit', 'Admin\Booking\AjaxController@edit')->middleware('admin');
 
 
 //---------------------------------------------------------------------------------------
