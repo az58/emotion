@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin\User;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-
-use App\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AjaxController extends Controller
 {
@@ -16,7 +14,11 @@ class AjaxController extends Controller
         $sEmail             = $request->email;
         $sRole              = $request->role;
 
-        // var_dump($request);exit;
+        if($sRole === 1)
+        {
+         $sRole = 'admin';
+        }
+
 
         User::where('id',  $iUser)
             ->update([
@@ -26,13 +28,5 @@ class AjaxController extends Controller
                 'role'      => $sRole,
             ]);
         return response('ok', 200);
-    }
-
-    public function delete(Request $request){
-        $iUser             = $request->id_user;
-
-        User::where('id', $iUser)
-          ->delete();
-          return response($iUser,200);
     }
 }
