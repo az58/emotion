@@ -75,3 +75,13 @@ Route::post('/admin/booking/ajax/edit', 'Admin\Booking\AjaxController@edit')->mi
 
 //---------------------------------------------------------------------------------------
 
+/**
+ * @author Kaouther CHEBBI
+ */
+Route::post('/admin/vehicle/ajax/edit', 'Admin\User\AjaxController@edit')->middleware('admin');
+//---------------------------------------------------------------------------------------
+/**
+ * @author Kaouther CHEBBI
+ */
+Route::post('/admin/vehicle/ajax/del', 'Admin\Vehicle\AjaxController@delete')->middleware('admin');
+//---------------------------------------------------------------------------------------
