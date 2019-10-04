@@ -143,7 +143,7 @@
                                                 <option value="c_n"> Cadmium nickel </option>
                                                 <option selected value="n_m_h"> Nickel métal hydrure </option>
                                                 <option selected value="l"> Lithium </option>
-                                                <option selected value="l_i"> Lithium-ion< /option>
+                                                <option selected value="l_i"> Lithium-ion </option>
                                             </select>
                                         </td>
 
