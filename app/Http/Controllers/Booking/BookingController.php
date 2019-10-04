@@ -105,8 +105,7 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-
-        $iIdVehicle             = $request->query('id_user', '');
+        $iIdVehicle             = $request->query('id_user', 0);
         $Sstart_date            = $request->query('start_date', '');
         $sEnd_date              = $request->query('end_date', '');
         $sState                 = $request->query('state ', '');
@@ -118,7 +117,6 @@ class BookingController extends Controller
         $sCity                  = $request->query('city ', '');
         $sCountry               = $request->query('country  ', '');
         $sDriving_licence       = $request->query('driving_licence  ', '');
-
 
         Booking::insert([
             'id_user'           => $iIdVehicle,
@@ -132,7 +130,6 @@ class BookingController extends Controller
             'address'           => $sAddress. '' . $sCp . '' . $sCity . '' . $sCountry,
             'driving_licence'   => $sDriving_licence,
         ]);
-
     }
 
 
