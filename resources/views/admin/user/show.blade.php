@@ -43,7 +43,8 @@
                             @foreach ($users as  $row)
                                 <tr id="{{$row->id}}">
                                     <td>
-                                      <input type="text" value=" {{$row->id}} " size="3" name="id_User"/>
+                                        {{$row->id}}
+                                      <input type="hidden" value=" {{$row->id}} " size="3" name="id_User"/>
                                     </td>
                                     <td>
                                       <input type="text" value=" {{$row->lastname}} " size="10" name="lastname"/>
