@@ -49,8 +49,8 @@ class AjaxController extends Controller
         if (!$iVehicle || !$sCategory || !$sBrand || !$sType
             || !$sColor || !$sCurrent_place || !$sLicence_plate
             || !$sKilometer || !$sSerial_number || !$dDate_purchase
-            || !$iBuying_price || $sDay_price || $sBattery_level
-            || $sBattery_brand
+            || !$iBuying_price || !$sDay_price || !$sBattery_level
+            || !$sBattery_brand
         ) {
             return response('Vous n\'avez pas les autorisations pour cette action', 419);
         }
