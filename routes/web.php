@@ -51,15 +51,27 @@ Route::get('/admin/user', 'Admin\User\UserController@show')->middleware('admin')
 
 Route::get('/admin/vehicle', 'Admin\Vehicle\VehicleController@show')->middleware('admin');
 
+Route::get('/admin/profil', 'Admin\AdminController@show')->middleware('admin');
+//---------------------------------------------------------------------------------------
+/**
+ * @author Kaouther CHEBBI
+ */
+
 Route::post('/admin/user/ajax/edit', 'Admin\User\AjaxController@edit')->middleware('admin');
+Route::post('/admin/user/ajax/del', 'Admin\User\AjaxController@delete')->middleware('admin');
+
+/**
+ * @author Aziza CHEBANI
+ * Ajax Admin Profile
+ */
+
+Route::post('/admin/ajax/edit', 'Admin\User\AjaxController@edit')->middleware('admin');
+Route::post('/admin/booking/ajax/edit', 'Admin\Booking\AjaxController@edit')->middleware('admin');
 
 
 //---------------------------------------------------------------------------------------
 
-/**
- * @author Kaouther CHEBBI
- */
-Route::post('/admin/user/ajax/del', 'Admin\User\AjaxController@delete')->middleware('admin');
+
 
 //---------------------------------------------------------------------------------------
 

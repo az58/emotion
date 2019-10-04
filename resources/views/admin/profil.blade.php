@@ -1,14 +1,11 @@
+
 @extends('admin.index')
 
 @section('profile')
     <body class="user-profile">
-    <div class="wrapper ">
-
-        <div class="main-panel" id="main-panel">
-
-            <div class="panel-header panel-header-sm">
-            </div>
-            <div class="content">
+        <div class="wrapper ">
+        <div id="main-panel">
+            <div class="content mt-5">
                 <div class="row">
                     <div class="col-md-8">
                         <div class="card">
@@ -17,37 +14,35 @@
                             </div>
                             <div class="card-body">
                                 <form>
-                                    <div class="row">
-                                        <div class="col-md-5 pr-1">
-                                            <div class="form-group">
-                                                <label>Company (disabled)</label>
-                                                <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
-                                            </div>
-                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 pl-4 pr-4 pt-2 pb-2">
+                                                <div class="form-group">
+                                                    <label class="ml-2">First Name</label>
+                                                    <input type="text" class="form-control"  value="<?php  echo \Illuminate\Support\Facades\Auth::user()->firstname?>" name="firstname">
+                                                    <input type="hidden"   value="<?php  echo \Illuminate\Support\Facades\Auth::user()->id ?>" name="id_admin">
 
-                                        <div class="col-md-4 pl-1">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Email address</label>
-                                                <input type="email" class="form-control" placeholder="Email">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 pl-4 pr-4 pt-2 pb-2">
+                                                <div class="form-group">
+                                                    <label class="ml-2">Last Name</label>
+                                                    <input type="text" class="form-control"  value=" <?php  echo \Illuminate\Support\Facades\Auth::user()->lastname?>" name="lastname">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6 pr-1">
-                                            <div class="form-group">
-                                                <label>First Name</label>
-                                                <input type="text" class="form-control" placeholder="Company" value="Mike">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 pl-1">
-                                            <div class="form-group">
-                                                <label>Last Name</label>
-                                                <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
-                                            </div>
-                                        </div>
-                                    </div>
+                                        <div class="row">
+                                            <div class="col-md-12 pl-4 pr-4 pt-2 pb-2">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1" class="ml-2">Email address</label>
+                                                    <input type="email" class="form-control" value="<?php  echo \Illuminate\Support\Facades\Auth::user()->email?> " name="email">
 
+                                                </div>
+                                            </div>
+                                        </div>
                                 </form>
+                                <!-- div button -->
+                                <button class="btn btn-secondary edit ml-2" >Edit</button>
+
                             </div>
                         </div>
                     </div>
@@ -70,9 +65,9 @@
                                         {{--  requete nom admin --}}
                                     </p>
                                 </div>
-                                <p class="description text-center">
+                                <!-- <p class="description text-center">
                                     point admin
-                                </p>
+                                </p> -->
                             </div>
                             <hr>
                             <div class="button-container">
@@ -90,39 +85,51 @@
                     </div>
                 </div>
             </div>
-            <footer class="footer">
-                <div class="container-fluid">
-                    <nav>
-                        <ul>
-                            <li>
-                                <a href="VRENT">
-                                    VRENT
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#VRENT">
-                                    About Us
-                                </a>
-                            </li>
-                            <li>
-                                <a href="VRENT">
-                                    Blog
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div class="copyright" id="copyright">
-                        &copy;
-                        <script>
-                            document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-                        </script>,Coded by
-                        <a href="VRENT" target="_blank"> VRENT </a>.
 
-                    </div>
-                </div>
-            </footer>
         </div>
-    </div>
+    </body>
+@endsection
+
+    <!-- Remember to include jQuery :visage_légèrement_souriant: -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <!-- jQuery Modal -->
+    <script>
+
+        $(function (){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('.edit').click(function() {
+
+                $.ajax({
+                    method: 'POST',
+                    url: '/admin/ajax/edit',
+                    data: {
+                        firstname: $('input[name="firstname"]').val(),
+                        id_user: $('input[name="id_admin"]').val(),
+                        lastname: $('input[name="lastname"]').val(),
+                        email: $('input[name="email"]').val(),
+                        role: 1,
+                        
+                    },
+                    dataType: "json"
+                })
+                    .done(function (response) {
+                        console.log(response);
+                    })
+                    .fail(function (data, status) {
+
+                    });
+            });
+        });
+
+    </script>
+
+
     <!--   Core JS Files   -->
     <script src="../../../../../now-ui-dashboard-master/assets/js/core/jquery.min.js"></script>
     <script src="../../../../../now-ui-dashboard-master/assets/js/core/popper.min.js"></script>
@@ -137,7 +144,7 @@
     <script src="../../../../../now-ui-dashboard-master/assets/js/now-ui-dashboard.min.js?v=1.3.0" type="text/javascript"></script>
     <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
     <script src="../../../../../now-ui-dashboard-master/assets/demo/demo.js"></script>
-    </body>
 
-@endsection
+
+
 
