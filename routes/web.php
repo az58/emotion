@@ -19,6 +19,7 @@ Auth::routes();
 //---------------------------------------------------------------------------------------
 
 Route::get('/', 'HomeController@index')->name('home');
+
 /** Obliger de la laisser j'ai remarqué que lapplication l'utilise à des endroits mystiques */
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -38,7 +39,7 @@ Route::get('/booking/create','Booking\BookingController@create');
 
 Route::post('/vehicle/search','Vehicle\VehicleController@search');
 
-//---------------------------------------------------------------------------------------
+//-------------------------------------ADMIN--------------------------------------------------
 
 /**
  * @author Aziza CHEBANI
@@ -53,12 +54,7 @@ Route::get('/admin/vehicle', 'Admin\Vehicle\VehicleController@show')->middleware
 
 Route::get('/admin/profil', 'Admin\AdminController@show')->middleware('admin');
 //---------------------------------------------------------------------------------------
-/**
- * @author Kaouther CHEBBI
- */
 
-Route::post('/admin/user/ajax/edit', 'Admin\User\AjaxController@edit')->middleware('admin');
-Route::post('/admin/user/ajax/del', 'Admin\User\AjaxController@delete')->middleware('admin');
 
 /**
  * @author Aziza CHEBANI
@@ -66,12 +62,26 @@ Route::post('/admin/user/ajax/del', 'Admin\User\AjaxController@delete')->middlew
  */
 
 Route::post('/admin/ajax/edit', 'Admin\User\AjaxController@edit')->middleware('admin');
+
+//---------------------------------------------------------------------------------------
+
+/**
+ * @author Kaouther CHEBBI
+ */
+
+Route::post('/admin/user/ajax/edit', 'Admin\User\AjaxController@edit')->middleware('admin');
+Route::post('/admin/user/ajax/del', 'Admin\User\AjaxController@delete')->middleware('admin');
+
+//---------------------------------------------------------------------------------------
+
+/**
+ * @author Kaouther CHEBBI
+ */
+Route::post('/admin/vehicle/ajax/edit', 'Admin\Vehicle\AjaxController@edit')->middleware('admin');
+Route::post('/admin/vehicle/ajax/del', 'Admin\Vehicle\AjaxController@delete')->middleware('admin');
+
+//---------------------------------------------------------------------------------------
+
 Route::post('/admin/booking/ajax/edit', 'Admin\Booking\AjaxController@edit')->middleware('admin');
 
-
 //---------------------------------------------------------------------------------------
-
-
-
-//---------------------------------------------------------------------------------------
-
