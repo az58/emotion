@@ -186,37 +186,40 @@
             });
 
             $('.edit').click(function() {
-                var idTr  = $(this).parent().parent().attr('id');
-                var elem = $(this).parent().parent();
+                if (confirm("Voulez-vous vraiment supprimer cette Véhicule ?")) {
+                    var idTr = $(this).parent().parent().attr('id');
+                    var elem = $(this).parent().parent();
 
-                $.ajax({
-                    method: 'POST',
-                    url: '/admin/vehicle/ajax/edit',
-                    data: {
-                        id_vehicle      : idTr,
-                        category        : elem.find('select[name="category"]').val(),
-                        brand           : elem.find('input[name="brand"]').val(),
-                        type            : elem.find('input[name="type"]').val(),
-                        color           : elem.find('input[name="color"]').val(),
-                        current_place   : elem.find('input[name="current_place"]').val(),
-                        licence_plate   : elem.find('input[name="licence_plate"]').val(),
-                        kilometer       : elem.find('input[name="kilometer"]').val(),
-                        serial_number   : elem.find('input[name="serial_number"]').val(),
-                        date_purchase   : elem.find('input[name="date_purchase"]').val(),
-                        buying_price    : elem.find('input[name="buying_price"]').val(),
-                        day_price       : elem.find('input[name="day_price"]').val(),
-                        battery_level   : elem.find('input[name="battery_level"]').val(),
-                        battery_brand   : elem.find('select[name="battery_brand"]').val(),
-                    },
-                    dataType: "json"
-                })
-                    .done(function(response) {
+                    $.ajax({
+                        method: 'POST',
+                        url: '/admin/vehicle/ajax/edit',
+                        data: {
+                            id_vehicle: idTr,
+                            category: elem.find('select[name="category"]').val(),
+                            brand: elem.find('input[name="brand"]').val(),
+                            type: elem.find('input[name="type"]').val(),
+                            color: elem.find('input[name="color"]').val(),
+                            current_place: elem.find('input[name="current_place"]').val(),
+                            licence_plate: elem.find('input[name="licence_plate"]').val(),
+                            kilometer: elem.find('input[name="kilometer"]').val(),
+                            serial_number: elem.find('input[name="serial_number"]').val(),
+                            date_purchase: elem.find('input[name="date_purchase"]').val(),
+                            buying_price: elem.find('input[name="buying_price"]').val(),
+                            day_price: elem.find('input[name="day_price"]').val(),
+                            battery_level: elem.find('input[name="battery_level"]').val(),
+                            battery_brand: elem.find('select[name="battery_brand"]').val(),
+                        },
+                        dataType: "json"
+                    })
+                    .done(function (response) {
                         console.log(response);
                     })
-                    .fail(function(data,status) {
+                    .fail(function (data, status) {
 
                     });
+                }
             });
+
             $('.del').click(function(){
                 if (confirm("Voulez-vous vraiment supprimer cette Véhicule ?")) {
                     var idTr    =$(this).parent().parent().attr('id');
@@ -237,7 +240,7 @@
                         $('tr[id="'+id_vehicle+'"]').remove()
                     })
                     .fail(function(data,status) {
-                        console.log("ok")
+                        console.log("an error occured")
                     });
                 }
             });
