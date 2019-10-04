@@ -176,9 +176,9 @@
 
                 $.ajax({
                     method: 'POST',
-                    url: '/admin/vehicle/ajax/delete',
+                    url: '/admin/vehicle/ajax/edit',
                     data: {
-                        id_user         : idTr,
+                        id_vehicle      : idTr,
                         category        : elem.find('select[name="category"]').val(),
                         brand           : elem.find('input[name="brand"]').val(),
                         type            : elem.find('input[name="type"]').val(),
@@ -201,8 +201,33 @@
                     .fail(function(data,status) {
 
                     });
-            })
+            });
+            $('.del').click(function(){
+                if (confirm("Voulez-vous vraiment supprimer cette Véhicule ?")) {
+                    var idTr    =$(this).parent().parent().attr('id');
+                    var elem    =$(this).parent().parent();
+
+                    $.ajax({
+                        method: 'POST',
+                        url: '/admin/vehicle/ajax/del',
+                        data: {
+                            id_vehicle       : idTr,
+                        },
+                        dataType: "json"
+                    })
+                
+                    .done(function(id_vehicle) {
+                        //Recupère l'élément <tr> qui a un attribut 'id' égal à l'identifiant de l'utilisateur
+                        // que notre controlleur nous renvoie en message de reponse json
+                        $('tr[id="'+id_vehicle+'"]').remove()
+                    })
+                    .fail(function(data,status) {
+                        console.log("ok")
+                    });
+                }
+            });
         });
+        
 
     </script>
 @endsection

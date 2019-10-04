@@ -33,4 +33,5 @@ class AjaxController extends Controller
           ->delete();
           return response($iUser,200);
     }
+    
 }
