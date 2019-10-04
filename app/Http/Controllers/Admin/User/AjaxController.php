@@ -10,12 +10,14 @@ use Illuminate\Http\Request;
 class AjaxController extends Controller
 {
     public function edit(Request $request) {
-        $iUser              = $request->query('id_user', '');
-        $sLastname          = $request->query('lastname', '');
-        $sFirstname         = $request->query('firstname', '');
-        $sEmail             = $request->query('email', '');
-        $sRole              = $request->query('role', '');
-        
+        $iUser              = $request->id_user;
+        $sLastname          = $request->lastname;
+        $sFirstname         = $request->firstname;
+        $sEmail             = $request->email;
+        $sRole              = $request->role;
+
+        // var_dump($request);exit;
+
         User::where('id',  $iUser)
             ->update([
                 'lastname'  => $sLastname,
