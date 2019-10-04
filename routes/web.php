@@ -77,7 +77,7 @@ Route::post('/admin/user/ajax/del', 'Admin\User\AjaxController@delete')->middlew
 /**
  * @author Kaouther CHEBBI
  */
-Route::post('/admin/vehicle/ajax/edit', 'Admin\User\AjaxController@edit')->middleware('admin');
+Route::post('/admin/vehicle/ajax/edit', 'Admin\Vehicle\AjaxController@edit')->middleware('admin');
 Route::post('/admin/vehicle/ajax/del', 'Admin\Vehicle\AjaxController@delete')->middleware('admin');
 
 //---------------------------------------------------------------------------------------
