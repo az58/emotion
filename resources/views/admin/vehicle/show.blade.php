@@ -12,139 +12,154 @@
                     <div class="table-responsive">
                         <table class="table">
                             <thead class=" text-primary">
-                            <th>
-                                id
-                            </th>
-                            <th>
-                                category
-                            </th>
-                            <th>
-                                brand
-                            </th>
-                            <th>
-                                type
-                            </th>
-                            <th>
-                                color
-                            </th>
-                            <th>
-                            <th>
-                                current_place
-                            </th>
-                            <th>
-                                licence_plate
-                            </th>
-                            <th>
-                                kilometer
-                            </th>
-                            <th>
-                                serial_number
-                            </th>
-                            <th>
-                                date_purchase
-                            </th>
-                            <th>
-                                buying_price
-                            </th>
-                            <th>
-                                day_price
-                            </th>
-                            <th>
-                                battery_level
-                            </th>
-                            <th>
-                                battery_brand
-                            </th>
-                            <th>
-                                picture
-                            </th>
+                                <th>
+                                    id
+                                </th>
 
-                            <th >
-                                created_at
-                            </th>
-                            <th >
-                                updated_at
-                            </th>
+                                <th>
+                                    category
+                                </th>
 
+                                <th>
+                                    brand
+                                </th>
 
+                                <th>
+                                    type
+                                </th>
+
+                                <th>
+                                    color
+                                </th>
+
+                                <th>
+                                    current_place
+                                </th>
+
+                                <th>
+                                    licence_plate
+                                </th>
+
+                                <th>
+                                    kilometer
+                                </th>
+
+                                <th>
+                                    serial_number
+                                </th>
+
+                                <th>
+                                    date_purchase
+                                </th>
+
+                                <th>
+                                    buying_price
+                                </th>
+
+                                <th>
+                                    day_price
+                                </th>
+
+                                <th>
+                                    battery_level
+                                </th>
+
+                                <th>
+                                    battery_brand
+                                </th>
+
+                                <th>
+                                    picture
+                                </th>
+
+                                <th >
+                                    created_at
+                                </th>
+
+                                <th >
+                                    updated_at
+                                </th>
                             </thead>
                             <tbody>
-                            @foreach ($vehicles as  $row)
-                                <tr id="{{$row->id}}">
-                                    <td>
-                                        <input type="text" value=" {{$row->id}} " size="3" name="id_user"/>
-                                    </td>
-                                    <td>
-                                    <td>
-                                        <select class="cobalt-TextField__Input"  name="category">
-                                            <option value="car">car</option>
-                                            <option selected  value="scooter">scooter</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" value=" {{$row->brand}} " size="10" name="brand"/>
-                                    </td>
-                                    <td>
-                                        <input type="text" value=" {{$row->type}} " size="10" name="type"/>
-                                    </td>
-                                    <td>
-                                        <input type="text" value=" {{$row->color}} " name="color"/>
-                                    </td>
+                                @foreach ($vehicles as  $row)
+                                    <tr id="{{$row->id}}">
+                                        <td>
+                                            <input type="text" value=" {{$row->id}} " size="3" name="id_user"/>
+                                        </td>
 
-                                    <td>
-                                        <input type="text" value=" {{$row->current_place}} " name="color"/>
-                                    </td>
+                                        <td>
+                                            <select class="cobalt-TextField__Input"  name="category">
+                                                <option value="car">car</option>
+                                                <option selected  value="scooter">scooter</option>
+                                            </select>
+                                        </td>
 
-                                    <td>
-                                        <input type="text" value=" {{$row->licence_plate}} " name="color"/>
-                                    </td>
+                                        <td>
+                                            <input type="text" value=" {{$row->brand}} " size="6" name="brand"/>
+                                        </td>
 
-                                    <td>
-                                        <input type="text" value=" {{$row->kilometer}} " name="color"/>
-                                    </td>
+                                        <td>
+                                            <input type="text" value=" {{$row->type}} " size="5" name="type"/>
+                                        </td>
 
-                                    <td>
-                                        <input type="text" value=" {{$row->serial_number}} " name="color"/>
-                                    </td>
+                                        <td>
+                                            <input type="text" value=" {{$row->color}} " size="4" name="color"/>
+                                        </td>
 
-                                    <td>
-                                        <input type="text" value=" {{$row->date_purchase}} " name="color"/>
-                                    </td>
+                                        <td>
+                                            <input type="text" value=" {{$row->current_place}} " size="7" name="current_place"/>
+                                        </td>
 
-                                    <td>
-                                        <input type="text" value=" {{$row->buying_price}} " name="color"/>
-                                    </td>
+                                        <td>
+                                            <input type="text" value=" {{$row->licence_plate}} " size="8" name="licence_plate"/>
+                                        </td>
 
-                                    <td>
-                                        <input type="text" value=" {{$row->day_price}} " name="color"/>
-                                    </td>
+                                        <td>
+                                            <input type="text" value=" {{$row->kilometer}} " size="5" name="kilometer"/>
+                                        </td>
 
-                                    <td>
-                                        <input type="text" value=" {{$row->battery_level}} " name="color"/>
-                                    </td>
+                                        <td>
+                                            <input type="text" value=" {{$row->serial_number}} " size="10" name="serial_number"/>
+                                        </td>
 
-                                    <td>
-                                        <select class="cobalt-TextField__Input"  name="battery_brand">
-                                            <option value="c_n">Cadmium nickel</option>
-                                            <option selected  value="n_m_h">Nickel métal hydrure</option>
-                                            <option selected  value="l">Lithium</option>
-                                            <option selected  value="l_i">Lithium-ion</option>
-                                        </select>
-                                    </td>
+                                        <td>
+                                            <input type="text" value=" {{$row->date_purchase}} " size="6"name="date_purchase"/>
+                                        </td>
 
-                                    <td>
-                                        <img src="{{$row->picture}}">
-                                    </td>
+                                        <td>
+                                            <input type="text" value=" {{$row->buying_price}} " size="3" name="buying_price"/>
+                                        </td>
 
-                                    <td> {{$row->created_at}} </td>
-                                    <td> {{$row->updated_at }} </td>
+                                        <td>
+                                            <input type="text" value=" {{$row->day_price}} " size="3" name="day_price"/>
+                                        </td>
 
-                                    <td>
-                                        <button class="fas fa-edit fa-lg edit" id="edit"></button>
-                                        <button class="fas fa-trash fa-lg del" id="del"></button>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                        <td>
+                                            <input type="text" value=" {{$row->battery_level}} " size="3" name="battery_level"/>
+                                        </td>
+
+                                        <td>
+                                            <select class="cobalt-TextField__Input"  name="battery_brand">
+                                                <option value="c_n"> Cadmium nickel </option>
+                                                <option selected value="n_m_h"> Nickel métal hydrure </option>
+                                                <option selected value="l"> Lithium </option>
+                                                <option selected value="l_i"> Lithium-ion< /option>
+                                            </select>
+                                        </td>
+
+                                        <td>
+                                            <img src="{{$row->picture}}">
+                                        </td>
+
+                                        <td> {{$row->created_at}} </td>
+                                        <td> {{$row->updated_at }} </td>
+
+                                        <td>
+                                            <button class="fas fa-edit fa-lg edit" id="edit"></button>
+                                            <button class="fas fa-trash fa-lg del" id="del"></button>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
