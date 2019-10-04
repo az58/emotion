@@ -27,7 +27,7 @@ class AjaxController extends Controller
         $sBattery_brand     = $request->battery_brand;
 
         
-        Vehicule::where('id',  $iVehicle)
+        Vehicle::where('id',  $iVehicle)
             ->update([
                 'category'       => $sCategory,
                 'brand'          => $sBrand,
