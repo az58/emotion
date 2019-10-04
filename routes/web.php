@@ -50,6 +50,8 @@ Route::get('/admin/booking', 'Admin\Booking\BookingController@show')->middleware
 Route::get('/admin/user', 'Admin\User\UserController@show')->middleware('admin');
 
 Route::get('/admin/vehicle', 'Admin\Vehicle\VehicleController@show')->middleware('admin');
+
+Route::get('/admin/profil', 'Admin\AdminController@show')->middleware('admin');
 //---------------------------------------------------------------------------------------
 /**
  * @author Kaouther CHEBBI
