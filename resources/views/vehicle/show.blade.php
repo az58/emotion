@@ -188,7 +188,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href='/vehicle/store<?= "?id=$vehicle->id&startDate=$startDate&endDate=$endDate&iDays=$iDaysgit branch" ?>'>
+                            <a href="/vehicle/store/<?=$vehicle->id.'/'.$startDate.'/'.$endDate.'/'$iDays?>">
                                 <button>Réserver</button>
                             </a>
                         </div>
