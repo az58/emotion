@@ -140,24 +140,6 @@
 </header>
 <!--== Header Area End ==-->
 
-<!--== Page Title Area Start ==-->
-<section id="page-title-area" class="section-padding overlay">
-    <div class="container">
-        <div class="row">
-            <!-- Page Title Start -->
-            <div class="col-lg-12">
-                <div class="section-title  text-center">
-                    <h2>Our Gallery</h2>
-                    <span class="title-line"><i class="fa fa-car"></i></span>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                </div>
-            </div>
-            <!-- Page Title End -->
-        </div>
-    </div>
-</section>
-<!--== Page Title Area End ==-->
-
 <!--== Gallery Page Content Start ==-->
 <section id="gallery-page-content" class="section-padding">
     <div class="container">
@@ -183,7 +165,7 @@
                         <div class="col-lg-4 col-md-6 con suv mpv">
                             <div class="single-popular-car">
                                 <div class="p-car-thumbnails">
-                                    <a class="car-hover" href="{{ asset('assets/img/car/car-1.jpg') }}">
+                                    <a class="car-hover" href="{{ $vehicle->picture }}">
                                         <img src="{{ $vehicle->picture }}" alt="">
                                     </a>
                                 </div>
@@ -192,18 +174,23 @@
                                     <h3>
                                         <p>{{ $vehicle->type }}</p>
                                         <p>{{ $vehicle->brand }}</p>
-                                        <span class="price"><i class="fa fa-tag"></i>Prix par jour :{{ $vehicle->day_price}}</span>
+                                        <div>
+                                            <span class="price"><i class="fa fa-tag"></i>Prix par jour :{{ $vehicle->day_price}}€</span>
+                                        </div>
+
                                     </h3>
 
-                                    <h5>HATCHBACK</h5>
-
                                     <div class="p-car-feature">
-                                        <a href="#">2017</a>
+                                        <a href="#">{{ $vehicle->color }}</a>
+                                        <a href="#">{{ $vehicle->battery_brand }}</a>
                                         <a href="#">manual</a>
                                         <a href="#">AIR CONDITION</a>
                                     </div>
                                 </div>
                             </div>
+                            <a href='/vehicle/store<?= "?id=$vehicle->id&startDate=$startDate&endDate=$endDate&iDays=$iDaysgit branch" ?>'>
+                                <button>Réserver</button>
+                            </a>
                         </div>
                         <!-- Single Popular Car End -->
                         @endforeach
@@ -233,7 +220,7 @@
                     <div class="single-footer-widget">
                         <h2>About Us</h2>
                         <div class="widget-body">
-                            <img src="{{ asset('front/img/logo.png') }}" alt="JSOFT">
+                            <img src="{{ asset('front/img/logo.png') }}" alt="">
                             <p>Lorem ipsum dolored is a sit ameted consectetur adipisicing elit. Nobis magni assumenda distinctio debitis, eum fuga fugiat error reiciendis.</p>
 
                             <div class="newsletter-area">

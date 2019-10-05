@@ -1,290 +1,1301 @@
-
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-  <head>
-    <meta charset='utf-8'>
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+<html class="no-js" lang="zxx">
 
-    <title>E-MOTION : LOGIN </title>
-    <meta property="fb:app_id" content="114069411958430">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="E-MOTION">
-    <meta property="og:title" content="Location Voiture">
-    <meta property="og:description">
-    <meta property="og:url">
-    <meta property="og:image">
-    <meta name="robots" content="index, follow">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--=== Favicon ===-->
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
+  <title>VRENT</title>
 
-    <link href='https://d2y2masl4rtrav.cloudfront.net' rel='dns-prefetch'>
-    <link href='https://maps.googleapis.com' rel='dns-prefetch'>
-    <link href='https://maps.gstatic.com' rel='dns-prefetch'>
-    <link href='https://mts0.googleapis.com' rel='dns-prefetch'>
-    <link href='https://mts1.googleapis.com' rel='dns-prefetch'>
-
-    <meta content='Drivy' name='author'>
-
-    <meta content='width=device-width, initial-scale=1.0' name='viewport'>
-
-
-
-    <link href='https://blog.drivy.com/feed/' rel='alternate' title='Drivy RSS' type='application/rss+xml'>
-
-    <link rel="stylesheet" media="screen" href="https://d2y2masl4rtrav.cloudfront.net/packs/css/vendor.style-3f06c2d7.chunk.css" />
-    <link rel="stylesheet" media="screen" href="https://d2y2masl4rtrav.cloudfront.net/packs/css/application.getaround.style-379c2e6b.chunk.css" />
-<!--
-    <meta name="csrf-param" content="authenticity_token" />
-    <meta name="csrf-token" content="Qza1q9rY6HfotsH0tjKiLOSVfFU4fSQsc++hvfmkeomJPNTkh88GfdRK3mYQdpMilhgJEAuYB15FLttiojr0yA==" />
--->
+    <!--=== Bootstrap CSS ===-->
+    <link href="{{ asset('front/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!--=== Slicknav CSS ===-->
+    <link href="{{ asset('front/css/plugins/slicknav.min.css') }}" rel="stylesheet">
+    <!--=== Magnific Popup CSS ===-->
+    <link href="{{ asset('front/css/plugins/magnific-popup.css') }}" rel="stylesheet">
+    <!--=== Owl Carousel CSS ===-->
+    <link href="{{ asset('front/css/plugins/owl.carousel.min.css') }}" rel="stylesheet">
+    <!--=== Gijgo CSS ===-->
+    <link href="{{ asset('front/css/plugins/gijgo.css') }}" rel="stylesheet">
+    <!--=== FontAwesome CSS ===-->
+    <link href="{{ asset('front/css/font-awesome.css') }}" rel="stylesheet">
+    <!--=== Theme Reset CSS ===-->
+    <link href="{{ asset('front/css/reset.css') }}" rel="stylesheet">
+    <!--=== Main Style CSS ===-->
+    <link href="{{ asset('front/style.css') }}" rel="stylesheet">
+    <!--=== Responsive CSS ===-->
+    <link href="{{ asset('front/css/responsive.css') }}" rel="stylesheet">
 
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    <!-- Styles -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <!-- Styles -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
-    <script src="https://kit.fontawesome.com/ec73f164d2.js"></script>
+    <!--[if lt IE 9]>
+  <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
     <script>
-      $(function() {
+        $(function() {
 
-        $('input[name="daterange"]').daterangepicker({
-          opens: 'left'
-        }, function(start, end, label) {
-          console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+            $('input[name="daterange"]').daterangepicker({
+                opens: 'left'
+            }, function(start, end, label) {
+                console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+            });
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+
+            $('#price_end').on('change',function() {
+                $('#price_end_value').html($(this).val() + '€');
+            });
+
         });
 
-        $.ajaxSetup({
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-        });
-
-        $('#price_start').on('input',function() {
-          $('#price_start_value').html($(this).val() + '€');
-        });
-        $('#price_end').on('input',function() {
-          $('#price_end_value').html($(this).val() + '€');
-        });
-
-      });
-
     </script>
+</head>
 
-    <script>
-      function gaHitTimestamp() {
-        var now = new Date();
-        var pad = function(num) {
-          var norm = Math.abs(Math.floor(num));
-          return (norm < 10 ? '0' : '') + norm;
-        };
+<body class="loader-active">
 
-        return now.getUTCFullYear()
-          + '-' + pad(now.getUTCMonth()+1)
-          + '-' + pad(now.getUTCDate())
-          + ' ' + pad(now.getUTCHours())
-          + ':' + pad(now.getUTCMinutes())
-          + ':' + pad(now.getUTCSeconds())
-      }
-    </script>
+<!--== Preloader Area Start ==-->
+<div class="preloader">
+  <div class="preloader-spinner">
+    <div class="loader-content">
+      <img src="{{ asset('front/img/preloader.gif') }}" alt="">
+    </div>
+  </div>
+</div>
+<!--== Preloader Area End ==-->
 
-    <script async src='https://www.googletagmanager.com/gtag/js?id=927657686'></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('set', 'linker', { 'domains': ["fr.getaround.com","en.getaround.com","de.getaround.com","es.getaround.com","at.getaround.com","be.getaround.com","fr.be.getaround.com","uk.getaround.com"] })
-      gtag('config', "927657686", { conversion_linker: false });
-      gtag('config', "1018427586", { conversion_linker: false });
-      gtag('config', "AW-971913374", { conversion_linker: false });
-    </script>
+<!--== Header Area Start ==-->
+<header id="header-area" class="fixed-top">
+  <!--== Header Top Start ==-->
+  <div id="header-top" class="d-none d-xl-block">
+    <div class="container">
+      <div class="row">
+        <!--== Single HeaderTop Start ==-->
+        <div class="col-lg-3 text-left">
+          <i class="fa fa-map-marker"></i> 802/2, Mirpur, Dhaka
+        </div>
+        <!--== Single HeaderTop End ==-->
 
+        <!--== Single HeaderTop Start ==-->
+        <div class="col-lg-3 text-center">
+          <i class="fa fa-mobile"></i> +1 800 345 678
+        </div>
+        <!--== Single HeaderTop End ==-->
 
-    <script>
-      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        <!--== Single HeaderTop Start ==-->
+        <div class="col-lg-3 text-center">
+          <i class="fa fa-clock-o"></i> Mon-Fri 09.00 - 17.00
+        </div>
+        <!--== Single HeaderTop End ==-->
 
-      fbq('init', "868074043244839");
-      fbq('track', "PageView");
-    </script>
-    <noscript>
-      <img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=868074043244839&amp;ev=PageView&amp;noscript=1"
-      />
-    </noscript>
-  </head>
-  {{-- body--}}
-  <body data-action='users-sessions-new' id='users_sessions_new'>
-    {{-- var days--}}
-    <?php
-      $sToday     = Carbon\Carbon::today();
-      $sAWeek     = Carbon\Carbon::tomorrow()->addDays(7);
-    ?>
-    {{-- end var days--}}
-    <div class='js_site_content site_content'>
-      <div class='authentication_layout'>
-        <div class='authentication_layout__section authentication_layout__section--primary'>
-          @yield("content")
-          @auth
-            @if(auth()->user()->role == 'admin')
-                @include('admin.layouts.nav')
-            @endif
-          @endauth
-
-          <div class='authentication_layout__logo authentication_layout__logo--rebranded hidden-xs'>
+        <!--== Social Icons Start ==-->
+        <div class="col-lg-3 text-right">
+          <div class="header-social-icons">
+            <a href="#"><i class="fa fa-behance"></i></a>
+            <a href="#"><i class="fa fa-pinterest"></i></a>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
           </div>
-          <div class='visible-xs authentication_layout__close'><a class="link_no_style" aria-label="Close" href="/">&#10005;</a></div>
-          <!-- start connexxion form -->
-          
-          <div class='authentication_layout__content'>
-            <div class='cobalt-TabBar cobalt-mb-loose js_registration_session_tab_bar'>
-              <div class='cobalt-TabBar__ScrollControl js_tab_bar_scroll_control' data-direction='left' hidden>
-                <button class='cobalt-TabBar__ScrollButton' hidden>
-                  <div class='cobalt-Icon cobalt-Icon--colorGraphiteLight'><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M14.811 17.343L9.468 12l5.343-5.355L13.166 5l-7 7 7 7z" />
-                    </svg>
-                  </div>
-                </button>
+        </div>
+        <!--== Social Icons End ==-->
+      </div>
+    </div>
+  </div>
+  <!--== Header Top End ==-->
+
+  <!--== Header Bottom Start ==-->
+  <div id="header-bottom">
+    <div class="container">
+      <div class="row">
+        <!--== Logo Start ==-->
+        <div class="col-lg-4">
+          <a href="index.html" class="logo">
+            <img src="{{ asset('front/img/logo.png') }}" alt="JSOFT">
+          </a>
+        </div>
+        <!--== Logo End ==-->
+
+        <!--== Main Menu Start ==-->
+        <div class="col-lg-8 d-none d-xl-block">
+          <nav class="mainmenu alignright">
+            <ul>
+              <li class="active"><a href="#">Home</a>
+                <ul>
+                  <li><a href="index.html">Home 1</a></li>
+                  <li><a href="index2.html">Home 2</a></li>
+                  <li><a href="index3.html">Home 3</a></li>
+                </ul>
+              </li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="services.html">services</a></li>
+              <li><a href="#">Cars</a>
+                <ul>
+                  <li><a href="car-left-sidebar.html">Car Left Sidebar</a></li>
+                  <li><a href="car-right-sidebar.html">Car Right Sidebar</a></li>
+                  <li><a href="car-without-sidebar.html">Car Without Sidebar</a></li>
+                  <li><a href="car-details.html">Car Details</a></li>
+                </ul>
+              </li>
+              <li><a href="index.html">Pages</a>
+                <ul>
+                  <li><a href="package.html">Pricing</a></li>
+                  <li><a href="driver.html">Driver</a></li>
+                  <li><a href="faq.html">FAQ</a></li>
+                  <li><a href="gallery.html">Gallery</a></li>
+                  <li><a href="help-desk.html">Help Desk</a></li>
+                  <li><a href="login.html">Log In</a></li>
+                  <li><a href="register.html">Register</a></li>
+                  <li><a href="404.html">404</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Blog</a>
+                <ul>
+                  <li><a href="article.html">Blog Page</a></li>
+                  <li><a href="article-details.html">Blog Details</a></li>
+                </ul>
+              </li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+        <!--== Main Menu End ==-->
+      </div>
+    </div>
+  </div>
+  <!--== Header Bottom End ==-->
+</header>
+<!--== Header Area End ==-->
+
+<!--== Slider Area Start ==-->
+<section id="slider-area">
+  <!--== slide Item One ==-->
+  <div class="single-slide-item overlay">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="book-a-car">
+            <form action="/vehicle/search" method="post">
+              @csrf
+              <!--== Pick Up Location ==-->
+              <div class="pickup-location book-item">
+                <h4>PICK-UP LOCATION:</h4>
+                <select class="custom-select" name="cities">
+                    <option selected value="paris">Paris</option>
+                    @foreach ($aCities as $key => $row)
+                        <option value="{{ $row }}">{{ $row }}</option>
+                    @endforeach
+                </select>
               </div>
-              <div class='cobalt-TabScroller cobalt-TabScroller--underlined js_tab_bar_scroller'>
-                <div class='cobalt-TabScroller__ScrollArea js_tab_bar_scroll_area'>
-                  <a class="cobalt-Tab" aria-selected="true" href="/login"><div class='cobalt-Tab__Content'>
-                  Se connecter
-                  </div>
-                  </a><a class="cobalt-Tab" aria-selected="false" href="/register"><div class='cobalt-Tab__Content'>
-                  S&#39;inscrire
-                  </div>
-                  </a>
+              <!--== Pick Up Location ==-->
+
+              <!--== Pick Up Date ==-->
+              <div class="pick-up-date book-item">
+                <h4>PICK-UP DATE:</h4>
+                <input id="startDate" name="startDate" placeholder="Pick Up Date" />
+
+                <div class="return-car">
+                  <h4>Return DATE:</h4>
+                  <input id="endDate" name="endDate" placeholder="Return Date" />
                 </div>
               </div>
-              <div class='cobalt-TabBar__ScrollControl js_tab_bar_scroll_control' data-direction='right' hidden>
-                <button class='cobalt-TabBar__ScrollButton' hidden>
-                  <div class='cobalt-Icon cobalt-Icon--colorGraphiteLight'><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8.022 17.343L13.365 12 8.022 6.645 9.667 5l7 7-7 7z" />
-                  </svg>
+              <!--== Pick Up Location ==-->
+
+              <!--== Car Choose ==-->
+              <div class="choose-car-type book-item" >
+                <h4>CHOOSE CAR TYPE:</h4>
+                <select class="custom-select" name="category">
+                  <option value="car">Car</option>
+                  <option value="scooter">Scooter</option>
+                  <option selected  value="">Car and Scooter</option>
+                </select>
+              </div>
+              <!--== Car Choose ==-->
+
+                <div class="">
+                  <p>Moins de:</p>
+                  <div>
+                    <input type="range" id="price_end" name="price_end" min="100" max="1000" value="150" step="1">
+                    <span class="cobalt-Icon" id="price_end_value"></span>
                   </div>
-                </button>
-              </div>
-            </div>
-            <div class='authentication_header'>
-              <div class='authentication_header__title'>Connectez-vous à votre compte</div>
-            </div>
-            <a class="cobalt-Button cobalt-Button--large js_continue_with_google cobalt-bottom_margin_tight" href="/users/auth/google">
-              <span class="cobalt-Button__Icon">
-                <span class="cobalt-Icon">
-                  <svg width="24" height="24" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-                    <svg height='18px' viewbox='0 0 18 18' width='18px' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
-                      <g fill='none' fill-rule='evenodd'>
-                        <path d='M9,3.48 C10.69,3.48 11.83,4.21 12.48,4.82 L15.02,2.34 C13.46,0.89 11.43,0 9,0 C5.48,0 2.44,2.02 0.96,4.96 L3.87,7.22 C4.6,5.05 6.62,3.48 9,3.48 L9,3.48 Z' fill='#EA4335'></path>
-                        <path d='M17.64,9.2 C17.64,8.46 17.58,7.92 17.45,7.36 L9,7.36 L9,10.7 L13.96,10.7 C13.86,11.53 13.32,12.78 12.12,13.62 L14.96,15.82 C16.66,14.25 17.64,11.94 17.64,9.2 L17.64,9.2 Z' fill='#4285F4'></path>
-                        <path d='M3.88,10.78 C3.69,10.22 3.58,9.62 3.58,9 C3.58,8.38 3.69,7.78 3.87,7.22 L0.96,4.96 C0.35,6.18 0,7.55 0,9 C0,10.45 0.35,11.82 0.96,13.04 L3.88,10.78 L3.88,10.78 Z' fill='#FBBC05'></path>
-                        <path d='M9,18 C11.43,18 13.47,17.2 14.96,15.82 L12.12,13.62 C11.36,14.15 10.34,14.52 9,14.52 C6.62,14.52 4.6,12.95 3.88,10.78 L0.97,13.04 C2.45,15.98 5.48,18 9,18 L9,18 Z' fill='#34A853'></path>
-                      </g>
-                    </svg>
-                  </svg>
-                </span>
-              </span>
-              <span>Continuer avec Google</span>
-            </a>
-            <a class="cobalt-Button cobalt-Button--large cobalt-Button--facebook js_continue_with_facebook cobalt-bottom_margin" href="/users/auth/facebook">
-              <span class="cobalt-Button__Icon">
-                <span class="cobalt-Icon cobalt-Icon--colorWhite">
-                  <svg width="29" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d='M20.5 4.875v13.75c0 .52-.182.964-.547 1.328a1.808 1.808 0 0 1-1.328.547h-3.32v-6.914h2.343L18 10.93h-2.695V9.25c0-.417.078-.73.234-.938.208-.234.56-.351 1.055-.351H18V5.617c-.547-.078-1.224-.117-2.031-.117-1.042 0-1.869.306-2.48.918-.613.612-.919 1.465-.919 2.559v1.953h-2.383v2.656h2.383V20.5H4.875c-.52 0-.964-.182-1.328-.547A1.808 1.808 0 0 1 3 18.625V4.875c0-.52.182-.964.547-1.328A1.808 1.808 0 0 1 4.875 3h13.75c.52 0 .964.182 1.328.547.365.364.547.807.547 1.328z' fill-rule='evenodd'></path>
-                  </svg>
-                </span>
-              </span>
-              <span>Continuer avec Facebook</span>
-            </a>
-            <div class='cobalt-text_style_caption text_center cobalt-bottom_margin'>ou</div>
-            <form class="new_user" id="new_user" action="{{ route('login') }}" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
-              <input type="hidden" name="authenticity_token" value="cK0Q6sHM8I9PHz54Xqlo5H5QAw9D9zlpT2KdqmOZE2y6p3GlnNsehXPjIer47VnqDN12SnASGht5o+d1OAedLQ==" />
-              <div class="cobalt-FormField" data-form-field-method="email">
-                <div class="cobalt-TextField cobalt-TextField--withIcon">
-                  <input placeholder="Email" class="cobalt-TextField__Input" type="text" name="uwser[email]" id="user_email" />
-                    <span class="cobalt-TextField__Icon">
-                      <span class="cobalt-Icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                          <path d="M20,8 L12,13 L4,8 L4,6 L12,11 L20,6 L20,8 Z M20,4 L4,4 C2.89,4 2,4.89 2,6 L2,18 C2,19.1045695 2.8954305,20 4,20 L20,20 C21.1045695,20 22,19.1045695 22,18 L22,6 C22,4.89 21.1,4 20,4 Z"/>
-                        </svg>
-                      </span>
-                    </span>
                 </div>
+
+              <div class="book-button text-center">
+                  <button class="book-now-btn">Book Now</button>
+
               </div>
-              <div class="cobalt-FormField" data-form-field-method="password">
-                <div class="cobalt-TextField cobalt-TextField--withIcon">
-                  <input placeholder="Mot de passe" class="cobalt-TextField__Input" type="password" name="user[password]" id="user_password" />
-                    <span class="cobalt-TextField__Icon">
-                      <span class="cobalt-Icon">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path d="m7 10c-1.106.003-2 .901-2 2.009v6.982c0 1.107.898 2.009 2.006 2.009h9.988c1.109 0 2.006-.9 2.006-2.009v-6.981a2.009 2.009 0 0 0 -2-2.01v-3a5 5 0 0 0 -10 0zm8 0h-6v-3a3 3 0 0 1 6 0z" />
-                        </svg>
-                      </span>
-                    </span>
-                </div>
-              </div>
-              <div class='authentication_password_reset'>
-                <div class='cobalt-bottom_margin_tight'><a href="/password/reset">Mot de passe oublié</a></div>
-              </div>
-              <input value="1" type="hidden" name="user[remember_me]" id="user_remember_me" />
-              <input type="submit" name="commit" value="Se connecter" class="cobalt-Button cobalt-Button--primary cobalt-Button--large cobalt-Button--fullWidth cobalt-bottom_margin js_signin_with_email_button" data-disable="true" />
             </form>
-            <div class='text_center cobalt-text_style_body'>
-              Pas encore de compte E-MOTION ?
-              <a href="/register">S&#39;inscrire</a>
-            </div>
           </div>
-          <!-- end connexxion form -->
-          
-          <div class='authentication_layout__footer'>
-            <div class='corporate_footer footer--ultra_light'>
-              <div class='corporate_footer__container container'>
-                <div class='corporate_footer__copyright_links_container'>
-                  <div class='corporate_footer__copyright'>© E-MOTION 2019-2020 - Tous droits réservés</div>
-                  <ul class='corporate_footer__links'>
-                  </ul>
-                </div>
+        </div>
+
+        <div class="col-lg-7 text-right">
+          <div class="display-table">
+            <div class="display-table-cell">
+              <div class="slider-right-text">
+                <h1>BOOK A CAR TODAY!</h1>
+                <p>FOR AS LOW AS $10 A DAY PLUS 15% DISCOUNT <br> FOR OUR RETURNING CUSTOMERS</p>
               </div>
             </div>
           </div>
         </div>
-        
-         {{-- add search form --}}
-         @include('vehicle.form.search')
-        
-
-        <div class='authentication_layout__section authentication_layout__section--background_1 authentication_layout__section--secondary'></div>
       </div>
     </div>
+  </div>
+  <!--== slide Item One ==-->
+</section>
+<!--== Slider Area End ==-->
 
-    <footer class='footers js_footers'>
-
-
-    </footer>
-
-    <div class='scripts'>
-      <script id="js_config" type="application/json">
-        {"env":"production","country":"FR","locale":"fr","remoteIP":"80.15.154.187","host":"\"fr.getaround.com\"","userAgent":"\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36\"","action":"users-sessions-new","sentryDsn":"https://af4546ab003a40288665ac7ae5c2d027@sentry.io/167570","release":"7df647d99bd09d3ead677fc9c722ec6ecbeb78ec","jsErrorsWhitelistedUrls":["fr.getaround.com","d2y2masl4rtrav.cloudfront.net"],"googleApiKey":"AIzaSyAsnQSjaFmgUUm5N_hbgMwY86uuVV6u9nk","appPackageName":"com.c4mprod.voiturelib","stripe":{"publishableKey":"pk_live_fv6eZDKN88abFA82sc6xu5Fv","scriptSrc":"https://js.stripe.com/v3/","sca":false},"zendeskScriptSrc":"https://static.zdassets.com/ekr/snippet.js?key=cef1d1b0-1bc7-4e07-acce-dca5444c67f4","currencyFormatting":{"separator":",","delimiter":" ","format":"%n%u"},"i18nKeys":{"javascript":{"date":{"formats":{"default":"DD/MM/YYYY","day_name_short":"ddd D MMM","day_name_long":"dddd D MMM","day_month":"D MMM"}},"validation_errors":{"file_too_big":"Le fichier dépasse la taille maximale autorisée.","file_too_small":"Le fichier est trop petit, veuillez envoyer un plus gros fichier.","wrong_file_type":"Seules les images au format %{accepted_types} sont acceptées."},"restrictions":{"no_limit_delay":"Pas de limites sur le délai de réservation","no_delay_max":"Toutes les dates à venir","delay_max":"Les %{delay_max} prochains jours","delay_max_in_month":{"one":"Le mois prochain","other":"Les %{count} prochains mois"},"delay_middle":"Entre %{delay_min} et %{delay_max} jours à l'avance","delay_exact":"Exactement %{delay} jours à l'avance (déconseillé)","length_between":"Pas de location de %{length_min} ou moins - Maximum %{length_max}","length_between_no_minimum":"Pas de minimum - Maximum %{length_max}","length_in_days":"%{length} jours","length_in_days_singular":"%{length} jour","length_in_hours":"%{length} heures","length_in_hours_singular":"%{length} heure"},"search":{"by_day":"/jour"},"payments":{"payment_date":"Date de paiement","planned":"Prévu","amount":"Montant du paiement","rental_id":"Numéro de location","car":"Voiture","car_plate_number":"Plaque d'immatriculation","rental_start_date":"Début de la location","rental_end_date":"Fin de la location","rental_distance":"Distance totale réglée (%{unit})","rental_distance_driven":"Distance totale parcourue (%{unit})","rental_earnings":"Virements reçus","rental":"Location","other_revenues":"Autres revenus","breakdown_fee":"Frais","compensation":"Dédomagements","remaining":"Autres","total":"Total : ","driver":"Locataire","owner_done":"Propriétaire - Effectués","owner_due":"Propriétaire - A venir","transfers":"Virements","total_subtitle":{"since_creation":"depuis votre inscription","since_creation_by_car":"depuis votre inscription pour votre %{car_title}","by_year":"en %{year}","by_year_and_car":"en %{year} pour votre %{car_title}"},"owner_revenue":{"including_rental":"Location :","including_other_revenues":"Autres revenus :","including_breakdown_fee":"Frais :","including_compensation":"Dédommagements :","including_remaining":"Autres ajustements :","including_open_subscription":"Abonnement Open :"}},"booking":{"errors":{"base":{"empty_field":"Merci de compléter ou corriger les informations ci-dessous (en rouge).","informations_invalid":"Merci de bien vérifier les informations manquantes ou invalides en rouge.","fetch_error":"Une erreur est survenue lors de la récupération du prix de la location. Veuillez réessayer."},"booking_card":{"required":"doit être rempli","invalid":"est invalide"},"conditions_acceptance":{"required":"Merci de lire les conditions d'utilisation de Getaround, et de confirmer que vous les acceptez en cochant ci-dessous."},"start_date":{"empty":"La date de début doit être remplie"},"end_date":{"empty":"La date de fin doit être remplie"},"cdw_level":{"empty":"Veuillez indiquer si vous souhaitez l'option réduction de franchise."},"distance":{"empty":"La distance doit être remplie"}},"rental_summary":{"cdw_html":"Réduction de franchise","no_options":"Pas d'option sélectionnée"}},"calendar":{"from":"du","to":"au","repeat":"Récurrence","repeat_options":{"zero":"Aucune","one":"Pendant %{count} mois","other":"Pendant %{count} mois"},"available":"Disponible","unavailable":"Indisponible","show_more_months":"Afficher les mois suivants"},"customer_service":{"damage_request":{"are_you_sure":"Etes-vous sûr de vouloir envoyer le formulaire tel quel ?"}},"datetimepicker":{"am":"avant 12h","pm":"après 12h"},"errors":{"not_valid":"%{stuff} n'est pas valide.","bad_request":"Une erreur est survenue.","unauthorized":"Vous n'êtes pas autorisé à accèder à la ressource.","forbidden":"Vous n'êtes pas autorisé à accèder à la ressource.","not_found":"Une erreur est survenue.","internal_server_error":"Une erreur est survenue sur notre serveur. Notre équipe technique a été prévenue.","error_occured":"Une erreur est survenue.","request_timeout":"Problème de connexion internet. Veuillez réessayer.","webcam_not_available":"Désolé, votre navigateur ne supporte pas l'accès à la webcam"},"magnific_popup":{"tClose":"Fermer (Esc)","tLoading":"Chargement en cours...","image":{"tError":"L'image n'a pas pu être chargée."},"ajax":{"tError":"Le contenu n'a pas pu être chargé."}},"picture_uploader":{"sending":"Envoi"},"profile":{"delete_account":"Êtes-vous certain de vouloir supprimer votre compte ?"},"textarea_maxlength":{"text":{"one":"%{count} caractère restant.","other":"%{count} caractères restants."}}},"pages":{"homepage":{"search_box":{"current_location":"Position actuelle"}}}},"trackingEnabled":true,"cookiesAcceptance":{"functional":true,"performance":true,"targeting":true},"googleConversionIds":{"owner":927657686,"driver":1018427586},"iterable":{"apiKey":null,"userCreatedAt":null},"mapsApiEndpoint":"https://maps.googleapis.com/maps/api/js?libraries=places\u0026language=fr\u0026v=3\u0026key=AIzaSyAsnQSjaFmgUUm5N_hbgMwY86uuVV6u9nk","mapsApiKey":"AIzaSyAsnQSjaFmgUUm5N_hbgMwY86uuVV6u9nk","momentLocaleOptions":{"months":["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"],"monthsShort":["jan.","fév.","mar.","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc."],"weekdays":["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],"weekdaysShort":["dim","lun","mar","mer","jeu","ven","sam"],"week":{"dow":1,"doy":4}},"assetPaths":{"dashboard/cars/show/photos/loader.gif":"https://d2y2masl4rtrav.cloudfront.net/packs/images/dashboard/cars/show/photos/loader-a77ad337f7b926368d983142069303ae.gif","search/marker_empty@2x.png":"https://d2y2masl4rtrav.cloudfront.net/packs/images/search/marker_empty@2x-b4477d9a6350d39f7c0f40b9d749daae.png","car/marker_user@2x.png":"https://d2y2masl4rtrav.cloudfront.net/packs/images/car/marker_user@2x-615c8d8ec441e12f2c02e92b46771416.png","car/marker_car_precise.svg":"https://d2y2masl4rtrav.cloudfront.net/packs/images/car/marker_car_precise-3df2b6b0ab3be83dd63917a78dfcde13.svg","car/marker_car_approximate.svg":"https://d2y2masl4rtrav.cloudfront.net/packs/images/car/marker_car_approximate-16217125953d07855dcd2e606d7e8540.svg","shared/illustrations/repairman.png":"https://d2y2masl4rtrav.cloudfront.net/packs/images/shared/illustrations/repairman-01bee560c910547e6c7de8833980b005.png"},"carPhotoUploaderLargeDimensions":{"w":400,"h":280},"routes":{"request_availability_path":"/request_availability","legal_path":"/terms","uploads_settings_path":"/uploads_settings","dashboard_rentals_path":"/dashboard/rentals","tracking_page_path":"/tracking/page","tracking_event_path":"/tracking/event","autocomplete_address_path":"/autocomplete/address"},"tracking":{"googleAdsRemarketing":[{}]},"flashMessage":null}
-      </script>
-
-      <script>
-        window.JUST_ON_TOUCH_DEVICES = true // Tocca.js
-      </script>
-
-      <script>!function(e){function r(r){for(var n,c,u=r[0],i=r[1],f=r[2],p=0,d=[];p<u.length;p++)c=u[p],Object.prototype.hasOwnProperty.call(o,c)&&o[c]&&d.push(o[c][0]),o[c]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(l&&l(r);d.length;)d.shift()();return a.push.apply(a,f||[]),t()}function t(){for(var e,r=0;r<a.length;r++){for(var t=a[r],n=!0,u=1;u<t.length;u++){var i=t[u];0!==o[i]&&(n=!1)}n&&(a.splice(r--,1),e=c(c.s=t[0]))}return e}var n={},o={0:0},a=[];function c(r){if(n[r])return n[r].exports;var t=n[r]={i:r,l:!1,exports:{}};return e[r].call(t.exports,t,t.exports,c),t.l=!0,t.exports}c.e=function(e){var r=[],t=o[e];if(0!==t)if(t)r.push(t[2]);else{var n=new Promise(function(r,n){t=o[e]=[r,n]});r.push(t[2]=n);var a,u=document.createElement("script");u.charset="utf-8",u.timeout=120,c.nc&&u.setAttribute("nonce",c.nc),u.src=function(e){return c.p+""+({}[e]||e)+"-"+{3:"45a0c1690a22ac656541",4:"3ea49d39c5a3241559f3",5:"142dc7d630a90d0b6406",6:"7d15d48cf5b85a4c5c2b",73:"91ea16b8e3c27a700786",74:"6b728335881fdb640332",75:"7a2ca9b0721b012b499c",76:"b98b2efb6a4aedfa3cce",77:"4f7b098837c88ed3c108",78:"ca10e183e8a929a311a2"}[e]+".js"}(e);var i=new Error;a=function(r){u.onerror=u.onload=null,clearTimeout(f);var t=o[e];if(0!==t){if(t){var n=r&&("load"===r.type?"missing":r.type),a=r&&r.target&&r.target.src;i.message="Loading chunk "+e+" failed.\n("+n+": "+a+")",i.name="ChunkLoadError",i.type=n,i.request=a,t[1](i)}o[e]=void 0}};var f=setTimeout(function(){a({type:"timeout",target:u})},12e4);u.onerror=u.onload=a,document.head.appendChild(u)}return Promise.all(r)},c.m=e,c.c=n,c.d=function(e,r,t){c.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:t})},c.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},c.t=function(e,r){if(1&r&&(e=c(e)),8&r)return e;if(4&r&&"object"==typeof e&&e&&e.__esModule)return e;var t=Object.create(null);if(c.r(t),Object.defineProperty(t,"default",{enumerable:!0,value:e}),2&r&&"string"!=typeof e)for(var n in e)c.d(t,n,function(r){return e[r]}.bind(null,n));return t},c.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return c.d(r,"a",r),r},c.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},c.p="/packs/",c.oe=function(e){throw e};var u=window.webpackJsonp=window.webpackJsonp||[],i=u.push.bind(u);u.push=r,u=u.slice();for(var f=0;f<u.length;f++)r(u[f]);var l=i;t()}([]);
-
-      </script>
-      
-
+<!--== About Us Area Start ==-->
+<section id="about-area" class="section-padding">
+  <div class="container">
+    <div class="row">
+      <!-- Section Title Start -->
+      <div class="col-lg-12">
+        <div class="section-title  text-center">
+          <h2>About us</h2>
+          <span class="title-line"><i class="fa fa-car"></i></span>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </div>
+      </div>
+      <!-- Section Title End -->
     </div>
-     
-  </body>
+
+    <div class="row">
+      <!-- About Content Start -->
+      <div class="col-lg-6">
+        <div class="display-table">
+          <div class="display-table-cell">
+            <div class="about-content">
+              <p>Lorem simply dummy is a texted of the printing costed and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.</p>
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi aliquid debitis optio praesentium, voluptate repellat accusantium deserunt eius.</p>
+              <div class="about-btn">
+                <a href="#">Book a Car</a>
+                <a href="#">Contact Us</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- About Content End -->
+
+      <!-- About Video Start -->
+      <div class="col-lg-6">
+        <div class="about-video">
+          <iframe src="https://player.vimeo.com/video/121982328?title=0&byline=0&portrait=0"></iframe>
+        </div>
+      </div>
+      <!-- About Video End -->
+    </div>
+  </div>
+</section>
+<!--== About Us Area End ==-->
+
+<!--== Partner Area Start ==-->
+<div id="partner-area">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="partner-content-wrap">
+          <!-- Single Partner Start -->
+          <div class="single-partner">
+            <div class="display-table">
+              <div class="display-table-cell">
+                <img src="assets/img/partner/partner-logo-1.png" alt="JSOFT">
+              </div>
+            </div>
+          </div>
+          <!-- Single Partner End -->
+
+          <!-- Single Partner Start -->
+          <div class="single-partner">
+            <div class="display-table">
+              <div class="display-table-cell">
+                <img src="assets/img/partner/partner-logo-2.png" alt="JSOFT">
+              </div>
+            </div>
+          </div>
+          <!-- Single Partner End -->
+
+          <!-- Single Partner Start -->
+          <div class="single-partner">
+            <div class="display-table">
+              <div class="display-table-cell">
+                <img src="assets/img/partner/partner-logo-3.png" alt="JSOFT">
+              </div>
+            </div>
+          </div>
+          <!-- Single Partner End -->
+
+          <!-- Single Partner Start -->
+          <div class="single-partner">
+            <div class="display-table">
+              <div class="display-table-cell">
+                <img src="assets/img/partner/partner-logo-4.png" alt="JSOFT">
+              </div>
+            </div>
+          </div>
+          <!-- Single Partner End -->
+
+          <!-- Single Partner Start -->
+          <div class="single-partner">
+            <div class="display-table">
+              <div class="display-table-cell">
+                <img src="assets/img/partner/partner-logo-5.png" alt="JSOFT">
+              </div>
+            </div>
+          </div>
+          <!-- Single Partner End -->
+
+          <!-- Single Partner Start -->
+          <div class="single-partner">
+            <div class="display-table">
+              <div class="display-table-cell">
+                <img src="assets/img/partner/partner-logo-1.png" alt="JSOFT">
+              </div>
+            </div>
+          </div>
+          <!-- Single Partner End -->
+
+          <!-- Single Partner Start -->
+          <div class="single-partner">
+            <div class="display-table">
+              <div class="display-table-cell">
+                <img src="assets/img/partner/partner-logo-4.png" alt="JSOFT">
+              </div>
+            </div>
+          </div>
+          <!-- Single Partner End -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--== Partner Area End ==-->
+
+<!--== Services Area Start ==-->
+<section id="service-area" class="section-padding">
+  <div class="container">
+    <div class="row">
+      <!-- Section Title Start -->
+      <div class="col-lg-12">
+        <div class="section-title  text-center">
+          <h2>Our Services</h2>
+          <span class="title-line"><i class="fa fa-car"></i></span>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </div>
+      </div>
+      <!-- Section Title End -->
+    </div>
+
+
+    <!-- Service Content Start -->
+    <div class="row">
+      <!-- Single Service Start -->
+      <div class="col-lg-4 text-center">
+        <div class="service-item">
+          <i class="fa fa-taxi"></i>
+          <h3>RENTAL CAR</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
+        </div>
+      </div>
+      <!-- Single Service End -->
+
+      <!-- Single Service Start -->
+      <div class="col-lg-4 text-center">
+        <div class="service-item">
+          <i class="fa fa-cog"></i>
+          <h3>CAR REPAIR</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
+        </div>
+      </div>
+      <!-- Single Service End -->
+
+      <!-- Single Service Start -->
+      <div class="col-lg-4 text-center">
+        <div class="service-item">
+          <i class="fa fa-map-marker"></i>
+          <h3>TAXI SERVICE</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
+        </div>
+      </div>
+      <!-- Single Service End -->
+
+      <!-- Single Service Start -->
+      <div class="col-lg-4 text-center">
+        <div class="service-item">
+          <i class="fa fa-life-ring"></i>
+          <h3>life insurance</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
+        </div>
+      </div>
+      <!-- Single Service End -->
+
+      <!-- Single Service Start -->
+      <div class="col-lg-4 text-center">
+        <div class="service-item">
+          <i class="fa fa-bath"></i>
+          <h3>car wash</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
+        </div>
+      </div>
+      <!-- Single Service End -->
+
+      <!-- Single Service Start -->
+      <div class="col-lg-4 text-center">
+        <div class="service-item">
+          <i class="fa fa-phone"></i>
+          <h3>call driver</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
+        </div>
+      </div>
+      <!-- Single Service End -->
+    </div>
+    <!-- Service Content End -->
+  </div>
+</section>
+<!--== Services Area End ==-->
+
+<!--== Fun Fact Area Start ==-->
+<section id="funfact-area" class="overlay section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-11 col-md-12 m-auto">
+        <div class="funfact-content-wrap">
+          <div class="row">
+            <!-- Single FunFact Start -->
+            <div class="col-lg-4 col-md-6">
+              <div class="single-funfact">
+                <div class="funfact-icon">
+                  <i class="fa fa-smile-o"></i>
+                </div>
+                <div class="funfact-content">
+                  <p><span class="counter">550</span>+</p>
+                  <h4>HAPPY CLIENTS</h4>
+                </div>
+              </div>
+            </div>
+            <!-- Single FunFact End -->
+
+            <!-- Single FunFact Start -->
+            <div class="col-lg-4 col-md-6">
+              <div class="single-funfact">
+                <div class="funfact-icon">
+                  <i class="fa fa-car"></i>
+                </div>
+                <div class="funfact-content">
+                  <p><span class="counter">250</span>+</p>
+                  <h4>CARS IN STOCK</h4>
+                </div>
+              </div>
+            </div>
+            <!-- Single FunFact End -->
+
+            <!-- Single FunFact Start -->
+            <div class="col-lg-4 col-md-6">
+              <div class="single-funfact">
+                <div class="funfact-icon">
+                  <i class="fa fa-bank"></i>
+                </div>
+                <div class="funfact-content">
+                  <p><span class="counter">50</span>+</p>
+                  <h4>office in cities</h4>
+                </div>
+              </div>
+            </div>
+            <!-- Single FunFact End -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--== Fun Fact Area End ==-->
+
+<!--== Choose Car Area Start ==-->
+<section id="choose-car" class="section-padding">
+  <div class="container">
+    <div class="row">
+      <!-- Section Title Start -->
+      <div class="col-lg-12">
+        <div class="section-title  text-center">
+          <h2>Choose your Car</h2>
+          <span class="title-line"><i class="fa fa-car"></i></span>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </div>
+      </div>
+      <!-- Section Title End -->
+    </div>
+
+    <div class="row">
+      <!-- Choose Area Content Start -->
+      <div class="col-lg-12">
+        <div class="choose-content-wrap">
+          <!-- Choose Area Tab Menu -->
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#popular_cars" role="tab" aria-selected="true">popular Cars</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#newest_cars" role="tab" aria-selected="false">newest cars</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="contact-tab" data-toggle="tab" href="#office_map" role="tab" aria-selected="false">Our Office</a>
+            </li>
+          </ul>
+          <!-- Choose Area Tab Menu -->
+
+          <!-- Choose Area Tab content -->
+          <div class="tab-content" id="myTabContent">
+            <!-- Popular Cars Tab Start -->
+            <div class="tab-pane fade show active" id="popular_cars" role="tabpanel" aria-labelledby="home-tab">
+              <!-- Popular Cars Content Wrapper Start -->
+              <div class="popular-cars-wrap">
+                <!-- Filtering Menu -->
+                <div class="popucar-menu text-center">
+                  <a href="#" data-filter="*" class="active">all</a>
+                  <a href="#" data-filter=".con">Conver</a>
+                  <a href="#" data-filter=".hat">Truck</a>
+                  <a href="#" data-filter=".mpv">MPV</a>
+                  <a href="#" data-filter=".sedan">Sedan</a>
+                  <a href="#" data-filter=".suv">SUV</a>
+                </div>
+
+                <!-- Filtering Menu -->
+
+                <!-- PopularCars Tab Content Start -->
+                <div class="row popular-car-gird">
+                  <!-- Single Popular Car Start -->
+                  <div class="col-lg-4 col-md-6 con suv mpv">
+                    <div class="single-popular-car">
+                      <div class="p-car-thumbnails">
+                        <a class="car-hover" href="assets/img/car/car-1.jpg">
+                          <img src="assets/img/car/car-1.jpg" alt="JSOFT">
+                        </a>
+                      </div>
+
+                      <div class="p-car-content">
+                        <h3>
+                          <a href="#">Dodge Ram 1500</a>
+                          <span class="price"><i class="fa fa-tag"></i> $55/day</span>
+                        </h3>
+
+                        <h5>HATCHBACK</h5>
+
+                        <div class="p-car-feature">
+                          <a href="#">2017</a>
+                          <a href="#">manual</a>
+                          <a href="#">AIR CONDITION</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Single Popular Car End -->
+
+                  <!-- Single Popular Car Start -->
+                  <div class="col-lg-4 col-md-6 hat sedan">
+                    <div class="single-popular-car">
+                      <div class="p-car-thumbnails">
+                        <a class="car-hover" href="assets/img/car/car-2.jpg">
+                          <img src="assets/img/car/car-2.jpg" alt="JSOFT">
+                        </a>
+                      </div>
+
+                      <div class="p-car-content">
+                        <h3>
+                          <a href="#">Dodge Ram 1500</a>
+                          <span class="price"><i class="fa fa-tag"></i> $55/day</span>
+                        </h3>
+
+                        <h5>HATCHBACK</h5>
+
+                        <div class="p-car-feature">
+                          <a href="#">2017</a>
+                          <a href="#">manual</a>
+                          <a href="#">AIR CONDITION</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Single Popular Car End -->
+
+                  <!-- Single Popular Car Start -->
+                  <div class="col-lg-4 col-md-6 suv con mpv">
+                    <div class="single-popular-car">
+                      <div class="p-car-thumbnails">
+                        <a class="car-hover" href="assets/img/car/car-3.jpg">
+                          <img src="assets/img/car/car-3.jpg" alt="JSOFT">
+                        </a>
+                      </div>
+
+                      <div class="p-car-content">
+                        <h3>
+                          <a href="#">Dodge Ram 1500</a>
+                          <span class="price"><i class="fa fa-tag"></i> $55/day</span>
+                        </h3>
+
+                        <h5>HATCHBACK</h5>
+
+                        <div class="p-car-feature">
+                          <a href="#">2017</a>
+                          <a href="#">manual</a>
+                          <a href="#">AIR CONDITION</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Single Popular Car End -->
+
+                  <!-- Single Popular Car Start -->
+                  <div class="col-lg-4 col-md-6 con hat">
+                    <div class="single-popular-car">
+                      <div class="p-car-thumbnails">
+                        <a class="car-hover" href="assets/img/car/car-4.jpg">
+                          <img src="assets/img/car/car-4.jpg" alt="JSOFT">
+                        </a>
+                      </div>
+
+                      <div class="p-car-content">
+                        <h3>
+                          <a href="#">Dodge Ram 1500</a>
+                          <span class="price"><i class="fa fa-tag"></i> $55/day</span>
+                        </h3>
+
+                        <h5>HATCHBACK</h5>
+
+                        <div class="p-car-feature">
+                          <a href="#">2017</a>
+                          <a href="#">manual</a>
+                          <a href="#">AIR CONDITION</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Single Popular Car End -->
+
+                  <!-- Single Popular Car Start -->
+                  <div class="col-lg-4 col-md-6 con sedan mpv">
+                    <div class="single-popular-car">
+                      <div class="p-car-thumbnails">
+                        <a class="car-hover" href="assets/img/car/car-5.jpg">
+                          <img src="assets/img/car/car-5.jpg" alt="JSOFT">
+                        </a>
+                      </div>
+
+                      <div class="p-car-content">
+                        <h3>
+                          <a href="#">Dodge Ram 1500</a>
+                          <span class="price"><i class="fa fa-tag"></i> $55/day</span>
+                        </h3>
+
+                        <h5>HATCHBACK</h5>
+
+                        <div class="p-car-feature">
+                          <a href="#">2017</a>
+                          <a href="#">manual</a>
+                          <a href="#">AIR CONDITION</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Single Popular Car End -->
+
+                  <!-- Single Popular Car Start -->
+                  <div class="col-lg-4 col-md-6 hat suv mpv">
+                    <div class="single-popular-car">
+                      <div class="p-car-thumbnails">
+                        <a class="car-hover" href="assets/img/car/car-6.jpg">
+                          <img src="assets/img/car/car-6.jpg" alt="JSOFT">
+                        </a>
+                      </div>
+
+                      <div class="p-car-content">
+                        <h3>
+                          <a href="#">Dodge Ram 1500</a>
+                          <span class="price"><i class="fa fa-tag"></i> $55/day</span>
+                        </h3>
+
+                        <h5>HATCHBACK</h5>
+
+                        <div class="p-car-feature">
+                          <a href="#">2017</a>
+                          <a href="#">manual</a>
+                          <a href="#">AIR CONDITION</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Single Popular Car End -->
+                </div>
+                <!-- PopularCars Tab Content End -->
+              </div>
+              <!-- Popular Cars Content Wrapper End -->
+            </div>
+            <!-- Popular Cars Tab End -->
+
+            <!-- Newest Cars Tab Start -->
+            <div class="tab-pane fade" id="newest_cars" role="tabpanel" aria-labelledby="profile-tab">
+              <!-- Newest Cars Content Wrapper Start -->
+              <div class="popular-cars-wrap">
+                <!-- Filtering Menu -->
+                <div class="newcar-menu text-center">
+                  <a href="#" data-filter="*" class="active">all</a>
+                  <a href="#" data-filter=".toyota">toyota</a>
+                  <a href="#" data-filter=".bmw">bmw</a>
+                  <a href="#" data-filter=".audi">audi</a>
+                  <a href="#" data-filter=".tata">Tata</a>
+                </div>
+
+                <!-- Filtering Menu -->
+
+                <!-- NewestCars Tab Content Start -->
+                <div class="row newest-car-gird">
+                  <!-- Single Newest Car Start -->
+                  <div class="col-lg-4 col-md-6 tata audi">
+                    <div class="single-new-car">
+                      <div class="p-car-thumbnails">
+                        <a class="car-hover" href="assets/img/car/car-6.jpg">
+                          <img src="assets/img/car/car-6.jpg" alt="JSOFT">
+                        </a>
+                      </div>
+
+                      <div class="p-car-content">
+                        <h3>
+                          <a href="#">Toyota RAV4 EV</a>
+                          <span class="price"><i class="fa fa-tag"></i> $35/day</span>
+                        </h3>
+
+                        <h5>Toyota</h5>
+
+                        <div class="p-car-feature">
+                          <a href="#">2018</a>
+                          <a href="#">Auto</a>
+                          <a href="#">Non AIR CONDITION</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Single Newest Car End -->
+
+                  <!-- Single Newest Car Start -->
+                  <div class="col-lg-4 col-md-6 bmw tata toyota">
+                    <div class="single-new-car">
+                      <div class="p-car-thumbnails">
+                        <a class="car-hover" href="assets/img/car/car-5.jpg">
+                          <img src="assets/img/car/car-5.jpg" alt="JSOFT">
+                        </a>
+                      </div>
+
+                      <div class="p-car-content">
+                        <h3>
+                          <a href="#">Toyota RAV4 EV</a>
+                          <span class="price"><i class="fa fa-tag"></i> $35/day</span>
+                        </h3>
+
+                        <h5>Toyota</h5>
+
+                        <div class="p-car-feature">
+                          <a href="#">2018</a>
+                          <a href="#">Auto</a>
+                          <a href="#">Non AIR CONDITION</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Single Newest Car End -->
+
+                  <!-- Single Newest Car Start -->
+                  <div class="col-lg-4 col-md-6 bmw">
+                    <div class="single-new-car">
+                      <div class="p-car-thumbnails">
+                        <a class="car-hover" href="assets/img/car/car-4.jpg">
+                          <img src="assets/img/car/car-4.jpg" alt="JSOFT">
+                        </a>
+                      </div>
+
+                      <div class="p-car-content">
+                        <h3>
+                          <a href="#">Toyota RAV4 EV</a>
+                          <span class="price"><i class="fa fa-tag"></i> $35/day</span>
+                        </h3>
+
+                        <h5>Toyota</h5>
+
+                        <div class="p-car-feature">
+                          <a href="#">2018</a>
+                          <a href="#">Auto</a>
+                          <a href="#">Non AIR CONDITION</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Single Newest Car End -->
+                </div>
+                <!-- NewestCars Tab Content End -->
+              </div>
+              <!-- Newest Cars Content Wrapper End -->
+            </div>
+            <!-- Newest Cars Tab End -->
+
+            <!-- Office Map Tab -->
+            <div class="tab-pane fade" id="office_map" role="tabpanel" aria-labelledby="contact-tab">
+              <div class="map-area">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.6538067244583!2d90.37092511435942!3d23.79533919297639!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c0cce3251ab1%3A0x7a2aa979862a9643!2sJSoft!5e0!3m2!1sen!2sbd!4v1516771096779"></iframe>
+              </div>
+            </div>
+            <!-- Office Map Tab -->
+          </div>
+          <!-- Choose Area Tab content -->
+        </div>
+      </div>
+      <!-- Choose Area Content End -->
+    </div>
+  </div>
+</section>
+<!--== Choose Car Area End ==-->
+
+<!--== Pricing Area Start ==-->
+<section id="pricing-area" class="section-padding overlay">
+  <div class="container">
+    <div class="row">
+      <!-- Section Title Start -->
+      <div class="col-lg-12">
+        <div class="section-title  text-center">
+          <h2>Only quality for clients</h2>
+          <span class="title-line"><i class="fa fa-car"></i></span>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </div>
+      </div>
+      <!-- Section Title End -->
+    </div>
+
+    <!-- Pricing Table Conatent Start -->
+    <div class="row">
+      <!-- Single Pricing Table -->
+      <div class="col-lg-4 col-md-6 text-center">
+        <div class="single-pricing-table">
+          <h3>BUSINESS</h3>
+          <h2>$ 55.99</h2>
+          <h5>PER MONTH</h5>
+
+          <ul class="package-list">
+            <li>FREE VEHICLE DELIVERY</li>
+            <li>WEDDINGS CELEBRATIONS</li>
+            <li>FULL INSURANCE INCLUDED</li>
+            <li>TRANSPORT ABROAD</li>
+            <li>ALL INCLUSIVE MINI BAR</li>
+            <li>CHAUFFER INCLUDED IN PRICE</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Single Pricing Table -->
+
+      <!-- Single Pricing Table -->
+      <div class="col-lg-4 col-md-6 text-center">
+        <div class="single-pricing-table">
+          <h3>Trial</h3>
+          <h2>Free</h2>
+          <h5>PER MONTH</h5>
+
+          <ul class="package-list">
+            <li>FREE VEHICLE DELIVERY</li>
+            <li>OTHER CELEBRATIONS</li>
+            <li>FULL INSURANCE</li>
+            <li>TRANSPORT ABROAD</li>
+            <li>MINI BAR</li>
+            <li>INCLUDED IN PRICE</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Single Pricing Table -->
+
+      <!-- Single Pricing Table -->
+      <div class="col-lg-4 col-md-6 text-center">
+        <div class="single-pricing-table">
+          <h3>standard</h3>
+          <h2>$ 35.99</h2>
+          <h5>PER MONTH</h5>
+
+          <ul class="package-list">
+            <li>DELIVERY AT AIRPORT</li>
+            <li>WEDDINGS AND OTHER</li>
+            <li>FULL INCLUDED</li>
+            <li>TRANSPORT ABROAD</li>
+            <li>ALL MINI BAR</li>
+            <li>CHAUFFER PRICE</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Single Pricing Table -->
+    </div>
+    <!-- Pricing Table Conatent End -->
+  </div>
+</section>
+<!--== Pricing Area End ==-->
+
+<!--== Testimonials Area Start ==-->
+<section id="testimonial-area" class="section-padding">
+  <div class="container">
+    <div class="row">
+      <!-- Section Title Start -->
+      <div class="col-lg-12">
+        <div class="section-title  text-center">
+          <h2>Testimonials</h2>
+          <span class="title-line"><i class="fa fa-car"></i></span>
+          <p>Lorem ipsum dolor sit amet elit.</p>
+        </div>
+      </div>
+      <!-- Section Title End -->
+    </div>
+
+    <div class="row">
+      <div class="col-lg-8 col-md-12 m-auto">
+        <div class="testimonial-content">
+          <!--== Single Testimoial Start ==-->
+          <div class="single-testimonial">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis totam obcaecati impedit, at autem repellat vel magni architecto veritatis sed.</p>
+            <h3>Vongchong Smith</h3>
+            <div class="client-logo">
+              <img src="assets/img/client/client-pic-1.jpg" alt="JSOFT">
+            </div>
+          </div>
+          <!--== Single Testimoial End ==-->
+
+          <!--== Single Testimoial Start ==-->
+          <div class="single-testimonial">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis totam obcaecati impedit, at autem repellat vel magni architecto veritatis sed.</p>
+            <h3>Amader Tuni</h3>
+            <div class="client-logo">
+              <img src="assets/img/client/client-pic-3.jpg" alt="JSOFT">
+            </div>
+          </div>
+          <!--== Single Testimoial End ==-->
+
+          <!--== Single Testimoial Start ==-->
+          <div class="single-testimonial">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis totam obcaecati impedit, at autem repellat vel magni architecto veritatis sed.</p>
+            <h3>Atex Tuntuni Smith</h3>
+            <div class="client-logo">
+              <img src="assets/img/client/client-pic-2.jpg" alt="JSOFT">
+            </div>
+          </div>
+          <!--== Single Testimoial End ==-->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--== Testimonials Area End ==-->
+
+<!--== Mobile App Area Start ==-->
+<div id="mobileapp-video-bg"></div>
+<section id="mobile-app-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="mobile-app-content">
+          <h2>SAVE 30% WITH THE APP</h2>
+          <p>Easy &amp; Fast - Book a car in 60 seconds</p>
+          <div class="app-btns">
+            <a href="#"><i class="fa fa-android"></i> Android Store</a>
+            <a href="#"><i class="fa fa-apple"></i> Apple Store</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--== Mobile App Area End ==-->
+
+<!--== Articles Area Start ==-->
+<section id="tips-article-area" class="section-padding">
+  <div class="container">
+    <div class="row">
+      <!-- Section Title Start -->
+      <div class="col-lg-12">
+        <div class="section-title  text-center">
+          <h2>Tips and articles</h2>
+          <span class="title-line"><i class="fa fa-car"></i></span>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </div>
+      </div>
+      <!-- Section Title End -->
+    </div>
+
+    <!-- Articles Content Wrap Start -->
+    <div class="row">
+      <!-- Single Articles Start -->
+      <div class="col-lg-12">
+        <article class="single-article">
+          <div class="row">
+            <!-- Articles Thumbnail Start -->
+            <div class="col-lg-5">
+              <div class="article-thumb">
+                <img src="assets/img/article/arti-thumb-1.jpg" alt="JSOFT">
+              </div>
+            </div>
+            <!-- Articles Thumbnail End -->
+
+            <!-- Articles Content Start -->
+            <div class="col-lg-7">
+              <div class="display-table">
+                <div class="display-table-cell">
+                  <div class="article-body">
+                    <h3><a href="article-details.html">Wliquam sit amet urna eullam</a></h3>
+                    <div class="article-meta">
+                      <a href="#" class="author">By :: <span>Admin</span></a>
+                      <a href="#" class="commnet">Comments :: <span>10</span></a>
+                    </div>
+
+                    <div class="article-date">25 <span class="month">jan</span></div>
+
+                    <p>Wlam aiber vestibulum fringilla oremedad ipsum dolor sit amet consectetur adipisicing elit sed doned eiusmod tempored incididunt ut labore et dolore magna aliquaa enimd ad minim veniad.</p>
+
+                    <a href="article-details.html" class="readmore-btn">Read More <i class="fa fa-long-arrow-right"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Articles Content End -->
+          </div>
+        </article>
+      </div>
+      <!-- Single Articles End -->
+
+      <!-- Single Articles Start -->
+      <div class="col-lg-12">
+        <article class="single-article middle">
+          <div class="row">
+
+            <!-- Articles Thumbnail Start -->
+            <div class="col-lg-5 d-xl-none">
+              <div class="article-thumb">
+                <img src="assets/img/article/arti-thumb-2.jpg" alt="JSOFT">
+              </div>
+            </div>
+            <!-- Articles Thumbnail End -->
+
+            <!-- Articles Content Start -->
+            <div class="col-lg-7">
+              <div class="display-table">
+                <div class="display-table-cell">
+                  <div class="article-body">
+                    <h3><a href="article-details.html">fringilla oremedad ipsum dolor sit</a></h3>
+                    <div class="article-meta">
+                      <a href="#" class="author">By :: <span>Admin</span></a>
+                      <a href="#" class="commnet">Comments :: <span>10</span></a>
+                    </div>
+
+                    <div class="article-date">14<span class="month">feb</span></div>
+
+                    <p>Wlam aiber vestibulum fringilla oremedad ipsum dolor sit amet consectetur adipisicing elit sed doned eiusmod tempored incididunt ut labore et dolore magna aliquaa enimd ad minim veniad.</p>
+
+                    <a href="article-details.html" class="readmore-btn">Read More <i class="fa fa-long-arrow-right"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Articles Content End -->
+
+            <!-- Articles Thumbnail Start -->
+            <div class="col-lg-5 d-none d-xl-block">
+              <div class="article-thumb">
+                <img src="assets/img/article/arti-thumb-2.jpg" alt="JSOFT">
+              </div>
+            </div>
+            <!-- Articles Thumbnail End -->
+          </div>
+        </article>
+      </div>
+      <!-- Single Articles End -->
+
+      <!-- Single Articles Start -->
+      <div class="col-lg-12">
+        <article class="single-article">
+          <div class="row">
+            <!-- Articles Thumbnail Start -->
+            <div class="col-lg-5">
+              <div class="article-thumb">
+                <img src="{{ asset('front/img/article/arti-thumb-3.jpg') }}" alt="JSOFT">
+              </div>
+            </div>
+            <!-- Articles Thumbnail End -->
+
+            <!-- Articles Content Start -->
+            <div class="col-lg-7">
+              <div class="display-table">
+                <div class="display-table-cell">
+                  <div class="article-body">
+                    <h3><a href="article-details.html">Tempored incididunt ut labore</a></h3>
+                    <div class="article-meta">
+                      <a href="#" class="author">By :: <span>Admin</span></a>
+                      <a href="#" class="commnet">Comments :: <span>10</span></a>
+                    </div>
+
+                    <div class="article-date">17 <span class="month">feb</span></div>
+
+                    <p>Wlam aiber vestibulum fringilla oremedad ipsum dolor sit amet consectetur adipisicing elit sed doned eiusmod tempored incididunt ut labore et dolore magna aliquaa enimd ad minim veniad.</p>
+
+                    <a href="article-details.html" class="readmore-btn">Read More <i class="fa fa-long-arrow-right"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Articles Content End -->
+          </div>
+        </article>
+      </div>
+      <!-- Single Articles End -->
+    </div>
+    <!-- Articles Content Wrap End -->
+  </div>
+</section>
+<!--== Articles Area End ==-->
+
+<!--== Footer Area Start ==-->
+<section id="footer-area">
+  <!-- Footer Widget Start -->
+  <div class="footer-widget-area">
+    <div class="container">
+      <div class="row">
+        <!-- Single Footer Widget Start -->
+        <div class="col-lg-4 col-md-6">
+          <div class="single-footer-widget">
+            <h2>About Us</h2>
+            <div class="widget-body">
+              <img src="assets/img/logo.png" alt="JSOFT">
+              <p>Lorem ipsum dolored is a sit ameted consectetur adipisicing elit. Nobis magni assumenda distinctio debitis, eum fuga fugiat error reiciendis.</p>
+
+              <div class="newsletter-area">
+                <form action="index.html">
+                  <input type="email" placeholder="Subscribe Our Newsletter">
+                  <button type="submit" class="newsletter-btn"><i class="fa fa-send"></i></button>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- Single Footer Widget End -->
+
+        <!-- Single Footer Widget Start -->
+        <div class="col-lg-4 col-md-6">
+          <div class="single-footer-widget">
+            <h2>Recent Posts</h2>
+            <div class="widget-body">
+              <ul class="recent-post">
+                <li>
+                  <a href="#">
+                    Hello Bangladesh!
+                    <i class="fa fa-long-arrow-right"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    Lorem ipsum dolor sit amet
+                    <i class="fa fa-long-arrow-right"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    Hello Bangladesh!
+                    <i class="fa fa-long-arrow-right"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    consectetur adipisicing elit?
+                    <i class="fa fa-long-arrow-right"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Single Footer Widget End -->
+
+        <!-- Single Footer Widget Start -->
+        <div class="col-lg-4 col-md-6">
+          <div class="single-footer-widget">
+            <h2>get touch</h2>
+            <div class="widget-body">
+              <p>Lorem ipsum doloer sited amet, consectetur adipisicing elit. nibh auguea, scelerisque sed</p>
+
+              <ul class="get-touch">
+                <li><i class="fa fa-map-marker"></i> 800/8, Kazipara, Dhaka</li>
+                <li><i class="fa fa-mobile"></i> +880 01 86 25 72 43</li>
+                <li><i class="fa fa-envelope"></i> kazukamdu83@gmail.com</li>
+              </ul>
+              <a href="https://goo.gl/maps/b5mt45MCaPB2" class="map-show" target="_blank">Show Location</a>
+            </div>
+          </div>
+        </div>
+        <!-- Single Footer Widget End -->
+      </div>
+    </div>
+  </div>
+  <!-- Footer Widget End -->
+
+  <!-- Footer Bottom Start -->
+  <div class="footer-bottom-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer Bottom End -->
+</section>
+<!--== Footer Area End ==-->
+
+<!--== Scroll Top Area Start ==-->
+<div class="scroll-top">
+  <img src="{{ asset('front/img/scroll-top.png"') }}" alt="">
+</div>
+<!--== Scroll Top Area End ==-->
+
+<!--=======================Javascript============================-->
+<!--=== Jquery Min Js ===-->
+<script src="{{ asset('front/js/jquery-3.2.1.min.js') }}"></script>
+<!--=== Jquery Migrate Min Js ===-->
+<script src="{{ asset('front/js/jquery-migrate.min.js') }}"></script>
+<!--=== Popper Min Js ===-->
+<script src="{{ asset('front/js/popper.min.js') }}"></script>
+<!--=== Bootstrap Min Js ===-->
+<script src="{{ asset('front/js/bootstrap.min.js') }}"></script>
+<!--=== Gijgo Min Js ===-->
+<script src=" {{ asset('front/js/plugins/gijgo.js') }}"></script>
+<!--=== Vegas Min Js ===-->
+<script src="{{ asset('front/js/plugins/vegas.min.js') }}"></script>
+<!--=== Isotope Min Js ===-->
+<script src="{{ asset('front/js/plugins/isotope.min.js') }}"></script>
+<!--=== Owl Caousel Min Js ===-->
+<script src="{{ asset('front/js/plugins/owl.carousel.min.js') }}"></script>
+<!--=== Waypoint Min Js ===-->
+<script src="{{ asset('front/js/plugins/waypoints.min.js') }}"></script>
+<!--=== CounTotop Min Js ===-->
+<script src="{{ asset('front/js/plugins/counterup.min.js') }}"></script>
+<!--=== YtPlayer Min Js ===-->
+<script src="{{ asset('front/js/plugins/mb.YTPlayer.js') }}"></script>
+<!--=== Magnific Popup Min Js ===-->
+<script src="{{ asset('front/js/plugins/magnific-popup.min.js') }}"></script>
+<!--=== Slicknav Min Js ===-->
+<script src="{{ asset('front/js/plugins/slicknav.min.js') }}"></script>
+
+<!--=== Mian Js ===-->
+<script src="{{ asset('front/js/main.js') }}"></script>
+
+</body>
+
 </html>

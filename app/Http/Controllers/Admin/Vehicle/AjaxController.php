@@ -1,0 +1,94 @@
+<?php
+
+namespace App\Http\Controllers\Admin\Vehicle;
+
+use App\Http\Controllers\Controller;
+
+use App\Vehicle;
+use Illuminate\Http\Request;
+
+class AjaxController extends Controller
+{
+    /**
+     * @var array
+     */
+    protected $_validCategories = [
+        'scooter',
+        'car',
+    ];
+    /**
+     * @var array
+     */
+    protected $_validBatteryBrand = [
+        'c_n' => 'Cadmium nickel',
+        'n_m_h' => 'Nickel métal hydrure',
+        'l' => 'Lithium',
+        'l_i' => 'Lithium-ion',
+    ];
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
+    public function edit(Request $request) {
+        $iVehicle               = htmlspecialchars($request->id_vehicle);
+        $sCategory              = in_array($request->category, $this->_validCategories) ? htmlspecialchars($request->category) : null;
+        $sBrand                 = htmlspecialchars($request->brand);
+        $sType                  = htmlspecialchars($request->type);
+        $sColor                 = htmlspecialchars($request->color);
+        $sCurrent_place         = htmlspecialchars($request->current_place);
+        $sLicence_plate         = htmlspecialchars($request->licence_plate);
+        $sKilometer             = htmlspecialchars($request->kilometer);
+        $sSerial_number         = htmlspecialchars($request->serial_number);
+        $dDate_purchase         = htmlspecialchars($request->date_purchase);
+        $iBuying_price          = htmlspecialchars($request->buying_price);
+        $sDay_price             = htmlspecialchars($request->day_price);
+        $sBattery_level         = htmlspecialchars($request->battery_level);
+        $sBattery_brand         = array_key_exists(htmlspecialchars($request->battery_brand), $this->_validBatteryBrand)
+            ? $this->_validBatteryBrand[$request->battery_brand]: null;
+
+        if (!$iVehicle || !$sCategory || !$sBrand || !$sType
+            || !$sColor || !$sCurrent_place || !$sLicence_plate
+            || !$sKilometer || !$sSerial_number || !$dDate_purchase
+            || !$iBuying_price || !$sDay_price || !$sBattery_level
+            || !$sBattery_brand
+        ) {
+            return response('Vous n\'avez pas les autorisations pour cette action', 419);
+        }
+        
+        Vehicle::where('id',  $iVehicle)
+            ->update([
+                'category'       => $sCategory,
+                'brand'          => $sBrand,
+                'type'           => $sType,
+                'color'          => $sColor,
+                'current_place'  => $sCurrent_place,
+                'licence_plate'  => $sLicence_plate,
+                'kilometer'      => $sKilometer,
+                'serial_number'  => $sSerial_number,
+                'date_purchase'  => $dDate_purchase,
+                'buying_price'   => $iBuying_price,
+                'day_price'      => $sDay_price ,
+                'battery_level'  => $sBattery_level,
+                'battery_brand'  => $sBattery_brand,
+
+            ]);
+
+        return response('Vehicule modifié avec succès', 200);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
+     public function delete(Request $request){
+        $iVehicle         = $request->id_vehicle;
+
+        Vehicle::where('id', $iVehicle)
+          ->delete();
+
+          return response($iVehicle,200);
+    }
+
+
+}

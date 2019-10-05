@@ -18,13 +18,15 @@ class VehicleController extends Controller
     protected $_needles     = [
         'cities',
         'category',
-        'daterange',
+        'startDate',
+        'endDate',
         'price_end',
         'price_end',
     ];
 
     public function search(Request $request)
     {
+        //dd($request);
         // nombre de jour entre les deux dates selectionnées par l'utilisateur
         $iDays                                  = 0;
         $vehicles                               = [];
@@ -34,6 +36,8 @@ class VehicleController extends Controller
             $sPlace								= strip_tags($request->query('cities', 'paris'));
             $sCategory                          = strip_tags($request->query('category', ''));
             $sCat                               = in_array( strtolower($sCategory), $this->_categories ) ;
+            $startDate                          = strip_tags($request->startDate);
+            $endDate                            = strip_tags($request->endDate);
 
             $iMaxPrice                          = (is_numeric($request->price_end) ? $request->price_end : null) ;
 
@@ -46,23 +50,23 @@ class VehicleController extends Controller
             }
 
             if (!$vehicles->isEmpty()){
-                if (is_null($request->daterange)) {
+
+                //$iStart                         = substr($request->daterange, 0,10); // or your date as well
+                //$iEnd                           = substr($request->daterange, 13); // or your date as well
+
+                if (!$this->_validateDate($startDate) || !$this->_validateDate($endDate)) {
                     return response('error');
                 }
 
-                $iStart                         = substr($request->daterange, 0,10); // or your date as well
-                $iEnd                           = substr($request->daterange, 13); // or your date as well
-
-                if (!$this->_validateDate($iStart) || !$this->_validateDate($iEnd)) {
-                    return response('error');
-                }
-
-                $iNoAbsoluteDay                 = round((strtotime($iStart) - strtotime($iEnd)) / (60 * 60 * 24));
+                $iNoAbsoluteDay                 = round((strtotime($startDate) - strtotime($endDate)) / (60 * 60 * 24));
                 $iDays                          = abs($iNoAbsoluteDay);
+
             }
+
         }
 
-        return view('vehicle/show', compact('vehicles' , 'iDays' ));
+
+        return view('vehicle/show', compact('vehicles' , 'iDays', 'startDate', 'endDate' ));
     }
 
 
