@@ -259,8 +259,10 @@
                             </a>
                         </div>
                     </div>
-                </fieldset>
+                    <div class="fetched-data">
 
+                    </div>
+                </fieldset>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -409,7 +411,32 @@
 
 <!--=== Mian Js ===-->
 <script src="{{ asset('front/js/main.js') }}"></script>
+<script>
+    $(function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('#myModal').on('show.bs.modal', function (e) {
+            var rowid = $(e.relatedTarget).data('id');
+            $.ajax({
+                type : 'post',
+                url : '/booking/ajax/store', //Here you will fetch records
+                data :  'rowid='+ rowid, //Pass $id
+                success : function(data){
+                    $.each( data, function( data, key ) {
+                        console.log(key.brand);
+                        $('.fetched-data').html(key.brand);//Show fetched data from database
+                    });
 
+                }
+            });
+        });
+    });
+
+
+</script>
 </body>
 
 </html>
