@@ -192,9 +192,7 @@
                                 $startDate      = str_replace('/', '-', $startDate);
                                 $endDate        = str_replace('/', '-', $endDate);
                             ?>
-                            <!--<a href="/vehicle/store/<?=$vehicle->id."/".$startDate."/".$endDate.'/'.$iDays;?>">-->
-                                <button data-toggle="modal" data-target="#myModal">Réserver</button>
-                            <!--</a>-->
+                            <button data-toggle="modal" data-target="#myModal">Réserver</button>
                         </div>
                         <!-- Single Popular Car End -->
                         @endforeach
@@ -216,12 +214,11 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
+                <h4 class="modal-title">Récapitulatif de votre commande</h4>
             </div>
             <div class="modal-body">
 
-                <form id="formRegister" class="form-horizontal" role="form" method="POST" action="{{ url('register') }}">
+                <fieldset >
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                     <div class="form-group">
@@ -233,36 +230,36 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label">E-Mail Address</label>
+                        <label class="col-md-4 control-label">Address</label>
                         <div class="col-md-6">
-                            <input type="email" class="form-control" name="email">
+                            <input type="text" class="form-control" name="address">
                             <small class="help-block"></small>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Password</label>
+                        <label class="col-md-4 control-label">Code Postale</label>
                         <div class="col-md-6">
-                            <input type="password" class="form-control" name="password">
+                            <input type="text" class="form-control" name="cp">
                             <small class="help-block"></small>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Confirm Password</label>
+                        <label class="col-md-4 control-label">Ville</label>
                         <div class="col-md-6">
-                            <input type="password" class="form-control" name="password_confirmation">
+                            <input type="text" class="form-control" name="ville">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">
-                            <button type="submit" class="btn btn-primary">
-                                Register
-                            </button>
+                            <a href="/vehicle/store/<?=$vehicle->id."/".$startDate."/".$endDate.'/'.$iDays;?>">
+                                <button type="submit" class="btn btn-primary">PAYER</button>
+                            </a>
                         </div>
                     </div>
-                </form>
+                </fieldset>
 
             </div>
             <div class="modal-footer">
