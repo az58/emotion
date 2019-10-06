@@ -79,6 +79,10 @@
                                 <th >
                                     updated_at
                                 </th>
+
+                                <th >
+                                    edit
+                                </th>
                             </thead>
                             <tbody>
                                 @foreach ($vehicles as  $row)

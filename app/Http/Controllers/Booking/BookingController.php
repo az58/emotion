@@ -104,7 +104,7 @@ class BookingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {die('tutu');
         $iIdVehicle             = $request->query('id_user', 0);
         $Sstart_date            = $request->query('start_date', '');
         $sEnd_date              = $request->query('end_date', '');

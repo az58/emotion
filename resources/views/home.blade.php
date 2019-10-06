@@ -127,23 +127,10 @@
         <div class="col-lg-8 d-none d-xl-block">
           <nav class="mainmenu alignright">
             <ul>
-              <li class="active"><a href="#">Home</a>
-                <ul>
-                  <li><a href="index.html">Home 1</a></li>
-                  <li><a href="index2.html">Home 2</a></li>
-                  <li><a href="index3.html">Home 3</a></li>
-                </ul>
-              </li>
+              <li class="active"><a href="#">Home</a></li>
               <li><a href="about.html">About</a></li>
-              <li><a href="services.html">services</a></li>
-              <li><a href="#">Cars</a>
-                <ul>
-                  <li><a href="car-left-sidebar.html">Car Left Sidebar</a></li>
-                  <li><a href="car-right-sidebar.html">Car Right Sidebar</a></li>
-                  <li><a href="car-without-sidebar.html">Car Without Sidebar</a></li>
-                  <li><a href="car-details.html">Car Details</a></li>
-                </ul>
-              </li>
+              <li><a href="/login">Mon compte</a></li>
+              <li><a href="/vehicle/search">Cars</a></li>
               <li><a href="index.html">Pages</a>
                 <ul>
                   <li><a href="package.html">Pricing</a></li>
@@ -156,12 +143,7 @@
                   <li><a href="404.html">404</a></li>
                 </ul>
               </li>
-              <li><a href="#">Blog</a>
-                <ul>
-                  <li><a href="article.html">Blog Page</a></li>
-                  <li><a href="article-details.html">Blog Details</a></li>
-                </ul>
-              </li>
+              <li><a href="/admin">Admin</a></li>
               <li><a href="contact.html">Contact</a></li>
             </ul>
           </nav>

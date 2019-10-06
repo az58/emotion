@@ -197,8 +197,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="http://blog.creative-tim.com">
-                                Blog
+                            <a href="/admin">
+                                Admin
                             </a>
                         </li>
                     </ul>
