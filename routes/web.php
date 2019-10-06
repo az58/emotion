@@ -34,7 +34,7 @@ Route::get('/logout','Auth\LoginController@logout');
 
 Route::get('/booking','Booking\BookingController@index');
 Route::get('/booking/create','Booking\BookingController@create');
-Route::get('/vehicle/store/{vehicle}/{start}/{end}/{days}','Booking\BookingController@store');//->where('vehicle', '[1-10000]')
+Route::get('/vehicle/store/{vehicle}/{startDate}/{endDate}/{days}','Booking\BookingController@store');//->where('vehicle', '[1-10000]')
     //->where('start', '[A-Za-z]+')
     //->where('end', '[A-Za-z]+')
     //->where('days', '[A-Za-z]+');
