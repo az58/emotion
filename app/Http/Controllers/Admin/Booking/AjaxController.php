@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class AjaxController extends Controller
 {
+	/**@ Récupere les datas passées par la fonction ajax et execute une requete update sur la ligne corespondant à l'id du booking
+	 * @todo Tester les variables avant qu'elles ne soient envoyées à la requette UPDATE
+	 * @param Request $request
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+	 */
     public function edit(Request $request) {
         $iBooking           = $request->id_booking;
         $iUser_id           = $request->user_id;
@@ -41,6 +46,14 @@ class AjaxController extends Controller
         return response('ok', 200);
     }
 
+//--------------------------------------------------------------------------------------
+
+	/**
+	 * Supprime la ligne ayant comme clé étrangère $iBooking dans la table Booking
+	 * @todo Tester la variable $iBooking
+	 * @param Request $request
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+	 */
     public function delete(Request $request){
         $iBooking            = $request->id_booking;
 
