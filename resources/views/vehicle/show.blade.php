@@ -192,7 +192,7 @@
                                 $startDate      = str_replace('/', '-', $startDate);
                                 $endDate        = str_replace('/', '-', $endDate);
                             ?>
-                            <button data-toggle="modal" data-target="#myModal">Réserver</button>
+                            <button data-toggle="modal" g="{{ $vehicle->brand }}" data-target="#myModal">Réserver</button>
                         </div>
                         <!-- Single Popular Car End -->
                         @endforeach
@@ -215,6 +215,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Récapitulatif de votre commande</h4>
+                <span id="car_name"></span>
             </div>
             <div class="modal-body">
 
@@ -418,20 +419,25 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
         $('#myModal').on('show.bs.modal', function (e) {
-            var rowid = $(e.relatedTarget).data('id');
-            $.ajax({
+            //var rowid = $(e.relatedTarget).data('id');
+            var rowid = $(this).attr('g');
+            console.log($(this));
+
+            $('#car_name').html(rowid)
+            /*$.ajax({
                 type : 'post',
                 url : '/booking/ajax/store', //Here you will fetch records
                 data :  'rowid='+ rowid, //Pass $id
                 success : function(data){
                     $.each( data, function( data, key ) {
-                        console.log(key.brand);
                         $('.fetched-data').html(key.brand);//Show fetched data from database
+
                     });
 
                 }
-            });
+            });*/
         });
     });
 
