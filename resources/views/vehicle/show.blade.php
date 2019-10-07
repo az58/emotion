@@ -188,7 +188,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button data-toggle="{{ $vehicle->color }}" data-target="#myModal">Réserver</button>
+                            <button class="modal-booking" data-toggle="{{ $vehicle->color }}" data-target="#myModal">Réserver</button>
                         </div>
                         <!-- Single Popular Car End -->
                         @endforeach
@@ -434,6 +434,10 @@
 
                 }
             });*/
+        });
+        $('.modal-booking').click(function(){
+
+            $('#car_name').html("blalala")
         });
     });
 
