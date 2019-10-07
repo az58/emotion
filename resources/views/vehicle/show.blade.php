@@ -188,11 +188,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <?php
-                                $startDate      = str_replace('/', '-', $startDate);
-                                $endDate        = str_replace('/', '-', $endDate);
-                            ?>
-                            <button data-toggle="modal" g="{{ $vehicle->brand }}" data-target="#myModal">Réserver</button>
+                            <button data-toggle="{{ $vehicle->color }}" data-target="#myModal">Réserver</button>
                         </div>
                         <!-- Single Popular Car End -->
                         @endforeach
