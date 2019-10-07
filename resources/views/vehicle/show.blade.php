@@ -166,14 +166,15 @@
                             <div class="single-popular-car">
                                 <div class="p-car-thumbnails">
                                     <a class="car-hover" href="{{ $vehicle->picture }}">
-                                        <img src="{{ $vehicle->picture }}" alt="">
+                                        <img class="picture_vehicle" id="{{ $vehicle->picture }}" src="{{ $vehicle->picture }}" alt="">
                                     </a>
                                 </div>
 
                                 <div class="p-car-content">
                                     <h3>
-                                        <p>{{ $vehicle->type }}</p>
-                                        <p>{{ $vehicle->brand }}</p>
+                                        <p class="id_vehicle" id="{{ $vehicle->id }}">
+                                        <p class="type_vehicle" id="{{ $vehicle->type }}">{{ $vehicle->type }}</p>
+                                        <p class="brand_vehicle" id="{{ $vehicle->brand }}">{{ $vehicle->brand }}</p>
                                         <div>
                                             <span class="price"><i class="fa fa-tag"></i>Prix par jour :{{ $vehicle->day_price}}€</span>
                                         </div>
@@ -188,7 +189,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="modal-booking" data-toggle="{{ $vehicle->color }}" data-target="#myModal">Réserver</button>
+                            <button data-toggle="modal" class="modal-booking" data-target="#myModal">Réserver</button>
                         </div>
                         <!-- Single Popular Car End -->
                         @endforeach
@@ -410,35 +411,44 @@
 <script src="{{ asset('front/js/main.js') }}"></script>
 <script>
     $(function(){
+        //----------------------------------------------------------------------------
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
 
-        $('#myModal').on('show.bs.modal', function (e) {
-            //var rowid = $(e.relatedTarget).data('id');
-            var rowid = $(this).attr('g');
-            console.log($(this));
+        //----------------------------------------------------------------------------
 
-            $('#car_name').html(rowid)
-            /*$.ajax({
-                type : 'post',
-                url : '/booking/ajax/store', //Here you will fetch records
-                data :  'rowid='+ rowid, //Pass $id
-                success : function(data){
-                    $.each( data, function( data, key ) {
-                        $('.fetched-data').html(key.brand);//Show fetched data from database
+        // $('#myModal').on('show.bs.modal', function (e) {
+        //     var rowid = $(e.relatedTarget).data('id');
+        //     $.ajax({
+        //         type : 'post',
+        //         url : '/booking/ajax/store', //Here you will fetch records
+        //         data :  'rowid='+ rowid, //Pass $id
+        //         success : function(data){
+        //             $.each( data, function( data, key ) {
+        //                 $('.fetched-data').html(key.brand);//Show fetched data from database
+        //
+        //             });
+        //
+        //         }
+        //     });
+        // });
 
-                    });
+        //----------------------------------------------------------------------------
 
-                }
-            });*/
-        });
         $('.modal-booking').click(function(){
+              var id_vehicle= $(this).parent().find("p[class='id_vehicle']").attr('id');
+              var type_vehicle= $(this).parent().find("p[class='type_vehicle']").attr('id');
+              var brand_vehicle= $(this).parent().find("p[class='brand_vehicle']").attr('id');
+              var picture_vehicle= $(this).parent().find("p[class='picture_vehicle']").attr('id');
 
-            $('#car_name').html("blalala")
+            $('#car_name').html(type_vehicle+' '+brand_vehicle);
         });
+
+        //----------------------------------------------------------------------------
     });
 
 
