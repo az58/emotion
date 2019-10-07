@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Booking;
 use App\Http\Controllers\Controller;
 use App\User;
-use App\Vehicle;
 
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-
+	/**
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
     public function show()
 
     {
         $users                  = User::where('role', 'admin')->get();
-        return view('admin/profil', compact('users'));
 
-        //return view('admin/showProfil');
+        return view('admin/profil', compact('users'));
     }
 
     /**

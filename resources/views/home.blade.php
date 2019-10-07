@@ -37,26 +37,16 @@
   <![endif]-->
     <script>
         $(function() {
-
-            $('input[name="daterange"]').daterangepicker({
-                opens: 'left'
-            }, function(start, end, label) {
-                console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-            });
-
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
 
-
             $('#price_end').on('change',function() {
                 $('#price_end_value').html($(this).val() + '€');
             });
-
         });
-
     </script>
 </head>
 
@@ -176,27 +166,30 @@
                     @endforeach
                 </select>
               </div>
-              <!--== Pick Up Location ==-->
+              {{-- var days--}}
+              <?php
 
+                $sToday     = Carbon\Carbon::today();
+                $sAWeek     = Carbon\Carbon::tomorrow()->addDays(7);
+              ?>
+              {{-- end var days--}}
               <!--== Pick Up Date ==-->
               <div class="pick-up-date book-item">
                 <h4>PICK-UP DATE:</h4>
-                <input id="startDate" name="startDate" placeholder="Pick Up Date" />
+                <input id="startDate" name="startDate" placeholder="<?= $sToday->format('m/d/Y');?>" value="<?= $sToday->format('m/d/Y');?>" />
 
                 <div class="return-car">
                   <h4>Return DATE:</h4>
-                  <input id="endDate" name="endDate" placeholder="Return Date" />
+                  <input id="endDate" name="endDate" placeholder="<?= $sAWeek->format('m/d/Y');?>" value="<?= $sAWeek->format('m/d/Y');?>" />
                 </div>
               </div>
-              <!--== Pick Up Location ==-->
-
               <!--== Car Choose ==-->
               <div class="choose-car-type book-item" >
                 <h4>CHOOSE CAR TYPE:</h4>
                 <select class="custom-select" name="category">
                   <option value="car">Car</option>
                   <option value="scooter">Scooter</option>
-                  <option selected  value="">Car and Scooter</option>
+                  <option selected value="">Car and Scooter</option>
                 </select>
               </div>
               <!--== Car Choose ==-->

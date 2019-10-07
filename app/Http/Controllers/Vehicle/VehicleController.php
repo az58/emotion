@@ -3,28 +3,21 @@
 namespace App\Http\Controllers\Vehicle;
 
 use App\Http\Controllers\Controller;
+use App\Providers\Outils\Functions;
+use App\Providers\Outils\Constant;
 use App\Vehicle;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
 
 class VehicleController extends Controller
 {
-    protected $_categories  = [
-        'car',
-        'scooter',
-    ];
-
-    protected $_needles     = [
-        'cities',
-        'category',
-        'startDate',
-        'endDate',
-        'price_end',
-        'price_end',
-    ];
-
-    public function search(Request $request){
-        if (!$request->has($this->_needles)) {
+	/**
+	 * Récupère les elements de recherche d'un vehicule entrées par lutilisateur et retourne une liste correspondante
+	 * @param Request $request
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+	 */
+	public function search(Request $request){
+        if (!$request->has(Constant::$needles)) {
             $vehicles 						= Vehicle::all();
             $iDays                          = 1;
             $startDate                      = \Date('m/d/Y', time());
@@ -33,13 +26,13 @@ class VehicleController extends Controller
             return view('vehicle/show', compact('vehicles' , 'iDays', 'startDate', 'endDate' ));
         }
 
-        // nombre de jour entre les deux dates selectionnées par l'utilisateur
-        $iDays                                  = 0;
-        $vehicles                               = [];
+        /** nombre de jour entre les deux dates selectionnées par l'utilisateur */
+        $iDays                              = 0;
+        $vehicles                           = [];
 
         $sPlace								= strip_tags($request->query('cities', 'paris'));
         $sCategory                          = strip_tags($request->query('category', ''));
-        $sCat                               = in_array( strtolower($sCategory), $this->_categories ) ;
+        $sCat                               = in_array(strtolower($sCategory),Constant::$categories) ;
         $startDate                          = strip_tags($request->startDate);
         $endDate                            = strip_tags($request->endDate);
 
@@ -54,31 +47,15 @@ class VehicleController extends Controller
         }
 
         if (!$vehicles->isEmpty()){
-
-            //$iStart                         = substr($request->daterange, 0,10); // or your date as well
-            //$iEnd                           = substr($request->daterange, 13); // or your date as well
-
-            if (!$this->_validateDate($startDate) || !$this->_validateDate($endDate)) {
+            if (!Functions::validateDate($startDate) || !Functions::validateDate($endDate)) {
                 return response('error');
             }
 
             $iNoAbsoluteDay                 = round((strtotime($startDate) - strtotime($endDate)) / (60 * 60 * 24));
             $iDays                          = abs($iNoAbsoluteDay);
-
         }
-
-
 
         return view('vehicle/show', compact('vehicles' , 'iDays', 'startDate', 'endDate' ));
     }
-
-
-    protected function _validateDate($date, $format = 'm-d-Y')
-    {
-        $d = \DateTime::createFromFormat($format, $date);
-        // The Y ( 4 digits year ) returns TRUE for any integer with any number of digits so changing the comparison from == to === fixes the issue.
-        return $d && $d->format($format) === $date;
-    }
-
-
+//--------------------------------------------------------------------------------------
 }

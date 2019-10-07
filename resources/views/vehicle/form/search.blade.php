@@ -3,7 +3,7 @@
         @csrf
         <div class="flex-row">
             <label for="date-picker">Du : </label>
-            <input type="text" class ="cobalt-TextField__Input" name="daterange" value="<?php echo $sToday->format('m/d/Y').' - '.$sAWeek->format('m/d/Y'); ?>" id="date-picker"/>
+            <input type="text" class ="cobalt-TextField__Input" name="daterange" value="<?php echo $sToday->format('m/d/Y');?>" id="date-picker"/>
 
             <label for="cities-select">À partir de : </label>
             <select class="cobalt-TextField__Input" id="cities-select" name="cities">

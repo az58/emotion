@@ -3,35 +3,49 @@
 namespace App\Http\Controllers\Admin\Vehicle;
 
 use App\Http\Controllers\Controller;
-
 use App\Vehicle;
+
 use Illuminate\Http\Request;
 
 class AjaxController extends Controller
 {
     /**
+	 * Clées des categories acceptées dans la base de de données
      * @var array
      */
     protected $_validCategories = [
         'scooter',
         'car',
     ];
-    /**
-     * @var array
+
+    //--------------------------------------------------------------------------------------
+
+	/**
+	 * Clées de concordances des types de batteries acceptées dans la base de de données
+	 * @var array
      */
     protected $_validBatteryBrand = [
-        'c_n' => 'Cadmium nickel',
+        'c_n' 	=> 'Cadmium nickel',
         'n_m_h' => 'Nickel métal hydrure',
-        'l' => 'Lithium',
-        'l_i' => 'Lithium-ion',
+        'l' 	=> 'Lithium',
+        'l_i' 	=> 'Lithium-ion',
     ];
 
+	//--------------------------------------------------------------------------------------
+
     /**
+	 * Récupere les datas passées par la fonction ajax et execute une requete update sur la ligne corespondant à l'id_vehicle du vehicule
+	 * @todo Appliquer des test plus poussé sur les variables avant qu'elles ne soient envoyées à la requette UPDATE
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
     public function edit(Request $request) {
         $iVehicle               = htmlspecialchars($request->id_vehicle);
+		/**
+		 * Ceci est test ternaire (equivalant d'un if)
+		 * @example  https://blog.smarchal.com/operateur-ternaire-php
+		 * @var $sCategory
+		 */
         $sCategory              = in_array($request->category, $this->_validCategories) ? htmlspecialchars($request->category) : null;
         $sBrand                 = htmlspecialchars($request->brand);
         $sType                  = htmlspecialchars($request->type);
@@ -77,7 +91,11 @@ class AjaxController extends Controller
         return response('Vehicule modifié avec succès', 200);
     }
 
-    /**
+	//--------------------------------------------------------------------------------------
+
+	/**
+	 * Supprime la ligne ayant comme clé étrangère $iBooking dans la table Vehicle
+	 * @todo Tester la variable $iVehicle
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
@@ -87,7 +105,7 @@ class AjaxController extends Controller
         Vehicle::where('id', $iVehicle)
           ->delete();
 
-          return response($iVehicle,200);
+		return response($iVehicle,200);
     }
 
 
