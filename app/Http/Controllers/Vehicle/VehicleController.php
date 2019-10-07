@@ -7,7 +7,6 @@ use App\Providers\Outils\Functions;
 use App\Providers\Outils\Constant;
 use App\Vehicle;
 
-
 use Illuminate\Http\Request;
 
 class VehicleController extends Controller
@@ -28,12 +27,12 @@ class VehicleController extends Controller
         }
 
         /** nombre de jour entre les deux dates selectionnées par l'utilisateur */
-        $iDays                                  = 0;
-        $vehicles                               = [];
+        $iDays                              = 0;
+        $vehicles                           = [];
 
         $sPlace								= strip_tags($request->query('cities', 'paris'));
         $sCategory                          = strip_tags($request->query('category', ''));
-        $sCat                               = in_array( strtolower($sCategory),Constant::$categories ) ;
+        $sCat                               = in_array(strtolower($sCategory),Constant::$categories) ;
         $startDate                          = strip_tags($request->startDate);
         $endDate                            = strip_tags($request->endDate);
 
@@ -48,23 +47,15 @@ class VehicleController extends Controller
         }
 
         if (!$vehicles->isEmpty()){
-
-            //$iStart                         = substr($request->daterange, 0,10); // or your date as well
-            //$iEnd                           = substr($request->daterange, 13); // or your date as well
-
             if (!Functions::validateDate($startDate) || !Functions::validateDate($endDate)) {
                 return response('error');
             }
 
             $iNoAbsoluteDay                 = round((strtotime($startDate) - strtotime($endDate)) / (60 * 60 * 24));
             $iDays                          = abs($iNoAbsoluteDay);
-
         }
-
-
 
         return view('vehicle/show', compact('vehicles' , 'iDays', 'startDate', 'endDate' ));
     }
-
 //--------------------------------------------------------------------------------------
 }
