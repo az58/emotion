@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Providers\Booking;
+namespace App\Providers\Booking;
 
 
 class bookingServiceProvider
