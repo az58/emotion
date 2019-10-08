@@ -175,13 +175,18 @@
                                         <div>
                                             <span class="price" id="{{ $vehicle->day_price}}"><i class="fa fa-tag"></i>Prix par jour :{{ $vehicle->day_price}}€</span>
                                             <input type="hidden" name="days" id="{{ $iDays }}">
-
                                         </div>
                                     </h3>
+                                    <div class="p-car-feature">
+                                        <a href="#">{{ $vehicle->color }}</a>
+                                        <a href="#">{{ $vehicle->battery_brand }}</a>
+                                        <a href="#">manual</a>
+                                        <a href="#">AIR CONDITION</a>
+                                    </div>
                                 </div>
                             </div>
-                                <button data-toggle="modal" class="modal-booking" data-target="#myModal">Réserver</button>
-                            </div>
+                            <button data-toggle="modal" class="modal-booking" data-target="#myModal">Réserver</button>
+                        </div>
                         @endforeach
                     </div>
                 </div>
