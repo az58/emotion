@@ -158,6 +158,8 @@
                     <!-- Filtering Menu -->
 
                     <div class="row popular-car-gird">
+                        <input type="hidden" name="start_date" id="{{ $startDate }}">
+                        <input type="hidden" name="end_date" id="{{ $endDate }}">
                         <!-- Single Popular Car Start -->
 
                         @foreach($vehicles as $vehicle )
@@ -219,7 +221,7 @@
             <div class="modal-body">
                     <img id="vehicle_picture">
                     <span id="booking_price"></span>
-                <fieldset >
+                <form action="" method="POST" class="" name="">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                     <div class="form-group">
@@ -231,17 +233,17 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Address</label>
+                        <label class="col-md-4 control-label">Date de récupération</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="address">
+                            <input type="text" class="form-control" name="address_checkin">
                             <small class="help-block"></small>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Code Postale</label>
+                        <label class="col-md-4 control-label">Date de Dépot</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="cp">
+                            <input type="text" class="form-control" name="address_checkout">
                             <small class="help-block"></small>
                         </div>
                     </div>
@@ -263,7 +265,7 @@
                     <div class="fetched-data">
 
                     </div>
-                </fieldset>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -455,9 +457,13 @@
             $('#vehicle_picture').attr('width',45);
             $('#vehicle_picture').attr('height',45);
 
-            if(iDays===0)
-            iDays=1;
-            $('#booking_price').html((iDays*price_vehicle)+"€");
+            $('#address_checkin').val();
+            $('#address_checkout').val($(".end_date").val());
+
+            if(iDays===0) {
+                iDays=1;
+            }
+            $('#booking_price').html((iDays*price_vehicle));
         });
     });
 
