@@ -167,26 +167,26 @@
                                         </a>
                                     </div>
 
-                                <div class="p-car-content">
-                                    <h3>
-                                        <p class="id_vehicle" id="{{ $vehicle->id }}">
-                                        <p class="type_vehicle" id="{{ $vehicle->type }}">{{ $vehicle->type }}</p>
-                                        <p class="brand_vehicle" id="{{ $vehicle->brand }}">{{ $vehicle->brand }}</p>
-                                        <div>
-                                            <span class="price" id="{{ $vehicle->day_price}}"><i class="fa fa-tag"></i>Prix par jour :{{ $vehicle->day_price}}€</span>
-                                            <input type="hidden" name="days" id="{{ $iDays }}">
+                                    <div class="p-car-content">
+                                        <h3>
+                                            <p class="id_vehicle" id="{{ $vehicle->id }}">
+                                            <p class="type_vehicle" id="{{ $vehicle->type }}">{{ $vehicle->type }}</p>
+                                            <p class="brand_vehicle" id="{{ $vehicle->brand }}">{{ $vehicle->brand }}</p>
+                                            <div>
+                                                <span class="price" id="{{ $vehicle->day_price}}"><i class="fa fa-tag"></i>Prix par jour :{{ $vehicle->day_price}}€</span>
+                                                <input type="hidden" name="days" id="{{ $iDays }}">
+                                            </div>
+                                        </h3>
+                                        <div class="p-car-feature">
+                                            <a href="#">{{ $vehicle->color }}</a>
+                                            <a href="#">{{ $vehicle->battery_brand }}</a>
+                                            <a href="#">manual</a>
+                                            <a href="#">AIR CONDITION</a>
                                         </div>
-                                    </h3>
-                                    <div class="p-car-feature">
-                                        <a href="#">{{ $vehicle->color }}</a>
-                                        <a href="#">{{ $vehicle->battery_brand }}</a>
-                                        <a href="#">manual</a>
-                                        <a href="#">AIR CONDITION</a>
                                     </div>
                                 </div>
+                                <button data-toggle="modal" class="modal-booking" data-target="#myModal">Réserver</button>
                             </div>
-                            <button data-toggle="modal" class="modal-booking" data-target="#myModal">Réserver</button>
-                        </div>
                         @endforeach
                     </div>
                 </div>
