@@ -158,40 +158,36 @@
                     <!-- Filtering Menu -->
 
                     <div class="row popular-car-gird">
-                        <!-- Single Popular Car Start -->
-
                         @foreach($vehicles as $vehicle )
+                            <div class="col-lg-4 col-md-6 con suv mpv">
+                                <div class="single-popular-car">
+                                    <div class="p-car-thumbnails">
+                                        <a class="car-hover" href="{{ $vehicle->picture }}">
+                                            <img class="picture_vehicle" id="{{ $vehicle->picture }}" src="{{ $vehicle->picture }}" alt="">
+                                        </a>
+                                    </div>
 
-                        <div class="col-lg-4 col-md-6 con suv mpv">
-                            <div class="single-popular-car">
-                                <div class="p-car-thumbnails">
-                                    <a class="car-hover" href="{{ $vehicle->picture }}">
-                                        <img class="picture_vehicle" id="{{ $vehicle->picture }}" src="{{ $vehicle->picture }}" alt="">
-                                    </a>
-                                </div>
+                                    <div class="p-car-content">
+                                        <h3>
+                                            <p class="id_vehicle" id="{{ $vehicle->id }}">
+                                            <p class="type_vehicle" id="{{ $vehicle->type }}">{{ $vehicle->type }}</p>
+                                            <p class="brand_vehicle" id="{{ $vehicle->brand }}">{{ $vehicle->brand }}</p>
+                                            <div>
+                                                <span class="price"><i class="fa fa-tag"></i>Prix par jour :{{ $vehicle->day_price}}€</span>
+                                            </div>
 
-                                <div class="p-car-content">
-                                    <h3>
-                                        <p class="id_vehicle" id="{{ $vehicle->id }}">
-                                        <p class="type_vehicle" id="{{ $vehicle->type }}">{{ $vehicle->type }}</p>
-                                        <p class="brand_vehicle" id="{{ $vehicle->brand }}">{{ $vehicle->brand }}</p>
-                                        <div>
-                                            <span class="price"><i class="fa fa-tag"></i>Prix par jour :{{ $vehicle->day_price}}€</span>
+                                        </h3>
+
+                                        <div class="p-car-feature">
+                                            <a href="#">{{ $vehicle->color }}</a>
+                                            <a href="#">{{ $vehicle->battery_brand }}</a>
+                                            <a href="#">manual</a>
+                                            <a href="#">AIR CONDITION</a>
                                         </div>
-
-                                    </h3>
-
-                                    <div class="p-car-feature">
-                                        <a href="#">{{ $vehicle->color }}</a>
-                                        <a href="#">{{ $vehicle->battery_brand }}</a>
-                                        <a href="#">manual</a>
-                                        <a href="#">AIR CONDITION</a>
                                     </div>
                                 </div>
+                                <button data-toggle="modal" class="modal-booking" data-target="#myModal">Réserver</button>
                             </div>
-                            <button data-toggle="modal" class="modal-booking" data-target="#myModal">Réserver</button>
-                        </div>
-                        <!-- Single Popular Car End -->
                         @endforeach
                     </div>
                 </div>
@@ -212,11 +208,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Récapitulatif de votre commande</h4>
-                <span id="car_name"></span>
+                <span id="vehicle_name"></span>
+                <img id="vehicle_picture">
             </div>
             <div class="modal-body">
-
-                <fieldset >
+                <fieldset>
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                     <div class="form-group">
@@ -440,12 +436,16 @@
         //----------------------------------------------------------------------------
 
         $('.modal-booking').click(function(){
-              var id_vehicle= $(this).parent().find("p[class='id_vehicle']").attr('id');
-              var type_vehicle= $(this).parent().find("p[class='type_vehicle']").attr('id');
-              var brand_vehicle= $(this).parent().find("p[class='brand_vehicle']").attr('id');
-              var picture_vehicle= $(this).parent().find("p[class='picture_vehicle']").attr('id');
+              var id_vehicle        = $(this).parent().find("p[class='id_vehicle']").attr('id');
+              var type_vehicle      = $(this).parent().find("p[class='type_vehicle']").attr('id');
+              var brand_vehicle     = $(this).parent().find("p[class='brand_vehicle']").attr('id');
+              var picture_vehicle   = $(this).parent().find("img[class='picture_vehicle']").attr('id');
 
-            $('#car_name').html(type_vehicle+' '+brand_vehicle);
+            $('#vehicle_name').html(type_vehicle+' '+brand_vehicle);
+
+            $('#vehicle_picture').attr("src",picture_vehicle);
+            $('#vehicle_picture').attr("width",45);
+            $('#vehicle_picture').attr("heigh",45);
         });
 
         //----------------------------------------------------------------------------
