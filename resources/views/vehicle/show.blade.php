@@ -176,7 +176,8 @@
                                         <p class="type_vehicle" id="{{ $vehicle->type }}">{{ $vehicle->type }}</p>
                                         <p class="brand_vehicle" id="{{ $vehicle->brand }}">{{ $vehicle->brand }}</p>
                                         <div>
-                                            <span class="price"><i class="fa fa-tag"></i>Prix par jour :{{ $vehicle->day_price}}€</span>
+                                            <span class="price" id="{{ $vehicle->day_price}}"><i class="fa fa-tag"></i>Prix par jour :{{ $vehicle->day_price}}€</span>
+                                            <input type="hidden" name="days" id="{{ $iDays }}">
                                         </div>
 
                                     </h3>
@@ -212,10 +213,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Récapitulatif de votre commande</h4>
-                <span id="car_name"></span>
+                <span id="vehicle_name"></span>
+
             </div>
             <div class="modal-body">
-
+                    <img id="vehicle_picture">
+                    <span id="booking_price"></span>
                 <fieldset >
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -440,12 +443,21 @@
         //----------------------------------------------------------------------------
 
         $('.modal-booking').click(function(){
-              var id_vehicle= $(this).parent().find("p[class='id_vehicle']").attr('id');
-              var type_vehicle= $(this).parent().find("p[class='type_vehicle']").attr('id');
-              var brand_vehicle= $(this).parent().find("p[class='brand_vehicle']").attr('id');
-              var picture_vehicle= $(this).parent().find("p[class='picture_vehicle']").attr('id');
+            var id_vehicle= $(this).parent().find("p[class='id_vehicle']").attr('id');
+            var type_vehicle= $(this).parent().find("p[class='type_vehicle']").attr('id');
+            var brand_vehicle= $(this).parent().find("p[class='brand_vehicle']").attr('id');
+            var price_vehicle= $(this).parent().find("span[class='price']").attr('id');
+            var iDays= $(this).parent().find("input[name='days']").attr('id');
+            var picture_vehicle= $(this).parent().find("img[class='picture_vehicle']").attr('id');
 
-            $('#car_name').html(type_vehicle+' '+brand_vehicle);
+            $('#vehicle_name').html(type_vehicle+' '+brand_vehicle);
+            $('#vehicle_picture').attr('src',picture_vehicle);
+            $('#vehicle_picture').attr('width',45);
+            $('#vehicle_picture').attr('height',45);
+
+            if(iDays===0)
+            iDays=1;
+            $('#booking_price').html((iDays*price_vehicle)+"€");
         });
 
         //----------------------------------------------------------------------------
