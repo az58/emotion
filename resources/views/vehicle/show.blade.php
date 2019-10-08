@@ -163,38 +163,34 @@
                         <!-- Single Popular Car Start -->
 
                         @foreach($vehicles as $vehicle )
+                            <div class="col-lg-4 col-md-6 con suv mpv">
+                                <div class="single-popular-car">
+                                    <div class="p-car-thumbnails">
+                                        <a class="car-hover" href="{{ $vehicle->picture }}">
+                                            <img class="picture_vehicle" id="{{ $vehicle->picture }}" src="{{ $vehicle->picture }}" alt="">
+                                        </a>
+                                    </div>
 
-                        <div class="col-lg-4 col-md-6 con suv mpv">
-                            <div class="single-popular-car">
-                                <div class="p-car-thumbnails">
-                                    <a class="car-hover" href="{{ $vehicle->picture }}">
-                                        <img class="picture_vehicle" id="{{ $vehicle->picture }}" src="{{ $vehicle->picture }}" alt="">
-                                    </a>
-                                </div>
-
-                                <div class="p-car-content">
-                                    <h3>
-                                        <p class="id_vehicle" id="{{ $vehicle->id }}">
-                                        <p class="type_vehicle" id="{{ $vehicle->type }}">{{ $vehicle->type }}</p>
-                                        <p class="brand_vehicle" id="{{ $vehicle->brand }}">{{ $vehicle->brand }}</p>
-                                        <div>
-                                            <span class="price" id="{{ $vehicle->day_price}}"><i class="fa fa-tag"></i>Prix par jour :{{ $vehicle->day_price}}€</span>
-                                            <input type="hidden" name="days" id="{{ $iDays }}">
+                                    <div class="p-car-content">
+                                        <h3>
+                                            <p class="id_vehicle" id="{{ $vehicle->id }}">
+                                            <p class="type_vehicle" id="{{ $vehicle->type }}">{{ $vehicle->type }}</p>
+                                            <p class="brand_vehicle" id="{{ $vehicle->brand }}">{{ $vehicle->brand }}</p>
+                                            <div>
+                                                <span class="price" id="{{ $vehicle->day_price}}"><i class="fa fa-tag"></i>Prix par jour :{{ $vehicle->day_price}}€</span>
+                                                <input type="hidden" name="days" id="{{ $iDays }}">
+                                            </div>
+                                        </h3>
+                                        <div class="p-car-feature">
+                                            <a href="#">{{ $vehicle->color }}</a>
+                                            <a href="#">{{ $vehicle->battery_brand }}</a>
+                                            <a href="#">manual</a>
+                                            <a href="#">AIR CONDITION</a>
                                         </div>
-
-                                    </h3>
-
-                                    <div class="p-car-feature">
-                                        <a href="#">{{ $vehicle->color }}</a>
-                                        <a href="#">{{ $vehicle->battery_brand }}</a>
-                                        <a href="#">manual</a>
-                                        <a href="#">AIR CONDITION</a>
                                     </div>
                                 </div>
+                                <button data-toggle="modal" class="modal-booking" data-target="#myModal">Réserver</button>
                             </div>
-                            <button data-toggle="modal" class="modal-booking" data-target="#myModal">Réserver</button>
-                        </div>
-                        <!-- Single Popular Car End -->
                         @endforeach
                     </div>
                 </div>
@@ -216,7 +212,6 @@
             <div class="modal-header">
                 <h4 class="modal-title">Récapitulatif de votre commande</h4>
                 <span id="vehicle_name"></span>
-
             </div>
             <div class="modal-body">
                     <img id="vehicle_picture">
