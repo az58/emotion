@@ -166,25 +166,6 @@
                                             <img class="picture_vehicle" id="{{ $vehicle->picture }}" src="{{ $vehicle->picture }}" alt="">
                                         </a>
                                     </div>
-
-<<<<<<< HEAD
-                                    <div class="p-car-content">
-                                        <h3>
-                                            <p class="id_vehicle" id="{{ $vehicle->id }}">
-                                            <p class="type_vehicle" id="{{ $vehicle->type }}">{{ $vehicle->type }}</p>
-                                            <p class="brand_vehicle" id="{{ $vehicle->brand }}">{{ $vehicle->brand }}</p>
-                                            <div>
-                                                <span class="price"><i class="fa fa-tag"></i>Prix par jour :{{ $vehicle->day_price}}€</span>
-                                            </div>
-
-                                        </h3>
-
-                                        <div class="p-car-feature">
-                                            <a href="#">{{ $vehicle->color }}</a>
-                                            <a href="#">{{ $vehicle->battery_brand }}</a>
-                                            <a href="#">manual</a>
-                                            <a href="#">AIR CONDITION</a>
-=======
                         <div class="col-lg-4 col-md-6 con suv mpv">
                             <div class="single-popular-car">
                                 <div class="p-car-thumbnails">
@@ -201,7 +182,6 @@
                                         <div>
                                             <span class="price" id="{{ $vehicle->day_price}}"><i class="fa fa-tag"></i>Prix par jour :{{ $vehicle->day_price}}€</span>
                                             <input type="hidden" name="days" id="{{ $iDays }}">
->>>>>>> 9f03dacda1d3765571b8250db3de8049b98fd5f1
                                         </div>
                                     </div>
                                 </div>
