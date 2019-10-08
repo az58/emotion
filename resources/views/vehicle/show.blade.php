@@ -167,6 +167,7 @@
                                         </a>
                                     </div>
 
+<<<<<<< HEAD
                                     <div class="p-car-content">
                                         <h3>
                                             <p class="id_vehicle" id="{{ $vehicle->id }}">
@@ -183,6 +184,24 @@
                                             <a href="#">{{ $vehicle->battery_brand }}</a>
                                             <a href="#">manual</a>
                                             <a href="#">AIR CONDITION</a>
+=======
+                        <div class="col-lg-4 col-md-6 con suv mpv">
+                            <div class="single-popular-car">
+                                <div class="p-car-thumbnails">
+                                    <a class="car-hover" href="{{ $vehicle->picture }}">
+                                        <img class="picture_vehicle" id="{{ $vehicle->picture }}" src="{{ $vehicle->picture }}" alt="">
+                                    </a>
+                                </div>
+
+                                <div class="p-car-content">
+                                    <h3>
+                                        <p class="id_vehicle" id="{{ $vehicle->id }}">
+                                        <p class="type_vehicle" id="{{ $vehicle->type }}">{{ $vehicle->type }}</p>
+                                        <p class="brand_vehicle" id="{{ $vehicle->brand }}">{{ $vehicle->brand }}</p>
+                                        <div>
+                                            <span class="price" id="{{ $vehicle->day_price}}"><i class="fa fa-tag"></i>Prix par jour :{{ $vehicle->day_price}}€</span>
+                                            <input type="hidden" name="days" id="{{ $iDays }}">
+>>>>>>> 9f03dacda1d3765571b8250db3de8049b98fd5f1
                                         </div>
                                     </div>
                                 </div>
@@ -209,10 +228,19 @@
             <div class="modal-header">
                 <h4 class="modal-title">Récapitulatif de votre commande</h4>
                 <span id="vehicle_name"></span>
+<<<<<<< HEAD
                 <img id="vehicle_picture">
             </div>
             <div class="modal-body">
                 <fieldset>
+=======
+
+            </div>
+            <div class="modal-body">
+                    <img id="vehicle_picture">
+                    <span id="booking_price"></span>
+                <fieldset >
+>>>>>>> 9f03dacda1d3765571b8250db3de8049b98fd5f1
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                     <div class="form-group">
@@ -436,16 +464,21 @@
         //----------------------------------------------------------------------------
 
         $('.modal-booking').click(function(){
-              var id_vehicle        = $(this).parent().find("p[class='id_vehicle']").attr('id');
-              var type_vehicle      = $(this).parent().find("p[class='type_vehicle']").attr('id');
-              var brand_vehicle     = $(this).parent().find("p[class='brand_vehicle']").attr('id');
-              var picture_vehicle   = $(this).parent().find("img[class='picture_vehicle']").attr('id');
+            var id_vehicle= $(this).parent().find("p[class='id_vehicle']").attr('id');
+            var type_vehicle= $(this).parent().find("p[class='type_vehicle']").attr('id');
+            var brand_vehicle= $(this).parent().find("p[class='brand_vehicle']").attr('id');
+            var price_vehicle= $(this).parent().find("span[class='price']").attr('id');
+            var iDays= $(this).parent().find("input[name='days']").attr('id');
+            var picture_vehicle= $(this).parent().find("img[class='picture_vehicle']").attr('id');
 
             $('#vehicle_name').html(type_vehicle+' '+brand_vehicle);
+            $('#vehicle_picture').attr('src',picture_vehicle);
+            $('#vehicle_picture').attr('width',45);
+            $('#vehicle_picture').attr('height',45);
 
-            $('#vehicle_picture').attr("src",picture_vehicle);
-            $('#vehicle_picture').attr("width",45);
-            $('#vehicle_picture').attr("heigh",45);
+            if(iDays===0)
+            iDays=1;
+            $('#booking_price').html((iDays*price_vehicle)+"€");
         });
 
         //----------------------------------------------------------------------------
