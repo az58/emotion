@@ -166,13 +166,6 @@
                                             <img class="picture_vehicle" id="{{ $vehicle->picture }}" src="{{ $vehicle->picture }}" alt="">
                                         </a>
                                     </div>
-                        <div class="col-lg-4 col-md-6 con suv mpv">
-                            <div class="single-popular-car">
-                                <div class="p-car-thumbnails">
-                                    <a class="car-hover" href="{{ $vehicle->picture }}">
-                                        <img class="picture_vehicle" id="{{ $vehicle->picture }}" src="{{ $vehicle->picture }}" alt="">
-                                    </a>
-                                </div>
 
                                 <div class="p-car-content">
                                     <h3>
@@ -182,9 +175,11 @@
                                         <div>
                                             <span class="price" id="{{ $vehicle->day_price}}"><i class="fa fa-tag"></i>Prix par jour :{{ $vehicle->day_price}}€</span>
                                             <input type="hidden" name="days" id="{{ $iDays }}">
+
                                         </div>
-                                    </div>
+                                    </h3>
                                 </div>
+                            </div>
                                 <button data-toggle="modal" class="modal-booking" data-target="#myModal">Réserver</button>
                             </div>
                         @endforeach
@@ -208,19 +203,11 @@
             <div class="modal-header">
                 <h4 class="modal-title">Récapitulatif de votre commande</h4>
                 <span id="vehicle_name"></span>
-<<<<<<< HEAD
-                <img id="vehicle_picture">
-            </div>
-            <div class="modal-body">
-                <fieldset>
-=======
-
             </div>
             <div class="modal-body">
                     <img id="vehicle_picture">
                     <span id="booking_price"></span>
                 <fieldset >
->>>>>>> 9f03dacda1d3765571b8250db3de8049b98fd5f1
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                     <div class="form-group">
