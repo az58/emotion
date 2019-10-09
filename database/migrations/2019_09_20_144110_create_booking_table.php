@@ -30,6 +30,8 @@ class CreateBookingTable extends Migration
             $table->string('cb_expire', 5)->nullable();
             $table->string('cb_cvv', 4)->nullable();
 
+            $table->unique(['vehicle_id','start_date', 'end_date']);
+
             $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade');
             $table->foreign('vehicle_id')->references('id')->on('vehicle')
