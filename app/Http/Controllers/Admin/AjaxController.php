@@ -42,6 +42,6 @@ class AjaxController extends Controller
                 'role'      => $sRole,
             ]);
 
-        return response('ok', 200);
+        return response("L\'utlisateur $iUser à été modidié", 200);
     }
 }

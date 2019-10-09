@@ -364,7 +364,7 @@ a.slicknav_btn {
 /*== Slider Area CSS Start ==*/
 
 .single-slide-item {
-	background-image: url(assets/img/banner.jpg);
+	background-image: url();
 	background-position: center center;
 	background-size: cover;
 	padding: 80px 0;
@@ -377,7 +377,7 @@ a.slicknav_btn {
 }
 
 .book-a-car select.custom-select {
-	background-image: url("assets/img/caret-cion.png");
+	background-image: url("");
 	background-position: right 13px center;
 	background-size: 12px auto;
 }
@@ -3054,7 +3054,7 @@ body,
 ================================*/
 
 #page-404-wrap {
-	background-image: url("assets/img/banner.jpg");
+	background-image: url("");
 	background-position: center center;
 	background-size: cover;
 	color: #fff;

@@ -395,7 +395,7 @@
 <!--=== Vegas Min Js ===-->
 <script src="{{ asset('front/js/plugins/vegas.min.js') }}"></script>
 <!--=== Isotope Min Js ===-->
-<script src="{{ asset('front/js/plugins/isotope.min.js') }}"></script>
+<!--<script src="{{ asset('front/js/plugins/isotope.min.js') }}"></script>-->
 <!--=== Owl Caousel Min Js ===-->
 <script src="{{ asset('front/js/plugins/owl.carousel.min.js') }}"></script>
 <!--=== Waypoint Min Js ===-->
@@ -440,7 +440,7 @@
                     dataType: "json"
                 })
                 .done(function (response) {
-                    $('#myModal').hide();
+                    $('#myModal').modal('hide');
                     console.log(response);
 
                 })
@@ -482,12 +482,5 @@
             $('#booking_price').html((iDays*price_vehicle));
         });
     });
-
-
 </script>
 </body>
-
-</html>
-
-
-

@@ -1254,7 +1254,7 @@
 <!--=== Vegas Min Js ===-->
 <script src="{{ asset('front/js/plugins/vegas.min.js') }}"></script>
 <!--=== Isotope Min Js ===-->
-<script src="{{ asset('front/js/plugins/isotope.min.js') }}"></script>
+<!--<script src="{{ asset('front/js/plugins/isotope.min.js') }}"></script>-->
 <!--=== Owl Caousel Min Js ===-->
 <script src="{{ asset('front/js/plugins/owl.carousel.min.js') }}"></script>
 <!--=== Waypoint Min Js ===-->

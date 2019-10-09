@@ -467,7 +467,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!--=== Vegas Min Js ===-->
     <script src="assets/js/plugins/vegas.min.js"></script>
     <!--=== Isotope Min Js ===-->
-    <script src="assets/js/plugins/isotope.min.js"></script>
+    <!--<script src="assets/js/plugins/isotope.min.js"></script>-->
     <!--=== Owl Caousel Min Js ===-->
     <script src="assets/js/plugins/owl.carousel.min.js"></script>
     <!--=== Waypoint Min Js ===-->

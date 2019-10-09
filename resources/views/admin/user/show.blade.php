@@ -1,7 +1,6 @@
 @extends('admin.index')
 
 @section('users')
-
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -12,32 +11,14 @@
                     <div class="table-responsive">
                         <table class="table">
                             <thead class=" text-primary">
-                            <th>
-                                Id
-                            </th>
-                            <th>
-                                Lastname
-                            </th>
-                            <th>
-                                Firstname
-                            </th>
-                            <th>
-                                Email
-                            </th>
-                            <th>
-                                Role
-                            </th>
-                            <th >
-                                Created_at
-                            </th>
-                            <th >
-                                Updated_at
-                            </th>
-                            <th >
-                                Edit
-                            </th>
-
-
+                                <th>Id</th>
+                                <th>Lastname</th>
+                                <th>Firstname</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Created_at</th>
+                                <th>Updated_at</th>
+                                <th >Edit</th>
                             </thead>
                             <tbody>
                                 @foreach ($users as  $row)
@@ -75,17 +56,12 @@
                             </tbody>
                         </table>
                     </div>
-
-
                 </div>
             </div>
         </div>
 
     </div>
 @endsection
-
-
-    <!-- Remember to include jQuery :visage_légèrement_souriant: -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
@@ -123,7 +99,7 @@
 
                         });
                 }
-            })
+            });
 
             $('.del').click(function(){
                 if (confirm("Voulez-vous vraiment supprimer cet utilisateur ?")) {
@@ -148,8 +124,6 @@
                     });
                 }
             });
-
         });
-
 </script>
 
