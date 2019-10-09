@@ -158,39 +158,40 @@
                     <!-- Filtering Menu -->
 
                     <div class="row popular-car-gird">
+                        <input type="hidden" id="start_date" value="{{ $startDate }}">
+                        <input type="hidden" id="end_date" value="{{ $endDate }}">
+                        <input type="hidden" id="place" value="{{ $sPlace }}">
                         <!-- Single Popular Car Start -->
 
                         @foreach($vehicles as $vehicle )
-
-                        <div class="col-lg-4 col-md-6 con suv mpv">
-                            <div class="single-popular-car">
-                                <div class="p-car-thumbnails">
-                                    <a class="car-hover" href="{{ $vehicle->picture }}">
-                                        <img src="{{ $vehicle->picture }}" alt="">
-                                    </a>
-                                </div>
-
-                                <div class="p-car-content">
-                                    <h3>
-                                        <p>{{ $vehicle->type }}</p>
-                                        <p>{{ $vehicle->brand }}</p>
-                                        <div>
-                                            <span class="price"><i class="fa fa-tag"></i>Prix par jour :{{ $vehicle->day_price}}€</span>
-                                        </div>
-
-                                    </h3>
-
-                                    <div class="p-car-feature">
-                                        <a href="#">{{ $vehicle->color }}</a>
-                                        <a href="#">{{ $vehicle->battery_brand }}</a>
-                                        <a href="#">manual</a>
-                                        <a href="#">AIR CONDITION</a>
+                            <div class="col-lg-4 col-md-6 con suv mpv">
+                                <div class="single-popular-car">
+                                    <div class="p-car-thumbnails">
+                                        <a class="car-hover" href="{{ $vehicle->picture }}">
+                                            <img class="picture_vehicle" id="{{ $vehicle->picture }}" src="{{ $vehicle->picture }}" alt="">
+                                        </a>
                                     </div>
+
+                                    <div class="p-car-content">
+                                        <h3>
+                                            <p class="id_vehicle" id="{{ $vehicle->id }}">
+                                            <p class="type_vehicle" id="{{ $vehicle->type }}">{{ $vehicle->type }}</p>
+                                            <p class="brand_vehicle" id="{{ $vehicle->brand }}">{{ $vehicle->brand }}</p>
+                                            <div>
+                                                <span class="price" id="{{ $vehicle->day_price}}"><i class="fa fa-tag"></i>Prix par jour :{{ $vehicle->day_price}}€</span>
+                                                <input type="hidden" name="days" id="{{ $iDays }}">
+                                            </div>
+                                        </h3>
+                                        <div class="p-car-feature">
+                                            <a href="#">{{ $vehicle->color }}</a>
+                                            <a href="#">{{ $vehicle->battery_brand }}</a>
+                                            <a href="#">manual</a>
+                                            <a href="#">AIR CONDITION</a>
+                                        </div>
+                                    </div>
+                                    <button data-toggle="modal" class="modal-booking" data-target="#myModal">Réserver</button>
                                 </div>
                             </div>
-                            <button data-toggle="modal" data-target="#myModal">Réserver</button>
-                        </div>
-                        <!-- Single Popular Car End -->
                         @endforeach
                     </div>
                 </div>
@@ -202,8 +203,6 @@
 <!-- Trigger the modal with a button -->
 
 <!-- Modal -->
-<!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
-
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
@@ -213,50 +212,57 @@
                 <h4 class="modal-title">Récapitulatif de votre commande</h4>
             </div>
             <div class="modal-body">
+                    <img id="vehicle_picture">
 
-                <fieldset >
+                <form action="" method="POST" class="" name="">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+                    @csrf
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Name</label>
+                        <label class="col-md-4 control-label">Vous avez choisis</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="name">
+                            <input type="hidden" id="vehicle_id">
+                            <span id="vehicle_name"></span>
                             <small class="help-block"></small>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Address</label>
+                        <label class="col-md-4 control-label">Départ</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="address">
+                            <span id="date_checkin"></span>
+                            <span id="place_checkin"></span>
                             <small class="help-block"></small>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Code Postale</label>
+                        <label class="col-md-4 control-label">Retour</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="cp">
+                            <span id="date_checkout"></span>
+                            <span id="place_checkout"></span>
                             <small class="help-block"></small>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Ville</label>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" name="ville">
-                        </div>
+                    <div class="form-group" max-width="100">
+                        <label class="col-md-4 control-label">Prix total de la location de base</label>
+                        <span id="booking_price"></span>
                     </div>
 
                     <div class="form-group">
-                        <div class="col-md-6 col-md-offset-4">
+                        <!--<div class="col-md-6 col-md-offset-4">
                             <a href="/vehicle/store/<?=$vehicle->id."/".$startDate."/".$endDate.'/'.$iDays;?>">
-                                <button type="submit" class="btn btn-primary">PAYER</button>
+                                <button type="submit" class="btn btn-primary">Comfirmer</button>
                             </a>
-                        </div>
+                        </div>-->
                     </div>
-                </fieldset>
+                    <div class="fetched-data">
 
+                    </div>
+                </form>
+                <div class="col-md-6 col-md-offset-4">
+                    <button type="submit" class="btn btn-primary booking_comfirm">Comfirmer</button>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -405,7 +411,78 @@
 
 <!--=== Mian Js ===-->
 <script src="{{ asset('front/js/main.js') }}"></script>
+<script>
+    $(function(){
+        //----------------------------------------------------------------------------
 
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        //----------------------------------------------------------------------------
+
+        $('.booking_comfirm').click(function() {
+            @auth
+                $.ajax({
+                    method: 'POST',
+                    url: '/booking/create',
+                    data: {
+                        vehicle_id      : $('#vehicle_id').val(),
+                        start_date      : $('#date_checkin').html(),
+                        end_date        : $('#date_checkout').html(),
+                        state           : $('#place_checkin').html(),
+                        days            : $('#days').val(),
+
+
+                    },
+                    dataType: "json"
+                })
+                .done(function (response) {
+                    console.log(response);
+                })
+                .fail(function (data, status) {
+
+                });
+            @else
+                window.location.href = "/login"
+            @endauth
+        });
+
+        //----------------------------------------------------------------------------
+
+        $('.modal-booking').click(function(){
+            var id_vehicle= $(this).parent().find("p[class='id_vehicle']").attr('id');
+            var type_vehicle= $(this).parent().find("p[class='type_vehicle']").attr('id');
+            var brand_vehicle= $(this).parent().find("p[class='brand_vehicle']").attr('id');
+            var price_vehicle= $(this).parent().find("span[class='price']").attr('id');
+            var iDays= $(this).parent().find("input[name='days']").attr('id');
+            var picture_vehicle= $(this).parent().find("img[class='picture_vehicle']").attr('id');
+            var depart = $("#start_date").val();
+            var arrive = $("#end_date").val();
+            var place = $("#place").val();
+
+            $('#vehicle_name').html(type_vehicle.toUpperCase()+' '+brand_vehicle.toUpperCase());
+            $('#vehicle_id').attr('value', id_vehicle);
+            $('#vehicle_picture').attr('src', picture_vehicle);
+            $('#vehicle_picture').attr('width', 100);
+            $('#vehicle_picture').attr('height', 100);
+
+            $('#date_checkin').html(depart);
+            $('#date_checkout').html(arrive);
+            $('#place_checkin').html(place);
+            $('#place_checkout').html(place);
+
+            if(iDays===0) {
+                iDays=1;
+            }
+            $('#booking_price').html((iDays*price_vehicle));
+        });
+    });
+
+
+</script>
 </body>
 
 </html>

@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Booking;
 
 use App\Booking;
 use App\Http\Controllers\Controller;
-
+use App\Providers\Outils\Functions;
+use App\Vehicle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Stripe;
 
 class BookingController extends Controller
@@ -38,6 +40,41 @@ class BookingController extends Controller
      */
     public function create(Request $request)
     {
+		$iBooking_price				= '';
+
+		$iVehicle                  	= (int) $request->input('vehicle_id');
+		$sStartDate                	= $request->input('start_date');
+		$sEndDate                   = $request->input('end_date');
+		$sState                		= $request->input('state');
+
+		if(Functions::validateDate($sStartDate) || Functions::validateDate($sEndDate)) {
+			$iDays 					= Functions::days($sStartDate, $sEndDate);
+
+			$sStartDate				= Functions::formateDate($sStartDate);
+			$sEndDate				= Functions::formateDate($sEndDate);
+
+			$iPriceDay 				= Vehicle::select('day_price')->where('id', $iVehicle)->first();
+
+			if(!is_numeric($iPriceDay->day_price)){
+
+				return response('No vehicle day price returned');
+			}
+
+			$iBooking_price			= ($iDays * $iPriceDay->day_price);
+		}
+
+		Booking::insert([
+			'user_id' 			=> Auth::id(),
+			'vehicle_id' 		=> $iVehicle ,
+			'start_date' 		=> $sStartDate,
+			'end_date' 			=> $sEndDate,
+			'state' 			=> $sState,
+			'booking_price' 	=> $iBooking_price,
+
+		]);
+
+		return response('ok');
+
 		/**
 		 * Ceci est une vrai clé de test liée à un veritable compte stripe
 		 * @author Lory LETICEE
@@ -47,14 +84,6 @@ class BookingController extends Controller
 		// fake test key : sk_test_4eC39HqLyjWDarjtT1zdp7dc
 		// real test key : sk_test_x5TBqaYsUEpjkNs4V7kavpCQ00itifTEmi
 		Stripe\Stripe::setApiKey('sk_test_x5TBqaYsUEpjkNs4V7kavpCQ00itifTEmi');
-
-
-		$sItem                      = $request->get('car or scooter name');
-		$iPrice                     = $request->get('price of bill');
-		$sDays                      = $request->get('nbr jours location');
-
-
-
 
 		$ev	= Stripe\Event::all(['limit' => 10]);
 

@@ -33,14 +33,16 @@ Route::get('/logout','Auth\LoginController@logout');
 //---------------------------------------------------------------------------------------
 
 Route::get('/booking','Booking\BookingController@index');
-Route::get('/booking/create','Booking\BookingController@create');
+Route::post('/booking/create','Booking\BookingController@create');
+Route::post('/booking/ajax/store','Booking\AjaxController@store');
+
+//---------------------------------------------------------------------------------------
+
+
 Route::get('/vehicle/store/{vehicle}/{startDate}/{endDate}/{days}','Booking\BookingController@store');//->where('vehicle', '[1-10000]')
     //->where('start', '[A-Za-z]+')
     //->where('end', '[A-Za-z]+')
     //->where('days', '[A-Za-z]+');
-
-
-//---------------------------------------------------------------------------------------
 
 
 Route::post('/vehicle/search','Vehicle\VehicleController@search');
