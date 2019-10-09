@@ -424,6 +424,7 @@
         //----------------------------------------------------------------------------
 
         $('.booking_comfirm').click(function() {
+            @auth
                 $.ajax({
                     method: 'POST',
                     url: '/booking/create',
@@ -438,12 +439,15 @@
                     },
                     dataType: "json"
                 })
-                    .done(function (response) {
-                        console.log(response);
-                    })
-                    .fail(function (data, status) {
+                .done(function (response) {
+                    console.log(response);
+                })
+                .fail(function (data, status) {
 
-                    });
+                });
+            @else
+                window.location.href = "/login"
+            @endauth
         });
 
         //----------------------------------------------------------------------------
