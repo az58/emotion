@@ -22,8 +22,9 @@ class VehicleController extends Controller
             $iDays                          = 1;
             $startDate                      = \Date('m/d/Y', time());
             $endDate                        = \Date('m/d/Y', time());
+            $sPlace                         = 'paris';
 
-            return view('vehicle/show', compact('vehicles' , 'iDays', 'startDate', 'endDate' ));
+            return view('vehicle/show', compact('vehicles' , 'iDays', 'startDate', 'endDate', 'sPlace' ));
         }
 
         /** nombre de jour entre les deux dates selectionnées par l'utilisateur */
@@ -55,7 +56,7 @@ class VehicleController extends Controller
             $iDays                          = abs($iNoAbsoluteDay);
         }
 
-        return view('vehicle/show', compact('vehicles' , 'iDays', 'startDate', 'endDate' ));
+        return view('vehicle/show', compact('vehicles' , 'iDays', 'startDate', 'endDate' , 'sPlace'));
     }
 //--------------------------------------------------------------------------------------
 }

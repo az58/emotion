@@ -158,8 +158,9 @@
                     <!-- Filtering Menu -->
 
                     <div class="row popular-car-gird">
-                        <input type="hidden" name="start_date" id="{{ $startDate }}">
-                        <input type="hidden" name="end_date" id="{{ $endDate }}">
+                        <input type="hidden" id="start_date" value="{{ $startDate }}">
+                        <input type="hidden" id="end_date" value="{{ $endDate }}">
+                        <input type="hidden" id="place" value="{{ $sPlace }}">
                         <!-- Single Popular Car Start -->
 
                         @foreach($vehicles as $vehicle )
@@ -188,8 +189,8 @@
                                             <a href="#">AIR CONDITION</a>
                                         </div>
                                     </div>
+                                    <button data-toggle="modal" class="modal-booking" data-target="#myModal">Réserver</button>
                                 </div>
-                                <button data-toggle="modal" class="modal-booking" data-target="#myModal">Réserver</button>
                             </div>
                         @endforeach
                     </div>
@@ -202,8 +203,6 @@
 <!-- Trigger the modal with a button -->
 
 <!-- Modal -->
-<!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
-
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
@@ -211,43 +210,43 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Récapitulatif de votre commande</h4>
-                <span id="vehicle_name"></span>
             </div>
             <div class="modal-body">
                     <img id="vehicle_picture">
-                    <span id="booking_price"></span>
+
                 <form action="" method="POST" class="" name="">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Name</label>
+                        <label class="col-md-4 control-label">Vous avez choisis</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="name">
+                            <input type="hidden" id="vehicle_id">
+                            <span id="vehicle_name"></span>
                             <small class="help-block"></small>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Date de récupération</label>
+                        <label class="col-md-4 control-label">Départ</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="address_checkin">
+                            <span id="date_checkin"></span>
+                            <span id="place_checkin"></span>
                             <small class="help-block"></small>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Date de Dépot</label>
+                        <label class="col-md-4 control-label">Retour</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="address_checkout">
+                            <span id="date_checkout"></span>
+                            <span id="place_checkout"></span>
                             <small class="help-block"></small>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Ville</label>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" name="ville">
-                        </div>
+                    <div class="form-group" max-width="100">
+                        <label class="col-md-4 control-label">Prix total de la location de base</label>
+                        <span id="booking_price"></span>
                     </div>
 
                     <div class="form-group">
@@ -421,21 +420,28 @@
 
         //----------------------------------------------------------------------------
 
-        // $('#myModal').on('show.bs.modal', function (e) {
-        //     var rowid = $(e.relatedTarget).data('id');
-        //     $.ajax({
-        //         type : 'post',
-        //         url : '/booking/ajax/store', //Here you will fetch records
-        //         data :  'rowid='+ rowid, //Pass $id
-        //         success : function(data){
-        //             $.each( data, function( data, key ) {
-        //                 $('.fetched-data').html(key.brand);//Show fetched data from database
-        //
-        //             });
-        //
-        //         }
-        //     });
-        // });
+        $('.booking_comfirm').click(function() {
+                $.ajax({
+                    method: 'POST',
+                    url: '/booking/create',
+                    data: {
+                        vehicle_id      : $('#vehicle_id').html(),
+                        start_date      : $('#date_checkin').html(),
+                        end_date        : $('#date_checkout').html(),
+                        state           : $('#place_checkin').html(),
+                        days            : $('input[id="days"]').val(),
+
+
+                    },
+                    dataType: "json"
+                })
+                    .done(function (response) {
+                        console.log(response);
+                    })
+                    .fail(function (data, status) {
+
+                    });
+        });
 
         //----------------------------------------------------------------------------
 
@@ -446,14 +452,19 @@
             var price_vehicle= $(this).parent().find("span[class='price']").attr('id');
             var iDays= $(this).parent().find("input[name='days']").attr('id');
             var picture_vehicle= $(this).parent().find("img[class='picture_vehicle']").attr('id');
+            var depart = $("#start_date").val();
+            var arrive = $("#end_date").val();
+            var place = $("#place").val();
 
-            $('#vehicle_name').html(type_vehicle+' '+brand_vehicle);
+            $('#vehicle_name').html(type_vehicle.toUpperCase()+' '+brand_vehicle.toUpperCase());
             $('#vehicle_picture').attr('src',picture_vehicle);
-            $('#vehicle_picture').attr('width',45);
-            $('#vehicle_picture').attr('height',45);
+            $('#vehicle_picture').attr('width',100);
+            $('#vehicle_picture').attr('height',100);
 
-            $('#address_checkin').val();
-            $('#address_checkout').val($(".end_date").val());
+            $('#date_checkin').html(depart);
+            $('#date_checkout').html(arrive);
+            $('#place_checkin').html(place);
+            $('#place_checkout').html(place);
 
             if(iDays===0) {
                 iDays=1;
