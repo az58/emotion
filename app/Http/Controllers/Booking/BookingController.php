@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Booking;
 
 use App\Booking;
 use App\Http\Controllers\Controller;
-
+use App\Providers\Outils\Functions;
+use App\Vehicle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Stripe;
 
 class BookingController extends Controller
@@ -38,23 +40,36 @@ class BookingController extends Controller
      */
     public function create(Request $request)
     {
-
+		$iBooking_price				= '';
 
 		$iVehicle                  	= (int) $request->input('vehicle_id');
 		$sStartDate                	= $request->input('start_date');
 		$sEndDate                   = $request->input('end_date');
-		$iDays                      = (int) $request->input('state');
+		$sState                		= $request->input('state');
 
+		if(Functions::validateDate($sStartDate) || Functions::validateDate($sEndDate)) {
+			$iDays 					= Functions::Days($sStartDate, $sEndDate);
+			$iPriceDay 				= Vehicle::select('day_price')->where('id', $iVehicle)->get();
+
+			if($iPriceDay->isEmpty()){
+
+				return response('No vehicle day price returned');
+			}
+
+			$iBooking_price			= ($iDays * $iPriceDay);
+		}
 
 		Booking::insert([
-			'id_user' 		=> '',
-			'id_vehicle' 	=> $iVehicle ,
-			'start_date' 	=> $sStartDate,
-			'end_date' 		=> $sEndDate,
+			'user_id' 			=> Auth::id(),
+			'vehicle_id' 		=> $iVehicle ,
+			'start_date' 		=> $sStartDate,
+			'end_date' 			=> $sEndDate,
+			'state' 			=> $sState,
+			'booking_price' 	=> $iBooking_price,
 
 		]);
 
-
+		return response('ok');
 
 		/**
 		 * Ceci est une vrai clé de test liée à un veritable compte stripe
