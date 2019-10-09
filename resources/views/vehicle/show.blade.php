@@ -440,7 +440,9 @@
                     dataType: "json"
                 })
                 .done(function (response) {
+                    $('#myModal').hide();
                     console.log(response);
+
                 })
                 .fail(function (data, status) {
 

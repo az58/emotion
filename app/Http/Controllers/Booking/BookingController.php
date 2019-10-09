@@ -61,19 +61,21 @@ class BookingController extends Controller
 			}
 
 			$iBooking_price			= ($iDays * $iPriceDay->day_price);
+
+			Booking::insert([
+				'user_id' 			=> Auth::id(),
+				'vehicle_id' 		=> $iVehicle ,
+				'start_date' 		=> $sStartDate,
+				'end_date' 			=> $sEndDate,
+				'state' 			=> $sState,
+				'booking_price' 	=> $iBooking_price,
+
+			]);
+
+			return response('Nous avons bien enregistré votre choix, vous allez être redirigé vers la page de paiement...');
 		}
 
-		Booking::insert([
-			'user_id' 			=> Auth::id(),
-			'vehicle_id' 		=> $iVehicle ,
-			'start_date' 		=> $sStartDate,
-			'end_date' 			=> $sEndDate,
-			'state' 			=> $sState,
-			'booking_price' 	=> $iBooking_price,
 
-		]);
-
-		return response('ok');
 
 		/**
 		 * Ceci est une vrai clé de test liée à un veritable compte stripe
