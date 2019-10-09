@@ -28,10 +28,13 @@
                                 end_date
                             </th>
                             <th >
-                                state
+                                status
                             </th>
                             <th >
-                                booking_price
+                                place
+                            </th>
+                            <th >
+                               price
                             </th>
                             <th >
                                 age
@@ -69,10 +72,13 @@
                                             <input type="text" value=" {{$row->end_date}} " size="3" name="end_date"/>
                                         </td>
                                         <td>
-                                            <input type="text" value=" {{$row->state}} " size="3" name="state"/>
+                                            <input type="text" value=" {{$row->status}} " size="3" name="status"/>
                                         </td>
                                         <td>
-                                            <input type="text" value=" {{$row->booking_price}} " size="3" name="booking_price"/>
+                                            <input type="text" value=" {{$row->place}} " size="3" name="place"/>
+                                        </td>
+                                        <td>
+                                            <input type="text" value=" {{$row->price}} " size="3" name="price"/>
                                         </td>
                                         <td>
                                             <input type="text" value=" {{$row->age}} " size="3" name="age"/>
@@ -132,8 +138,9 @@
                             vehicle_id: elem.find('input[name="vehicle_id"]').val(),
                             start_date: elem.find('input[name="start_date"]').val(),
                             end_date: elem.find('input[name="end_date"]').val(),
-                            state: elem.find('input[name="state"]').val(),
-                            booking_price: elem.find('input[name="booking_price"]').val(),
+                            status: elem.find('input[name="status"]').val(),
+                            place: elem.find('input[name="place"]').val(),
+                            price: elem.find('input[name="price"]').val(),
                             age: elem.find('input[name="age"]').val(),
                             phone: elem.find('input[name="phone"]').val(),
                             address: elem.find('input[name="address"]').val(),

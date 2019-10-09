@@ -20,11 +20,12 @@ class AjaxController extends Controller
         $iVehicle_id        = $request->vehicle_id;
         $dStart_date        = $request->start_date;
         $dEnd_date          = $request->end_date;
-        $sState             = $request->state;
-        $iBooking_price     = $request->booking_price;
+        $sStatus            = $request->status;
+        $sPlace           	= $request->place;
+        $iPrice     		= $request->price;
         $iAge               = $request->age;
         $sPhone             = $request->phone;
-        $sAddress            = $request->address;
+        $sAddress           = $request->address;
         $sDriving_licence   = $request->driving_licence;
 
 
@@ -34,8 +35,9 @@ class AjaxController extends Controller
                 'vehicle_id'     => $iVehicle_id,
                 'start_date'     => $dStart_date,
                 'end_date'       => $dEnd_date,
-                'state'          => $sState,
-                'booking_price'  => (int)$iBooking_price,
+                'status'         => $sStatus,
+                'place'          => $sPlace,
+                'price'  		=> (int)$iPrice,
                 'age'            => (int)$iAge,
                 'phone'          => $sPhone,
                 'address'        => $sAddress,

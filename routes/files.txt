@@ -1,2 +1,0 @@
-	 ../database/factories/UserFactory.php
-	 ../resources/js/app.js

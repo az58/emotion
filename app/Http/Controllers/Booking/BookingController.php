@@ -6,6 +6,7 @@ use App\Booking;
 use App\Http\Controllers\Controller;
 use App\Providers\Outils\Functions;
 use App\Vehicle;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Stripe;
@@ -45,7 +46,7 @@ class BookingController extends Controller
 		$iVehicle                  	= (int) $request->input('vehicle_id');
 		$sStartDate                	= $request->input('start_date');
 		$sEndDate                   = $request->input('end_date');
-		$sState                		= $request->input('state');
+		$sPlace                		= $request->input('place');
 
 		if(Functions::validateDate($sStartDate) || Functions::validateDate($sEndDate)) {
 			$iDays 					= Functions::days($sStartDate, $sEndDate);
@@ -60,15 +61,16 @@ class BookingController extends Controller
 				return response('No vehicle day price returned');
 			}
 
-			$iBooking_price			= ($iDays * $iPriceDay->day_price);
+			$iPrice			= ($iDays * $iPriceDay->day_price);
 
 			Booking::insert([
 				'user_id' 			=> Auth::id(),
 				'vehicle_id' 		=> $iVehicle ,
 				'start_date' 		=> $sStartDate,
 				'end_date' 			=> $sEndDate,
-				'state' 			=> $sState,
-				'booking_price' 	=> $iBooking_price,
+				'place' 			=> $sPlace,
+				'price' 			=> $iPrice,
+				'status' 			=> 'waiting_payment',
 
 			]);
 
@@ -139,8 +141,9 @@ class BookingController extends Controller
         $iIdVehicle             = $request->query('id_user', 0);
         $Sstart_date            = $request->query('start_date', '');
         $sEnd_date              = $request->query('end_date', '');
-        $sState                 = $request->query('state ', '');
-        $sDay_price             = $request->query('day_price', '');
+        $sStatus                = $request->query('status ', '');
+        $sPlace                 = $request->query('place ', '');
+        $sPrice             	= $request->query('price', '');
         $sAge                   = $request->query('age', '');
         $sPhone                 = $request->query('phone', '');
         $sAddress               = $request->query('phone', '');
@@ -154,8 +157,9 @@ class BookingController extends Controller
             'id_vehicle'        => $iIdVehicle,
             'start_date'        => $Sstart_date,
             'end_date'          => $sEnd_date,
-            'state'             => $sState,
-            'booking_price'     => '',
+            'status'            => $sStatus,
+            'place'             => $sPlace,
+            'price'    			=> $sPrice,
             'age'               => $sAge,
             'phone'             => $sPhone,
             'address'           => $sAddress. '' . $sCp . '' . $sCity . '' . $sCountry,
