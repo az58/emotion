@@ -89,7 +89,7 @@
                                     <tr id="{{$row->id}}">
                                         <td>
                                             {{$row->id}}
-                                            <input type="hidden" value=" {{$row->id}} " size="3" name="id_vehicle"/>
+                                            <input type="hidden" value=" {{$row->id}} " name="id_vehicle"/>
                                         </td>
 
                                         <td>

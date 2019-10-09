@@ -57,7 +57,8 @@
                                 @foreach ($bookings as  $row)
                                     <tr>
                                         <td>
-                                            <input type="text" value=" {{$row->id}} "  name="id_booking"/>
+                                            {{$row->id}}
+                                            <input type="hidden" value=" {{$row->id}} " name="id_booking"/>
                                         </td>
                                         <td>
                                             <input type="text" value=" {{$row->user_id}} " size="3" name="user_id"/>
@@ -72,7 +73,16 @@
                                             <input type="text" value=" {{$row->end_date}} " size="3" name="end_date"/>
                                         </td>
                                         <td>
-                                            <input type="text" value=" {{$row->status}} " size="3" name="status"/>
+                                            <select class="cobalt-TextField__Input"  name="status">
+                                                <?php $aStatus=["payed", "waiting_payment", "finished", "running"];?>
+                                                @foreach($aStatus as $state)
+                                                    @if($state === $row->status)
+                                                            <option selected value="<?= $state ?>"><?= ucfirst($state) ?></option>
+                                                    @else
+                                                            <option value="<?= $state ?>"><?= ucfirst($state) ?></option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
                                         </td>
                                         <td>
                                             <input type="text" value=" {{$row->place}} " size="3" name="place"/>

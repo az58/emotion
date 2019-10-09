@@ -40,38 +40,38 @@
 
                             </thead>
                             <tbody>
-                            @foreach ($users as  $row)
-                                <tr id="{{$row->id}}">
-                                    <td>
-                                        {{$row->id}}
-                                      <input type="hidden" value=" {{$row->id}} " size="3" name="id_User"/>
-                                    </td>
-                                    <td>
-                                      <input type="text" value=" {{$row->lastname}} " size="10" name="lastname"/>
-                                    </td><td>
-                                      <input type="text" value=" {{$row->firstname}} " size="10" name="firstname"/>
-                                    </td><td>
-                                      <input type="text" value=" {{$row->email}} " name="email"/>
-                                    </td>
-                                    <td>
+                                @foreach ($users as  $row)
+                                    <tr id="{{$row->id}}">
+                                        <td>
+                                            {{$row->id}}
+                                          <input type="hidden" value=" {{$row->id}} " name="id_User"/>
+                                        </td>
+                                        <td>
+                                          <input type="text" value=" {{$row->lastname}} " size="10" name="lastname"/>
+                                        </td><td>
+                                          <input type="text" value=" {{$row->firstname}} " size="10" name="firstname"/>
+                                        </td><td>
+                                          <input type="text" value=" {{$row->email}} " name="email"/>
+                                        </td>
+                                        <td>
 
-                                        <select class="cobalt-TextField__Input"  name="role">
-                                            <option value="admin">admin</option>
-                                            <option selected  value="buyer">buyer</option>
-                                        </select>
-                                    </td>
+                                            <select class="cobalt-TextField__Input"  name="role">
+                                                <option value="admin">admin</option>
+                                                <option selected  value="buyer">buyer</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            {{$row->created_at}}
+                                        </td>
+                                        <td>
+                                            {{$row->updated_at}}
+                                        </td>
                                     <td>
-                                        {{$row->created_at}}
+                                        <button class="fas fa-edit fa-lg edit"></button>
+                                        <button class="fas fa-trash fa-lg del"></button>
                                     </td>
-                                    <td>
-                                        {{$row->updated_at}}
-                                    </td>
-                                <td>
-                                    <button class="fas fa-edit fa-lg edit"></button>
-                                    <button class="fas fa-trash fa-lg del"></button>
-                                </td>
-                              </tr>
-                            @endforeach
+                                  </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
