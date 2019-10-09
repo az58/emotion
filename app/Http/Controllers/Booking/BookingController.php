@@ -49,14 +49,14 @@ class BookingController extends Controller
 
 		if(Functions::validateDate($sStartDate) || Functions::validateDate($sEndDate)) {
 			$iDays 					= Functions::Days($sStartDate, $sEndDate);
-			$iPriceDay 				= Vehicle::select('day_price')->where('id', $iVehicle)->get();
+			$iPriceDay 				= Vehicle::select('day_price')->where('id', $iVehicle)->first();
 
-			if($iPriceDay->isEmpty()){
+			if(!is_numeric($iPriceDay->day_price)){
 
 				return response('No vehicle day price returned');
 			}
 
-			$iBooking_price			= ($iDays * $iPriceDay);
+			$iBooking_price			= ($iDays * $iPriceDay->day_price);
 		}
 
 		Booking::insert([

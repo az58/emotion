@@ -429,7 +429,7 @@
                     method: 'POST',
                     url: '/booking/create',
                     data: {
-                        vehicle_id      : $('#vehicle_id').html(),
+                        vehicle_id      : $('#vehicle_id').val(),
                         start_date      : $('#date_checkin').html(),
                         end_date        : $('#date_checkout').html(),
                         state           : $('#place_checkin').html(),
@@ -464,9 +464,10 @@
             var place = $("#place").val();
 
             $('#vehicle_name').html(type_vehicle.toUpperCase()+' '+brand_vehicle.toUpperCase());
-            $('#vehicle_picture').attr('src',picture_vehicle);
-            $('#vehicle_picture').attr('width',100);
-            $('#vehicle_picture').attr('height',100);
+            $('#vehicle_id').attr('value', id_vehicle);
+            $('#vehicle_picture').attr('src', picture_vehicle);
+            $('#vehicle_picture').attr('width', 100);
+            $('#vehicle_picture').attr('height', 100);
 
             $('#date_checkin').html(depart);
             $('#date_checkout').html(arrive);
