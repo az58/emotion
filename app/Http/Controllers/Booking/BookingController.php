@@ -48,7 +48,11 @@ class BookingController extends Controller
 		$sState                		= $request->input('state');
 
 		if(Functions::validateDate($sStartDate) || Functions::validateDate($sEndDate)) {
-			$iDays 					= Functions::Days($sStartDate, $sEndDate);
+			$iDays 					= Functions::days($sStartDate, $sEndDate);
+
+			$sStartDate				= Functions::formateDate($sStartDate);
+			$sEndDate				= Functions::formateDate($sEndDate);
+
 			$iPriceDay 				= Vehicle::select('day_price')->where('id', $iVehicle)->first();
 
 			if(!is_numeric($iPriceDay->day_price)){
