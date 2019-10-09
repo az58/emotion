@@ -33,7 +33,7 @@ Route::get('/logout','Auth\LoginController@logout');
 //---------------------------------------------------------------------------------------
 
 Route::get('/booking','Booking\BookingController@index');
-Route::get('/booking/create','Booking\BookingController@create');
+Route::post('/booking/create','Booking\BookingController@create');
 Route::post('/booking/ajax/store','Booking\AjaxController@store');
 
 //---------------------------------------------------------------------------------------

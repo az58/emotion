@@ -38,6 +38,24 @@ class BookingController extends Controller
      */
     public function create(Request $request)
     {
+
+
+		$iVehicle                  	= (int) $request->input('vehicle_id');
+		$sStartDate                	= $request->input('start_date');
+		$sEndDate                   = $request->input('end_date');
+		$iDays                      = (int) $request->input('state');
+
+
+		Booking::insert([
+			'id_user' 		=> '',
+			'id_vehicle' 	=> $iVehicle ,
+			'start_date' 	=> $sStartDate,
+			'end_date' 		=> $sEndDate,
+
+		]);
+
+
+
 		/**
 		 * Ceci est une vrai clé de test liée à un veritable compte stripe
 		 * @author Lory LETICEE
@@ -47,14 +65,6 @@ class BookingController extends Controller
 		// fake test key : sk_test_4eC39HqLyjWDarjtT1zdp7dc
 		// real test key : sk_test_x5TBqaYsUEpjkNs4V7kavpCQ00itifTEmi
 		Stripe\Stripe::setApiKey('sk_test_x5TBqaYsUEpjkNs4V7kavpCQ00itifTEmi');
-
-
-		$sItem                      = $request->get('car or scooter name');
-		$iPrice                     = $request->get('price of bill');
-		$sDays                      = $request->get('nbr jours location');
-
-
-
 
 		$ev	= Stripe\Event::all(['limit' => 10]);
 

@@ -216,7 +216,7 @@
 
                 <form action="" method="POST" class="" name="">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+                    @csrf
                     <div class="form-group">
                         <label class="col-md-4 control-label">Vous avez choisis</label>
                         <div class="col-md-6">
@@ -250,16 +250,19 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-md-6 col-md-offset-4">
+                        <!--<div class="col-md-6 col-md-offset-4">
                             <a href="/vehicle/store/<?=$vehicle->id."/".$startDate."/".$endDate.'/'.$iDays;?>">
-                                <button type="submit" class="btn btn-primary">PAYER</button>
+                                <button type="submit" class="btn btn-primary">Comfirmer</button>
                             </a>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="fetched-data">
 
                     </div>
                 </form>
+                <div class="col-md-6 col-md-offset-4">
+                    <button type="submit" class="btn btn-primary booking_comfirm">Comfirmer</button>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -429,7 +432,7 @@
                         start_date      : $('#date_checkin').html(),
                         end_date        : $('#date_checkout').html(),
                         state           : $('#place_checkin').html(),
-                        days            : $('input[id="days"]').val(),
+                        days            : $('#days').val(),
 
 
                     },
