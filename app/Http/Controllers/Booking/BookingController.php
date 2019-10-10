@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Booking;
 
 use App\Booking;
@@ -34,19 +36,23 @@ class BookingController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+	/**
+	 * créer une ligne booking et renvoie l'utilisateur vers la page de paiement
+	 * @todo Retrun user to stripe payment page
+	 * @param Request $request
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+	 * @throws Stripe\Exception\ApiErrorException
+	 */
     public function create(Request $request)
     {
 		$iBooking_price				= '';
 
-		$iVehicle                  	= (int) $request->input('vehicle_id');
+		if(!$iVehicle = is_numeric($request->input('vehicle_id')) ? $request->input('vehicle_id'): null) {
+			return response('no valid entry', 419);
+		}
+
 		$sStartDate                	= $request->input('start_date');
 		$sEndDate                   = $request->input('end_date');
-		$sPlace                		= $request->input('place');
 
 		if(Functions::validateDate($sStartDate) || Functions::validateDate($sEndDate)) {
 			$iDays 					= Functions::days($sStartDate, $sEndDate);
@@ -61,73 +67,86 @@ class BookingController extends Controller
 				return response('No vehicle day price returned');
 			}
 
-			$iPrice			= ($iDays * $iPriceDay->day_price);
-
+			$iPrice					= ($iDays * $iPriceDay->day_price);
+			$sPlace                	= htmlspecialchars($request->input('place'));
 			Booking::insert([
 				'user_id' 			=> Auth::id(),
-				'vehicle_id' 		=> $iVehicle ,
+				'vehicle_id' 		=> (int) $iVehicle ,
 				'start_date' 		=> $sStartDate,
 				'end_date' 			=> $sEndDate,
-				'place' 			=> $sPlace,
+				'place' 			=> strip_tags($sPlace),
 				'price' 			=> $iPrice,
 				'status' 			=> 'waiting_payment',
 
 			]);
+
+			/**
+			 *@author Mounia LYAF
+			 *
+			 *
+			 * ICI MOUNIA TU PEUX CREER TON APEL STRIPE AVEC LES INFOS DU DESSUS SI NECESSAIRE ;)
+			 *
+			 *
+			 *
+			 *
+			 *
+			 *
+			 */
 
 			return response('Nous avons bien enregistré votre choix, vous allez être redirigé vers la page de paiement...');
 		}
 
 
 
-		/**
-		 * Ceci est une vrai clé de test liée à un veritable compte stripe
-		 * @author Lory LETICEE
-		 * @see https://stripe.com/docs/api
-		 */
-		$intent ='';
-		// fake test key : sk_test_4eC39HqLyjWDarjtT1zdp7dc
-		// real test key : sk_test_x5TBqaYsUEpjkNs4V7kavpCQ00itifTEmi
-		Stripe\Stripe::setApiKey('sk_test_x5TBqaYsUEpjkNs4V7kavpCQ00itifTEmi');
-
-		$ev	= Stripe\Event::all(['limit' => 10]);
-
+//		/**
+//		 * Ceci est une vrai clé de test liée à un veritable compte stripe
+//		 * @author Lory LETICEE
+//		 * @see https://stripe.com/docs/api
+//		 */
+//		$intent ='';
+//		// fake test key : sk_test_4eC39HqLyjWDarjtT1zdp7dc
+//		// real test key : sk_test_x5TBqaYsUEpjkNs4V7kavpCQ00itifTEmi
+//		Stripe\Stripe::setApiKey('sk_test_x5TBqaYsUEpjkNs4V7kavpCQ00itifTEmi');
+//
+//		$ev	= Stripe\Event::all(['limit' => 10]);
+//
 //		Stripe\Charge::create([
 //			"amount" => 2000,
 //			"currency" => "usd",
 //			"source" => "tok_mastercard", // obtained with Stripe.js
 //			"metadata" => ["order_id" => "6735"]
 //		]);
-
-		$intent = Stripe\PaymentIntent::create([
-			'amount' => 1099,
-			'currency' => 'usd',
-		]);
-
-		$session = Stripe\Checkout\Session::create([
-			'payment_method_types' => ['card'],
-			'line_items' => [[
-				'name' => "Cucumber from Roger's Farm",
-				'amount' => 200,
-				'currency' => 'usd',
-				'quantity' => 10,
-			]],
-			'payment_intent_data' => [
-				//'application_fee_amount' => 200,
-			],
-			'success_url' => 'https://example.com/success',
-			'cancel_url' => 'https://example.com/cancel',
-		],
-        [
-            'transfer_data' => [
-                'destination' => 'acct_1F4yV2Gz0utTc5r5',
-            ],
-		]);
-
-
-		$ch	= Stripe\Charge::all(['limit' => 10]);
-
-
-		return view('booking/create', compact('session'));
+//
+//		$intent = Stripe\PaymentIntent::create([
+//			'amount' => 1099,
+//			'currency' => 'usd',
+//		]);
+//
+//		$session = Stripe\Checkout\Session::create([
+//			'payment_method_types' => ['card'],
+//			'line_items' => [[
+//				'name' => "Cucumber from Roger's Farm",
+//				'amount' => 200,
+//				'currency' => 'usd',
+//				'quantity' => 10,
+//			]],
+//			'payment_intent_data' => [
+//				//'application_fee_amount' => 200,
+//			],
+//			'success_url' => 'https://example.com/success',
+//			'cancel_url' => 'https://example.com/cancel',
+//		],
+//        [
+//            'transfer_data' => [
+//                'destination' => 'acct_1F4yV2Gz0utTc5r5',
+//            ],
+//		]);
+//
+//
+//		$ch	= Stripe\Charge::all(['limit' => 10]);
+//
+//
+		return response('a wrong date was past', 501);
     }
 
     /**

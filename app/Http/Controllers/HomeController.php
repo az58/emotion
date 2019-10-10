@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+declare(strict_types=1);
 
+namespace App\Http\Controllers;
 
 class HomeController extends Controller
 {
@@ -53,7 +54,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Supprime les doublons pour la ville marseille
+     * Supprime les doublons pour la ville de Marseille
      * @return array
      */
     protected function _cleanMarseille() {
