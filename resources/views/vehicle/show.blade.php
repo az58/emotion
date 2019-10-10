@@ -304,8 +304,6 @@
             </div>
         </div>
     </div>
-
-
     <!-- Footer Widget End -->
 
     <!-- Footer Bottom Start -->
@@ -402,6 +400,7 @@
 
         $('.booking_comfirm').click(function() {
             @auth
+                $('.modal').click();
             $.ajax({
                 method: 'POST',
                 url: '/booking/create',
@@ -411,20 +410,17 @@
                     end_date        : $('#date_checkout').html(),
                     place           : $('#place_checkin').html(),
                     days            : $('#days').val(),
-
-
                 },
                 dataType: "json"
             })
                 .done(function (response) {
-                    console.log(response);
-                    $('.modal-dialog').html('');
+                    //afficher la reponse dans une div ou un tooltips ou une notif
                 })
                 .fail(function (data, status) {
 
                 });
             @else
-                window.location.href = "/login"
+                window.location.href = "/login";
             @endauth
         });
     });
