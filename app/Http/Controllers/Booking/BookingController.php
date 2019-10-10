@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Booking;
 
 use App\Booking;
@@ -45,10 +47,12 @@ class BookingController extends Controller
     {
 		$iBooking_price				= '';
 
-		$iVehicle                  	= (int) $request->input('vehicle_id');
+		if(!$iVehicle = is_numeric($request->input('vehicle_id')) ? $request->input('vehicle_id'): null) {
+			return response('no valid entry', 419);
+		}
+
 		$sStartDate                	= $request->input('start_date');
 		$sEndDate                   = $request->input('end_date');
-		$sPlace                		= $request->input('place');
 
 		if(Functions::validateDate($sStartDate) || Functions::validateDate($sEndDate)) {
 			$iDays 					= Functions::days($sStartDate, $sEndDate);
@@ -63,14 +67,14 @@ class BookingController extends Controller
 				return response('No vehicle day price returned');
 			}
 
-			$iPrice			= ($iDays * $iPriceDay->day_price);
-
+			$iPrice					= ($iDays * $iPriceDay->day_price);
+			$sPlace                	= htmlspecialchars($request->input('place'));
 			Booking::insert([
 				'user_id' 			=> Auth::id(),
-				'vehicle_id' 		=> $iVehicle ,
+				'vehicle_id' 		=> (int) $iVehicle ,
 				'start_date' 		=> $sStartDate,
 				'end_date' 			=> $sEndDate,
-				'place' 			=> $sPlace,
+				'place' 			=> strip_tags($sPlace),
 				'price' 			=> $iPrice,
 				'status' 			=> 'waiting_payment',
 
