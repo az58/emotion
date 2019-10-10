@@ -55,16 +55,18 @@
                             </thead>
                             <tbody>
                                 @foreach ($bookings as  $row)
-                                    <tr>
+                                    <tr id="{{$row->id}}">
                                         <td>
                                             {{$row->id}}
                                             <input type="hidden" value=" {{$row->id}} " name="id_booking"/>
                                         </td>
                                         <td>
-                                            <input type="text" value=" {{$row->user_id}} " size="3" name="user_id"/>
+                                            {{$row->user_id}}
+                                            <input type="hidden" value=" {{$row->id}} " name="user_id"/>
                                         </td>
                                         <td>
-                                            <input type="text" value=" {{$row->vehicle_id}} " size="3" name="vehicle_id"/>
+                                            {{$row->vehicle_id}}
+                                            <input type="hidden" value=" {{$row->id}} " name="vehicle_id"/>
                                         </td>
                                         <td>
                                             <input type="text" value=" {{$row->start_date}} " size="6" name="start_date"/>
@@ -168,28 +170,28 @@
                 }
             })
 
-            /*$('.del').click(function(){
+            $('.del').click(function(){
                 if (confirm("Voulez-vous vraiment supprimer cet utilisateur ?")) {
-                    var idTr    =$(this).parent().parent().attr('id');
+                    var idBooking    =$(this).parent().parent().attr('id');
 
                     $.ajax({
                         method: 'POST',
                         url: '/admin/booking/ajax/del',
                         data: {
-                            id_booking       : idTr,
+                            id_booking       : idBooking,
                         },
                         dataType: "json"
                     })
-                        .done(function(id_user) {
+                        .done(function(id_booking) {
                             //Recupère l'élément <tr> qui a un attribut 'id' égal à l'identifiant de l'utilisateur
                             // que notre controlleur nous renvoie en message de reponse json
-                            $('tr[id="'+id_user+'"]').remove()
+                            $('tr[id="'+id_booking+'"]').remove()
                         })
                         .fail(function(data,status) {
                             console.log("ok")
                         });
                 }
-            });*/
+            });
 
         });
 

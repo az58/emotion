@@ -432,7 +432,7 @@
                         vehicle_id      : $('#vehicle_id').val(),
                         start_date      : $('#date_checkin').html(),
                         end_date        : $('#date_checkout').html(),
-                        state           : $('#place_checkin').html(),
+                        place           : $('#place_checkin').html(),
                         days            : $('#days').val(),
 
 
@@ -440,8 +440,10 @@
                     dataType: "json"
                 })
                 .done(function (response) {
-                    $('#myModal').modal('hide');
                     console.log(response);
+
+                    $('#modal').modal('toggle');
+                    $('.modal-backdrop').hide();
 
                 })
                 .fail(function (data, status) {
@@ -455,15 +457,15 @@
         //----------------------------------------------------------------------------
 
         $('.modal-booking').click(function(){
-            var id_vehicle= $(this).parent().find("p[class='id_vehicle']").attr('id');
-            var type_vehicle= $(this).parent().find("p[class='type_vehicle']").attr('id');
-            var brand_vehicle= $(this).parent().find("p[class='brand_vehicle']").attr('id');
-            var price_vehicle= $(this).parent().find("span[class='price']").attr('id');
-            var iDays= $(this).parent().find("input[name='days']").attr('id');
-            var picture_vehicle= $(this).parent().find("img[class='picture_vehicle']").attr('id');
-            var depart = $("#start_date").val();
-            var arrive = $("#end_date").val();
-            var place = $("#place").val();
+            var id_vehicle      = $(this).parent().find("p[class='id_vehicle']").attr('id');
+            var type_vehicle    = $(this).parent().find("p[class='type_vehicle']").attr('id');
+            var brand_vehicle   = $(this).parent().find("p[class='brand_vehicle']").attr('id');
+            var price_vehicle   = $(this).parent().find("span[class='price']").attr('id');
+            var iDays           = $(this).parent().find("input[name='days']").attr('id');
+            var picture_vehicle = $(this).parent().find("img[class='picture_vehicle']").attr('id');
+            var depart          = $("#start_date").val();
+            var arrive          = $("#end_date").val();
+            var place           = $("#place").val();
 
             $('#vehicle_name').html(type_vehicle.toUpperCase()+' '+brand_vehicle.toUpperCase());
             $('#vehicle_id').attr('value', id_vehicle);

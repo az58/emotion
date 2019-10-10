@@ -34,6 +34,7 @@ Route::get('/logout','Auth\LoginController@logout');
 
 Route::get('/booking','Booking\BookingController@index');
 Route::post('/booking/create','Booking\BookingController@create');
+
 Route::post('/booking/ajax/store','Booking\AjaxController@store');
 
 //---------------------------------------------------------------------------------------
@@ -92,5 +93,6 @@ Route::post('/admin/vehicle/ajax/del', 'Admin\Vehicle\AjaxController@delete')->m
 //---------------------------------------------------------------------------------------
 
 Route::post('/admin/booking/ajax/edit', 'Admin\Booking\AjaxController@edit')->middleware('admin');
+Route::post('/admin/booking/ajax/del', 'Admin\Booking\AjaxController@delete')->middleware('admin');
 
 //---------------------------------------------------------------------------------------
