@@ -54,7 +54,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Supprime les doublons pour la ville marseille
+     * Supprime les doublons pour la ville de Marseille
      * @return array
      */
     protected function _cleanMarseille() {
