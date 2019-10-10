@@ -118,22 +118,18 @@
           <nav class="mainmenu alignright">
             <ul>
               <li class="active"><a href="#">Home</a></li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="/login">Mon compte</a></li>
               <li><a href="/vehicle/search">Cars</a></li>
-              <li><a href="index.html">Pages</a>
+              <li><a href="/login">Mon compte</a>
                 <ul>
-                  <li><a href="package.html">Pricing</a></li>
-                  <li><a href="driver.html">Driver</a></li>
-                  <li><a href="faq.html">FAQ</a></li>
-                  <li><a href="gallery.html">Gallery</a></li>
-                  <li><a href="help-desk.html">Help Desk</a></li>
-                  <li><a href="login.html">Log In</a></li>
-                  <li><a href="register.html">Register</a></li>
-                  <li><a href="404.html">404</a></li>
+                  <li><a href="/user/profil">Profile</a></li>
+                  <li><a href="/user/booking">Mes locations</a></li>
+                  <li><a href="/logout">Sortir</a></li>
                 </ul>
               </li>
-              <li><a href="/admin">Admin</a></li>
+              {{----}}
+                <li><a href="/admin">Admin</a></li>
+              {{----}}
+              <li><a href="about.html">About</a></li>
               <li><a href="contact.html">Contact</a></li>
             </ul>
           </nav>
@@ -1163,35 +1159,7 @@
         <!-- Single Footer Widget Start -->
         <div class="col-lg-4 col-md-6">
           <div class="single-footer-widget">
-            <h2>Recent Posts</h2>
-            <div class="widget-body">
-              <ul class="recent-post">
-                <li>
-                  <a href="#">
-                    Hello Bangladesh!
-                    <i class="fa fa-long-arrow-right"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    Lorem ipsum dolor sit amet
-                    <i class="fa fa-long-arrow-right"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    Hello Bangladesh!
-                    <i class="fa fa-long-arrow-right"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    consectetur adipisicing elit?
-                    <i class="fa fa-long-arrow-right"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
+            {{----}}
           </div>
         </div>
         <!-- Single Footer Widget End -->

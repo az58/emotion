@@ -31,14 +31,14 @@ class VehicleController extends Controller
         $iDays                              = 0;
         $vehicles                           = [];
 
-        $sPlace								= strip_tags($request->query('cities', 'paris'));
-        $sCategory                          = strip_tags($request->query('category', ''));
-        $sCat                               = in_array(strtolower($sCategory),Constant::$categories) ;
+        $sPlace								= strip_tags($request->input('cities'));
+        $sCategory                          = strip_tags($request->input('category'));
         $startDate                          = strip_tags($request->startDate);
         $endDate                            = strip_tags($request->endDate);
 
         $iMaxPrice                          = (is_numeric($request->price_end) ? $request->price_end : null) ;
 
+        $sCat                               = in_array(strtolower($sCategory),Constant::$categories) ;
         if (!$sCat){
             $vehicles 						= Vehicle::where('current_place', htmlentities($sPlace))->whereBetween('day_price', [0, $iMaxPrice])->get();
         }

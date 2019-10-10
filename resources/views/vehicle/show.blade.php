@@ -93,42 +93,22 @@
                 <div class="col-lg-8 d-none d-xl-block">
                     <nav class="mainmenu alignright">
                         <ul>
-                            <li><a href="#">Home</a>
+                            <li><a href="/">Home</a></li>
+                            {{----}}
+                            <li><a href="/admin">Admin</a></li>
+                            {{----}}
+                            <li><a href="/about">About</a></li>
+
+                            <li class="active"><a href="/vehicle/search">Cars</a></li>
+
+                            <li><a href="/account">Mon compte</a>
                                 <ul>
-                                    <li><a href="index.html">Home 1</a></li>
-                                    <li><a href="index2.html">Home 2</a></li>
-                                    <li><a href="index3.html">Home 3</a></li>
+                                    <li><a href="/profil">Profile</a></li>
+                                    <li><a href="/user/location">Mes locations</a></li>
+                                    <li><a href="/logout">Partir</a></li>
                                 </ul>
                             </li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="services.html">services</a></li>
-                            <li><a href="#">Cars</a>
-                                <ul>
-                                    <li><a href="car-left-sidebar.html">Car Left Sidebar</a></li>
-                                    <li><a href="car-right-sidebar.html">Car Right Sidebar</a></li>
-                                    <li><a href="car-without-sidebar.html">Car Without Sidebar</a></li>
-                                    <li><a href="car-details.html">Car Details</a></li>
-                                </ul>
-                            </li>
-                            <li class="active"><a href="index.html">Pages</a>
-                                <ul>
-                                    <li><a href="package.html">Pricing</a></li>
-                                    <li><a href="driver.html">Driver</a></li>
-                                    <li><a href="faq.html">FAQ</a></li>
-                                    <li><a href="gallery.html">Gallery</a></li>
-                                    <li><a href="help-desk.html">Help Desk</a></li>
-                                    <li><a href="login.html">Log In</a></li>
-                                    <li><a href="register.html">Register</a></li>
-                                    <li><a href="404.html">404</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Blog</a>
-                                <ul>
-                                    <li><a href="article.html">Blog Page</a></li>
-                                    <li><a href="article-details.html">Blog Details</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="/contact">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -149,11 +129,8 @@
                     <!-- Filtering Menu -->
                     <div class="popucar-menu text-center">
                         <a href="#" data-filter="*" class="active">all</a>
-                        <a href="#" data-filter=".con">Conver</a>
-                        <a href="#" data-filter=".hat">Truck</a>
-                        <a href="#" data-filter=".mpv">MPV</a>
-                        <a href="#" data-filter=".sedan">Sedan</a>
-                        <a href="#" data-filter=".suv">SUV</a>
+                        <a href="#" data-filter=".sedan">Car</a>
+                        <a href="#" data-filter=".suv">Scooter</a>
                     </div>
                     <!-- Filtering Menu -->
 
@@ -189,7 +166,7 @@
                                             <a href="#">AIR CONDITION</a>
                                         </div>
                                     </div>
-                                    <button data-toggle="modal" class="modal-booking" data-target="#myModal">Réserver</button>
+                                    <button data-toggle="modal" class=" get-touch map-show modal-booking" data-target="#myModal">Réserver</button>
                                 </div>
                             </div>
                         @endforeach
@@ -302,35 +279,7 @@
                 <!-- Single Footer Widget Start -->
                 <div class="col-lg-4 col-md-6">
                     <div class="single-footer-widget">
-                        <h2>Recent Posts</h2>
-                        <div class="widget-body">
-                            <ul class="recent-post">
-                                <li>
-                                    <a href="#">
-                                        Hello Bangladesh!
-                                        <i class="fa fa-long-arrow-right"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Lorem ipsum dolor sit amet
-                                        <i class="fa fa-long-arrow-right"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Hello Bangladesh!
-                                        <i class="fa fa-long-arrow-right"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        consectetur adipisicing elit?
-                                        <i class="fa fa-long-arrow-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                        {{----}}
                     </div>
                 </div>
                 <!-- Single Footer Widget End -->
@@ -413,49 +362,6 @@
 <script src="{{ asset('front/js/main.js') }}"></script>
 <script>
     $(function(){
-        //----------------------------------------------------------------------------
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        //----------------------------------------------------------------------------
-
-        $('.booking_comfirm').click(function() {
-            @auth
-                $.ajax({
-                    method: 'POST',
-                    url: '/booking/create',
-                    data: {
-                        vehicle_id      : $('#vehicle_id').val(),
-                        start_date      : $('#date_checkin').html(),
-                        end_date        : $('#date_checkout').html(),
-                        place           : $('#place_checkin').html(),
-                        days            : $('#days').val(),
-
-
-                    },
-                    dataType: "json"
-                })
-                .done(function (response) {
-                    console.log(response);
-
-                    $('#modal').modal('toggle');
-                    $('.modal-backdrop').hide();
-
-                })
-                .fail(function (data, status) {
-
-                });
-            @else
-                window.location.href = "/login"
-            @endauth
-        });
-
-        //----------------------------------------------------------------------------
-
         $('.modal-booking').click(function(){
             var id_vehicle      = $(this).parent().find("p[class='id_vehicle']").attr('id');
             var type_vehicle    = $(this).parent().find("p[class='type_vehicle']").attr('id');
@@ -482,6 +388,44 @@
                 iDays=1;
             }
             $('#booking_price').html((iDays*price_vehicle));
+        });
+
+        //----------------------------------------------------------------------------
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        //----------------------------------------------------------------------------
+
+        $('.booking_comfirm').click(function() {
+            @auth
+            $.ajax({
+                method: 'POST',
+                url: '/booking/create',
+                data: {
+                    vehicle_id      : $('#vehicle_id').val(),
+                    start_date      : $('#date_checkin').html(),
+                    end_date        : $('#date_checkout').html(),
+                    place           : $('#place_checkin').html(),
+                    days            : $('#days').val(),
+
+
+                },
+                dataType: "json"
+            })
+                .done(function (response) {
+                    console.log(response);
+                    $('.modal-dialog').html('');
+                })
+                .fail(function (data, status) {
+
+                });
+            @else
+                window.location.href = "/login"
+            @endauth
         });
     });
 </script>

@@ -87,7 +87,7 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="text" value=" {{$row->place}} " size="3" name="place"/>
+                                            <input type="text" value=" {{$row->place}} " size="6" name="place"/>
                                         </td>
                                         <td>
                                             <input type="text" value=" {{$row->price}} " size="3" name="price"/>

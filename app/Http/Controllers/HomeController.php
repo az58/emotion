@@ -10,6 +10,8 @@ class HomeController extends Controller
     protected $_aCountries      = [];
     protected $_localCountry    = 'France';
 
+    //---------------------------------------------------------------------------------------
+
     /**
      * Create a new controller instance.
      *
@@ -19,6 +21,8 @@ class HomeController extends Controller
     {
 
     }
+
+    //---------------------------------------------------------------------------------------
 
     /**
      * Show the application dashboard.
@@ -52,6 +56,18 @@ class HomeController extends Controller
 
         return view('home',compact( 'aCities') );
     }
+
+    //---------------------------------------------------------------------------------------
+
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function cgu() {
+        return view('layouts/cgu');
+    }
+
+    //---------------------------------------------------------------------------------------
 
     /**
      * Supprime les doublons pour la ville de Marseille

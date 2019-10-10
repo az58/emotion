@@ -30,6 +30,12 @@ Route::get('/home', 'HomeController@index')->name('home');
  */
 Route::get('/logout','Auth\LoginController@logout');
 
+
+//---------------------------------------------------------------------------------------
+
+
+Route::get('/about','HomeController@cgu');
+
 //---------------------------------------------------------------------------------------
 
 Route::get('/booking','Booking\BookingController@index');
@@ -42,9 +48,6 @@ Route::post('/booking/ajax/store','Booking\AjaxController@store');
 
 Route::get('/vehicle/store/{vehicle}/{startDate}/{endDate}/{days}','Booking\BookingController@store');//->where('vehicle', '[1-10000]')
     //->where('start', '[A-Za-z]+')
-    //->where('end', '[A-Za-z]+')
-    //->where('days', '[A-Za-z]+');
-
 
 Route::post('/vehicle/search','Vehicle\VehicleController@search');
 Route::get('/vehicle/search','Vehicle\VehicleController@search');
