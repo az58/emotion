@@ -20,6 +20,19 @@ class Functions
     }
 
 	/**
+	 * Vérifie si l'heure est bien valide
+	 * @param $hour / l'heure passé par l'utilisateur
+	 * @param string $format le format de date nécessaire à la validation au test
+	 * @return bool
+	 */
+	public static function validateHour(string $hour, string $format = 'H:i')
+	{
+		$d = \DateTime::createFromFormat($format, $hour);
+		// The Y ( 4 digits year ) returns TRUE for any integer with any number of digits so changing the comparison from == to === fixes the issue.
+		return $d && $d->format($format) === $hour;
+	}
+
+	/**
 	 * @param string $sStartDate
 	 * @param string $sEndDate
 	 * @return float|int

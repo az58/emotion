@@ -164,7 +164,6 @@
               </div>
               {{-- var days--}}
               <?php
-
                 $sToday     = Carbon\Carbon::today();
                 $sAWeek     = Carbon\Carbon::tomorrow()->addDays(7);
               ?>
@@ -173,10 +172,11 @@
               <div class="pick-up-date book-item">
                 <h4>PICK-UP DATE:</h4>
                 <input id="startDate" name="startDate" placeholder="<?= $sToday->format('m/d/Y');?>" value="<?= $sToday->format('m/d/Y');?>" />
-
+                <input type="time" id="startHour" name="startHour" min="07:00" max="18:00" value="07:00" required>
                 <div class="return-car">
                   <h4>Return DATE:</h4>
                   <input id="endDate" name="endDate" placeholder="<?= $sAWeek->format('m/d/Y');?>" value="<?= $sAWeek->format('m/d/Y');?>" />
+                  <input type="time" id="endHour" name="endHour" min="07:00" max="18:00" value="18:00" required>
                 </div>
               </div>
               <!--== Car Choose ==-->

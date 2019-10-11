@@ -20,11 +20,13 @@ class VehicleController extends Controller
         if (!$request->has(Constant::$needles)) {
             $vehicles 						= Vehicle::all();
             $iDays                          = 1;
-            $startDate                      = \Date('m/d/Y', time());
-            $endDate                        = \Date('m/d/Y', time());
+            $startDate                      = Date('m/d/Y', time());
+            $endDate                        = Date('m/d/Y', time());
+            $starHour                      	= '07:00';
+            $endHour                        = '18:00';
             $sPlace                         = 'paris';
 
-            return view('vehicle/show', compact('vehicles' , 'iDays', 'startDate', 'endDate', 'sPlace' ));
+            return view('vehicle/show', compact('vehicles' , 'iDays', 'startDate', 'endDate', 'sPlace', 'starHour', 'endHour'));
         }
 
         /** nombre de jour entre les deux dates selectionnées par l'utilisateur */
@@ -33,8 +35,10 @@ class VehicleController extends Controller
 
         $sPlace								= strip_tags($request->input('cities'));
         $sCategory                          = strip_tags($request->input('category'));
-        $startDate                          = strip_tags($request->startDate);
-        $endDate                            = strip_tags($request->endDate);
+        $startDate                          = strip_tags($request->input('startDate'));
+        $endDate                            = strip_tags($request->input('endDate'));
+		$startHour                      	= strip_tags($request->input('startHour '));
+		$endHour                        	= strip_tags($request->input('endHour '));
 
         $iMaxPrice                          = (is_numeric($request->price_end) ? $request->price_end : null) ;
 
@@ -51,6 +55,9 @@ class VehicleController extends Controller
             if (!Functions::validateDate($startDate) || !Functions::validateDate($endDate)) {
                 return response('error');
             }
+			if (!Functions::validateHour($startHour) || !Functions::validateHour($endHour)) {
+				return response('error');
+			}
 
             $iNoAbsoluteDay                 = round((strtotime($startDate) - strtotime($endDate)) / (60 * 60 * 24));
             $iDays                          = abs($iNoAbsoluteDay);
