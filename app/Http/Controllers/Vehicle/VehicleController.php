@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Vehicle;
 
 use App\Http\Controllers\Controller;
-use App\Providers\Outils\Functions;
-use App\Providers\Outils\Constant;
+use App\Providers\Tools\Tools;
+use App\Providers\Tools\Constant;
 use App\Vehicle;
 
 use Illuminate\Http\Request;
@@ -57,11 +57,11 @@ class VehicleController extends Controller
         }
 
         if (!$vehicles->isEmpty()){
-            if (!Functions::validateDate($startDate) || !Functions::validateDate($endDate)) {
+            if (!Tools::validateDate($startDate) || !Tools::validateDate($endDate)) {
                redirect('vehicle/search');
             }
 
-			if (!Functions::validateHour($startHour) || !Functions::validateHour($endHour)) {
+			if (!Tools::validateHour($startHour) || !Tools::validateHour($endHour)) {
 				redirect('vehicle/search');
 			}
 

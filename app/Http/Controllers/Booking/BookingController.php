@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Booking;
 
 use App\Booking;
 use App\Http\Controllers\Controller;
-use App\Providers\Outils\Functions;
+use App\Providers\Tools\Tools;
 use App\Vehicle;
 
 use Illuminate\Http\Request;
@@ -56,17 +56,17 @@ class BookingController extends Controller
 		$sStartHour                	= $request->input('start_hour');
 		$sEndHour                   = $request->input('end_hour');
 
-		if(!Functions::validateDate($sStartDate) || !Functions::validateDate($sEndDate)) {
+		if(!Tools::validateDate($sStartDate) || !Tools::validateDate($sEndDate)) {
 			return response('Date troubles', 501);
 		}
-		if(!Functions::validateHour($sStartHour) || !Functions::validateHour($sEndHour)) {
+		if(!Tools::validateHour($sStartHour) || !Tools::validateHour($sEndHour)) {
 			return response('Hour trouble', 501);
 		}
 
-			$iDays 					= Functions::days($sStartDate, $sEndDate);
+			$iDays 					= Tools::days($sStartDate, $sEndDate);
 
-			$sStartDate				= Functions::formateDate($sStartDate);
-			$sEndDate				= Functions::formateDate($sEndDate);
+			$sStartDate				= Tools::formateDate($sStartDate);
+			$sEndDate				= Tools::formateDate($sEndDate);
 
 			$iPriceDay 				= Vehicle::select('day_price')->where('id', $iVehicle)->first();
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Providers\Outils;
+namespace App\Providers\Tools;
 
 class Constant
 {

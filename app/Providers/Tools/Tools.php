@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Providers\Outils;
+namespace App\Providers\Tools;
 
-class Functions
+class Tools
 {
 	/**
 	 * Vérifie si une date est bien valide
