@@ -53,8 +53,16 @@ class BookingController extends Controller
 
 		$sStartDate                	= $request->input('start_date');
 		$sEndDate                   = $request->input('end_date');
+		$sStartHour                	= $request->input('start_hour');
+		$sEndHour                   = $request->input('end_hour');
 
-		if(Functions::validateDate($sStartDate) || Functions::validateDate($sEndDate)) {
+		if(!Functions::validateDate($sStartDate) || !Functions::validateDate($sEndDate)) {
+			return response('Date troubles', 501);
+		}
+		if(!Functions::validateHour($sStartHour) || !Functions::validateHour($sEndHour)) {
+			return response('Hour trouble', 501);
+		}
+
 			$iDays 					= Functions::days($sStartDate, $sEndDate);
 
 			$sStartDate				= Functions::formateDate($sStartDate);
@@ -64,7 +72,7 @@ class BookingController extends Controller
 
 			if(!is_numeric($iPriceDay->day_price)){
 
-				return response('No vehicle day price returned');
+				return response('No vehicle day price returned', 501);
 			}
 
 			$iPrice					= ($iDays * $iPriceDay->day_price);
@@ -74,6 +82,8 @@ class BookingController extends Controller
 				'vehicle_id' 		=> (int) $iVehicle ,
 				'start_date' 		=> $sStartDate,
 				'end_date' 			=> $sEndDate,
+				'start_hour' 		=> $sStartHour,
+				'end_hour' 			=> $sEndHour,
 				'place' 			=> strip_tags($sPlace),
 				'price' 			=> $iPrice,
 				'status' 			=> 'waiting_payment',
@@ -94,7 +104,7 @@ class BookingController extends Controller
 			 */
 
 			return response('Nous avons bien enregistré votre choix, vous allez être redirigé vers la page de paiement...');
-		}
+
 
 
 
@@ -146,7 +156,6 @@ class BookingController extends Controller
 //		$ch	= Stripe\Charge::all(['limit' => 10]);
 //
 //
-		return response('a wrong date was past', 501);
     }
 
     /**

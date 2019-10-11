@@ -26,7 +26,7 @@ class Functions
 	 */
 	public static function validateHour(string $hour)
 	{
-		$time = preg_match("/^(?:2[0-4]|[01][1-9]|10)([0-5][0-9])$/", $hour);
+		$time = preg_match("/^(?:2[0-4]|[01][1-9]|10):([0-5][0-9])$/", $hour);
 
 		return $time;
 	}

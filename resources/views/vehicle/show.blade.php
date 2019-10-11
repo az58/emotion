@@ -137,6 +137,8 @@
                     <div class="row popular-car-gird">
                         <input type="hidden" id="start_date" value="{{ $startDate }}">
                         <input type="hidden" id="end_date" value="{{ $endDate }}">
+                        <input type="hidden" id="start_hour" value="{{ $startHour }}">
+                        <input type="hidden" id="end_hour" value="{{ $endHour }}">
                         <input type="hidden" id="place" value="{{ $sPlace }}">
                         <!-- Single Popular Car Start -->
 
@@ -207,6 +209,7 @@
                         <label class="col-md-4 control-label">Départ</label>
                         <div class="col-md-6">
                             <span id="date_checkin"></span>
+                            <span id="hour_checkin"></span>
                             <span id="place_checkin"></span>
                             <small class="help-block"></small>
                         </div>
@@ -216,6 +219,7 @@
                         <label class="col-md-4 control-label">Retour</label>
                         <div class="col-md-6">
                             <span id="date_checkout"></span>
+                            <span id="hour_checkout"></span>
                             <span id="place_checkout"></span>
                             <small class="help-block"></small>
                         </div>
@@ -369,6 +373,8 @@
             var picture_vehicle = $(this).parent().find("img[class='picture_vehicle']").attr('id');
             var depart          = $("#start_date").val();
             var arrive          = $("#end_date").val();
+            var departHour      = $("#start_hour").val();
+            var arriveHour      = $("#end_hour").val();
             var place           = $("#place").val();
 
             $('#vehicle_name').html(type_vehicle.toUpperCase()+' '+brand_vehicle.toUpperCase());
@@ -379,6 +385,8 @@
 
             $('#date_checkin').html(depart);
             $('#date_checkout').html(arrive);
+            $('#hour_checkin').html(departHour);
+            $('#hour_checkout').html(arriveHour);
             $('#place_checkin').html(place);
             $('#place_checkout').html(place);
 
@@ -408,6 +416,8 @@
                     vehicle_id      : $('#vehicle_id').val(),
                     start_date      : $('#date_checkin').html(),
                     end_date        : $('#date_checkout').html(),
+                    start_hour      : $('#hour_checkin').html(),
+                    end_hour        : $('#hour_checkout').html(),
                     place           : $('#place_checkin').html(),
                     days            : $('#days').val(),
                 },

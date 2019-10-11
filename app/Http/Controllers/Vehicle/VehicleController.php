@@ -69,7 +69,7 @@ class VehicleController extends Controller
             $iDays                          = abs($iNoAbsoluteDay);
         }
 
-        return view('vehicle/show', compact('vehicles' , 'iDays', 'startDate', 'endDate' , 'sPlace', 'starHour', 'endHour'));
+        return view('vehicle/show', compact('vehicles' , 'iDays', 'startDate', 'endDate' , 'sPlace', 'startHour', 'endHour'));
     }
 //--------------------------------------------------------------------------------------
 }
