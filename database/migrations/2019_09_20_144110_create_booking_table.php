@@ -19,6 +19,8 @@ class CreateBookingTable extends Migration
             $table->UnsignedbigInteger('vehicle_id')->unsigned();
             $table->date('start_date');
             $table->date('end_date');
+            $table->time('start_hour');
+            $table->time('end_hour');
             $table->enum('status',['waiting_payment','payed','running','finished']);
             $table->string('place',100)->nullable();
             $table->string('price',20)->nullable();

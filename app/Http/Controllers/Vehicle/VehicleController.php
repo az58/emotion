@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 
 class VehicleController extends Controller
 {
+	protected $_iDays						= 1;
+	protected $_starHour					= '07:00';
+	protected $_endHour						= '18:00';
+	protected $_sPlace						= 'paris';
+
 	/**
 	 * Récupère les elements de recherche d'un vehicule entrées par lutilisateur et retourne une liste correspondante
 	 * @param Request $request
@@ -19,12 +24,12 @@ class VehicleController extends Controller
 	public function search(Request $request){
         if (!$request->has(Constant::$needles)) {
             $vehicles 						= Vehicle::all();
-            $iDays                          = 1;
+            $iDays                          = $this->_iDays;
             $startDate                      = Date('m/d/Y', time());
             $endDate                        = Date('m/d/Y', time());
-            $starHour                      	= '07:00';
-            $endHour                        = '18:00';
-            $sPlace                         = 'paris';
+            $starHour                      	= $this->_starHour;
+            $endHour                        = $this->_endHour;
+            $sPlace                         = $this->_sPlace;
 
             return view('vehicle/show', compact('vehicles' , 'iDays', 'startDate', 'endDate', 'sPlace', 'starHour', 'endHour'));
         }
@@ -37,8 +42,8 @@ class VehicleController extends Controller
         $sCategory                          = strip_tags($request->input('category'));
         $startDate                          = strip_tags($request->input('startDate'));
         $endDate                            = strip_tags($request->input('endDate'));
-		$startHour                      	= strip_tags($request->input('startHour '));
-		$endHour                        	= strip_tags($request->input('endHour '));
+		$startHour                      	= strip_tags($request->input('startHour'));
+		$endHour                        	= strip_tags($request->input('endHour'));
 
         $iMaxPrice                          = (is_numeric($request->price_end) ? $request->price_end : null) ;
 
@@ -53,17 +58,18 @@ class VehicleController extends Controller
 
         if (!$vehicles->isEmpty()){
             if (!Functions::validateDate($startDate) || !Functions::validateDate($endDate)) {
-                return response('error');
+               redirect('vehicle/search');
             }
+
 			if (!Functions::validateHour($startHour) || !Functions::validateHour($endHour)) {
-				return response('error');
+				redirect('vehicle/search');
 			}
 
             $iNoAbsoluteDay                 = round((strtotime($startDate) - strtotime($endDate)) / (60 * 60 * 24));
             $iDays                          = abs($iNoAbsoluteDay);
         }
 
-        return view('vehicle/show', compact('vehicles' , 'iDays', 'startDate', 'endDate' , 'sPlace'));
+        return view('vehicle/show', compact('vehicles' , 'iDays', 'startDate', 'endDate' , 'sPlace', 'starHour', 'endHour'));
     }
 //--------------------------------------------------------------------------------------
 }

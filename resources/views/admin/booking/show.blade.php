@@ -28,6 +28,12 @@
                                 end_date
                             </th>
                             <th >
+                                start_hour
+                            </th>
+                            <th >
+                                end_hour
+                            </th>
+                            <th >
                                 status
                             </th>
                             <th >
@@ -73,6 +79,12 @@
                                         </td>
                                         <td>
                                             <input type="text" value=" {{$row->end_date}} " size="3" name="end_date"/>
+                                        </td>
+                                        <td>
+                                            <input type="text" value=" {{$row->start_hour}} " size="6" name="start_hour"/>
+                                        </td>
+                                        <td>
+                                            <input type="text" value=" {{$row->end_hour}} " size="3" name="end_hour"/>
                                         </td>
                                         <td>
                                             <select class="cobalt-TextField__Input"  name="status">

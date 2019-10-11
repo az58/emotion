@@ -46,6 +46,24 @@
             $('#price_end').on('change',function() {
                 $('#price_end_value').html($(this).val() + '€');
             });
+
+          // $('#startHour, #endHour').on('change',function() {
+          //   if(!validateHhMm($(this).val())) {
+          //     $(this).attr('value', '07:00')
+          //   }
+          // });
+          //
+          // function validateHhMm(inputField) {
+          //   var isValid = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(inputField.value);
+          //
+          //   if (isValid) {
+          //     inputField.style.backgroundColor = '#bfa';
+          //   } else {
+          //     inputField.style.backgroundColor = '#fba';
+          //   }
+          //
+          //   return isValid;
+          // }
         });
     </script>
 </head>
@@ -172,11 +190,11 @@
               <div class="pick-up-date book-item">
                 <h4>PICK-UP DATE:</h4>
                 <input id="startDate" name="startDate" placeholder="<?= $sToday->format('m/d/Y');?>" value="<?= $sToday->format('m/d/Y');?>" />
-                <input type="time" id="startHour" name="startHour" min="07:00" max="18:00" value="07:00" required>
+                <input type="time" id="startHour" name="startHour" min="07:00" max="19:00" value="07:00" required>
                 <div class="return-car">
                   <h4>Return DATE:</h4>
                   <input id="endDate" name="endDate" placeholder="<?= $sAWeek->format('m/d/Y');?>" value="<?= $sAWeek->format('m/d/Y');?>" />
-                  <input type="time" id="endHour" name="endHour" min="07:00" max="18:00" value="18:00" required>
+                  <input type="time" id="endHour" name="endHour" min="07:00" max="19:00" value="19:00" required>
                 </div>
               </div>
               <!--== Car Choose ==-->

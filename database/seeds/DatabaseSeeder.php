@@ -50,6 +50,8 @@ class DatabaseSeeder extends Seeder
 				'vehicle_id' 		=> 1,
 				'start_date'		=> $faker->date('Y-m-d','now'),
 				'end_date' 			=> $faker->date('Y-m-d','now'),
+				'start_hour'		=> $faker->time('H:i','19:00'),
+				'end_hour' 			=> $faker->time('H:i','19:00'),
 				'status' 			=> 'finished',
 				'place' 			=> $faker->city,
 				'price' 			=> $faker->numberBetween(1,100),
