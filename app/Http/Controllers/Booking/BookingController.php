@@ -45,9 +45,7 @@ class BookingController extends Controller
 	 */
     public function create(Request $request)
     {
-		$iBooking_price				= '';
-
-		if(!$iVehicle = is_numeric($request->input('vehicle_id')) ? $request->input('vehicle_id'): null) {
+		if (!$iVehicle = is_numeric($request->input('vehicle_id')) ? $request->input('vehicle_id'): null) {
 			return response('no valid entry', 419);
 		}
 
@@ -56,11 +54,11 @@ class BookingController extends Controller
 		$sStartHour                	= $request->input('start_hour');
 		$sEndHour                   = $request->input('end_hour');
 
-		if(!Tools::validateDate($sStartDate) || !Tools::validateDate($sEndDate)) {
+		if (!Tools::validateDate($sStartDate) || !Tools::validateDate($sEndDate)) {
 			return response('Date troubles', 501);
 		}
-		if(!Tools::validateHour($sStartHour) || !Tools::validateHour($sEndHour)) {
-			return response('Hour trouble', 501);
+		if (!Tools::validateHour($sStartHour) || !Tools::validateHour($sEndHour)) {
+			return response('Hour troubles', 501);
 		}
 
 			$iDays 					= Tools::days($sStartDate, $sEndDate);
@@ -70,7 +68,7 @@ class BookingController extends Controller
 
 			$iPriceDay 				= Vehicle::select('day_price')->where('id', $iVehicle)->first();
 
-			if(!is_numeric($iPriceDay->day_price)){
+			if (!is_numeric($iPriceDay->day_price)) {
 
 				return response('No vehicle day price returned', 501);
 			}

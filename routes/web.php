@@ -37,7 +37,7 @@ Route::get('/about','HomeController@cgu');														//
 Route::get('/booking','Booking\BookingController@index');										//
 Route::post('/booking/create','Booking\BookingController@create');								//
 																								//
-								//------------AJAX--------//									//
+						//---------------------AJAX--------------------------//					//
 Route::post('/booking/ajax/store','Booking\AjaxController@store');								//
 //----------------------------------------------------------------------------------------------//
 
@@ -66,9 +66,7 @@ Route::post('/admin/user/ajax/edit', 'Admin\User\AjaxController@edit')->middlewa
 Route::post('/admin/user/ajax/del', 'Admin\User\AjaxController@delete')->middleware('admin');		//
 																									//
 								//-----Vehicle-------//												//
-/**																									//
- * @author Kaouther CHEBBI																			//
- */																									//
+																									//
 Route::post('/admin/vehicle/ajax/edit', 'Admin\Vehicle\AjaxController@edit')->middleware('admin');	//
 Route::post('/admin/vehicle/ajax/del', 'Admin\Vehicle\AjaxController@delete')->middleware('admin');	//
 																									//
