@@ -13,8 +13,6 @@ use Illuminate\Http\Request;
 
 class VehicleController extends Controller
 {
-
-
 	/**
 	 * Récupère les elements de recherche d'un vehicule entrées par lutilisateur et retourne une liste correspondante
 	 * @param Request $request

@@ -16,86 +16,65 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//---------------------------------------------------------------------------------------
-
-Route::get('/', 'HomeController@index')->name('home');
-
-/** Obliger de la laisser j'ai remarqué que lapplication l'utilise à des endroits mystiques */
-Route::get('/home', 'HomeController@index')->name('home');
-
-//---------------------------------------------------------------------------------------
-
-/**
- * @author Lory LETICEE
- */
-Route::get('/logout','Auth\LoginController@logout');
-
-
-//---------------------------------------------------------------------------------------
+//------------------------------------HOME/MIDDLEWARE-------------------------------------------//
+																								//
+/**																								//
+ * @author Lory LETICEE																			//
+ */																								//
+Route::get('/', 'HomeController@index')->name('home');											//
+																								//
+/** Obliger de la laisser j'ai remarqué que lapplication l'utilise à des endroits mystiques */	//
+Route::get('/home', 'HomeController@index')->name('home');										//
+																								//
+																								//
+Route::get('/logout','Auth\LoginController@logout');											//
+Route::get('/about','HomeController@cgu');														//
+//----------------------------------------------------------------------------------------------//
 
 
-Route::get('/about','HomeController@cgu');
+//-----------------------------------------BOOKING----------------------------------------------//
+																								//
+Route::get('/booking','Booking\BookingController@index');										//
+Route::post('/booking/create','Booking\BookingController@create');								//
+																								//
+								//------------AJAX--------//									//
+Route::post('/booking/ajax/store','Booking\AjaxController@store');								//
+//----------------------------------------------------------------------------------------------//
 
-//---------------------------------------------------------------------------------------
+//-----------------------------------------VEHICLE------------------------------------------------------------------------------------------//
+Route::get('/vehicle/store/{vehicle}/{startDate}/{endDate}/{days}','Booking\BookingController@store');//->where('vehicle', '[1-10000]')		//
+    //->where('start', '[A-Za-z]+')																											//
+																																			//
+Route::post('/vehicle/search','Vehicle\VehicleController@search');																			//
+Route::get('/vehicle/search','Vehicle\VehicleController@search');																			//
+//------------------------------------------------------------------------------------------------------------------------------------------//
 
-Route::get('/booking','Booking\BookingController@index');
-Route::post('/booking/create','Booking\BookingController@create');
-
-Route::post('/booking/ajax/store','Booking\AjaxController@store');
-
-//---------------------------------------------------------------------------------------
-
-
-Route::get('/vehicle/store/{vehicle}/{startDate}/{endDate}/{days}','Booking\BookingController@store');//->where('vehicle', '[1-10000]')
-    //->where('start', '[A-Za-z]+')
-
-Route::post('/vehicle/search','Vehicle\VehicleController@search');
-Route::get('/vehicle/search','Vehicle\VehicleController@search');
-
-//-------------------------------------ADMIN--------------------------------------------------
-
-/**
- * @author Aziza CHEBANI
- */
-Route::get('/admin ', 'Admin\AdminController@index')->middleware('admin');
-
-Route::get('/admin/booking', 'Admin\Booking\BookingController@show')->middleware('admin');
-
-Route::get('/admin/user', 'Admin\User\UserController@show')->middleware('admin');
-
-Route::get('/admin/vehicle', 'Admin\Vehicle\VehicleController@show')->middleware('admin');
-
-Route::get('/admin/profil', 'Admin\AdminController@show')->middleware('admin');
-//---------------------------------------------------------------------------------------
-
-
-/**
- * @author Aziza CHEBANI
- * Ajax Admin Profile
- */
-
-Route::post('/admin/ajax/edit', 'Admin\User\AjaxController@edit')->middleware('admin');
-
-//---------------------------------------------------------------------------------------
-
-/**
- * @author Kaouther CHEBBI
- */
-
-Route::post('/admin/user/ajax/edit', 'Admin\User\AjaxController@edit')->middleware('admin');
-Route::post('/admin/user/ajax/del', 'Admin\User\AjaxController@delete')->middleware('admin');
-
-//---------------------------------------------------------------------------------------
-
-/**
- * @author Kaouther CHEBBI
- */
-Route::post('/admin/vehicle/ajax/edit', 'Admin\Vehicle\AjaxController@edit')->middleware('admin');
-Route::post('/admin/vehicle/ajax/del', 'Admin\Vehicle\AjaxController@delete')->middleware('admin');
-
-//---------------------------------------------------------------------------------------
-
-Route::post('/admin/booking/ajax/edit', 'Admin\Booking\AjaxController@edit')->middleware('admin');
-Route::post('/admin/booking/ajax/del', 'Admin\Booking\AjaxController@delete')->middleware('admin');
-
-//---------------------------------------------------------------------------------------
+//-------------------------------------ADMIN--------------------------------------------------------//
+/**																									//
+ * @author Aziza CHEBANI																			//
+ */																									//
+Route::get('/admin ', 'Admin\AdminController@index')->middleware('admin');							//
+Route::get('/admin/booking', 'Admin\Booking\BookingController@show')->middleware('admin');			//
+Route::get('/admin/user', 'Admin\User\UserController@show')->middleware('admin');					//
+Route::get('/admin/profil', 'Admin\AdminController@show')->middleware('admin');						//																					//
+Route::get('/admin/vehicle', 'Admin\Vehicle\VehicleController@show')->middleware('admin');			//
+																									//
+					//---------------------AJAX--------------------------//							//
+																									//
+Route::post('/admin/ajax/edit', 'Admin\User\AjaxController@edit')->middleware('admin');				//
+Route::post('/admin/user/ajax/edit', 'Admin\User\AjaxController@edit')->middleware('admin');		//
+Route::post('/admin/user/ajax/del', 'Admin\User\AjaxController@delete')->middleware('admin');		//
+																									//
+								//-----Vehicle-------//												//
+/**																									//
+ * @author Kaouther CHEBBI																			//
+ */																									//
+Route::post('/admin/vehicle/ajax/edit', 'Admin\Vehicle\AjaxController@edit')->middleware('admin');	//
+Route::post('/admin/vehicle/ajax/del', 'Admin\Vehicle\AjaxController@delete')->middleware('admin');	//
+																									//
+								//-----Booking-------//												//
+																									//
+																									//
+Route::post('/admin/booking/ajax/edit', 'Admin\Booking\AjaxController@edit')->middleware('admin');	//
+Route::post('/admin/booking/ajax/del', 'Admin\Booking\AjaxController@delete')->middleware('admin');	//
+//--------------------------------------------------------------------------------------------------//
