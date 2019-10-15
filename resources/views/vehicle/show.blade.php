@@ -219,7 +219,7 @@
                         <div class="col-md-6">
 
                             <span id="date_checkout"></span>  à
-                            <span id="place_checkout"></span> pour <span id="hour_checkout"></span>
+                            <span id="place_checkin"></span> pour <span id="hour_checkout"></span>
                             <small class="help-block"></small>
                         </div>
                     </div>
@@ -391,7 +391,6 @@
             $('#hour_checkout').html(arriveHour);
 
             $('#place_checkin').html(place);
-            $('#place_checkout').html(place);
 
             if(iDays===0) {
                 iDays=1;
