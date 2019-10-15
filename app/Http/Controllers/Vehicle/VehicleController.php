@@ -22,9 +22,11 @@ class VehicleController extends Controller
             $iDays                          = 1;
             $startDate                      = \Date('m/d/Y', time());
             $endDate                        = \Date('m/d/Y', time());
+            $startHour                      = '08:00';
+            $endHour                        = '19:00';
             $sPlace                         = 'paris';
 
-            return view('vehicle/show', compact('vehicles' , 'iDays', 'startDate', 'endDate', 'sPlace' ));
+            return view('vehicle/show', compact('vehicles' , 'iDays', 'startDate', 'endDate', 'startHour', 'endHour', 'sPlace' ));
         }
 
         /** nombre de jour entre les deux dates selectionnées par l'utilisateur */
