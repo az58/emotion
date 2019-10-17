@@ -40,7 +40,7 @@ class VehicleController extends Controller
         $vehicles                           = [];
 
         $sPlace								= strip_tags($request->input('cities'));
-        $sCategory                          = strip_tags($request->input('category'));
+        $sCategory                          = strip_tags($request->input('category') ? $request->input('category') : '' );
         $startDate                          = strip_tags($request->input('startDate'));
         $endDate                            = strip_tags($request->input('endDate'));
 		$startHour                      	= strip_tags($request->input('startHour'));
