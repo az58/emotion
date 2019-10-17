@@ -208,9 +208,8 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Départ</label>
                         <div class="col-md-6">
-                            <span id="date_checkin"></span>
-                            <span id="hour_checkin"></span>
-                            <span id="place_checkin"></span>
+                            <span id="date_checkin"></span> depuis
+                            <span id="place_checkin"></span> à <span id="hour_checkin"></span>
                             <small class="help-block"></small>
                         </div>
                     </div>
@@ -218,16 +217,16 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Retour</label>
                         <div class="col-md-6">
-                            <span id="date_checkout"></span>
-                            <span id="hour_checkout"></span>
-                            <span id="place_checkout"></span>
+
+                            <span id="date_checkout"></span>  à
+                            <span id="place_checkin"></span> pour <span id="hour_checkout"></span>
                             <small class="help-block"></small>
                         </div>
                     </div>
 
                     <div class="form-group" max-width="100">
                         <label class="col-md-4 control-label">Prix total de la location de base</label>
-                        <span id="booking_price"></span>
+                        <span id="booking_price"></span>€
                     </div>
 
                     <div class="form-group">
@@ -373,8 +372,10 @@
             var picture_vehicle = $(this).parent().find("img[class='picture_vehicle']").attr('id');
             var depart          = $("#start_date").val();
             var arrive          = $("#end_date").val();
+
             var departHour      = $("#start_hour").val();
             var arriveHour      = $("#end_hour").val();
+
             var place           = $("#place").val();
 
             $('#vehicle_name').html(type_vehicle.toUpperCase()+' '+brand_vehicle.toUpperCase());
@@ -385,10 +386,11 @@
 
             $('#date_checkin').html(depart);
             $('#date_checkout').html(arrive);
+
             $('#hour_checkin').html(departHour);
             $('#hour_checkout').html(arriveHour);
+
             $('#place_checkin').html(place);
-            $('#place_checkout').html(place);
 
             if(iDays===0) {
                 iDays=1;
