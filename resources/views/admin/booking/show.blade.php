@@ -183,7 +183,7 @@
             })
 
             $('.del').click(function(){
-                if (confirm("Voulez-vous vraiment supprimer cet utilisateur ?")) {
+                if (confirm("Voulez-vous vraiment supprimer cette location ?")) {
                     var idBooking    =$(this).parent().parent().attr('id');
 
                     $.ajax({

@@ -226,7 +226,7 @@
             });
 
             $('.del').click(function(){
-                if (confirm("Voulez-vous vraiment supprimer cette Véhicule ?")) {
+                if (confirm("Voulez-vous vraiment supprimer ce véhicule ?")) {
                     var idTr    =$(this).parent().parent().attr('id');
                     var elem    =$(this).parent().parent();
 
