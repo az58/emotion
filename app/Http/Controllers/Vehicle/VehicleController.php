@@ -19,19 +19,19 @@ class VehicleController extends Controller
 	/**
 	 * Récupère les elements de recherche d'un vehicule entrées par lutilisateur et retourne une liste correspondante
 	 * @param Request $request
-	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
 	 */
 	public function search(Request $request){
-        if (!$request->has(Constant::$needles)) {
+        if (!$request->has(Constant::NEEDLES)) {
             $vehicles 						= Vehicle::all();
             $iDays                          = $this->_iDays;
             $startDate                      = Date('m/d/Y', time());
             $endDate                        = Date('m/d/Y', time());
-            $starHour                      	= $this->_starHour;
+            $startHour                      = $this->_starHour;
             $endHour                        = $this->_endHour;
             $sPlace                         = $this->_sPlace;
 
-            return view('vehicle/show', compact('vehicles' , 'iDays', 'startDate', 'endDate', 'sPlace', 'starHour', 'endHour'));
+            return view('vehicle/show', compact('vehicles' , 'iDays', 'startDate', 'endDate', 'sPlace', 'startHour', 'endHour'));
         }
 
         /** nombre de jour entre les deux dates selectionnées par l'utilisateur */
@@ -47,7 +47,7 @@ class VehicleController extends Controller
 
         $iMaxPrice                          = (is_numeric($request->price_end) ? $request->price_end : null) ;
 
-        $sCat                               = in_array(strtolower($sCategory),Constant::$categories) ;
+        $sCat                               = in_array(strtolower($sCategory),Constant::CATEGORIES) ;
         if (!$sCat){
             $vehicles 						= Vehicle::where('current_place', htmlentities($sPlace))->whereBetween('day_price', [0, $iMaxPrice])->get();
         }
