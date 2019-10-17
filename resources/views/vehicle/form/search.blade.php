@@ -13,7 +13,7 @@
                 @endforeach
             </select>
             <label for="categories-select">Car / Scooter : </label>
-            <select class="cobalt-TextField__Input" id="category" name="category">
+            <select class="cobalt-TextField__Input" id="categories-select" name="category">
                 <option value="car">Car</option>
                 <option value="scooter">Scooter</option>
                 <option selected  value="">Car and Scooter</option>
