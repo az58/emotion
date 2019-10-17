@@ -149,7 +149,7 @@
             });
 
             $('.edit').click(function() {
-                if (confirm("Voulez-vous vraiment modifier cet utilisateur ?")) {
+                if (confirm("Voulez-vous vraiment modifier cette location ?")) {
                     var idTr = $(this).parent().parent().attr('id');
                     var elem = $(this).parent().parent();
 
