@@ -52,17 +52,20 @@ class VehicleController extends Controller
 		$nowDay								= date("Y-m-d");
 		$nowHour							= date("H:i:s");
 
-		$aVehicleBooked = Booking::select('vehicle_id')->where(['end_date', '>=', $nowDay], ['end_hour', '>=', $nowHour])->distinct('vehicle_id')->get()->toArray();
+		$aVehicleBooked = Booking::join('vehicle', 'booking.vehicle_id', '=', 'vehicle.id')->select('vehicle_id')->where([['end_date', '>=', "$nowDay"], ['end_hour', '>=', "$nowHour"]])->distinct('vehicle_id')->toSql();
+		var_dump($nowHour);
+		exit;
+		if (!empty($aVehicleBooked)) {
 
-		if (!$aVehicleBooked->isEmpty()) {
 			foreach ($aVehicleBooked as $row) {
 				$aIds	[]= $row['vehicle_id'];
 			}
-
+			var_dump($aIds);
+			exit;
 			$sCat                               = in_array(strtolower($sCategory),Constant::CATEGORIES) ;
 
 			if (!$sCat){
-				$vehicles = Vehicle::whereIn('id', $aIds)->distinct('*')->where('current_place', htmlentities($sPlace))->whereBetween('day_price', [0, $iMaxPrice])->get();
+				$vehicles = Vehicle::where('current_place', htmlentities($sPlace))->whereBetween('day_price', [0, $iMaxPrice])->whereIn('id', $aIds)->distinct('*')->get();
 				//$vehicles 						= Vehicle::where('current_place', htmlentities($sPlace))->whereBetween('day_price', [0, $iMaxPrice])->get();
 			}
 
