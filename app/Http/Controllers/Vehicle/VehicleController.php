@@ -8,6 +8,7 @@ use App\Booking;
 use App\Http\Controllers\Controller;
 use App\Providers\Tools\Tools;
 use App\Providers\Tools\Constant;
+use App\Providers\Vehicle\VehicleProvider;
 use App\Vehicle;
 
 use Illuminate\Http\Request;
@@ -32,7 +33,6 @@ class VehicleController extends Controller
             $endHour                        = Constant::ENDHOUR;
             $sPlace                         = Constant::PLACE;
 
-
             return view('vehicle/show', compact('vehicles' , 'iDays', 'startDate', 'endDate', 'sPlace', 'startHour', 'endHour'));
         }
 
@@ -48,45 +48,38 @@ class VehicleController extends Controller
 		$endHour                        	= strip_tags($request->input('endHour'));
         $iMaxPrice                          = (is_numeric($request->price_end) ? $request->price_end : null) ;
 
-		$aIds								= [];
-		$nowDay								= date("Y-m-d");
-		$nowHour							= date("H:i:s");
+		$aIds								= VehicleProvider::checkIfHide();
 
-		$aVehicleBooked = Booking::join('vehicle', 'booking.vehicle_id', '=', 'vehicle.id')->select('vehicle_id')->where([['end_date', '>=', "$nowDay"], ['end_hour', '>=', "$nowHour"]])->distinct('vehicle_id')->toSql();
-		var_dump($nowHour);
-		exit;
-		if (!empty($aVehicleBooked)) {
+        if(empty($aIds)) {
+                return response('There aro no vehicle available');
+        }
 
-			foreach ($aVehicleBooked as $row) {
-				$aIds	[]= $row['vehicle_id'];
-			}
-			var_dump($aIds);
-			exit;
-			$sCat                               = in_array(strtolower($sCategory),Constant::CATEGORIES) ;
+        $sCat                               = in_array(strtolower($sCategory),Constant::CATEGORIES) ;
 
-			if (!$sCat){
-				$vehicles = Vehicle::where('current_place', htmlentities($sPlace))->whereBetween('day_price', [0, $iMaxPrice])->whereIn('id', $aIds)->distinct('*')->get();
-				//$vehicles 						= Vehicle::where('current_place', htmlentities($sPlace))->whereBetween('day_price', [0, $iMaxPrice])->get();
-			}
 
-			if ($sCat) {
-				$vehicles = Vehicle::whereIn('id', $aIds)->distinct('*')->where('current_place', htmlentities($sPlace))->where('category', $sCategory)->whereBetween('day_price', [0, $iMaxPrice])->get();
-				//$vehicles 						= Vehicle::where('current_place', htmlentities($sPlace))->where('category', $sCategory)->whereBetween('day_price', [0, $iMaxPrice])->get();
-			}
+        if (!$sCat){
+            $vehicles = Vehicle::where('current_place', htmlentities($sPlace))->whereBetween('day_price', [0, $iMaxPrice])->whereIn('id', $aIds)->distinct('*')->get();
+            //$vehicles 						= Vehicle::where('current_place', htmlentities($sPlace))->whereBetween('day_price', [0, $iMaxPrice])->get();
+        }
 
-			if (!$vehicles->isEmpty()) {
-				if (!Tools::validateDate($startDate) || !Tools::validateDate($endDate)) {
-				   redirect('vehicle/search');
-				}
+        if ($sCat) {
+            $vehicles = Vehicle::whereIn('id', $aIds)->distinct('*')->where('current_place', htmlentities($sPlace))->where('category', $sCategory)->whereBetween('day_price', [0, $iMaxPrice])->get();
+            //$vehicles 						= Vehicle::where('current_place', htmlentities($sPlace))->where('category', $sCategory)->whereBetween('day_price', [0, $iMaxPrice])->get();
+        }
 
-				if (!Tools::validateHour($startHour) || !Tools::validateHour($endHour)) {
-					redirect('vehicle/search');
-				}
+        if (!$vehicles->isEmpty()) {
+            if (!Tools::validateDate($startDate) || !Tools::validateDate($endDate)) {
+               redirect('vehicle/search');
+            }
 
-				$iNoAbsoluteDay                 = round((strtotime($startDate) - strtotime($endDate)) / (60 * 60 * 24));
-				$iDays                          = abs($iNoAbsoluteDay);
-			}
-		}
+            if (!Tools::validateHour($startHour) || !Tools::validateHour($endHour)) {
+                redirect('vehicle/search');
+            }
+
+            $iNoAbsoluteDay                 = round((strtotime($startDate) - strtotime($endDate)) / (60 * 60 * 24));
+            $iDays                          = abs($iNoAbsoluteDay);
+        }
+
 
         return view('vehicle/show', compact('vehicles' , 'iDays', 'startDate', 'endDate' , 'sPlace', 'startHour', 'endHour'));
     }
