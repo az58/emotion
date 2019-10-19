@@ -22,13 +22,15 @@ class VehicleProvider
      $nowDay							= date("Y-m-d");
      $nowHour							= date("H:i:s");
 
-     $aVehicleBooked                    = Booking::join('vehicle', 'booking.vehicle_id', '=', 'vehicle.id')
+     $vehicleBookedQueryBuilder                    = Booking::join('vehicle', 'booking.vehicle_id', '=', 'vehicle.id')
          ->select('vehicle_id')
-         ->where([['end_date', '>=', $nowDay], ['end_hour', '>=', $nowHour]])
+         ->where([['booking.end_date', '>=', $nowDay]])
          ->distinct('vehicle_id')->get();
 
-     if (!empty($aVehicleBooked)) {
 
+     if (!empty($vehicleBookedQueryBuilder)) {
+
+         $aVehicleBooked                = $vehicleBookedQueryBuilder->toArray();
          foreach ($aVehicleBooked as $key => $row) {
              $aIds    [] = $row['vehicle_id'];
          }
