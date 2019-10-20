@@ -249,6 +249,30 @@
                     });
                 }
             });
+            $('.hide').click(function(){
+                if (confirm("Voulez-vous vraiment cacher ce véhicule ?")) {
+                    var idTr    =$(this).parent().parent().attr('id');
+                    var elem    =$(this).parent().parent();
+
+                    $.ajax({
+                        method: 'POST',
+                        url: '/admin/vehicle/ajax/hide',
+                        data: {
+                            id_vehicle       : idTr,
+                        },
+                        dataType: "json"
+                    })
+
+                        .done(function(id_vehicle) {
+                            //Recupère l'élément <tr> qui a un attribut 'id' égal à l'identifiant de l'utilisateur
+                            // que notre controlleur nous renvoie en message de reponse json
+                            $('tr[id="'+id_vehicle+'"]').toggleClass('success')
+                        })
+                        .fail(function(data,status) {
+                            console.log("an error occured")
+                        });
+                }
+            });
         });
         
 

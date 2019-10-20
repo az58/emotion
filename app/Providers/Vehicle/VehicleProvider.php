@@ -12,7 +12,6 @@ use App\Booking;
 
 class VehicleProvider
 {
-
     /**
      * REtourne tous les ids des vehicule qui ne sont pas en location
      * @return array
@@ -20,13 +19,12 @@ class VehicleProvider
  public static function checkIfHide() {
      $aIds                              = [];
      $nowDay							= date("Y-m-d");
-     $nowHour							= date("H:i:s");
+     //$nowHour							= date("H:i:s");
 
-     $vehicleBookedQueryBuilder                    = Booking::join('vehicle', 'booking.vehicle_id', '=', 'vehicle.id')
+     $vehicleBookedQueryBuilder         = Booking::join('vehicle', 'booking.vehicle_id', '=', 'vehicle.id')
          ->select('vehicle_id')
-         ->where([['booking.end_date', '>=', $nowDay]])
+         ->where('booking.end_date', '>=', $nowDay)
          ->distinct('vehicle_id')->get();
-
 
      if (!empty($vehicleBookedQueryBuilder)) {
 
@@ -38,4 +36,5 @@ class VehicleProvider
 
      return $aIds;
  }
+
 }
