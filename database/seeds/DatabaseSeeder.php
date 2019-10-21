@@ -46,7 +46,6 @@ class DatabaseSeeder extends Seeder
 
 		foreach (range(1,20) as $index) {
 			DB::table('booking')->insert([
-
 				'user_id' 			=> $faker->numberBetween(1,20),
 				'vehicle_id' 		=> 1,
 				'start_date'		=> $faker->date('Y-m-d','now'),
