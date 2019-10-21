@@ -8,7 +8,7 @@ use App\Booking;
 use App\Http\Controllers\Controller;
 use App\Providers\Tools\Tools;
 use App\Providers\Tools\Constant;
-use App\Providers\Vehicle\VehicleProvider;
+use App\Providers\Vehicle\VehicleProvider as Provider;
 use App\Vehicle;
 
 use Illuminate\Http\Request;
@@ -48,24 +48,15 @@ class VehicleController extends Controller
 		$endHour                        	= strip_tags($request->input('endHour'));
         $iMaxPrice                          = (is_numeric($request->price_end) ? $request->price_end : null) ;
 
-		$aIds								= VehicleProvider::checkIfHide();
+        $bHide                              = in_array(strtolower($sCategory),Constant::CATEGORIES) ;
 
-        if(empty($aIds)) {
-                return response('There aro no vehicle available');
-        }
-
-        $sCat                               = in_array(strtolower($sCategory),Constant::CATEGORIES) ;
-
-
-        if (!$sCat){
-            $vehicles = Vehicle::where('current_place', htmlentities($sPlace))->whereBetween('day_price', [0, $iMaxPrice])->whereIn('id', $aIds)->distinct('*')->get();
-            //$vehicles 						= Vehicle::where('current_place', htmlentities($sPlace))->whereBetween('day_price', [0, $iMaxPrice])->get();
-        }
-
-        if ($sCat) {
-            $vehicles = Vehicle::whereIn('id', $aIds)->distinct('*')->where('current_place', htmlentities($sPlace))->where('category', $sCategory)->whereBetween('day_price', [0, $iMaxPrice])->get();
-            //$vehicles 						= Vehicle::where('current_place', htmlentities($sPlace))->where('category', $sCategory)->whereBetween('day_price', [0, $iMaxPrice])->get();
-        }
+        $vehicles							= Provider::getVehicle(
+            [   'place'             => $sPlace,
+                'category'          => $sCategory,
+                'maxPrice'          => $iMaxPrice,
+            ]
+            ,$bHide
+        );
 
         if (!$vehicles->isEmpty()) {
             if (!Tools::validateDate($startDate) || !Tools::validateDate($endDate)) {
