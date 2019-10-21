@@ -51,6 +51,8 @@ class AjaxController extends Controller
         $sType                  = htmlspecialchars($request->type);
         $sColor                 = htmlspecialchars($request->color);
         $sCurrent_place         = htmlspecialchars($request->current_place);
+        $iAvailable             = htmlspecialchars($request->available);
+
         $sLicence_plate         = htmlspecialchars($request->licence_plate);
         $sKilometer             = htmlspecialchars($request->kilometer);
         $sSerial_number         = htmlspecialchars($request->serial_number);
@@ -62,9 +64,9 @@ class AjaxController extends Controller
             ? $this->_validBatteryBrand[$request->battery_brand]: null;
 
         if (!$iVehicle || !$sCategory || !$sBrand || !$sType
-            || !$sColor || !$sCurrent_place || !$sLicence_plate
-            || !$sKilometer || !$sSerial_number || !$dDate_purchase
-            || !$iBuying_price || !$sDay_price || !$sBattery_level
+            || !$sColor || !$sCurrent_place || !in_array($iAvailable, ['1','0'] )
+            || !$sLicence_plate || !$sKilometer || !$sSerial_number
+            || !$dDate_purchase || !$iBuying_price || !$sDay_price || !$sBattery_level
             || !$sBattery_brand
         ) {
             return response('Vous n\'avez pas les autorisations pour cette action', 419);
@@ -77,6 +79,7 @@ class AjaxController extends Controller
                 'type'           => $sType,
                 'color'          => $sColor,
                 'current_place'  => $sCurrent_place,
+                'available    '  => $iAvailable,
                 'licence_plate'  => $sLicence_plate,
                 'kilometer'      => $sKilometer,
                 'serial_number'  => $sSerial_number,
