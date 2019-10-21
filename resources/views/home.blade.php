@@ -148,18 +148,16 @@
                 <ul>
                   <li><a href="/register">S'enregistrer</a></li>
                   <li><a href="/login">Se connecter</a></li>
-                    @if(Auth::check())
-                        @if ($user = Auth::user())
-                  <li><a href="/logout">Sortir</a></li>
-                        @endif
-                    @endif
+                  @auth
+                    <li><a href="/logout">Sortir</a></li>
+                  @endauth
                 </ul>
               </li>
-
-              <?php if (\Illuminate\Support\Facades\Auth::user()->role = 'admin') {?>
-              <li><a href="/admin">Admin</a></li>
-              <?php }?>
-
+              @auth
+                <?php if (\Illuminate\Support\Facades\Auth::user()->role = 'admin') {?>
+                <li><a href="/admin">Admin</a></li>
+                <?php }?>
+              @endauth
               <li><a href="/home#about-area">About</a></li>
               <li><a href="/home#contact">Contact</a></li>
             </ul>
