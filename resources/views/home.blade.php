@@ -88,7 +88,14 @@
       <div class="row">
         <!--== Single HeaderTop Start ==-->
         <div class="col-lg-3 text-left">
-          <i class="fa fa-map-marker"></i> Paris, FRANCE
+            @foreach($users as $user)
+                @endforeach
+
+           <?php
+            if (Auth::check()) {
+              echo 'Bienvenue '.$user->firstname;
+             }
+             ?>
         </div>
         <!--== Single HeaderTop End ==-->
 

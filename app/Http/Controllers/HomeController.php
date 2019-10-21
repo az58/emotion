@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\User;
+
 class HomeController extends Controller
 {
     protected $_aCities         = [];
@@ -34,6 +36,7 @@ class HomeController extends Controller
 
         $apiCities                            	= file_get_contents('https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json');
         $aCites                                 = json_decode($apiCities);
+        $users                                  = User::all();
 
         foreach ($aCites as $row){
             if (!array_key_exists($row->country, $this->_aCities)) {
@@ -54,7 +57,7 @@ class HomeController extends Controller
         $aCities                                = array_reverse($cleanArray);
 
 
-        return view('home',compact( 'aCities') );
+        return view('home',compact( 'aCities', 'users') );
     }
 
     //---------------------------------------------------------------------------------------

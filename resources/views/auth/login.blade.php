@@ -236,7 +236,7 @@
 
 <!--== Scroll Top Area Start ==-->
 <div class="scroll-top">
-    <img src="assets/img/scroll-top.png" alt="JSOFT">
+    <img src="" alt="Vrent">
 </div>
 <!--== Scroll Top Area End ==-->
 
