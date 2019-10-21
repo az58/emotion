@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
 			'type'			    => 'zoé',
 			'color' 		    => 'blue',
 			'current_place'     => 'paris',
+			'available'         => '1',
             'licence_plate'     => 'RF-464-RD',
 			'kilometer' 		=> '30000',
             'serial_number'     => 'VF7SBHMZ0EW554823',
@@ -45,7 +46,6 @@ class DatabaseSeeder extends Seeder
 
 		foreach (range(1,20) as $index) {
 			DB::table('booking')->insert([
-
 				'user_id' 			=> $faker->numberBetween(1,20),
 				'vehicle_id' 		=> 1,
 				'start_date'		=> $faker->date('Y-m-d','now'),
