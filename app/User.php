@@ -7,8 +7,12 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+<<<<<<< HEAD
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+=======
+use Illuminate\Support\Facades\Auth;
+>>>>>>> 0b0f72043b2fb626763c8c34d0b98b2165380d2f
 
 class User extends Authenticatable
 {
@@ -54,5 +58,14 @@ class User extends Authenticatable
         return $this->hasMany(Booking::class);
     }
 
+    public function isAdmin()
+    {
+        if(Auth::check()) {
+
+            if ($this->get('role') == 'Admin') {
+                return true;
+            }
+        }
+    }
 
 }
