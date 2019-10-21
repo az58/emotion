@@ -291,87 +291,6 @@
 </section>
 <!--== About Us Area End ==-->
 
-<!--== Partner Area Start ==-->
-<div id="partner-area">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <div class="partner-content-wrap">
-          <!-- Single Partner Start -->
-          <div class="single-partner">
-            <div class="display-table">
-              <div class="display-table-cell">
-                <img src="assets/img/partner/partner-logo-1.png" alt="JSOFT">
-              </div>
-            </div>
-          </div>
-          <!-- Single Partner End -->
-
-          <!-- Single Partner Start -->
-          <div class="single-partner">
-            <div class="display-table">
-              <div class="display-table-cell">
-                <img src="assets/img/partner/partner-logo-2.png" alt="JSOFT">
-              </div>
-            </div>
-          </div>
-          <!-- Single Partner End -->
-
-          <!-- Single Partner Start -->
-          <div class="single-partner">
-            <div class="display-table">
-              <div class="display-table-cell">
-                <img src="assets/img/partner/partner-logo-3.png" alt="JSOFT">
-              </div>
-            </div>
-          </div>
-          <!-- Single Partner End -->
-
-          <!-- Single Partner Start -->
-          <div class="single-partner">
-            <div class="display-table">
-              <div class="display-table-cell">
-                <img src="assets/img/partner/partner-logo-4.png" alt="JSOFT">
-              </div>
-            </div>
-          </div>
-          <!-- Single Partner End -->
-
-          <!-- Single Partner Start -->
-          <div class="single-partner">
-            <div class="display-table">
-              <div class="display-table-cell">
-                <img src="assets/img/partner/partner-logo-5.png" alt="JSOFT">
-              </div>
-            </div>
-          </div>
-          <!-- Single Partner End -->
-
-          <!-- Single Partner Start -->
-          <div class="single-partner">
-            <div class="display-table">
-              <div class="display-table-cell">
-                <img src="assets/img/partner/partner-logo-1.png" alt="JSOFT">
-              </div>
-            </div>
-          </div>
-          <!-- Single Partner End -->
-
-          <!-- Single Partner Start -->
-          <div class="single-partner">
-            <div class="display-table">
-              <div class="display-table-cell">
-                <img src="assets/img/partner/partner-logo-4.png" alt="JSOFT">
-              </div>
-            </div>
-          </div>
-          <!-- Single Partner End -->
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!--== Partner Area End ==-->
 
 <!--== Services Area Start ==-->
 <section id="service-area" class="section-padding">
@@ -382,7 +301,6 @@
         <div class="section-title  text-center">
           <h2>Our Services</h2>
           <span class="title-line"><i class="fa fa-car"></i></span>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
         </div>
       </div>
       <!-- Section Title End -->
@@ -396,7 +314,6 @@
         <div class="service-item">
           <i class="fa fa-taxi"></i>
           <h3>RENTAL CAR</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
         </div>
       </div>
       <!-- Single Service End -->
@@ -406,7 +323,6 @@
         <div class="service-item">
           <i class="fa fa-cog"></i>
           <h3>CAR REPAIR</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
         </div>
       </div>
       <!-- Single Service End -->
@@ -416,7 +332,6 @@
         <div class="service-item">
           <i class="fa fa-map-marker"></i>
           <h3>TAXI SERVICE</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
         </div>
       </div>
       <!-- Single Service End -->
@@ -426,7 +341,6 @@
         <div class="service-item">
           <i class="fa fa-life-ring"></i>
           <h3>life insurance</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
         </div>
       </div>
       <!-- Single Service End -->
@@ -436,7 +350,6 @@
         <div class="service-item">
           <i class="fa fa-bath"></i>
           <h3>car wash</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
         </div>
       </div>
       <!-- Single Service End -->
@@ -446,7 +359,7 @@
         <div class="service-item">
           <i class="fa fa-phone"></i>
           <h3>call driver</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
+          <p></p>
         </div>
       </div>
       <!-- Single Service End -->
@@ -861,25 +774,6 @@
   <div class="footer-widget-area">
     <div class="container">
       <div class="row">
-        <!-- Single Footer Widget Start -->
-        <div class="col-lg-4 col-md-6">
-          <div class="single-footer-widget">
-            <h2>About Us</h2>
-            <div class="widget-body">
-              <img src="assets/img/logo.png" alt="JSOFT">
-              <p>Lorem ipsum dolored is a sit ameted consectetur adipisicing elit. Nobis magni assumenda distinctio debitis, eum fuga fugiat error reiciendis.</p>
-
-              <div class="newsletter-area">
-                <form action="index.html">
-                  <input type="email" placeholder="Subscribe Our Newsletter">
-                  <button type="submit" class="newsletter-btn"><i class="fa fa-send"></i></button>
-                </form>
-              </div>
-
-            </div>
-          </div>
-        </div>
-        <!-- Single Footer Widget End -->
 
         <!-- Single Footer Widget Start -->
         <div class="col-lg-4 col-md-6">
@@ -896,12 +790,12 @@
             <div class="widget-body">
               <p>Lorem ipsum doloer sited amet, consectetur adipisicing elit. nibh auguea, scelerisque sed</p>
 
-              <ul class="get-touch">
-                <li><i class="fa fa-map-marker"></i> 800/8, Kazipara, Dhaka</li>
-                <li><i class="fa fa-mobile"></i> +880 01 86 25 72 43</li>
-                <li><i class="fa fa-envelope"></i> kazukamdu83@gmail.com</li>
+              <ul class="get-touch" id="contact">
+                <li><i class="fa fa-map-marker"></i> 12 rue Claude Tillier, Paris, France</li>
+                <li><i class="fa fa-mobile"></i>  +33 1 22 33 44 11</li>
+                <li><i class="fa fa-envelope"></i> vrent@gmail.com</li>
               </ul>
-              <a href="https://goo.gl/maps/b5mt45MCaPB2" class="map-show" target="_blank">Show Location</a>
+
             </div>
           </div>
         </div>
@@ -916,9 +810,9 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-center">
-          <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+          <p>
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Vrent</a>
+         </p>
         </div>
       </div>
     </div>

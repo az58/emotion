@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CreateVehicleTable extends Migration
 {
@@ -31,6 +32,7 @@ class CreateVehicleTable extends Migration
             $table->enum('battery_brand', ['Cadmium nickel', 'Nickel métal hydrure', 'Lithium', 'Lithium-ion']);// battery_brand = type de batterie
             $table->string('picture', 255)->nullable();// battery_brand = type de batterie
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
