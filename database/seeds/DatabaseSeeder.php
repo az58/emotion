@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
 			'type'			    => 'zoé',
 			'color' 		    => 'blue',
 			'current_place'     => 'paris',
+			'available'         => '1',
             'licence_plate'     => 'RF-464-RD',
 			'kilometer' 		=> '30000',
             'serial_number'     => 'VF7SBHMZ0EW554823',
