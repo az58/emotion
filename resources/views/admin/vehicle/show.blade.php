@@ -35,6 +35,9 @@
                                 <th>
                                     current_place
                                 </th>
+                                <th>
+                                    available
+                                </th>
 
                                 <th>
                                     licence_plate
@@ -113,6 +116,19 @@
 
                                         <td>
                                             <input type="text" value=" {{$row->current_place}} " size="7" name="current_place"/>
+                                        </td>
+                                        <td>
+                                            <select class="cobalt-TextField__Input"  name="status">
+                                                <?php $aAvailability=["Visible" => 1, "caché" => 0];?>
+
+                                                @foreach( $aAvailability as $key => $value)
+                                                    @if($value === $row->available)
+                                                        <option selected value="{{ $value }}">{{ $key }}</option>
+                                                    @else
+                                                        <option value= "{{ $value }}">{{ $key }}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
                                         </td>
 
                                         <td>
@@ -205,6 +221,7 @@
                             type: elem.find('input[name="type"]').val(),
                             color: elem.find('input[name="color"]').val(),
                             current_place: elem.find('input[name="current_place"]').val(),
+                            available: elem.find('select[name="status"]').val(),
                             licence_plate: elem.find('input[name="licence_plate"]').val(),
                             kilometer: elem.find('input[name="kilometer"]').val(),
                             serial_number: elem.find('input[name="serial_number"]').val(),
@@ -247,30 +264,6 @@
                     .fail(function(data,status) {
                         console.log("an error occured")
                     });
-                }
-            });
-            $('.hide').click(function(){
-                if (confirm("Voulez-vous vraiment cacher ce véhicule ?")) {
-                    var idTr    =$(this).parent().parent().attr('id');
-                    var elem    =$(this).parent().parent();
-
-                    $.ajax({
-                        method: 'POST',
-                        url: '/admin/vehicle/ajax/hide',
-                        data: {
-                            id_vehicle       : idTr,
-                        },
-                        dataType: "json"
-                    })
-
-                        .done(function(id_vehicle) {
-                            //Recupère l'élément <tr> qui a un attribut 'id' égal à l'identifiant de l'utilisateur
-                            // que notre controlleur nous renvoie en message de reponse json
-                            $('tr[id="'+id_vehicle+'"]').toggleClass('success')
-                        })
-                        .fail(function(data,status) {
-                            console.log("an error occured")
-                        });
                 }
             });
         });
