@@ -149,11 +149,9 @@
                 </ul>
               </li>
 
-              @if(Auth::check())
-                @if (Auth::user()->isAdmin())
-                  <li><a href="/admin">Admin</a></li>
-                @endif
-              @endif
+              <?php if (\Illuminate\Support\Facades\Auth::user()->role = 'admin') {?>
+              <li><a href="/admin">Admin</a></li>
+              <?php }?>
 
               <li><a href="/home#about-area">About</a></li>
               <li><a href="/home#contact">Contact</a></li>

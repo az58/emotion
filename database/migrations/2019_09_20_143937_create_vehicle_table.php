@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CreateVehicleTable extends Migration
 {
@@ -20,6 +21,7 @@ class CreateVehicleTable extends Migration
             $table->string('type', 100); // type = modèle
             $table->string('color', 20); // color =  couleur
             $table->string('current_place', 100); // current_place =  emplacement actuel du véhicule
+            $table->tinyInteger('available')->default('1'); // current_place =  emplacement actuel du véhicule
             $table->string('licence_plate', 100);// licence_plate = plaque d'immatriculation
             $table->string('kilometer', 255);// kilometer = nombre de kilomètres
             $table->string('serial_number', 17); // serial_number =  numéro de série
@@ -30,6 +32,7 @@ class CreateVehicleTable extends Migration
             $table->enum('battery_brand', ['Cadmium nickel', 'Nickel métal hydrure', 'Lithium', 'Lithium-ion']);// battery_brand = type de batterie
             $table->string('picture', 255)->nullable();// battery_brand = type de batterie
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
