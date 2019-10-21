@@ -88,19 +88,19 @@
       <div class="row">
         <!--== Single HeaderTop Start ==-->
         <div class="col-lg-3 text-left">
-          <i class="fa fa-map-marker"></i> 802/2, Mirpur, Dhaka
+          <i class="fa fa-map-marker"></i> Paris, FRANCE
         </div>
         <!--== Single HeaderTop End ==-->
 
         <!--== Single HeaderTop Start ==-->
         <div class="col-lg-3 text-center">
-          <i class="fa fa-mobile"></i> +1 800 345 678
+          <i class="fa fa-mobile"></i> +33 1 22 33 44 11
         </div>
         <!--== Single HeaderTop End ==-->
 
         <!--== Single HeaderTop Start ==-->
         <div class="col-lg-3 text-center">
-          <i class="fa fa-clock-o"></i> Mon-Fri 09.00 - 17.00
+          <i class="fa fa-clock-o"></i> Lundi-Samedi 09.00 - 20.00
         </div>
         <!--== Single HeaderTop End ==-->
 
@@ -144,9 +144,13 @@
                   <li><a href="/logout">Sortir</a></li>
                 </ul>
               </li>
-              {{----}}
-                <li><a href="/admin">Admin</a></li>
-              {{----}}
+
+              @if(Auth::check())
+                @if (Auth::user()->isAdmin())
+                  <li><a href="/admin">Admin</a></li>
+                @endif
+              @endif
+
               <li><a href="about.html">About</a></li>
               <li><a href="contact.html">Contact</a></li>
             </ul>
