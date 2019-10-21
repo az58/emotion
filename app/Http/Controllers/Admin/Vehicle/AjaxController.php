@@ -79,7 +79,7 @@ class AjaxController extends Controller
                 'type'           => $sType,
                 'color'          => $sColor,
                 'current_place'  => $sCurrent_place,
-                'available    '  => $iAvailable,
+                'available'  => $iAvailable,
                 'licence_plate'  => $sLicence_plate,
                 'kilometer'      => $sKilometer,
                 'serial_number'  => $sSerial_number,
