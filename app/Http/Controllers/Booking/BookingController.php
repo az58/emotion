@@ -49,7 +49,7 @@ class BookingController extends Controller
 			return response('no valid entry', 419);
 		}
 
-		$sStartDate                	= $request->input('start_date');
+		$sStartDate                	 $request->input('start_date');
 		$sEndDate                   = $request->input('end_date');
 		$sStartHour                	= $request->input('start_hour');
 		$sEndHour                   = $request->input('end_hour');
