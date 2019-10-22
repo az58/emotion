@@ -194,7 +194,7 @@
                     <img id="vehicle_picture">
 
                 <form action="" method="POST" class="" name="">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                     @csrf
                     <div class="form-group">
                         <label class="col-md-6 control-label">Vous avez choisis</label>
@@ -391,6 +391,7 @@
 <script src="{{ asset('front/js/main.js') }}"></script>
 <script>
     $(function(){
+
         $('.modal-booking').click(function(){
             var id_vehicle      = $(this).parent().find("p[class='id_vehicle']").attr('id');
             var type_vehicle    = $(this).parent().find("p[class='type_vehicle']").attr('id');
@@ -459,22 +460,32 @@
                         },
                         dataType: "json"
                     })
-                        .done(function (response) {
-                            $('.fetched-data').html("<span class='text-succes'>BRAVO! Vous allez bientôt être redirigé vers la page de paiement ... </span>");
-                            setTimeout(function(){
-                                $('.modal').click();
-                            }, 2000);
-                        })
-                        .fail(function (data, status) {
-                            $('.modal').click();
-                        });
+
+                    .done(function () {
+                        success();
+                        $('.modal').click();
+                    })
+                    .fail(function () {
+                        error();
+                    });
+
                 } else {
-                    $('.fetched-data').html("<span class='text-warning'>OUPS! Le formulaire ne semble pas être bien remplit</span>");
+                    error();
                 }
             @else
                 window.location.href = "/login";
             @endauth
         });
+
+        //-----------------------------------------------------------------
+
+        function error() {
+             $('.fetched-data').html("<span class='text-warning'>OUPS! Le formulaire ne semble pas être bien remplit</span>");
+        }
+
+        function success() {
+            $('.fetched-data').html("<span class='text-success'>BRAVO! Vous allez bientôt être redirigé vers la page de paiement ... </span>");
+        }
     });
 </script>
 </body>
