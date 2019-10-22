@@ -41,6 +41,11 @@ class AjaxController extends Controller
      */
     public function edit(Request $request) {
         $iVehicle               = htmlspecialchars($request->id_vehicle);
+
+        if(!is_numeric($iVehicle)) {
+            return response("$iVehicle n'est pas un identifiant valide",200);
+        }
+
 		/**
 		 * Ceci est test ternaire (equivalant d'un if)
 		 * @example  https://blog.smarchal.com/operateur-ternaire-php
@@ -79,7 +84,7 @@ class AjaxController extends Controller
                 'type'           => $sType,
                 'color'          => $sColor,
                 'current_place'  => $sCurrent_place,
-                'available'  => $iAvailable,
+                'available'      => $iAvailable,
                 'licence_plate'  => $sLicence_plate,
                 'kilometer'      => $sKilometer,
                 'serial_number'  => $sSerial_number,
@@ -98,18 +103,49 @@ class AjaxController extends Controller
 
 	/**
 	 * Supprime la ligne ayant comme clé étrangère $iBooking dans la table Vehicle
-	 * @todo Tester la variable $iVehicle
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
      public function delete(Request $request){
-        $iVehicle         = $request->id_vehicle;
+        $iVehicle         =  htmlspecialchars($request->id_vehicle);
 
-        Vehicle::where('id', $iVehicle)
-          ->delete();
+        if(!is_numeric($iVehicle)) {
+            return response("$iVehicle n'est pas un identifiant valide",200);
+        }
 
-		return response($iVehicle,200);
+         Vehicle::where('id',  $iVehicle)
+             ->update([
+                 'category'       => $sCategory,
+                 'brand'          => $sBrand,
+                 'type'           => $sType,
+                 'color'          => $sColor,
+                 'current_place'  => $sCurrent_place,
+                 'licence_plate'  => $sLicence_plate,
+                 'kilometer'      => $sKilometer,
+                 'serial_number'  => $sSerial_number,
+                 'date_purchase'  => $dDate_purchase,
+                 'buying_price'   => $iBuying_price,
+                 'day_price'      => $sDay_price ,
+                 'battery_level'  => $sBattery_level,
+                 'battery_brand'  => $sBattery_brand,
+
+             ]);
+
+         return response('Vehicule modifié avec succès', 200);
     }
 
+    //--------------------------------------------------------------------------------------
 
+    public function hide(Request $request)
+    {
+        $iVehicle         = $request->id_vehicle;
+
+        Vehicle::where('id',  $iVehicle)
+            ->update([
+                'available'  => true,
+
+            ]);
+
+        return response('Vehicule caché avec succès', 200);
+    }
 }
