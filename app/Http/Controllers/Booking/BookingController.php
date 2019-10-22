@@ -53,6 +53,7 @@ class BookingController extends Controller
 		$sEndDate                   = $request->input('end_date');
 		$sStartHour                	= $request->input('start_hour');
 		$sEndHour                   = $request->input('end_hour');
+		$sAge                       = $request->input('age');
 		$sPhone                     = $request->input('phone');
 		$sAddress                   = $request->input('address');
 		$sCp                        = $request->input('cp');
@@ -89,6 +90,7 @@ class BookingController extends Controller
 			'end_hour' 			=> $sEndHour,
 			'place' 			=> strip_tags($sPlace),
 			'price' 			=> $iPrice,
+			'age'               => $ag
 			'phone'             => $sPhone,
 			'address'           => $sAddress." ".$sCp ,
 			'driving_licence'   => $sDrivingLicence,

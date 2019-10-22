@@ -260,7 +260,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Numero de permis </label>
                         <div class="col-md-12">
-                            <input type="text" id="driving_licence" name="driving_licence" placeholder="1277DJUSBU" pattern="[a-z]{9}"required>
+                            <input type="text" id="driving_licence" name="driving_licence" placeholder="1277DJUSB" required>
                         </div>
                     </div>
 
