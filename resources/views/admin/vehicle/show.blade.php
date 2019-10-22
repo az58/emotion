@@ -97,8 +97,13 @@
 
                                         <td>
                                             <select class="cobalt-TextField__Input"  name="category">
-                                                <option value="car">car</option>
-                                                <option selected  value="scooter">scooter</option>
+                                                <?php $categ=['car','scooter'];?>
+                                                @foreach( $categ as $cat)
+                                                    @if( $cat === $row->category)
+                                                            <option value="<?= $cat ?>"><?= $cat ?></option>
+                                                    @else
+                                                            <option  value="<?= $cat ?>"><?= $cat ?></option>
+                                                    @endif
                                             </select>
                                         </td>
 
