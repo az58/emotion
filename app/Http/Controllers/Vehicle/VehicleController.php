@@ -22,6 +22,7 @@ class VehicleController extends Controller
 	 */
 
 	public function search(Request $request) {
+
         if (!$request->has(Constant::NEEDLES)) {
             $vehicles 						= Vehicle::all();
 
@@ -32,6 +33,7 @@ class VehicleController extends Controller
             $startHour                      = Constant::STARTHOUR;
             $endHour                        = Constant::ENDHOUR;
             $sPlace                         = Constant::PLACE;
+
 
             return view('vehicle/show', compact('vehicles' , 'iDays', 'startDate', 'endDate', 'sPlace', 'startHour', 'endHour'));
         }
@@ -48,14 +50,14 @@ class VehicleController extends Controller
 		$endHour                        	= strip_tags($request->input('endHour'));
         $iMaxPrice                          = (is_numeric($request->price_end) ? $request->price_end : null) ;
 
-        $bHide                              = in_array(strtolower($sCategory),Constant::CATEGORIES) ;
+        //$sCat                               = in_array(strtolower($sCategory),Constant::CATEGORIES) ;
 
         $vehicles							= Provider::getVehicle(
-            [   'place'             => $sPlace,
+            [
+                'place'             => $sPlace,
                 'category'          => $sCategory,
                 'maxPrice'          => $iMaxPrice,
             ]
-            ,$bHide
         );
 
 

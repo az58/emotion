@@ -47,7 +47,8 @@ class VehicleProvider
             $vehicles->where('category', $aDatas['category']);
          }
 
-         if($hide) {
+
+         if($hide) {var_dump($vehicles->get());exit;
              $aIds							= VehicleProvider::checkIfHide();
              $vehicles->whereIn('id', $aIds)->distinct('*');
          }
