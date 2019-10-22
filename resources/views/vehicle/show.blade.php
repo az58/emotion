@@ -197,8 +197,8 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     @csrf
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Vous avez choisis</label>
-                        <div class="col-md-6">
+                        <label class="col-md-6 control-label">Vous avez choisis</label>
+                        <div class="col-md-8">
                             <input type="hidden" id="vehicle_id">
                             <span id="vehicle_name"></span>
                             <small class="help-block"></small>
@@ -206,8 +206,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Départ</label>
-                        <div class="col-md-6">
+                        <label class="col-md-6 control-label">Départ</label>
+                        <div class="col-md-12">
                             <span id="date_checkin"></span> depuis
                             <span id="place_checkin"></span> à <span id="hour_checkin"></span>
                             <small class="help-block"></small>
@@ -215,27 +215,55 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Retour</label>
-                        <div class="col-md-6">
+                        <label class="col-md-6 control-label">Retour</label>
+                        <div class="col-md-12">
 
-                            <span id="date_checkout"></span>  à
-                            <span id="place_checkin"></span> pour <span id="hour_checkout"></span>
+                            <span id="date_checkout"></span>
+                            <span id="place_checkin"></span>  à  <span id="hour_checkout"></span>
                             <small class="help-block"></small>
                         </div>
                     </div>
 
                     <div class="form-group" max-width="100">
-                        <label class="col-md-4 control-label">Prix total de la location de base</label>
+                        <label class="col-md-8 control-label">Prix total de la location de base</label>
                         <span id="booking_price"></span>€
                     </div>
 
                     <div class="form-group">
-                        <!--<div class="col-md-6 col-md-offset-4">
-                            <a href="/vehicle/store/<?=$vehicle->id."/".$startDate."/".$endDate.'/'.$iDays;?>">
-                                <button type="submit" class="btn btn-primary">Comfirmer</button>
-                            </a>
-                        </div>-->
+                        <label class="col-md-4 control-label">Age </label>
+                        <div class="col-md-12">
+                            <input type="number" id="age" name="age" min="18" max="90" placeholder="18" required>
+                        </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Mobile</label>
+                        <div class="col-md-12">
+                            <input type="tel"  id="phone" name="phone"  placeholder="0664 76 89 84" pattern="[0-9]{10}" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Adresse </label>
+                        <div class="col-md-12 ">
+                            <input type="text" id="address" name="address" placeholder="2 rue du Haut Bois" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Code postale</label>
+                        <div class="col-md-12">
+                            <input type="text" id="cp" name="cp" placeholder="750012" pattern="[0-9]{5}" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Numero de permis </label>
+                        <div class="col-md-12">
+                            <input type="text" id="driving_licence" name="driving_licence" placeholder="1277DJUSB" required>
+                        </div>
+                    </div>
+
                     <div class="fetched-data">
 
                     </div>
@@ -409,28 +437,38 @@
         //----------------------------------------------------------------------------
 
         $('.booking_comfirm').click(function() {
-            @auth
-                $('.modal').click();
-            $.ajax({
-                method: 'POST',
-                url: '/booking/create',
-                data: {
-                    vehicle_id      : $('#vehicle_id').val(),
-                    start_date      : $('#date_checkin').html(),
-                    end_date        : $('#date_checkout').html(),
-                    start_hour      : $('#hour_checkin').html(),
-                    end_hour        : $('#hour_checkout').html(),
-                    place           : $('#place_checkin').html(),
-                    days            : $('#days').val(),
-                },
-                dataType: "json"
-            })
-                .done(function (response) {
-                    //afficher la reponse dans une div ou un tooltips ou une notif
-                })
-                .fail(function (data, status) {
 
-                });
+            @auth
+                if($("form")[1].checkValidity()) {
+                    $.ajax({
+                        method: 'POST',
+                        url: '/booking/create',
+                        data: {
+                            vehicle_id      : $('#vehicle_id').val(),
+                            start_date      : $('#date_checkin').html(),
+                            end_date        : $('#date_checkout').html(),
+                            start_hour      : $('#hour_checkin').html(),
+                            end_hour        : $('#hour_checkout').html(),
+                            place           : $('#place_checkin').html(),
+                            days            : $('#days').val(),
+                            age             : $('#age').val(),
+                            phone           : $('#phone').val(),
+                            address         : $('#address').val(),
+                            cp              : $('#cp').val(),
+                            driving_licence : $('#driving_licence').val()
+                        },
+                        dataType: "json"
+                    })
+                        .done(function (response) {
+                            //afficher la reponse dans une div ou un tooltips ou une notif
+                            $('.modal').click();
+                        })
+                        .fail(function (data, status) {
+                            $('.modal').click();
+                        });
+                } else {
+                    $('.fetched-data').html("<span class='text-warning'>OUPS! Le formulaire ne semble pas être bien remplit</span>");
+                }
             @else
                 window.location.href = "/login";
             @endauth
