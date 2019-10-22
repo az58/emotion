@@ -48,7 +48,7 @@ class VehicleProvider
          }
 
          if($hide) {
-             $aIds								= VehicleProvider::checkIfHide();
+             $aIds							= VehicleProvider::checkIfHide();
              $vehicles->whereIn('id', $aIds)->distinct('*');
          }
 
