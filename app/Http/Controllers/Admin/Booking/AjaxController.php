@@ -54,15 +54,19 @@ class AjaxController extends Controller
 
 	/**
 	 * Supprime la ligne ayant comme clé étrangère $iBooking dans la table Booking
-	 * @todo Tester la variable $iBooking
 	 * @param Request $request
 	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
 	 */
     public function delete(Request $request){
         $iBooking            = $request->id_booking;
 
+        if(!is_numeric($iBooking)) {
+            return response("$iBooking n'est pas un identifiant valide",200);
+        }
+
         Booking::where('id', $iBooking)
             ->delete();
+
         return response($iBooking,200);
     }
 }

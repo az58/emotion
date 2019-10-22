@@ -141,15 +141,15 @@
                 <ul>
                   <li><a href="/register">S'enregistrer</a></li>
                   <li><a href="/login">Se connecter</a></li>
-                    @auth
-                      <li><a href="/logout">Sortir</a></li>
-                    @endauth
+                  @auth
+                    <li><a href="/logout">Sortir</a></li>
+                  @endauth
                 </ul>
               </li>
               @auth
-              <?php if (\Illuminate\Support\Facades\Auth::user()->role = 'admin') {?>
-              <li><a href="/admin">Admin</a></li>
-              <?php }?>
+                <?php if (\Illuminate\Support\Facades\Auth::user()->role = 'admin') {?>
+                <li><a href="/admin">Admin</a></li>
+                <?php }?>
               @endauth
               <li><a href="/home#about-area">About</a></li>
               <li><a href="/home#contact">Contact</a></li>
