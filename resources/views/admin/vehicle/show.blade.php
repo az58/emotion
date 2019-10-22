@@ -100,10 +100,11 @@
                                                 <?php $categ=['car','scooter'];?>
                                                 @foreach( $categ as $cat)
                                                     @if( $cat === $row->category)
-                                                            <option value="<?= $cat ?>"><?= $cat ?></option>
+                                                            <option selected value="<?= $cat ?>"><?= $cat ?></option>
                                                     @else
                                                             <option  value="<?= $cat ?>"><?= $cat ?></option>
                                                     @endif
+                                                @endforeach
                                             </select>
                                         </td>
 
