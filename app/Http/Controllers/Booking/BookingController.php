@@ -90,7 +90,7 @@ class BookingController extends Controller
 			'end_hour' 			=> $sEndHour,
 			'place' 			=> strip_tags($sPlace),
 			'price' 			=> $iPrice,
-			'age'               => $ag
+			'age'               => $sAge,
 			'phone'             => $sPhone,
 			'address'           => $sAddress." ".$sCp ,
 			'driving_licence'   => $sDrivingLicence,

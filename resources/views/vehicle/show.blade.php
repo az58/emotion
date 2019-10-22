@@ -460,8 +460,10 @@
                         dataType: "json"
                     })
                         .done(function (response) {
-                            //afficher la reponse dans une div ou un tooltips ou une notif
-                            $('.modal').click();
+                            $('.fetched-data').html("<span class='text-succes'>BRAVO! Vous allez bientôt être redirigé vers la page de paiement ... </span>");
+                            setTimeout(function(){
+                                $('.modal').click();
+                            }, 2000);
                         })
                         .fail(function (data, status) {
                             $('.modal').click();
