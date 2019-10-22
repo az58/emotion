@@ -39,7 +39,7 @@ class VehicleProvider
      }
 
 
-    public static function getVehicle(array $aDatas, bool $hide = null) {
+    public static function getVehicle(array $aDatas, bool $hide = false) {
 
          $vehicles = Vehicle::where('current_place', htmlentities($aDatas['place']))->whereBetween('day_price', [0, $aDatas['maxPrice']]);
 
@@ -51,6 +51,7 @@ class VehicleProvider
              $aIds								= VehicleProvider::checkIfHide();
              $vehicles->whereIn('id', $aIds)->distinct('*');
          }
+
 
         return $vehicles->get();
     }

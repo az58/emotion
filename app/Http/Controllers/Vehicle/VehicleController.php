@@ -58,6 +58,7 @@ class VehicleController extends Controller
             ,$bHide
         );
 
+
         if (!$vehicles->isEmpty()) {
             if (!Tools::validateDate($startDate) || !Tools::validateDate($endDate)) {
                redirect('vehicle/search');
