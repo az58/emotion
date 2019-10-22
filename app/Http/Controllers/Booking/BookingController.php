@@ -81,6 +81,10 @@ class BookingController extends Controller
 		$iPrice					= ($iDays * $iPriceDay->day_price);
 		$sPlace                	= htmlspecialchars($request->input('place'));
 
+		/** rend indisponible le vehicule à d'autre reservations */
+		Vehicle::where('id',(int) $iVehicle)
+            ->update(['available'=> 0]);
+
 		Booking::insert([
 			'user_id' 			=> Auth::id(),
 			'vehicle_id' 		=> (int) $iVehicle ,

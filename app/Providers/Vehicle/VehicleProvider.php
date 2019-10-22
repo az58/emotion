@@ -24,12 +24,13 @@ class VehicleProvider
 
          $vehicleBookedQueryBuilder         = Booking::join('vehicle', 'booking.vehicle_id', '=', 'vehicle.id')
              ->select('vehicle_id')
-             ->where('booking.end_date', '>=', $nowDay)
+             ->where('end_date', '<=', $nowDay)
              ->distinct('vehicle_id')->get();
 
          if (!empty($vehicleBookedQueryBuilder)) {
 
              $aVehicleBooked                = $vehicleBookedQueryBuilder->toArray();
+
              foreach ($aVehicleBooked as $key => $row) {
                  $aIds    [] = $row['vehicle_id'];
              }
@@ -38,21 +39,23 @@ class VehicleProvider
          return $aIds;
      }
 
+    public static function getVehicle(array $aDatas = []) {
+         $vehicles = Vehicle::class;
 
-    public static function getVehicle(array $aDatas, bool $hide = false) {
+         if (!empty($aDatas)) {
+             $vehicles = Vehicle::where('current_place', htmlentities($aDatas['place']))->whereBetween('day_price', [0, $aDatas['maxPrice']]);
 
-         $vehicles = Vehicle::where('current_place', htmlentities($aDatas['place']))->whereBetween('day_price', [0, $aDatas['maxPrice']]);
 
-         if (empty($aDatas['category'])){
-            $vehicles->where('category', $aDatas['category']);
+             if (!empty($aDatas['category'])){
+
+                 $vehicles->where('category', $aDatas['category']);
+             }
+
          }
 
-
-         if($hide) {var_dump($vehicles->get());exit;
-             $aIds							= VehicleProvider::checkIfHide();
-             $vehicles->whereIn('id', $aIds)->distinct('*');
-         }
-
+         $aIds							= VehicleProvider::checkIfHide();
+         $vehicles->whereIn('id', $aIds);
+        var_dump($vehicles->whereIn('id', $aIds)->toSql());exit;
 
         return $vehicles->get();
     }

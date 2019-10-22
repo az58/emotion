@@ -24,7 +24,7 @@ class VehicleController extends Controller
 	public function search(Request $request) {
 
         if (!$request->has(Constant::NEEDLES)) {
-            $vehicles 						= Vehicle::all();
+            $vehicles 						= Vehicle::where('available', 1);
 
             $iDays                          = Constant::DAYS;
             $startDate                      = Date('m/d/Y', time());
