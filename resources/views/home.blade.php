@@ -148,7 +148,7 @@
               </li>
               @auth
                 <?php if (\Illuminate\Support\Facades\Auth::user()->role = 'admin') {?>
-                <li><a href="/admin">Admin</a></li>
+                            <li><a href="/admin">Admin</a></li>
                 <?php }?>
               @endauth
               <li><a href="/home#about-area">About</a></li>

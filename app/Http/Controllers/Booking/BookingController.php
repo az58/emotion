@@ -53,6 +53,10 @@ class BookingController extends Controller
 		$sEndDate                   = $request->input('end_date');
 		$sStartHour                	= $request->input('start_hour');
 		$sEndHour                   = $request->input('end_hour');
+		$sPhone                     = $request->input('phone');
+		$sAddress                   = $request->input('address');
+		$sCp                        = $request->input('cp');
+		$sDrivingLicence            = $request->input('driving_licence');
 
 		if (!Tools::validateDate($sStartDate) || !Tools::validateDate($sEndDate)) {
 			return response('Date troubles', 501);
@@ -75,6 +79,7 @@ class BookingController extends Controller
 
 		$iPrice					= ($iDays * $iPriceDay->day_price);
 		$sPlace                	= htmlspecialchars($request->input('place'));
+
 		Booking::insert([
 			'user_id' 			=> Auth::id(),
 			'vehicle_id' 		=> (int) $iVehicle ,
@@ -84,6 +89,9 @@ class BookingController extends Controller
 			'end_hour' 			=> $sEndHour,
 			'place' 			=> strip_tags($sPlace),
 			'price' 			=> $iPrice,
+			'phone'             => $sPhone,
+			'address'           => $sAddress." ".$sCp ,
+			'driving_licence'   => $sDrivingLicence,
 			'status' 			=> 'waiting_payment',
 
 		]);
