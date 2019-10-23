@@ -113,10 +113,9 @@ class BookingController extends Controller
 		 *
 		 *
 		 */
-        return redirect()->action('stripeController@index', ['iPrice' => $iPrice])->with('status', ' vous allez être redirigé vers la page de paiement...');;
+        return redirect()->action('StripeController@index', ['iPrice' => $iPrice])->with('status', ' vous allez être redirigé vers la page de paiement...');
+
 		//return response('Nous avons bien enregistré votre choix, vous allez être redirigé vers la page de paiement...');
-
-
 
 
 
