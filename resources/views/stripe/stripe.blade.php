@@ -22,7 +22,7 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            <button class="btn btn-primary btn-block" onclick="pay({{ $price }})">Payer {{ $price }} </button>
+            <button class="btn btn-primary btn-block" onclick="pay({{ $iPrice }})">Payer {{ $iPrice }} </button>
         </div>
 
     </div>
@@ -43,7 +43,7 @@
         });
     });
 
-    function pay(price) {
+    function pay(amount) {
         var handler = StripeCheckout.configure({
             key: 'pk_test_aeUUjYYcx4XNfKVW60pmHTtI', // your publisher key id
             locale: 'auto',
@@ -51,17 +51,15 @@
                 // You can access the token ID with `token.id`.
                 // Get the token ID to your server-side code for use.
                 console.log('Token Created!!');
-                console.log(token)
+                console.log(token);
                 $('#token_response').html(JSON.stringify(token));
 
                 $.ajax({
                     url: '{{ url("store") }}',
                     method: 'post',
-                    data: { tokenId: token.id, price: price },
+                    data: { tokenId: token.id, amount: amount },
                     success: (response) => {
-
                         console.log(response)
-
                     },
                     error: (error) => {
                         console.log(error);
@@ -74,7 +72,7 @@
         handler.open({
             name: 'Demo Site',
             description: '2 widgets',
-            amount: amount * 100
+            amount: amount
         });
     }
 </script>

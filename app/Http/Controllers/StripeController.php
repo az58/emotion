@@ -19,7 +19,7 @@ class StripeController extends Controller
 
         $iPrice = $request->price;
 
-        return view('stripe.stripe', ['price' => $iPrice]);
+        return view('stripe.stripe', compact( 'iPrice'));
     }
 
 
@@ -31,11 +31,10 @@ class StripeController extends Controller
      */
     public function store(Request $request)
     {
-
         $stripe = Stripe::charges()->create([
             'source' => $request->get('tokenId'),
             'currency' => 'EUR',
-            'amount' => $request->get('iPrice') * 100
+            'amount' => $request->get('amount')
         ]);
 
         return $stripe;
