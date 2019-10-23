@@ -53,6 +53,11 @@ class BookingController extends Controller
 		$sEndDate                   = $request->input('end_date');
 		$sStartHour                	= $request->input('start_hour');
 		$sEndHour                   = $request->input('end_hour');
+		$sAge                       = $request->input('age');
+		$sPhone                     = $request->input('phone');
+		$sAddress                   = $request->input('address');
+		$sCp                        = $request->input('cp');
+		$sDrivingLicence            = $request->input('driving_licence');
 
 		if (!Tools::validateDate($sStartDate) || !Tools::validateDate($sEndDate)) {
 			return response('Date troubles', 501);
@@ -75,6 +80,11 @@ class BookingController extends Controller
 
 		$iPrice					= ($iDays * $iPriceDay->day_price);
 		$sPlace                	= htmlspecialchars($request->input('place'));
+
+		/** rend indisponible le vehicule à d'autre reservations */
+		Vehicle::where('id',(int) $iVehicle)
+            ->update(['available'=> 0]);
+
 		Booking::insert([
 			'user_id' 			=> Auth::id(),
 			'vehicle_id' 		=> (int) $iVehicle ,
@@ -84,8 +94,11 @@ class BookingController extends Controller
 			'end_hour' 			=> $sEndHour,
 			'place' 			=> strip_tags($sPlace),
 			'price' 			=> $iPrice,
+			'age'               => $sAge,
+			'phone'             => $sPhone,
+			'address'           => $sAddress." ".$sCp ,
+			'driving_licence'   => $sDrivingLicence,
 			'status' 			=> 'waiting_payment',
-
 		]);
 
 		/**
@@ -102,6 +115,7 @@ class BookingController extends Controller
 		 */
 
 		return response('Nous avons bien enregistré votre choix, vous allez être redirigé vers la page de paiement...');
+
 
 
 
@@ -154,6 +168,7 @@ class BookingController extends Controller
 //		$ch	= Stripe\Charge::all(['limit' => 10]);
 //
 //
+
     }
 
     /**

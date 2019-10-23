@@ -13,7 +13,6 @@ class AjaxController extends Controller
 {
 	/**
 	 * Récupere les datas passées par la fonction ajax et execute une requete update sur la ligne corespondant à la clé primaire $idUser
-	 * @todo Tester les variables avant de les envoyées à la requete
 	 * @param Request $request
 	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
 	 */
@@ -40,12 +39,15 @@ class AjaxController extends Controller
 
 	/**
 	 * Supprime la ligne ayant comme clé étrangère $iUser dans la table User
-	 * @todo Tester la variable $iUser
 	 * @param Request $request
 	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
 	 */
     public function delete(Request $request){
         $iUser             = $request->id_user;
+
+        if(!is_numeric($iUser)) {
+            return response("$iUser n'est pas un identifiant valide",200);
+        }
 
         User::where('id', $iUser)
           ->delete();

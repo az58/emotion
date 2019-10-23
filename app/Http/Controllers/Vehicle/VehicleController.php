@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Vehicle;
 
+use App\Booking;
 use App\Http\Controllers\Controller;
 use App\Providers\Tools\Tools;
 use App\Providers\Tools\Constant;
+use App\Providers\Vehicle\VehicleProvider as Provider;
 use App\Vehicle;
 
 use Illuminate\Http\Request;
@@ -20,8 +22,9 @@ class VehicleController extends Controller
 	 */
 
 	public function search(Request $request) {
+
         if (!$request->has(Constant::NEEDLES)) {
-            $vehicles 						= Vehicle::all();
+            $vehicles 						= Provider::getVehicle();
 
             $iDays                          = Constant::DAYS;
             $startDate                      = Date('m/d/Y', time());
@@ -45,30 +48,32 @@ class VehicleController extends Controller
         $endDate                            = strip_tags($request->input('endDate'));
 		$startHour                      	= strip_tags($request->input('startHour'));
 		$endHour                        	= strip_tags($request->input('endHour'));
-
         $iMaxPrice                          = (is_numeric($request->price_end) ? $request->price_end : null) ;
 
-        $sCat                               = in_array(strtolower($sCategory),Constant::CATEGORIES) ;
-        if (!$sCat){
-            $vehicles 						= Vehicle::where('current_place', htmlentities($sPlace))->whereBetween('day_price', [0, $iMaxPrice])->get();
-        }
+        //$sCat                               = in_array(strtolower($sCategory),Constant::CATEGORIES) ;
 
-        if ($sCat) {
-            $vehicles 						= Vehicle::where('current_place', htmlentities($sPlace))->where('category', $sCategory)->whereBetween('day_price', [0, $iMaxPrice])->get();
-        }
+        $vehicles							= Provider::getVehicle(
+            [
+                'place'             => $sPlace,
+                'category'          => $sCategory,
+                'maxPrice'          => $iMaxPrice,
+            ]
+        );
+
 
         if (!$vehicles->isEmpty()) {
             if (!Tools::validateDate($startDate) || !Tools::validateDate($endDate)) {
                redirect('vehicle/search');
             }
 
-			if (!Tools::validateHour($startHour) || !Tools::validateHour($endHour)) {
-				redirect('vehicle/search');
-			}
+            if (!Tools::validateHour($startHour) || !Tools::validateHour($endHour)) {
+                redirect('vehicle/search');
+            }
 
             $iNoAbsoluteDay                 = round((strtotime($startDate) - strtotime($endDate)) / (60 * 60 * 24));
             $iDays                          = abs($iNoAbsoluteDay);
         }
+
 
         return view('vehicle/show', compact('vehicles' , 'iDays', 'startDate', 'endDate' , 'sPlace', 'startHour', 'endHour'));
     }
