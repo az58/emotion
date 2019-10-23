@@ -116,7 +116,7 @@ class BookingController extends Controller
 //		// real test key : sk_test_x5TBqaYsUEpjkNs4V7kavpCQ00itifTEmi
 //		Stripe\Stripe::setApiKey('sk_test_x5TBqaYsUEpjkNs4V7kavpCQ00itifTEmi');
 //
-//		$ev	= Stripe\Event::all(['limit' => 10]);
+		$ev	= Stripe\Event::all(['limit' => 10]);
 //
 //		Stripe\Charge::create([
 //			"amount" => 2000,
