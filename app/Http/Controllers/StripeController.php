@@ -14,11 +14,11 @@ class StripeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $aBooking = Booking::all();
-        dd($aBooking);
-        return view('stripe.stripe', ['iPrice' => 'iPrice']);
+        $iPrice = $request->get('iPrice');
+        return view('stripe.stripe', ['iPrice' => $iPrice]);
     }
 
 
@@ -34,7 +34,7 @@ class StripeController extends Controller
         $stripe = Stripe::charges()->create([
             'source' => $request->get('tokenId'),
             'currency' => 'EUR',
-            'amount' => $request->get('amount') * 100
+            'amount' => $request->get('iPrice') * 100
         ]);
 
         return $stripe;

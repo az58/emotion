@@ -78,7 +78,7 @@ Route::post('/admin/booking/ajax/del', 'Admin\Booking\AjaxController@delete')->m
 
 
     Route::get('stripe', 'StripeController@stripe');
-    Route::get('stripe/index', 'StripeController@index');
+    Route::get('/stripe/index', 'StripeController@index');
     Route::post('payment', 'StripeController@payStripe');
 
 

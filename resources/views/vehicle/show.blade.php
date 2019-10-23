@@ -441,6 +441,7 @@
 
             @auth
                 if($("form")[1].checkValidity()) {
+                $('.modal').click();
                     $.ajax({
                         method: 'POST',
                         url: '/booking/create',
@@ -461,9 +462,9 @@
                         dataType: "json"
                     })
 
-                    .done(function () {
-                        success();
-                        $('.modal').click();
+                    .done(function (response) {
+                        window.location.href = "/stripe/index";
+                        console.log("dfghj")
                     })
                     .fail(function () {
                         error();
