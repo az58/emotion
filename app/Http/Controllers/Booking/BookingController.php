@@ -99,7 +99,6 @@ class BookingController extends Controller
 			'address'           => $sAddress." ".$sCp ,
 			'driving_licence'   => $sDrivingLicence,
 			'status' 			=> 'waiting_payment',
-
 		]);
 
 		/**
@@ -116,58 +115,6 @@ class BookingController extends Controller
 		 */
 
 		return response('Nous avons bien enregistré votre choix, vous allez être redirigé vers la page de paiement...');
-
-
-
-
-//		/**
-//		 * Ceci est une vrai clé de test liée à un veritable compte stripe
-//		 * @author Lory LETICEE
-//		 * @see https://stripe.com/docs/api
-//		 */
-//		$intent ='';
-//		// fake test key : sk_test_4eC39HqLyjWDarjtT1zdp7dc
-//		// real test key : sk_test_x5TBqaYsUEpjkNs4V7kavpCQ00itifTEmi
-//		Stripe\Stripe::setApiKey('sk_test_x5TBqaYsUEpjkNs4V7kavpCQ00itifTEmi');
-//
-//		$ev	= Stripe\Event::all(['limit' => 10]);
-//
-//		Stripe\Charge::create([
-//			"amount" => 2000,
-//			"currency" => "usd",
-//			"source" => "tok_mastercard", // obtained with Stripe.js
-//			"metadata" => ["order_id" => "6735"]
-//		]);
-//
-//		$intent = Stripe\PaymentIntent::create([
-//			'amount' => 1099,
-//			'currency' => 'usd',
-//		]);
-//
-//		$session = Stripe\Checkout\Session::create([
-//			'payment_method_types' => ['card'],
-//			'line_items' => [[
-//				'name' => "Cucumber from Roger's Farm",
-//				'amount' => 200,
-//				'currency' => 'usd',
-//				'quantity' => 10,
-//			]],
-//			'payment_intent_data' => [
-//				//'application_fee_amount' => 200,
-//			],
-//			'success_url' => 'https://example.com/success',
-//			'cancel_url' => 'https://example.com/cancel',
-//		],
-//        [
-//            'transfer_data' => [
-//                'destination' => 'acct_1F4yV2Gz0utTc5r5',
-//            ],
-//		]);
-//
-//
-//		$ch	= Stripe\Charge::all(['limit' => 10]);
-//
-//
     }
 
     /**
