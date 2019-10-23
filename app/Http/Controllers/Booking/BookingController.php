@@ -115,7 +115,7 @@ class BookingController extends Controller
 		 */
         //return redirect()->action('StripeController@index', ['iPrice' => $iPrice])->with('status', ' vous allez être redirigé vers la page de paiement...');
 
-		return response('Nous avons bien enregistré votre choix, vous allez être redirigé vers la page de paiement...');
+		return response('Nous avons bien enregistré votre choix, vous allez être redirigé vers la page de paiement...', 200);
 
 
 
@@ -129,7 +129,7 @@ class BookingController extends Controller
 //		// real test key : sk_test_x5TBqaYsUEpjkNs4V7kavpCQ00itifTEmi
 //		Stripe\Stripe::setApiKey('sk_test_x5TBqaYsUEpjkNs4V7kavpCQ00itifTEmi');
 //
-		$ev	= Stripe\Event::all(['limit' => 10]);
+		//$ev	= Stripe\Event::all(['limit' => 10]);
 //
 //		Stripe\Charge::create([
 //			"amount" => 2000,

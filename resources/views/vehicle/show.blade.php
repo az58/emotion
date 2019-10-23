@@ -441,7 +441,7 @@
 
             @auth
                 if($("form")[1].checkValidity()) {
-                $('.modal').click();
+
                     $.ajax({
                         method: 'POST',
                         url: '/booking/create',
@@ -463,15 +463,18 @@
                     })
 
                     .done(function (response) {
-                        window.location.href = "/stripe/index";
-                        console.log("dfghj")
+                        console.log('Un probleme est survenu');
                     })
+
                     .fail(function () {
-                        error();
+                        success();
+                        $('.modal').click();
+                        window.location.href = "/stripe/index";
+
                     });
 
                 } else {
-                    error();
+                        console.log("valid form not ")
                 }
             @else
                 window.location.href = "/login";
