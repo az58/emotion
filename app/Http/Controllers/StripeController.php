@@ -17,6 +17,7 @@ class StripeController extends Controller
     public function index()
     {
         $aBooking = Booking::all();
+        dd($aBooking);
         return view('stripe.stripe', ['iPrice' => 'iPrice']);
     }
 
