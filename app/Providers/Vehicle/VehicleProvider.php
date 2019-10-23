@@ -22,10 +22,9 @@ class VehicleProvider
          $nowDay							= date("Y-m-d");
          //$nowHour							= date("H:i:s");
 
-         $vehicleBookedQueryBuilder         = Booking::join('vehicle', 'booking.vehicle_id', '=', 'vehicle.id')
-             ->select('vehicle_id')
-             ->where('end_date', '<=', $nowDay)
-             ->distinct('vehicle_id')->get();
+         $vehicleBookedQueryBuilder         = Booking::select('vehicle_id')
+             ->where('end_date', '>=', $nowDay)
+             ->get();
 
          if (!empty($vehicleBookedQueryBuilder)) {
 
@@ -40,7 +39,7 @@ class VehicleProvider
      }
 
     public static function getVehicle(array $aDatas = []) {
-         $vehicles = Vehicle::class;
+         $vehicles = Vehicle::where('available', 1);
 
          if (!empty($aDatas)) {
              $vehicles = Vehicle::where('current_place', htmlentities($aDatas['place']))->whereBetween('day_price', [0, $aDatas['maxPrice']]);
@@ -54,8 +53,9 @@ class VehicleProvider
          }
 
          $aIds							= VehicleProvider::checkIfHide();
-         $vehicles->whereIn('id', $aIds);
-        var_dump($vehicles->whereIn('id', $aIds)->toSql());exit;
+
+         $vehicles->whereNotIn('id', $aIds);
+
 
         return $vehicles->get();
     }
