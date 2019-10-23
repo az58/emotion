@@ -16,10 +16,9 @@ class StripeController extends Controller
      */
     public function index(Request $request)
     {
-        $aBooking = Booking::all();
-        $iPrice = $request->get('price');
 
-        //var_dump($iPrice);exit;
+        $iPrice = $request->price;
+
         return view('stripe.stripe', ['price' => $iPrice]);
     }
 
