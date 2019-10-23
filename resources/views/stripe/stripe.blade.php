@@ -22,7 +22,7 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            <button class="btn btn-primary btn-block" onclick="pay({{ $iPrice }})">Payer {{ $iPrice }} </button>
+            <button class="btn btn-primary btn-block" onclick="pay({{ $price }})">Payer {{ $price }} </button>
         </div>
 
     </div>
@@ -43,7 +43,7 @@
         });
     });
 
-    function pay(iPrice) {
+    function pay(price) {
         var handler = StripeCheckout.configure({
             key: 'pk_test_aeUUjYYcx4XNfKVW60pmHTtI', // your publisher key id
             locale: 'auto',
@@ -57,7 +57,7 @@
                 $.ajax({
                     url: '{{ url("store") }}',
                     method: 'post',
-                    data: { tokenId: token.id, iPrice: iPrice },
+                    data: { tokenId: token.id, price: price },
                     success: (response) => {
 
                         console.log(response)

@@ -396,8 +396,9 @@
             var id_vehicle      = $(this).parent().find("p[class='id_vehicle']").attr('id');
             var type_vehicle    = $(this).parent().find("p[class='type_vehicle']").attr('id');
             var brand_vehicle   = $(this).parent().find("p[class='brand_vehicle']").attr('id');
-            var price_vehicle   = $(this).parent().find("span[class='price']").attr('id');
-            var iDays           = $(this).parent().find("input[name='days']").attr('id');
+
+            let iDays           = $(this).parent().find("input[name='days']").attr('id');
+            let price_vehicle   = $(this).parent().find("span[class='price']").attr('id');
             var picture_vehicle = $(this).parent().find("img[class='picture_vehicle']").attr('id');
             var depart          = $("#start_date").val();
             var arrive          = $("#end_date").val();
@@ -441,7 +442,7 @@
 
             @auth
                 if($("form")[1].checkValidity()) {
-
+                    var price = $('#booking_price').html();
                     $.ajax({
                         method: 'POST',
                         url: '/booking/create',
@@ -469,7 +470,7 @@
                     .fail(function () {
                         success();
                         $('.modal').click();
-                        window.location.href = "/stripe/index";
+                        window.location.href = "/stripe/index/"+price;
 
                     });
 
