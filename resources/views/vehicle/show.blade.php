@@ -133,9 +133,7 @@
                 <div class="popular-cars-wrap">
                     <!-- Filtering Menu -->
                     <div class="popucar-menu text-center">
-                        <a href="#" data-filter="*" class="active">all</a>
-                        <a href="#" data-filter=".sedan">Car</a>
-                        <a href="#" data-filter=".suv">Scooter</a>
+                        <a href="#" data-filter="*" class="active">Vehicles</a>
                     </div>
                     <!-- Filtering Menu -->
 
@@ -173,7 +171,7 @@
                                             <a href="#">AIR CONDITION</a>
                                         </div>
                                     </div>
-                                    <button data-toggle="modal" class=" get-touch map-show modal-booking" data-target="#myModal">Réserver</button>
+                                    <button data-toggle="modal" class=" get-touch map-show book-now-btn modal-booking" data-target="#myModal">Réserver</button>
                                 </div>
                             </div>
                         @endforeach

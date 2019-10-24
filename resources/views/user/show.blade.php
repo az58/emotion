@@ -112,8 +112,8 @@
                                     <li><a href="/admin">Admin</a></li>
                                 @endif
                             @endauth
-                            <li><a href="/home#about-area">About</a></li>
-                            <li><a href="/home#contact">Contact</a></li>
+                            <li><a href="./#about-area">About</a></li>
+                            <li><a href="./#contact">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -167,14 +167,14 @@
                                             <p class="type_vehicle" id="">{{ $booking->type }}</p>
                                             <p class="brand_vehicle" id="">{{ $booking->licence }}</p>
                                             <div>
-                                                <span class="price" id="price"><i class="fa fa-tag"></i>Prix de la location:{{ $booking->price }}€</span>
+                                                <span class="price" id="price"><i class="fa fa-tag"></i>Prix de la location: {{ $booking->price }}€</span>
                                                 <input type="hidden" name="days" id="">
                                             </div>
                                         </h3>
                                         <div class="p-car-feature">
-                                            <a href="#"></a>
-                                            <a href="#"></a>
-                                            <a href="#">manual</a>
+                                            <a href="#">{{ $booking->start_date }}</a>
+                                            <a href="#">{{ $booking->end_date }}</a>
+                                            <a href="#">{{ $booking->place}}</a>
                                             <a href="#">AIR CONDITION</a>
                                         </div>
                                     </div>

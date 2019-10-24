@@ -129,6 +129,7 @@
             </div>
         </div>
 
+
     </div>
 @endsection
 
@@ -172,13 +173,13 @@
                         dataType: "json"
                     })
                         .done(function (response) {
-                            console.log(response);
+                           alert(response);
                         })
-                        .fail(function (data, status) {
-
+                        .fail(function (response) {
+                            showResponse(response);
                         });
                 }
-            })
+            });
 
             $('.del').click(function(){
                 if (confirm("Voulez-vous vraiment supprimer cette location ?")) {
@@ -203,6 +204,9 @@
                 }
             });
 
+            function showResponse(response) {
+
+            }
         });
 
     </script>
