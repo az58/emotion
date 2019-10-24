@@ -6,10 +6,9 @@ use App\Booking;
 use DemeterChain\B;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-//use Cartalyst\Stripe\Laravel\Facades\Stripe as e;
-//use Cartalyst\Stripe\Stripe;
-use Stripe\Checkout\Session;
-use Stripe\Stripe;
+use Cartalyst\Stripe\Stripe;
+//use Stripe\Checkout\Session;
+//use Stripe\Stripe;
 use Illuminate\Support\Facades\Auth;
 
 class StripeController extends Controller
