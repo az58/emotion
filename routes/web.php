@@ -27,8 +27,9 @@ Route::get('/', 'HomeController@index')->name('home');											//
 Route::get('/home', 'HomeController@index')->name('home');										//
 																								//
 																								//
-Route::get('/logout','Auth\LoginController@logout');											//
-Route::get('/about','HomeController@cgu');														//
+Route::get('/logout', 'Auth\LoginController@logout');											//
+Route::get('/about', 'HomeController@cgu');
+Route::get('/account', 'UserController@index');                                                                                            //
 //----------------------------------------------------------------------------------------------//
 
 
@@ -75,13 +76,15 @@ Route::post('/admin/vehicle/ajax/del', 'Admin\Vehicle\AjaxController@delete')->m
 																									//
 Route::post('/admin/booking/ajax/edit', 'Admin\Booking\AjaxController@edit')->middleware('admin');	//
 Route::post('/admin/booking/ajax/del', 'Admin\Booking\AjaxController@delete')->middleware('admin');	//
-
-
-    Route::get('store', 'StripeController@store');
-    Route::get('/stripe/index/{price}', 'StripeController@index');
-    Route::post('payment', 'StripeController@payStripe');
-
-
-
-
 //--------------------------------------------------------------------------------------------------//
+
+
+
+Route::get('store', 'StripeController@store');
+Route::get('/stripe/index/{price}', 'StripeController@index');
+Route::post('payment', 'StripeController@payStripe');
+
+
+
+
+

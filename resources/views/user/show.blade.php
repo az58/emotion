@@ -137,35 +137,28 @@
                     <!-- Filtering Menu -->
 
                     <div class="row popular-car-gird">
-                        <input type="hidden" id="start_date" value="{{ $startDate }}">
-                        <input type="hidden" id="end_date" value="{{ $endDate }}">
-                        <input type="hidden" id="start_hour" value="{{ $startHour }}">
-                        <input type="hidden" id="end_hour" value="{{ $endHour }}">
-                        <input type="hidden" id="place" value="{{ $sPlace }}">
-                        <!-- Single Popular Car Start -->
-
-                        @foreach($vehicles as $vehicle )
+                        @foreach($bookings as $booking )
                             <div class="col-lg-4 col-md-6 con suv mpv">
                                 <div class="single-popular-car">
                                     <div class="p-car-thumbnails">
-                                        <a class="car-hover" href="{{ asset('front/img/car/'.$vehicle->picture) }}">
-                                            <img class="picture_vehicle" id="{{ asset('front/img/car/'.$vehicle->picture) }}" src="{{ asset('front/img/car/'.$vehicle->picture) }}" alt="">
+                                        <a class="car-hover" href="{{ asset('front/img/car/'.$booking->picture) }}">
+                                            <img class="picture_vehicle" id="{{ asset('front/img/car/'.$booking->picture) }}" src="{{ asset('front/img/car/'.$booking->picture) }}" alt="">
                                         </a>
                                     </div>
 
                                     <div class="p-car-content">
                                         <h3>
-                                            <p class="id_vehicle" id="{{ $vehicle->id }}">
-                                            <p class="type_vehicle" id="{{ $vehicle->type }}">{{ $vehicle->type }}</p>
-                                            <p class="brand_vehicle" id="{{ $vehicle->brand }}">{{ $vehicle->brand }}</p>
+                                            <p class="id_vehicle" id="{{ $booking->id }}">
+                                            <p class="type_vehicle" id="{{ $booking->type }}">{{ $booking->type }}</p>
+                                            <p class="brand_vehicle" id="{{ $booking->brand }}">{{ $booking->brand }}</p>
                                             <div>
-                                                <span class="price" id="{{ $vehicle->day_price}}"><i class="fa fa-tag"></i>Prix par jour :{{ $vehicle->day_price}}€</span>
+                                                <span class="price" id="{{ $booking->price}}"><i class="fa fa-tag"></i>Prix par jour :{{ $booking->day_price}}€</span>
                                                 <input type="hidden" name="days" id="{{ $iDays }}">
                                             </div>
                                         </h3>
                                         <div class="p-car-feature">
-                                            <a href="#">{{ $vehicle->color }}</a>
-                                            <a href="#">{{ $vehicle->battery_brand }}</a>
+                                            <a href="#">{{ $booking->color }}</a>
+                                            <a href="#">{{ $booking->battery_brand }}</a>
                                             <a href="#">manual</a>
                                             <a href="#">AIR CONDITION</a>
                                         </div>
@@ -183,105 +176,6 @@
 <!--== Gallery Page Content End ==-->
 <!-- Trigger the modal with a button -->
 
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Récapitulatif de votre commande</h4>
-            </div>
-            <div class="modal-body">
-                    <img id="vehicle_picture">
-
-                <form action="" method="POST" class="" name="">
-
-                    @csrf
-                    <div class="form-group">
-                        <label class="col-md-6 control-label">Vous avez choisis</label>
-                        <div class="col-md-8">
-                            <input type="hidden" id="vehicle_id">
-                            <span id="vehicle_name"></span>
-                            <small class="help-block"></small>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-6 control-label">Départ</label>
-                        <div class="col-md-12">
-                            <span id="date_checkin"></span> depuis
-                            <span id="place_checkin"></span> à <span id="hour_checkin"></span>
-                            <small class="help-block"></small>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-6 control-label">Retour</label>
-                        <div class="col-md-12">
-
-                            <span id="date_checkout"></span>
-                            <span id="place_checkin"></span>  à  <span id="hour_checkout"></span>
-                            <small class="help-block"></small>
-                        </div>
-                    </div>
-
-                    <div class="form-group" max-width="100">
-                        <label class="col-md-8 control-label">Prix total de la location de base</label>
-                        <span id="booking_price"></span>€
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Age </label>
-                        <div class="col-md-12">
-                            <input type="number" id="age" name="age" min="18" max="90" placeholder="18" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Mobile</label>
-                        <div class="col-md-12">
-                            <input type="tel"  id="phone" name="phone"  placeholder="0664 76 89 84" pattern="[0-9]{10}" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Adresse </label>
-                        <div class="col-md-12 ">
-                            <input type="text" id="address" name="address" placeholder="2 rue du Haut Bois" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Code postale</label>
-                        <div class="col-md-12">
-                            <input type="text" id="cp" name="cp" placeholder="750012" pattern="[0-9]{5}" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Numero de permis </label>
-                        <div class="col-md-12">
-                            <input type="text" id="driving_licence" name="driving_licence" placeholder="1277DJUSB" required>
-                        </div>
-                    </div>
-
-                    <div class="fetched-data">
-
-                    </div>
-                </form>
-                <div class="col-md-6 col-md-offset-4">
-                    <button type="submit" class="btn btn-primary booking_comfirm">Comfirmer</button>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-
-    </div>
-</div>
-<!--fin  Modal -->
 
 <!--== Footer Area Start ==-->
 <section id="footer-area">
@@ -391,108 +285,5 @@
 
 <!--=== Mian Js ===-->
 <script src="{{ asset('front/js/main.js') }}"></script>
-<script>
-    $(function(){
 
-        $('.modal-booking').click(function(){
-            var id_vehicle      = $(this).parent().find("p[class='id_vehicle']").attr('id');
-            var type_vehicle    = $(this).parent().find("p[class='type_vehicle']").attr('id');
-            var brand_vehicle   = $(this).parent().find("p[class='brand_vehicle']").attr('id');
-
-            let iDays           = $(this).parent().find("input[name='days']").attr('id');
-            let price_vehicle   = $(this).parent().find("span[class='price']").attr('id');
-            var picture_vehicle = $(this).parent().find("img[class='picture_vehicle']").attr('id');
-            var depart          = $("#start_date").val();
-            var arrive          = $("#end_date").val();
-
-            var departHour      = $("#start_hour").val();
-            var arriveHour      = $("#end_hour").val();
-
-            var place           = $("#place").val();
-
-            $('#vehicle_name').html(type_vehicle.toUpperCase()+' '+brand_vehicle.toUpperCase());
-            $('#vehicle_id').attr('value', id_vehicle);
-            $('#vehicle_picture').attr('src', picture_vehicle);
-            $('#vehicle_picture').attr('width', 100);
-            $('#vehicle_picture').attr('height', 100);
-
-            $('#date_checkin').html(depart);
-            $('#date_checkout').html(arrive);
-
-            $('#hour_checkin').html(departHour);
-            $('#hour_checkout').html(arriveHour);
-
-            $('#place_checkin').html(place);
-
-            if(iDays===0) {
-                iDays=1;
-            }
-            $('#booking_price').html((iDays*price_vehicle));
-        });
-
-        //----------------------------------------------------------------------------
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        //----------------------------------------------------------------------------
-
-        $('.booking_comfirm').click(function() {
-
-            @auth
-                if($("form")[1].checkValidity()) {
-                    var price = $('#booking_price').html();
-                    $.ajax({
-                        method: 'POST',
-                        url: '/booking/create',
-                        data: {
-                            vehicle_id      : $('#vehicle_id').val(),
-                            start_date      : $('#date_checkin').html(),
-                            end_date        : $('#date_checkout').html(),
-                            start_hour      : $('#hour_checkin').html(),
-                            end_hour        : $('#hour_checkout').html(),
-                            place           : $('#place_checkin').html(),
-                            days            : $('#days').val(),
-                            age             : $('#age').val(),
-                            phone           : $('#phone').val(),
-                            address         : $('#address').val(),
-                            cp              : $('#cp').val(),
-                            driving_licence : $('#driving_licence').val()
-                        },
-                        dataType: "json"
-                    })
-
-                    .done(function (response) {
-                        console.log('Un probleme est survenu');
-                    })
-
-                    .fail(function () {
-                        success();
-                        $('.modal').click();
-                        window.location.href = "/stripe/index/"+price;
-
-                    });
-
-                } else {
-                        console.log("valid form not ")
-                }
-            @else
-                window.location.href = "/login";
-            @endauth
-        });
-
-        //-----------------------------------------------------------------
-
-        function error() {
-             $('.fetched-data').html("<span class='text-warning'>OUPS! Le formulaire ne semble pas être bien remplit</span>");
-        }
-
-        function success() {
-            $('.fetched-data').html("<span class='text-success'>BRAVO! Vous allez bientôt être redirigé vers la page de paiement ... </span>");
-        }
-    });
-</script>
 </body>
