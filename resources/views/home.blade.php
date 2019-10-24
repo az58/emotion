@@ -144,7 +144,7 @@
             <ul>
               <li class="active"><a href="#">Home</a></li>
               <li><a href="/vehicle/search">Cars</a></li>
-              <li><a href="">Mon compte</a>
+              <li><a href="/account">Mon compte</a>
                 <ul>
                   <li><a href="/register">S'enregistrer</a></li>
                   <li><a href="/login">Se connecter</a></li>

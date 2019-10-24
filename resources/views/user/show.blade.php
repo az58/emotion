@@ -130,12 +130,21 @@
                 <div class="popular-cars-wrap">
                     <!-- Filtering Menu -->
                     <div class="popucar-menu text-center">
-                        <a href="#" data-filter="*" class="active">all</a>
-                        <a href="#" data-filter=".sedan">Car</a>
-                        <a href="#" data-filter=".suv">Scooter</a>
+                        <a href="#" data-filter="*" class="active">Mes informations</a>
                     </div>
                     <!-- Filtering Menu -->
-
+                    <div class="p-car-content">
+                        @foreach($user as $row )
+                        <h3>
+                            <p class="user_firstname" id="">Prénom : {{ $row->firstname }}</p>
+                            <p class="user_lastname" id="">Nom : {{ $row->lastname }}</p>
+                            <p class="user_email" id="">Mail : {{ $row->email }}</p>
+                        </h3>
+                        <div class="p-car-feature">
+                            <a href="#">{{ $row->role }}</a>
+                        </div>
+                        @endforeach
+                    </div>
                     <div class="row popular-car-gird">
                         @foreach($bookings as $booking )
                             <div class="col-lg-4 col-md-6 con suv mpv">
@@ -148,22 +157,22 @@
 
                                     <div class="p-car-content">
                                         <h3>
-                                            <p class="id_vehicle" id="{{ $booking->id }}">
-                                            <p class="type_vehicle" id="{{ $booking->type }}">{{ $booking->type }}</p>
-                                            <p class="brand_vehicle" id="{{ $booking->brand }}">{{ $booking->brand }}</p>
+                                            <p class="id_vehicle" id="">{{ $booking->id }}</p>
+                                            <p class="type_vehicle" id="">{{ $booking->type }}</p>
+                                            <p class="brand_vehicle" id="">{{ $booking->licence }}</p>
                                             <div>
-                                                <span class="price" id="{{ $booking->price}}"><i class="fa fa-tag"></i>Prix par jour :{{ $booking->day_price}}€</span>
-                                                <input type="hidden" name="days" id="{{ $iDays }}">
+                                                <span class="price" id="price"><i class="fa fa-tag"></i>Prix de la location:{{ $booking->price }}€</span>
+                                                <input type="hidden" name="days" id="">
                                             </div>
                                         </h3>
                                         <div class="p-car-feature">
-                                            <a href="#">{{ $booking->color }}</a>
-                                            <a href="#">{{ $booking->battery_brand }}</a>
+                                            <a href="#"></a>
+                                            <a href="#"></a>
                                             <a href="#">manual</a>
                                             <a href="#">AIR CONDITION</a>
                                         </div>
                                     </div>
-                                    <button data-toggle="modal" class=" get-touch map-show modal-booking" data-target="#myModal">Réserver</button>
+                                    <button data-toggle="modal" class=" get-touch map-show modal-booking" data-target="#myModal">Facture</button>
                                 </div>
                             </div>
                         @endforeach
