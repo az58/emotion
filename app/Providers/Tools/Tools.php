@@ -6,6 +6,7 @@ namespace App\Providers\Tools;
 
 class Tools
 {
+
 	/**
 	 * Vérifie si une date est bien valide
 	 * @param $date / la date passé par l'utilisateur
@@ -19,6 +20,8 @@ class Tools
         return $d && $d->format($format) === $date;
     }
 
+    //----------------------------------------------------------------------------------------------
+
 	/**
 	 * Vérifie si l'heure est bien valide
 	 * @param $hour / l'heure passée par l'utilisateur
@@ -31,7 +34,9 @@ class Tools
 		return $time;
 	}
 
-	/**
+    //----------------------------------------------------------------------------------------------
+
+    /**
 	 * @param string $sStartDate
 	 * @param string $sEndDate
 	 * @return float|int
@@ -43,7 +48,9 @@ class Tools
 		return $iDays;
 	}
 
-	/**
+    //----------------------------------------------------------------------------------------------
+
+    /**
 	 * @param string $sDate
 	 * @return string
 	 */
@@ -54,4 +61,56 @@ class Tools
 
     	return  $y.'-'.$m.'-'.$d;
 	}
+
+
+    //----------------------------------------------------------------------------------------------
+
+    public static function getCountry() {
+        $apiCities                            	= file_get_contents('https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json');
+        $aCites                                 = json_decode($apiCities);
+
+        $_aCities         = [];
+        $_aCountries      = [];
+        $_localCountry    = 'France';
+
+        foreach ($aCites as $row){
+            if (!array_key_exists($row->country, $_aCities)) {
+
+                $_aCities[]               = $row->country;
+            }
+
+            $_aCities[$row->country][]    = $row->name;
+        }
+
+
+
+        if(isset($_aCities[$_localCountry])) {
+
+            $cleanArray                          = self::cleanMarseille($_aCities[$_localCountry]);
+        }
+
+       return  $aCities                                = array_reverse($cleanArray);
+    }
+
+    //----------------------------------------------------------------------------------------------
+
+    /**
+     * Supprime les doublons pour la ville de Marseille
+     * @return array
+     */
+    public static function cleanMarseille(array $_aCities) {
+        $finalArray = [];
+
+        foreach ($_aCities as $k) {
+            if ('Marseille' === substr($k,0,9)) {
+                if (array_key_exists('Marseille', $finalArray)) {
+
+                    continue;
+                }
+            }
+            $finalArray [$k]= $k;
+        }
+
+        return $finalArray;
+    }
 }

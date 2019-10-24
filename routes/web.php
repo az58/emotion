@@ -70,6 +70,7 @@ Route::post('/admin/user/ajax/del', 'Admin\User\AjaxController@delete')->middlew
 																									//
 Route::post('/admin/vehicle/ajax/edit', 'Admin\Vehicle\AjaxController@edit')->middleware('admin');	//
 Route::post('/admin/vehicle/ajax/del', 'Admin\Vehicle\AjaxController@delete')->middleware('admin');	//
+Route::post('/admin/vehicle/add', 'Admin\Vehicle\VehicleController@add');											//
 																									//
 								//-----Booking-------//												//
 																									//
