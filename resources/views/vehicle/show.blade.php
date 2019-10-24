@@ -72,8 +72,7 @@
             <div class="modal-body">
                     <img id="vehicle_picture">
 
-                <form action="" method="POST" class="" name="">
-
+                <form action="" method="POST" class="" name="form">
                     @csrf
                     <div class="form-group">
                         <label class="col-md-6 control-label">Vous avez choisis</label>
@@ -318,9 +317,8 @@
         //----------------------------------------------------------------------------
 
         $('.booking_comfirm').click(function() {
-
             @auth
-                if($("form")[1].checkValidity()) {
+                if($("form")[0].checkValidity()) {
                     var price = $('#booking_price').html();
                     $.ajax({
                         method: 'POST',
@@ -347,7 +345,7 @@
                     })
 
                     .fail(function () {
-                        success();
+                        //success();
                         $('.modal').click();
                         window.location.href = "/stripe/index/"+price;
 
