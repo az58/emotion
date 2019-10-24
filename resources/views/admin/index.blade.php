@@ -37,24 +37,6 @@
         <div class="sidebar-wrapper" id="sidebar-wrapper">
             <ul class="nav">
                 <li>
-                    <a href="./dashboard.html">
-                        <i class="now-ui-icons design_app"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="./map.html">
-                        <i class="now-ui-icons location_map-big"></i>
-                        <p>Maps</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="./notifications.html">
-                        <i class="now-ui-icons ui-1_bell-53"></i>
-                        <p>Notifications</p>
-                    </a>
-                </li>
-                <li>
                     <a href="/admin/profil">
                         <i class="now-ui-icons users_single-02"></i>
                         <p>User Profile</p>

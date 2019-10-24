@@ -14,24 +14,9 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
-                            <thead class=" text-primary">
-                            <th>
-                            </th>
-                            <th>
-
-                            </th>
-                            <th>
-
-                            </th>
-                            <th>
-
-                            </th>
-                            </thead>
-                            <tbody>
-
-                            </tbody>
-                        </table>
+                        <a href="/admin/booking"> BOOKINGS</a>
+                        <a href="/admin/vehicle"> VEHICLES</a>
+                        <a href="/admin/user">USERS </a>
                     </div>
                 </div>
             </div>
