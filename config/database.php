@@ -41,11 +41,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('mysql-pawolanmwen.alwaysdata.net', 'mysql-pawolanmwen.alwaysdata.net'),
+            'host' => env('DB_HOST', 'root'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('pawolanmwen_emotion', 'pawolanmwen_emotion'),
-            'username' => env('106139_emotion', '106139_emotion'),
-            'password' => env('jJ76"ù)8RcUdretse5', 'jJ76"ù)8RcUdretse5'),
+            'database' => env('DB_DATABASE', ''),
+            'username' => env('DB_USERNAME', ''),
+            'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
@@ -56,11 +56,11 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'host' => env('postgresql-pawolanmwen.alwaysdata.net', 'postgresql-pawolanmwen.alwaysdata.net'),
+            'host' => env('', ''),
             'port' => env('DB_PORT', '5432'),
-            'database' => env('pawolanmwen_emotion', 'pawolanmwen_emotion'),
-            'username' => env('pawolanmwen_106139', 'pawolanmwen_106139'),
-            'password' => env('jJ76"ù)8RcUdrets5', 'jJ76"ù)8RcUdrets5'),
+            'database' => env('', ''),
+            'username' => env('', ''),
+            'password' => env('', ''),
             'charset' => 'utf8',
             'prefix' => '',
             'schema' => 'public',
