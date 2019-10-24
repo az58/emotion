@@ -18,8 +18,6 @@ class AjaxController extends Controller
 	 */
     public function edit(Request $request) {
         $iBooking           = $request->id_booking;
-        $iUser_id           = $request->user_id;
-        $iVehicle_id        = $request->vehicle_id;
         $dStart_date        = $request->start_date;
         $dEnd_date          = $request->end_date;
         $sStatus            = $request->status;

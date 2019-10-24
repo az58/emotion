@@ -158,8 +158,6 @@
                         url: '/admin/booking/ajax/edit',
                         data: {
                             id_booking: idTr,
-                            user_id: elem.find('input[name="user_id"]').val(),
-                            vehicle_id: elem.find('input[name="vehicle_id"]').val(),
                             start_date: elem.find('input[name="start_date"]').val(),
                             end_date: elem.find('input[name="end_date"]').val(),
                             status: elem.find('select[name="status"]').val(),
