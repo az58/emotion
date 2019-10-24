@@ -30,11 +30,8 @@ class AjaxController extends Controller
         $sAddress           = $request->address;
         $sDriving_licence   = $request->driving_licence;
 
-
         Booking::where('id',  $iBooking)
             ->update([
-                'user_id'        => $iUser_id,
-                'vehicle_id'     => $iVehicle_id,
                 'start_date'     => $dStart_date,
                 'end_date'       => $dEnd_date,
                 'status'         => $sStatus,
@@ -44,9 +41,8 @@ class AjaxController extends Controller
                 'phone'          => $sPhone,
                 'address'        => $sAddress,
                 'driving_licence'=> $sDriving_licence,
-
-
             ]);
+
         return response('ok', 200);
     }
 
