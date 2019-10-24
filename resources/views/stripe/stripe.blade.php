@@ -51,20 +51,20 @@
                 token   : function (token) {
                     // You can access the token ID with `token.id`.
                     // Get the token ID to your server-side code for use.
-                    console.log('Token Created!!');
-                    console.log(token);
+                    //console.log('Token Created!!');
+                    //console.log(token);
                     $('#token_response').html(JSON.stringify(token));
 
                     $.ajax({
-                        url: '{{ url("store") }}',
+                        url: '/store',
                         method: 'post',
                         data: { tokenId: token.id, amount: amount, booking: iBooking },
                         success: (response) => {
                             console.log(response)
                         },
                         error: (error) => {
-                            console.log(error);
-                            alert('Oops! Something went wrong');
+                            //console.log(error);
+                            //alert('Oops! Something went wrong');
                             window.location.href = "/account";
                         }
                     })

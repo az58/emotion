@@ -268,25 +268,25 @@
 <!--=== Mian Js ===-->
 <script src="{{ asset('front/js/main.js') }}"></script>
 <script>
-    $(function(){
+    $(function() {
 
-        $('.modal-booking').click(function(){
-            var id_vehicle      = $(this).parent().find("p[class='id_vehicle']").attr('id');
-            var type_vehicle    = $(this).parent().find("p[class='type_vehicle']").attr('id');
-            var brand_vehicle   = $(this).parent().find("p[class='brand_vehicle']").attr('id');
+        $('.modal-booking').click(function () {
+            var id_vehicle = $(this).parent().find("p[class='id_vehicle']").attr('id');
+            var type_vehicle = $(this).parent().find("p[class='type_vehicle']").attr('id');
+            var brand_vehicle = $(this).parent().find("p[class='brand_vehicle']").attr('id');
 
-            let iDays           = $(this).parent().find("input[name='days']").attr('id');
-            let price_vehicle   = $(this).parent().find("span[class='price']").attr('id');
+            let iDays = $(this).parent().find("input[name='days']").attr('id');
+            let price_vehicle = $(this).parent().find("span[class='price']").attr('id');
             var picture_vehicle = $(this).parent().find("img[class='picture_vehicle']").attr('id');
-            var depart          = $("#start_date").val();
-            var arrive          = $("#end_date").val();
+            var depart = $("#start_date").val();
+            var arrive = $("#end_date").val();
 
-            var departHour      = $("#start_hour").val();
-            var arriveHour      = $("#end_hour").val();
+            var departHour = $("#start_hour").val();
+            var arriveHour = $("#end_hour").val();
 
-            var place           = $("#place").val();
+            var place = $("#place").val();
 
-            $('#vehicle_name').html(type_vehicle.toUpperCase()+' '+brand_vehicle.toUpperCase());
+            $('#vehicle_name').html(type_vehicle.toUpperCase() + ' ' + brand_vehicle.toUpperCase());
             $('#vehicle_id').attr('value', id_vehicle);
             $('#vehicle_picture').attr('src', picture_vehicle);
             $('#vehicle_picture').attr('width', 100);
@@ -300,10 +300,10 @@
 
             $('#place_checkin').html(place);
 
-            if(iDays===0) {
-                iDays=1;
+            if (iDays === 0) {
+                iDays = 1;
             }
-            $('#booking_price').html((iDays*price_vehicle));
+            $('#booking_price').html((iDays * price_vehicle));
         });
 
         //----------------------------------------------------------------------------
@@ -315,6 +315,10 @@
         });
 
         //----------------------------------------------------------------------------
+
+        $('input').click(function () {
+            $('.fetched-data').html('')
+        });
 
         $('.booking_comfirm').click(function() {
             @auth
@@ -352,7 +356,7 @@
                     });
 
                 } else {
-                        console.log("valid form not ")
+                      error();
                 }
             @else
                 window.location.href = "/login";
@@ -362,7 +366,7 @@
         //-----------------------------------------------------------------
 
         function error() {
-             $('.fetched-data').html("<span class='text-warning'>OUPS! Le formulaire ne semble pas être bien remplit</span>");
+             $('.fetched-data').html("<span class='text-warning'>Le formulaire ne semble pas être bien remplit</span>");
         }
 
         function success() {
