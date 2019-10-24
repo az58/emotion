@@ -29,17 +29,17 @@ Route::get('/home', 'HomeController@index')->name('home');										//
 																								//
 Route::get('/logout', 'Auth\LoginController@logout');											//
 Route::get('/about', 'HomeController@cgu');
-Route::get('/account', 'User\UserController@index');                                                                                            //
+Route::get('/account', 'User\UserController@index')->middleware('auth');                                                                                            //
 //----------------------------------------------------------------------------------------------//
 
 
 //-----------------------------------------BOOKING----------------------------------------------//
 																								//
 Route::get('/booking','Booking\BookingController@index');										//
-Route::post('/booking/create','Booking\BookingController@create');								//
+Route::post('/booking/create','Booking\BookingController@create')->middleware('auth');								//
 																								//
 						//---------------------AJAX--------------------------//					//
-Route::post('/booking/ajax/store','Booking\AjaxController@store');								//
+Route::post('/booking/ajax/store','Booking\AjaxController@store')->middleware('auth');								//
 //----------------------------------------------------------------------------------------------//
 
 //-----------------------------------------VEHICLE------------------------------------------------------------------------------------------//
@@ -80,9 +80,9 @@ Route::post('/admin/booking/ajax/del', 'Admin\Booking\AjaxController@delete')->m
 //--------------------------------------------------------------------------------------------------//
 
 
-Route::get('store', 'StripeController@store');
-Route::get('/stripe/index/{price}', 'StripeController@index');
-Route::post('payment', 'StripeController@payStripe');
+Route::get('store', 'StripeController@store')->middleware('auth');
+Route::get('/stripe/index/{price}', 'StripeController@index')->middleware('auth');
+Route::post('payment', 'StripeController@payStripe')->middleware('auth');
 
 
 
