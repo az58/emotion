@@ -93,22 +93,24 @@
                 <div class="col-lg-8 d-none d-xl-block">
                     <nav class="mainmenu alignright">
                         <ul>
-                            <li><a href="/">Home</a></li>
-                            {{----}}
-                            <li><a href="/admin">Admin</a></li>
-                            {{----}}
-                            <li><a href="/about">About</a></li>
-
-                            <li class="active"><a href="/vehicle/search">Cars</a></li>
-
-                            <li><a href="/account">Mon compte</a>
+                            <li class="active"><a href="#">Home</a></li>
+                            <li><a href="/vehicle/search">Cars</a></li>
+                            <li><a href="">Mon compte</a>
                                 <ul>
-                                    <li><a href="/profil">Profile</a></li>
-                                    <li><a href="/user/location">Mes locations</a></li>
-                                    <li><a href="/logout">Partir</a></li>
+                                    <li><a href="/register">S'enregistrer</a></li>
+                                    <li><a href="/login">Se connecter</a></li>
+                                    @auth
+                                        <li><a href="/logout">Sortir</a></li>
+                                    @endauth
                                 </ul>
                             </li>
-                            <li><a href="/contact">Contact</a></li>
+                            @auth
+                                <?php if (\Illuminate\Support\Facades\Auth::user()->role = 'admin') {?>
+                                <li><a href="/admin">Admin</a></li>
+                                <?php }?>
+                            @endauth
+                            <li><a href="/home#about-area">About</a></li>
+                            <li><a href="/home#contact">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
