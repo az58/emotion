@@ -91,9 +91,9 @@
                                                 <?php $aStatus=["payed", "waiting_payment", "finished", "running"];?>
                                                 @foreach($aStatus as $state)
                                                     @if($state === $row->status)
-                                                            <option selected value="<?= $state ?>"><?= ucfirst($state) ?></option>
+                                                            <option selected value="{{ $state }}">{{ $state }}</option>
                                                     @else
-                                                            <option value="<?= $state ?>"><?= ucfirst($state) ?></option>
+                                                            <option value="{{ $state }}">{{ $state }}</option>
                                                     @endif
                                                 @endforeach
                                             </select>
@@ -162,7 +162,7 @@
                             vehicle_id: elem.find('input[name="vehicle_id"]').val(),
                             start_date: elem.find('input[name="start_date"]').val(),
                             end_date: elem.find('input[name="end_date"]').val(),
-                            status: elem.find('input[name="status"]').val(),
+                            status: elem.find('select[name="status"]').val(),
                             place: elem.find('input[name="place"]').val(),
                             price: elem.find('input[name="price"]').val(),
                             age: elem.find('input[name="age"]').val(),
