@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Vehicle;
 
 use App\Http\Controllers\Controller;
 use App\Vehicle;
+use Illuminate\Http\Request;
 
 class VehicleController extends Controller
 {
@@ -18,5 +19,10 @@ class VehicleController extends Controller
         $vehicles               = Vehicle::all();
 
         return view('admin/vehicle/show', compact('vehicles'));
+    }
+
+    public function add(Request $request)
+    {
+
     }
 }
