@@ -15,7 +15,6 @@ class AjaxController extends Controller
 
     /**
 	 * Récupere les datas passées par la fonction ajax et execute une requete update sur la ligne corespondant à l'id_vehicle du vehicule
-	 * @todo Appliquer des test plus poussé sur les variables avant qu'elles ne soient envoyées à la requette UPDATE
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
@@ -31,7 +30,24 @@ class AjaxController extends Controller
 		 * @example  https://blog.smarchal.com/operateur-ternaire-php
 		 * @var $sCategory
 		 */
+
+		/**
+        $request->validate([
+            'brand'         => 'required',
+            'type'          => 'required',
+            'color'         => 'required',
+            'current_place' => 'required',
+            'available'     => 'required',
+            'licence_plate' => 'required',
+            'kilometer'     => 'required',
+            'serial_number' => 'required',
+            'date_purchase' => 'required',
+            'day_price'     => 'required',
+            'battery_level' => 'required',
+        ]);**/
+
         $sCategory              = in_array($request->category, Constant::CATEGORIES) ? htmlspecialchars($request->category) : null;
+
         $sBrand                 = htmlspecialchars($request->brand);
         $sType                  = htmlspecialchars($request->type);
         $sColor                 = htmlspecialchars($request->color);
@@ -45,8 +61,8 @@ class AjaxController extends Controller
         $iBuying_price          = htmlspecialchars($request->buying_price);
         $sDay_price             = htmlspecialchars($request->day_price);
         $sBattery_level         = htmlspecialchars($request->battery_level);
-        $sBattery_brand         = array_key_exists(htmlspecialchars($request->battery_brand), $this->_validBatteryBrand)
-            ? $this->_validBatteryBrand[$request->battery_brand]: null;
+        $sBattery_brand         = array_key_exists(htmlspecialchars($request->battery_brand), Constant::BATTERRYBRAND)
+            ? Constant::BATTERRYBRAND[$request->battery_brand]: null;
 
         if (!$iVehicle || !$sCategory || !$sBrand || !$sType
             || !$sColor || !$sCurrent_place || !in_array($iAvailable, ['1','0'] )

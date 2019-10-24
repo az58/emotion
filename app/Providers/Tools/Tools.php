@@ -70,7 +70,6 @@ class Tools
         $aCites                                 = json_decode($apiCities);
 
         $_aCities         = [];
-        $_aCountries      = [];
         $_localCountry    = 'France';
 
         foreach ($aCites as $row){
@@ -104,10 +103,10 @@ class Tools
         foreach ($_aCities as $k) {
             if ('Marseille' === substr($k,0,9)) {
                 if (array_key_exists('Marseille', $finalArray)) {
-
                     continue;
                 }
             }
+
             $finalArray [$k]= $k;
         }
 

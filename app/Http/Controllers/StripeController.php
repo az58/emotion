@@ -21,11 +21,11 @@ class StripeController extends Controller
     {
          $iPrice = $request->price;
 
-         $iBooking = Booking::select('id')->where([
+         $queryBuilder = Booking::select('id')->where([
              'user_id' => Auth::id(),
          ])->latest()->first();
 
-         if($iBooking = $iBooking->id) {
+         if(is_object($queryBuilder) && $iBooking = $queryBuilder->id) {
              return view('stripe.stripe', compact( 'iPrice', 'iBooking'));
          }
 

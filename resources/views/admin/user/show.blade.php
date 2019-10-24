@@ -108,7 +108,7 @@
 
                     $.ajax({
                         method: 'POST',
-                        url: '/admin/user/ajax/delete',
+                        url: '/admin/user/ajax/del',
                         data: {
                             id_user       : idTr,
                         },

@@ -65,8 +65,8 @@
                     },
                     error: (error) => {
                         console.log(error);
-                        alert('Oops! Something went wrong')
-                        window.location.href = "/account/"+price;
+                        alert('Oops! Something went wrong');
+                        window.location.href = "/account";
                     }
                 })
             }
