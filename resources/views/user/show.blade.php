@@ -32,7 +32,7 @@
 <div class="preloader">
     <div class="preloader-spinner">
         <div class="loader-content">
-            <img src="{{ asset('front/img/preloader.gif') }}" alt="JSOFT">
+            <img src="{{ asset('front/img/preloader.gif') }}" alt="VRENT">
         </div>
     </div>
 </div>
@@ -46,19 +46,21 @@
             <div class="row">
                 <!--== Single HeaderTop Start ==-->
                 <div class="col-lg-3 text-left">
-                    <i class="fa fa-map-marker"></i> 802/2, Mirpur, Dhaka
+                    @auth
+                        Bienvenue {{ Auth()->user()->firstname}}
+                    @endauth
                 </div>
                 <!--== Single HeaderTop End ==-->
 
                 <!--== Single HeaderTop Start ==-->
                 <div class="col-lg-3 text-center">
-                    <i class="fa fa-mobile"></i> +1 800 345 678
+                    <i class="fa fa-mobile"></i> +33 6 65 93 87 92
                 </div>
                 <!--== Single HeaderTop End ==-->
 
                 <!--== Single HeaderTop Start ==-->
                 <div class="col-lg-3 text-center">
-                    <i class="fa fa-clock-o"></i> Mon-Fri 09.00 - 17.00
+                    <i class="fa fa-clock-o"></i> Lundi-Samedi 09.00 - 20.00
                 </div>
                 <!--== Single HeaderTop End ==-->
 
@@ -84,7 +86,7 @@
                 <!--== Logo Start ==-->
                 <div class="col-lg-4">
                     <a href="index.html" class="logo">
-                        <img src="{{ asset('assets/img/logo.png') }}" alt="JSOFT">
+                        <img src="{{ asset('assets/img/logo.png') }}" alt="VRENT">
                     </a>
                 </div>
                 <!--== Logo End ==-->
@@ -106,9 +108,9 @@
                                 </ul>
                             </li>
                             @auth
-                                <?php if (\Illuminate\Support\Facades\Auth::user()->role = 'admin') {?>
-                                <li><a href="/admin">Admin</a></li>
-                                <?php }?>
+                                @if(auth()->user()->role == 'admin')
+                                    <li><a href="/admin">Admin</a></li>
+                                @endif
                             @endauth
                             <li><a href="/home#about-area">About</a></li>
                             <li><a href="/home#contact">Contact</a></li>
@@ -267,7 +269,7 @@
 
 <!--== Scroll Top Area Start ==-->
 <div class="scroll-top">
-    <img src="{{ asset('front/img/scroll-top.png') }}" alt="JSOFT">
+    <img src="{{ asset('front/img/scroll-top.png') }}" alt="VRENT">
 </div>
 <!--== Scroll Top Area End ==-->
 

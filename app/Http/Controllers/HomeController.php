@@ -7,12 +7,9 @@ namespace App\Http\Controllers;
 use App\Providers\Tools\Tools;
 use App\User;
 
+
 class HomeController extends Controller
 {
-
-
-    //---------------------------------------------------------------------------------------
-
     /**
      * Create a new controller instance.
      *
@@ -32,7 +29,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-
         $users                                  = User::all();
 
         $aCities                                = Tools::getCountry();
@@ -41,7 +37,6 @@ class HomeController extends Controller
     }
 
     //---------------------------------------------------------------------------------------
-
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

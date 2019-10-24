@@ -27,11 +27,8 @@
           Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
       -->
         <div class="logo">
-            <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-                CT
-            </a>
-            <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-                Creative Tim
+            <a href="/admin" class="simple-text logo-normal">
+                VRENT ADMIN
             </a>
         </div>
         <div class="sidebar-wrapper" id="sidebar-wrapper">
@@ -90,7 +87,7 @@
                         </button>
                     </div>
 
-                        <a class="navbar-brand" href="/admin/booking">Booking</a>
+                        <a class="navbar-brand" href="/admin/booking">Home</a>
 
 
 
@@ -116,7 +113,7 @@
                             <div>
 
                             </div>
-                                <a class="nav-link" href="#pablo">
+                                <a class="nav-link" href="/admin/profil">
                                     <i class="now-ui-icons media-2_sound-wave"></i>
                                     <p>
                                         <span class="d-lg-none d-md-block">Stats</span>
@@ -137,7 +134,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#pablo">
+                            <a class="nav-link" href="/admin/profil">
                                 <i class="now-ui-icons users_single-02"></i>
                                 <p>
                                     <span class="d-lg-none d-md-block">Account</span>
@@ -169,12 +166,12 @@
                 <nav>
                     <ul>
                         <li>
-                            <a href="https://www.creative-tim.com">
-                                Creative Tim
+                            <a href="/admin">
+                                VRENT
                             </a>
                         </li>
                         <li>
-                            <a href="http://presentation.creative-tim.com">
+                            <a href="/about">
                                 About Us
                             </a>
                         </li>
@@ -190,8 +187,8 @@
                     <script>
                         document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
                     </script>, Designed by
-                    <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by
-                    <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
+                    <a href="/" target="_blank">VRENT</a>. Coded by
+                    <a href="/" target="_blank">VRENT TEAM</a>.
                 </div>
             </div>
         </footer>

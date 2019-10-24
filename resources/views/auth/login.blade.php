@@ -42,7 +42,7 @@
 <div class="preloader">
     <div class="preloader-spinner">
         <div class="loader-content">
-            <img src="assets/img/preloader.gif" alt="JSOFT">
+            <img src="assets/img/logo.png" alt="VRENT">
         </div>
     </div>
 </div>
@@ -67,7 +67,7 @@
                 <!--== Logo Start ==-->
                 <div class="col-lg-4">
                     <a href="index.html" class="logo">
-                        <img src="{{ asset('front/img/logo.png') }}" alt="JSOFT">
+                        <img src="{{ asset('front/img/logo.png') }}" alt="VRENT">
                     </a>
                 </div>
                 <!--== Logo End ==-->

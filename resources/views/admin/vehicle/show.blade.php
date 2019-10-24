@@ -193,66 +193,67 @@
                 </div>
             </div>
         </div>
-
     </div>
-    <div class="row">
-        <form action="vehicle/add" method="POST">
-            @csrf
-            <div class="row">
-                <input type="text" name="brand" placeholder="Huyndai" required>
 
-                <input type="text" name="type" placeholder="Getz" required>
+    <div class="card">
+        <div class="card-body">
+            <form action="vehicle/add" method="POST">
+                @csrf
+                <div class="row">
+                    <input type="text" name="brand" placeholder="Huyndai" required>
 
-                <input type="text" name="color" placeholder="blue" required>
+                    <input type="text" name="type" placeholder="Getz" required>
 
-                <select name="category">
-                    <option selected value="car">Voiture</option>
-                    <option value="scooter">Scooter</option>
-                </select>
-            </div>
+                    <input type="text" name="color" placeholder="blue" required>
 
-            <div class="row">
-                <input type="text" name="serial_number" placeholder="numero de serie" required>
+                    <select name="category">
+                        <option selected value="car">Voiture</option>
+                        <option value="scooter">Scooter</option>
+                    </select>
+                </div>
 
-                <input type="text" name="licence_plate" placeholder="plaque d'immatriculation" required>
+                <div class="row">
+                    <input type="text" name="serial_number" placeholder="numero de serie" required>
 
-                <input type="number" name="kilometer" placeholder="Nombre de kilometre " required>
+                    <input type="text" name="licence_plate" placeholder="plaque d'immatriculation" required>
 
-                <input type="date" name="date_purchase" placeholder="date d'achat" required>
+                    <input type="number" name="kilometer" placeholder="Nombre de kilometre " required>
 
-                <input type="number" min="200" max="1000000" name="buying_price" placeholder="Prix d'achat" required>
+                    <input type="date" name="date_purchase" placeholder="date d'achat" required>
 
-            </div>
-            <div class="row">
+                    <input type="number" min="200" max="1000000" name="buying_price" placeholder="Prix d'achat" required>
 
-                <select name="available">
-                    <option selected value="1">Disponible</option>
-                    <option value="0">Non disponible</option>
-                </select>
+                </div>
+                <div class="row">
 
-                <input type="number" min="15" max="500" name="day_price" placeholder="Prix à la journée" required>
+                    <select name="available">
+                        <option selected value="1">Disponible</option>
+                        <option value="0">Non disponible</option>
+                    </select>
 
-                <select name="current_place">
-                    @foreach($countries as $country)
-                        <option value="{{$country}}">{{$country}}</option>
-                    @endforeach
-                </select>
+                    <input type="number" min="15" max="500" name="day_price" placeholder="Prix à la journée" required>
 
-                <input type="number" min="0" max="100" name="battery_level" placeholder="Niveau de battery en %" value="100" required>
+                    <select name="current_place">
+                        @foreach($countries as $country)
+                            <option value="{{$country}}">{{$country}}</option>
+                        @endforeach
+                    </select>
 
-                <select name="battery_brand">
-                    <option value="c_n"> Cadmium nickel </option>
-                    <option selected value="n_m_h"> Nickel métal hydrure </option>
-                    <option selected value="l"> Lithium </option>
-                    <option selected value="l_i"> Lithium-ion </option>
-                </select>
+                    <input type="number" min="0" max="100" name="battery_level" placeholder="Niveau de battery en %" value="100" required>
 
-                <input type="file" name="picture" >
-            </div>
+                    <select name="battery_brand">
+                        <option value="c_n"> Cadmium nickel </option>
+                        <option selected value="n_m_h"> Nickel métal hydrure </option>
+                        <option selected value="l"> Lithium </option>
+                        <option selected value="l_i"> Lithium-ion </option>
+                    </select>
 
-            <input type="submit">
-        </form>
+                    <input type="file" name="picture" >
+                </div>
 
+                <input type="submit">
+            </form>
+        </div>
     </div>
 @endsection
 

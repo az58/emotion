@@ -46,24 +46,6 @@
             $('#price_end').on('change',function() {
                 $('#price_end_value').html($(this).val() + '€');
             });
-
-          // $('#startHour, #endHour').on('change',function() {
-          //   if(!validateHhMm($(this).val())) {
-          //     $(this).attr('value', '07:00')
-          //   }
-          // });
-          //
-          // function validateHhMm(inputField) {
-          //   var isValid = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(inputField.value);
-          //
-          //   if (isValid) {
-          //     inputField.style.backgroundColor = '#bfa';
-          //   } else {
-          //     inputField.style.backgroundColor = '#fba';
-          //   }
-          //
-          //   return isValid;
-          // }
         });
     </script>
 </head>
@@ -89,19 +71,17 @@
         <!--== Single HeaderTop Start ==-->
         <div class="col-lg-3 text-left">
             @foreach($users as $user)
-                @endforeach
+            @endforeach
+            @auth
+              Bienvenue {{ Auth()->user()->firstname}}
+            @endauth
 
-           <?php
-            if (Auth::check()) {
-              echo 'Bienvenue '.$user->firstname;
-             }
-             ?>
         </div>
         <!--== Single HeaderTop End ==-->
 
         <!--== Single HeaderTop Start ==-->
         <div class="col-lg-3 text-center">
-          <i class="fa fa-mobile"></i> +33 1 22 33 44 11
+          <i class="fa fa-mobile"></i> +33 6 65 93 87 92
         </div>
         <!--== Single HeaderTop End ==-->
 
@@ -132,8 +112,8 @@
       <div class="row">
         <!--== Logo Start ==-->
         <div class="col-lg-4">
-          <a href="index.html" class="logo">
-            <img src="{{ asset('front/img/logo.png') }}" alt="JSOFT">
+          <a href="/" class="logo">
+            <img src="{{ asset('front/img/logo.png') }}" alt="VRENT">
           </a>
         </div>
         <!--== Logo End ==-->
@@ -155,9 +135,9 @@
                 </ul>
               </li>
               @auth
-                <?php if (\Illuminate\Support\Facades\Auth::user()->role = 'admin') {?>
-                            <li><a href="/admin">Admin</a></li>
-                <?php }?>
+                @if(auth()->user()->role == 'admin')
+                    <li><a href="/admin">Admin</a></li>
+                @endif
               @endauth
               <li><a href="/home#about-area">About</a></li>
               <li><a href="/home#contact">Contact</a></li>
@@ -240,8 +220,7 @@
           <div class="display-table">
             <div class="display-table-cell">
               <div class="slider-right-text">
-                <h1>BOOK A CAR TODAY!</h1>
-                <p>FOR AS LOW AS $10 A DAY PLUS 15% DISCOUNT <br> FOR OUR RETURNING CUSTOMERS</p>
+                <h1>LOUEZ AUJOURD'HUI!</h1>
               </div>
             </div>
           </div>
@@ -491,7 +470,7 @@
                     <div class="single-popular-car">
                       <div class="p-car-thumbnails">
                         <a class="car-hover" href="assets/img/car/car-1.jpg">
-                          <img src="assets/img/car/car-1.jpg" alt="JSOFT">
+                          <img src="assets/img/car/car-1.jpg" alt="VRENT">
                         </a>
                       </div>
 
@@ -518,7 +497,7 @@
                     <div class="single-popular-car">
                       <div class="p-car-thumbnails">
                         <a class="car-hover" href="assets/img/car/car-2.jpg">
-                          <img src="assets/img/car/car-2.jpg" alt="JSOFT">
+                          <img src="assets/img/car/car-2.jpg" alt="VRENT">
                         </a>
                       </div>
 
@@ -545,7 +524,7 @@
                     <div class="single-popular-car">
                       <div class="p-car-thumbnails">
                         <a class="car-hover" href="assets/img/car/car-3.jpg">
-                          <img src="assets/img/car/car-3.jpg" alt="JSOFT">
+                          <img src="assets/img/car/car-3.jpg" alt="VRENT">
                         </a>
                       </div>
 
@@ -572,7 +551,7 @@
                     <div class="single-popular-car">
                       <div class="p-car-thumbnails">
                         <a class="car-hover" href="assets/img/car/car-4.jpg">
-                          <img src="assets/img/car/car-4.jpg" alt="JSOFT">
+                          <img src="assets/img/car/car-4.jpg" alt="VRENT">
                         </a>
                       </div>
 
@@ -599,7 +578,7 @@
                     <div class="single-popular-car">
                       <div class="p-car-thumbnails">
                         <a class="car-hover" href="assets/img/car/car-5.jpg">
-                          <img src="assets/img/car/car-5.jpg" alt="JSOFT">
+                          <img src="assets/img/car/car-5.jpg" alt="VRENT">
                         </a>
                       </div>
 
@@ -626,7 +605,7 @@
                     <div class="single-popular-car">
                       <div class="p-car-thumbnails">
                         <a class="car-hover" href="assets/img/car/car-6.jpg">
-                          <img src="assets/img/car/car-6.jpg" alt="JSOFT">
+                          <img src="assets/img/car/car-6.jpg" alt="VRENT">
                         </a>
                       </div>
 
@@ -676,7 +655,7 @@
                     <div class="single-new-car">
                       <div class="p-car-thumbnails">
                         <a class="car-hover" href="assets/img/car/car-6.jpg">
-                          <img src="assets/img/car/car-6.jpg" alt="JSOFT">
+                          <img src="assets/img/car/car-6.jpg" alt="VRENT">
                         </a>
                       </div>
 
@@ -703,7 +682,7 @@
                     <div class="single-new-car">
                       <div class="p-car-thumbnails">
                         <a class="car-hover" href="assets/img/car/car-5.jpg">
-                          <img src="assets/img/car/car-5.jpg" alt="JSOFT">
+                          <img src="assets/img/car/car-5.jpg" alt="VRENT">
                         </a>
                       </div>
 
@@ -730,7 +709,7 @@
                     <div class="single-new-car">
                       <div class="p-car-thumbnails">
                         <a class="car-hover" href="assets/img/car/car-4.jpg">
-                          <img src="assets/img/car/car-4.jpg" alt="JSOFT">
+                          <img src="assets/img/car/car-4.jpg" alt="VRENT">
                         </a>
                       </div>
 
@@ -800,8 +779,8 @@
 
               <ul class="get-touch" id="contact">
                 <li><i class="fa fa-map-marker"></i> 12 rue Claude Tillier, Paris, France</li>
-                <li><i class="fa fa-mobile"></i>  +33 1 22 33 44 11</li>
-                <li><i class="fa fa-envelope"></i> vrent@gmail.com</li>
+                <li><i class="fa fa-mobile"></i>  +33 6 65 93 87 92</li>
+                <li><i class="fa fa-envelope"></i> webmaster@vrent.fr</li>
               </ul>
 
             </div>

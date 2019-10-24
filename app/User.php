@@ -58,10 +58,10 @@ class User extends Authenticatable
     {
         if(Auth::check()) {
 
-            if ($this->get('role') == 'Admin') {
+            if ($this->role == 'admin') {
                 return true;
             }
+            return false ;
         }
     }
-
 }
