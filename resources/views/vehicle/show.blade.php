@@ -146,8 +146,8 @@
                             <div class="col-lg-4 col-md-6 con suv mpv">
                                 <div class="single-popular-car">
                                     <div class="p-car-thumbnails">
-                                        <a class="car-hover" href="{{ $vehicle->picture }}">
-                                            <img class="picture_vehicle" id="{{ $vehicle->picture }}" src="{{ $vehicle->picture }}" alt="">
+                                        <a class="car-hover" href="{{ asset('front/img/car/'.$vehicle->picture) }}">
+                                            <img class="picture_vehicle" id="{{ asset('front/img/car/'.$vehicle->picture) }}" src="{{ asset('front/img/car/'.$vehicle->picture) }}" alt="">
                                         </a>
                                     </div>
 

@@ -45,7 +45,7 @@
 
     function pay(amount) {
         var handler = StripeCheckout.configure({
-            key: 'pk_test_aeUUjYYcx4XNfKVW60pmHTtI', // your publisher key id
+            key: 'pk_test_74aZGrFdqGsIl2hxXNsqsoYf00qg92oML8', // your publisher key id
             locale: 'auto',
             token: function (token) {
                 // You can access the token ID with `token.id`.
@@ -72,7 +72,7 @@
         handler.open({
             name: 'Demo Site',
             description: '2 widgets',
-            amount: amount
+            amount: amount *100
         });
     }
 </script>
