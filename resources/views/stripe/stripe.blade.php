@@ -22,6 +22,7 @@
     </div>
     <div class="row">
         <div class="col-md-4">
+            <input type="hidden" id="booking" value="{{ $iBooking }}">
             <button class="btn btn-primary btn-block" onclick="pay({{ $iPrice }})">Payer {{ $iPrice }} </button>
         </div>
 
@@ -44,6 +45,7 @@
     });
 
     function pay(amount) {
+        var iBooking = $('#iBooking').val();
         var handler = StripeCheckout.configure({
             key: 'pk_test_74aZGrFdqGsIl2hxXNsqsoYf00qg92oML8', // your publisher key id
             locale: 'auto',
@@ -57,7 +59,7 @@
                 $.ajax({
                     url: '{{ url("store") }}',
                     method: 'post',
-                    data: { tokenId: token.id, amount: amount },
+                    data: { tokenId: token.id, amount: amount, booking: iBooking },
                     success: (response) => {
                         console.log(response)
                     },
@@ -75,6 +77,7 @@
             amount: amount *100
         });
     }
+
 </script>
 </body>
 </html>

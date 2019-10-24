@@ -99,6 +99,7 @@ class BookingController extends Controller
 			'address'           => $sAddress." ".$sCp ,
 			'driving_licence'   => $sDrivingLicence,
 			'status' 			=> 'waiting_payment',
+            'created_at'        => date('Y-m-d H-i-s')
 		]);
 
 		/**

@@ -29,7 +29,7 @@ class VehicleController extends Controller
     {
 
         $sCategory              = in_array($request->category, Constant::CATEGORIES) ? htmlspecialchars($request->category) : null;
-        var_dump($sCategory);exit;
+
         $sBrand                 = htmlspecialchars($request->brand);
         $sType                  = htmlspecialchars($request->type);
         $sColor                 = htmlspecialchars($request->color);

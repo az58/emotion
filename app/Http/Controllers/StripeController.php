@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
+use DemeterChain\B;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Cartalyst\Stripe\Laravel\Facades\Stripe as e;
 use Cartalyst\Stripe\Stripe;
+use Illuminate\Support\Facades\Auth;
 
 class StripeController extends Controller
 {
@@ -19,7 +21,15 @@ class StripeController extends Controller
     {
          $iPrice = $request->price;
 
-        return view('stripe.stripe', compact( 'iPrice'));
+         $iBooking = Booking::select('id')->where([
+             'user_id' => Auth::id(),
+         ])->latest()->first();
+
+         if($iBooking = $iBooking->id) {
+             return view('stripe.stripe', compact( 'iPrice', 'iBooking'));
+         }
+
+        return view('vehicle/search');
     }
 
 
@@ -36,6 +46,12 @@ class StripeController extends Controller
             'currency' => 'EUR',
             'amount' => $request->get('amount')*100,
         ]);
+
+        /**
+         * A mettre dans la fonction ou est redirigé le payement reussi
+         */
+
+        Booking::where('id', $request->get('tokenId') )->upadate(['status'=> 'payed']);
 
         return $stripe;
     }
