@@ -56,7 +56,7 @@
                                     </div>
                                     <button data-toggle="modal" class=" get-touch map-show modal-booking book-now-btn" data-target="#myModal">
                                         @if($booking->status != "waiting_payment")
-                                            Facture
+                                            <a href="/user/ajax/facture/{{$booking->id}}">Facture</a>
                                             @else
                                             En attente de paiement
                                         @endif

@@ -73,7 +73,9 @@ Route::post('/admin/vehicle/add', 'Admin\Vehicle\VehicleController@add');							
 																									//
 																									//
 Route::post('/admin/booking/ajax/edit', 'Admin\Booking\AjaxController@edit')->middleware('admin');	//
-Route::post('/admin/booking/ajax/del', 'Admin\Booking\AjaxController@delete')->middleware('admin');	//
+//
+	//
+Route::get('/user/ajax/facture/{booking}', 'User\AjaxController@facture')->middleware('auth')->where(['booking' =>'[0-9]*']);	            //
 //--------------------------------------------------------------------------------------------------//
 
 

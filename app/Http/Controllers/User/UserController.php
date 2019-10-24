@@ -19,6 +19,7 @@ class UserController extends Controller
             ->Join('users', 'user_id', '=', 'users.id')
             ->where('user_id', Auth::id())
             ->get([
+                'booking.id As id',
                 'vehicle.brand As brand',
                 'vehicle.type As type',
                 'vehicle.licence_plate As licence',
