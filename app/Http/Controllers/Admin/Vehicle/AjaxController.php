@@ -31,68 +31,33 @@ class AjaxController extends Controller
 		 * @var $sCategory
 		 */
 
-		/**
-        $request->validate([
-            'brand'         => 'required',
-            'type'          => 'required',
-            'color'         => 'required',
-            'current_place' => 'required',
-            'available'     => 'required',
-            'licence_plate' => 'required',
-            'kilometer'     => 'required',
-            'serial_number' => 'required',
-            'date_purchase' => 'required',
-            'day_price'     => 'required',
-            'battery_level' => 'required',
-        ]);**/
+        $sBattery_brand = array_key_exists(htmlspecialchars($request->battery_brand), Constant::BATTERRYBRAND)
+            ? Constant::BATTERRYBRAND[$request->battery_brand] : null;
 
-        $sCategory              = in_array($request->category, Constant::CATEGORIES) ? htmlspecialchars($request->category) : null;
+        if ($request->validated() && $sBattery_brand) {
+            Vehicle::where('id', $iVehicle)
+                ->update([
+                    'category'      => $request->category,
+                    'brand'         => $request->brand,
+                    'type'          => $request->type,
+                    'color'         => $request->color,
+                    'current_place' => $request->current_place,
+                    'available'     => $request->available,
+                    'licence_plate' => $request->licence_plate,
+                    'kilometer'     => $request->kilometer,
+                    'serial_number' => $request->serial_number,
+                    'date_purchase' => $request->date_purchase,
+                    'buying_price'  => $request->buying_price,
+                    'day_price'     => $request->day_price,
+                    'battery_level' => $request->battery_level,
+                    'battery_brand' => $sBattery_brand,
 
-        $sBrand                 = htmlspecialchars($request->brand);
-        $sType                  = htmlspecialchars($request->type);
-        $sColor                 = htmlspecialchars($request->color);
-        $sCurrent_place         = htmlspecialchars($request->current_place);
-        $iAvailable             = htmlspecialchars($request->available);
+                ]);
 
-        $sLicence_plate         = htmlspecialchars($request->licence_plate);
-        $sKilometer             = htmlspecialchars($request->kilometer);
-        $sSerial_number         = htmlspecialchars($request->serial_number);
-        $dDate_purchase         = htmlspecialchars($request->date_purchase);
-        $iBuying_price          = htmlspecialchars($request->buying_price);
-        $sDay_price             = htmlspecialchars($request->day_price);
-        $sBattery_level         = htmlspecialchars($request->battery_level);
-        $sBattery_brand         = array_key_exists(htmlspecialchars($request->battery_brand), Constant::BATTERRYBRAND)
-            ? Constant::BATTERRYBRAND[$request->battery_brand]: null;
-
-        if (!$iVehicle || !$sCategory || !$sBrand || !$sType
-            || !$sColor || !$sCurrent_place || !in_array($iAvailable, ['1','0'] )
-            || !$sLicence_plate || !$sKilometer || !$sSerial_number
-            || !$dDate_purchase || !$iBuying_price || !$sDay_price || !$sBattery_level
-            || !$sBattery_brand
-        ) {
-            return response('Vous n\'avez pas les autorisations pour cette action', 419);
+            return response('Vehicule modifié avec succès', 200);
         }
-        
-        Vehicle::where('id',  $iVehicle)
-            ->update([
-                'category'       => $sCategory,
-                'brand'          => $sBrand,
-                'type'           => $sType,
-                'color'          => $sColor,
-                'current_place'  => $sCurrent_place,
-                'available'      => $iAvailable,
-                'licence_plate'  => $sLicence_plate,
-                'kilometer'      => $sKilometer,
-                'serial_number'  => $sSerial_number,
-                'date_purchase'  => $dDate_purchase,
-                'buying_price'   => $iBuying_price,
-                'day_price'      => $sDay_price ,
-                'battery_level'  => $sBattery_level,
-                'battery_brand'  => $sBattery_brand,
 
-            ]);
-
-        return response('Vehicule modifié avec succès', 200);
+        return response('Vous n\'avez pas les autorisations pour cette action', 419);
     }
 
 	//--------------------------------------------------------------------------------------

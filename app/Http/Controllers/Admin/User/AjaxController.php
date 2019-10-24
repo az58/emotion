@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EditUser;
 use App\User;
 
 use Illuminate\Http\Request;
@@ -16,23 +17,27 @@ class AjaxController extends Controller
 	 * @param Request $request
 	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
 	 */
-    public function edit(Request $request) {
-        $iUser              = $request->id_user;
-        $sLastname          = $request->lastname;
-        $sFirstname         = $request->firstname;
-        $sEmail             = $request->email;
-        $sRole              = $request->role;
+    public function edit(EditUser $request) {
+        if ($request->validated()) {
+            $iUser      = $request->id_user;
+            $sLastname  = $request->lastname;
+            $sFirstname = $request->firstname;
+            $sEmail     = $request->email;
+            $sRole      = $request->role;
 
-        // var_dump($request);exit;
+            // var_dump($request);exit;
 
-        User::where('id',  $iUser)
-            ->update([
-                'lastname'  => $sLastname,
-                'firstname' => $sFirstname,
-                'email'     => $sEmail,
-                'role'      => $sRole,
-            ]);
-        return response('ok', 200);
+            User::where('id', $iUser)
+                ->update([
+                    'lastname'  => $sLastname,
+                    'firstname' => $sFirstname,
+                    'email'     => $sEmail,
+                    'role'      => $sRole,
+                ]);
+            return response('ok', 200);
+        }
+
+        return response('access denied', 501);
     }
 
 	//--------------------------------------------------------------------------------------

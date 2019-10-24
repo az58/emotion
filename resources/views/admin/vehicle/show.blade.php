@@ -175,7 +175,7 @@
                                         </td>
 
                                         <td>
-                                            <img src="{{$row->picture}}">
+                                            <img src="{{ asset("front/img/car/".$row->picture)}}">
                                         </td>
 
                                         <td> {{$row->created_at}} </td>

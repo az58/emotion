@@ -1,4 +1,3 @@
-@include("layouts.app")
 @include("layouts.header")
 <!--== Header Area End ==-->
 

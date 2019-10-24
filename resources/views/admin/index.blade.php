@@ -152,13 +152,10 @@
         </div>
 
         <div class="content">
-
             @yield('content')
             @yield('users')
             @yield('vehicle')
             @yield('profile')
-
-
         </div>
 
         <footer class="footer">
