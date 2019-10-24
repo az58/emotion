@@ -209,7 +209,9 @@
                     <option selected value="car">Voiture</option>
                     <option value="scooter">Scooter</option>
                 </select>
+            </div>
 
+            <div class="row">
                 <input type="text" name="serial_number" placeholder="numero de serie" required>
 
                 <input type="text" name="licence_plate" placeholder="plaque d'immatriculation" required>
@@ -219,8 +221,8 @@
                 <input type="date" name="date_purchase" placeholder="date d'achat" required>
 
                 <input type="number" min="200" max="1000000" name="buying_price" placeholder="Prix d'achat" required>
-            </div>
 
+            </div>
             <div class="row">
 
                 <select name="available">

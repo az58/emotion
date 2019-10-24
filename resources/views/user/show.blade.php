@@ -173,7 +173,13 @@
                                             <a href="#">AIR CONDITION</a>
                                         </div>
                                     </div>
-                                    <button data-toggle="modal" class=" get-touch map-show modal-booking" data-target="#myModal">Facture</button>
+                                    <button data-toggle="modal" class=" get-touch map-show modal-booking" data-target="#myModal">
+                                        @if($booking->status != "waiting_payment")
+                                            Facture
+                                            @else
+                                            En attente de paiement
+                                        @endif
+                                    </button>
                                 </div>
                             </div>
                         @endforeach

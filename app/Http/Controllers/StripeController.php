@@ -51,7 +51,7 @@ class StripeController extends Controller
          * A mettre dans la fonction ou est redirigé le payement reussi
          */
 
-        Booking::where('id', $request->get('tokenId') )->upadate(['status'=> 'payed']);
+        Booking::where('id', $request->get('booking') )->upadate(['status'=> 'payed']);
 
         return $stripe;
     }

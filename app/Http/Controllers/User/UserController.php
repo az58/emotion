@@ -23,7 +23,8 @@ class UserController extends Controller
                 'vehicle.type As type',
                 'vehicle.licence_plate As licence',
                 'vehicle.picture As picture',
-                'price'
+                'price',
+                'status'
             ]);
 
         return view('user/show',compact( 'bookings', 'user'));
