@@ -27,24 +27,21 @@ Route::get('/', 'HomeController@index')->name('home');											//
 Route::get('/home', 'HomeController@index')->name('home');										//
 																								//
 																								//
-Route::get('/logout', 'Auth\LoginController@logout');											//
-Route::get('/about', 'HomeController@cgu');
-Route::get('/account', 'User\UserController@index')->middleware('auth');                                                                                            //
+Route::get('/logout', 'Auth\LoginController@logout')->middleware('auth');						//
+Route::get('/about', 'HomeController@cgu');                                                     //
+Route::get('/account', 'User\UserController@index')->middleware('auth');                        //
 //----------------------------------------------------------------------------------------------//
 
 
 //-----------------------------------------BOOKING----------------------------------------------//
 																								//
-Route::get('/booking','Booking\BookingController@index');										//
-Route::post('/booking/create','Booking\BookingController@create')->middleware('auth');								//
+Route::post('/booking/create','Booking\BookingController@create')->middleware('auth');			//
 																								//
 						//---------------------AJAX--------------------------//					//
-Route::post('/booking/ajax/store','Booking\AjaxController@store')->middleware('auth');								//
+Route::post('/booking/ajax/store','Booking\AjaxController@store')->middleware('auth');			//
 //----------------------------------------------------------------------------------------------//
 
 //-----------------------------------------VEHICLE------------------------------------------------------------------------------------------//
-Route::get('/vehicle/store/{vehicle}/{startDate}/{endDate}/{days}','Booking\BookingController@store');//->where('vehicle', '[1-10000]')		//
-    //->where('start', '[A-Za-z]+')																											//
 																																			//
 Route::post('/vehicle/search','Vehicle\VehicleController@search');																			//
 Route::get('/vehicle/search','Vehicle\VehicleController@search');																			//

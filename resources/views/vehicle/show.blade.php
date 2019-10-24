@@ -32,7 +32,7 @@
 <div class="preloader">
     <div class="preloader-spinner">
         <div class="loader-content">
-            <img src="{{ asset('front/img/login.png') }}" alt="VRENT">
+            <img src="{{ asset('front/img/preloader.gif') }}" alt="VRENT">
         </div>
     </div>
 </div>
@@ -328,9 +328,9 @@
                             <p>Lorem ipsum doloer sited amet, consectetur adipisicing elit. nibh auguea, scelerisque sed</p>
 
                             <ul class="get-touch">
-                                <li><i class="fa fa-map-marker"></i> 800/8, Kazipara, Dhaka</li>
-                                <li><i class="fa fa-mobile"></i> +880 01 86 25 72 43</li>
-                                <li><i class="fa fa-envelope"></i> kazukamdu83@gmail.com</li>
+                                <li><i class="fa fa-map-marker"></i>Paris</li>
+                                <li><i class="fa fa-mobile"></i> +33 6 65 93 87 92</li>
+                                <li><i class="fa fa-envelope"></i> webmaster@vrent.fr</li>
                             </ul>
                             <a href="https://goo.gl/maps/b5mt45MCaPB2" class="map-show" target="_blank">Show Location</a>
                         </div>

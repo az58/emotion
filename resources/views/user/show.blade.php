@@ -148,8 +148,11 @@
                         </div>
                         @endforeach
                     </div>
+                    <div class="popucar-menu text-center">
+                        <a href="#" data-filter="*" class="active">Mes reservations</a>
+                    </div>
                     <div class="row popular-car-gird">
-                        @foreach($bookings as $booking )
+                        @forelse($bookings as $booking )
                             <div class="col-lg-4 col-md-6 con suv mpv">
                                 <div class="single-popular-car">
                                     <div class="p-car-thumbnails">
@@ -184,7 +187,9 @@
                                     </button>
                                 </div>
                             </div>
-                        @endforeach
+                        @empty
+                            <span class="text-success text-center">Vous n'avez pas encore de  </span> <span class="text-warning"> &nbsp;<a href="/vehicle/search">location </a></span>
+                        @endforelse
                     </div>
                 </div>
             </div>
@@ -237,9 +242,9 @@
                             <p>Lorem ipsum doloer sited amet, consectetur adipisicing elit. nibh auguea, scelerisque sed</p>
 
                             <ul class="get-touch">
-                                <li><i class="fa fa-map-marker"></i> 800/8, Kazipara, Dhaka</li>
-                                <li><i class="fa fa-mobile"></i> +880 01 86 25 72 43</li>
-                                <li><i class="fa fa-envelope"></i> kazukamdu83@gmail.com</li>
+                                <li><i class="fa fa-map-marker"></i> Paris</li>
+                                <li><i class="fa fa-mobile"></i> +33 6 65 93 87 92</li>
+                                <li><i class="fa fa-envelope"></i> webmaster@vrent.fr</li>
                             </ul>
                             <a href="https://goo.gl/maps/b5mt45MCaPB2" class="map-show" target="_blank">Show Location</a>
                         </div>

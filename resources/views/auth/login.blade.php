@@ -42,7 +42,7 @@
 <div class="preloader">
     <div class="preloader-spinner">
         <div class="loader-content">
-            <img src="assets/img/logo.png" alt="VRENT">
+            <img src="assets/img/preloader.gif" alt="VRENT">
         </div>
     </div>
 </div>
