@@ -146,10 +146,11 @@
               <li><a href="/vehicle/search">Cars</a></li>
               <li><a href="/account">Mon compte</a>
                 <ul>
-                  <li><a href="/register">S'enregistrer</a></li>
-                  <li><a href="/login">Se connecter</a></li>
                   @auth
                     <li><a href="/logout">Sortir</a></li>
+                  @else
+                    <li><a href="/register">S'enregistrer</a></li>
+                    <li><a href="/login">Se connecter</a></li>
                   @endauth
                 </ul>
               </li>
