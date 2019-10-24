@@ -93,25 +93,10 @@ class AjaxController extends Controller
             return response("$iVehicle n'est pas un identifiant valide",200);
         }
 
-         Vehicle::where('id',  $iVehicle)
-             ->update([
-                 'category'       => $sCategory,
-                 'brand'          => $sBrand,
-                 'type'           => $sType,
-                 'color'          => $sColor,
-                 'current_place'  => $sCurrent_place,
-                 'licence_plate'  => $sLicence_plate,
-                 'kilometer'      => $sKilometer,
-                 'serial_number'  => $sSerial_number,
-                 'date_purchase'  => $dDate_purchase,
-                 'buying_price'   => $iBuying_price,
-                 'day_price'      => $sDay_price ,
-                 'battery_level'  => $sBattery_level,
-                 'battery_brand'  => $sBattery_brand,
+         Vehicle::where('id', $iVehicle)
+             ->delete();
 
-             ]);
-
-         return response('Vehicule modifié avec succès', 200);
+         return response('Vehicule supprimé avec succès', 200);
     }
 
     //--------------------------------------------------------------------------------------

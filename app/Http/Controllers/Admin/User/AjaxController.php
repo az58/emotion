@@ -51,6 +51,7 @@ class AjaxController extends Controller
 
         User::where('id', $iUser)
           ->delete();
+
           return response($iUser,200);
     }
     
