@@ -11,6 +11,14 @@ class Constant
 		'scooter',
 	];
 
+    Const BATTERRYBRAND = [
+        'c_n' 	=> 'Cadmium nickel',
+        'n_m_h' => 'Nickel métal hydrure',
+        'l' 	=> 'Lithium',
+        'l_i' 	=> 'Lithium-ion',
+    ];
+
+
 //--------------------------------------------------------------------------------------
 
 	Const NEEDLES     	= [

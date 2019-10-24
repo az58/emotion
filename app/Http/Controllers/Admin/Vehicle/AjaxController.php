@@ -3,33 +3,13 @@
 namespace App\Http\Controllers\Admin\Vehicle;
 
 use App\Http\Controllers\Controller;
+use App\Providers\Tools\Constant;
 use App\Vehicle;
 
 use Illuminate\Http\Request;
 
 class AjaxController extends Controller
 {
-    /**
-	 * Clées des categories acceptées dans la base de de données
-     * @var array
-     */
-    protected $_validCategories = [
-        'scooter',
-        'car',
-    ];
-
-    //--------------------------------------------------------------------------------------
-
-	/**
-	 * Clées de concordances des types de batteries acceptées dans la base de de données
-	 * @var array
-     */
-    protected $_validBatteryBrand = [
-        'c_n' 	=> 'Cadmium nickel',
-        'n_m_h' => 'Nickel métal hydrure',
-        'l' 	=> 'Lithium',
-        'l_i' 	=> 'Lithium-ion',
-    ];
 
 	//--------------------------------------------------------------------------------------
 
@@ -51,7 +31,7 @@ class AjaxController extends Controller
 		 * @example  https://blog.smarchal.com/operateur-ternaire-php
 		 * @var $sCategory
 		 */
-        $sCategory              = in_array($request->category, $this->_validCategories) ? htmlspecialchars($request->category) : null;
+        $sCategory              = in_array($request->category, Constant::CATEGORIES) ? htmlspecialchars($request->category) : null;
         $sBrand                 = htmlspecialchars($request->brand);
         $sType                  = htmlspecialchars($request->type);
         $sColor                 = htmlspecialchars($request->color);
