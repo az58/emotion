@@ -456,7 +456,7 @@
       <div class="row">
         <div class="col-lg-12 text-center">
           <p>
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Vrent</a>
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |  by <a href="/" target="_blank">Vrent</a>
          </p>
         </div>
       </div>

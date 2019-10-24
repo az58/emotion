@@ -36,7 +36,7 @@
     </div>
 </div>
 <!--== Preloader Area End ==-->
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <!--== Header Area Start ==-->
 <header id="header-area" class="fixed-top">
     <!--== Header Top Start ==-->

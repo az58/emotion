@@ -33,7 +33,7 @@ class EditVehicle extends FormRequest
             'licence_plate'     => 'required|string',
             'kilometer'         => 'required|numeric',
             'serial_number'     => 'required|string',
-            'date_purchase'     => 'required|date_format:Y-m-d',
+            'date_purchase'     => 'required|date_format:Y-m-d H:i:s',
             'buying_price'      => 'required|numeric',
             'day_price'         => 'required|numeric',
             'battery_level'     => 'required|numeric',

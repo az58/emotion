@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Vehicle;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EditVehicle;
 use App\Providers\Tools\Constant;
 use App\Vehicle;
 
@@ -18,7 +19,7 @@ class AjaxController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
-    public function edit(Request $request) {
+    public function edit(EditVehicle $request) {
         $iVehicle               = htmlspecialchars($request->id_vehicle);
 
         if(!is_numeric($iVehicle)) {

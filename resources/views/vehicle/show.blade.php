@@ -142,7 +142,7 @@
                             <input type="text" id="driving_licence" name="driving_licence" placeholder="1277DJUSB" required>
                         </div>
                     </div>
-
+                    <p><input type="checkbox" required name="terms"> J'accepte les <u>Termes et Conditions</u></p>
                     <div class="fetched-data">
 
                     </div>
@@ -343,7 +343,7 @@
                     })
 
                     .done(function (response) {
-                        console.log('Un probleme est survenu');
+                        error();
                     })
 
                     .fail(function () {

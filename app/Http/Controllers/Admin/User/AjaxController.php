@@ -25,8 +25,6 @@ class AjaxController extends Controller
             $sEmail     = $request->email;
             $sRole      = $request->role;
 
-            // var_dump($request);exit;
-
             User::where('id', $iUser)
                 ->update([
                     'lastname'  => $sLastname,
@@ -34,6 +32,7 @@ class AjaxController extends Controller
                     'email'     => $sEmail,
                     'role'      => $sRole,
                 ]);
+
             return response('ok', 200);
         }
 
