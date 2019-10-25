@@ -19,6 +19,6 @@ class UserController extends Controller
     	/** @var Object $users */
         $users                  = User::where('role', 'buyer')->get();
 
-        return view('Admin/User/show', compact('users'));
+        return view('admin/user/show', compact('users'));
     }
 }
