@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Booking;
 
 use App\Booking;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateBooking;
 use App\Providers\Tools\Tools;
 use App\Vehicle;
 
@@ -43,21 +44,26 @@ class BookingController extends Controller
 	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
 	 * @throws Stripe\Exception\ApiErrorException
 	 */
-    public function create(Request $request)
+    public function create(Request $request, CreateBooking $requestFilter)
     {
 		if (!$iVehicle = is_numeric($request->input('vehicle_id')) ? $request->input('vehicle_id'): null) {
 			return response('no valid entry', 419);
 		}
 
-		$sStartDate                	= $request->input('start_date');
-		$sEndDate                   = $request->input('end_date');
-		$sStartHour                	= $request->input('start_hour');
-		$sEndHour                   = $request->input('end_hour');
-		$sAge                       = $request->input('age');
-		$sPhone                     = $request->input('phone');
-		$sAddress                   = $request->input('address');
-		$sCp                        = $request->input('cp');
-		$sDrivingLicence            = $request->input('driving_licence');
+		//if($requestFilter->validated()) {
+			$sStartDate                	= $request->input('start_date');
+			$sEndDate                   = $request->input('end_date');
+			$sStartHour                	= $request->input('start_hour');
+			$sEndHour                   = $request->input('end_hour');
+			$sAge                       = $request->input('age');
+			$sPhone                     = $request->input('phone');
+			$sAddress                   = $request->input('address');
+			$sCp                        = $request->input('cp');
+			$sDrivingLicence            = $request->input('driving_licence');
+		//}else{
+		//	return response('troubles to valid booking', 501);
+		//}
+
 
 		if (!Tools::validateDate($sStartDate) || !Tools::validateDate($sEndDate)) {
 			return response('Date troubles', 501);
